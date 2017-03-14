@@ -1,0 +1,257 @@
+@font-face {
+    font-family: 'Thaisans_lite';
+    src: url('../fonts/ThaiSansNeue-SemiBold.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Thaisans_lite';
+    src: url('../fonts/ThaiSansNeue-Bold.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Thaisans_lite';
+    src: url('../fonts/ThaiSansNeue-UltraBold.ttf');
+    font-weight: 700;
+}
+
+// Layout
+body {
+    overflow: hidden;
+    position: relative;
+    background-color: $c-sea;
+    font-family: 'Thaisans_lite', sans-serif !important;
+    font-weight: 300;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    background-image: url(../images/bg.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+// Components
+.badge {
+    vertical-align: top;
+}
+
+.btn {
+    font-size: 16px;
+    font-weight: 400;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    &.btn-primary {
+        background: #365e81;
+        border-color: #204d74;
+        transition: all .3s;
+
+        &:hover {
+            background-color: #204d74;
+            border-color: #122b40;
+        }
+    }
+}
+
+.sweet-overlay {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+    border-color: #aab2bd;
+}
+
+.input-group-addon {
+    background: #1c4568;
+    border-color: #204d74;
+}
+
+// ASKER
+
+.logout {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 22px;
+    color: white;
+    transition: all 2s;
+    // unactive
+    opacity: 0;
+    visibility: hidden;
+
+    .active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+}
+
+.freshman {
+
+    .fresh-block {
+        position: absolute;
+        top: 250px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        width: 100%;
+        box-sizing: border-box;
+        transition: all .5s;
+    }
+
+    .header {
+        text-align: center;
+        margin: 10px 0;
+        color: white;
+        font-size: 72px;
+        line-height: 54px;
+    }
+
+    .login {
+
+        .panel {
+            margin :0;
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        input {
+            font-size: 16px;
+        }
+
+        .login-btn {
+            font-size: 20px;
+        }
+    }
+
+    .main {
+        opacity: 0;
+        visibility: hidden;
+        top: 100%;
+
+        .header {
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .panel {
+            label {
+                font-size: 18px;
+                line-height: 10px;
+                width: 100%;
+            }
+            
+            .id,
+            .name {
+                text-align: right;
+                margin: 0;
+                font-size: 16px;
+
+                span {
+                    font-weight: 500;
+                }
+            }
+
+            hr {
+                margin: 10px 0;
+                border-top: 2px dashed #eee;
+            }
+        }
+
+        .sender-area {
+            font-size: 22px;
+            min-height: 115px;
+        }
+
+        .sender-button {
+            font-size: 24px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    }
+
+    // handle event
+
+    .main.active {
+        opacity: 1;
+        visibility: visible;
+        top: 250px;
+    }
+
+    .login.inactive {
+        top: -550px;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .logout.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.teacher {
+
+    .navbar {
+
+        .update {
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+
+        .sending-questions {
+            margin-right: 15px;
+        }
+    }
+
+    .questions {
+        margin-top: 120px;
+
+        .question{
+            cursor: pointer;
+
+            p {
+                font-size: 22px;
+                margin: 0;
+            }
+
+            &.active {
+                
+            }
+        }
+
+    }
+
+}
+
+.presentation {
+    #hero {
+        width: 100%;
+        height: 100vh;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 1s;
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        span {
+            text-align: center;
+            font-family: 'Thaisans_lite', sans-serif !important;
+            font-weight: 500;           
+        }
+    }
+}
+
+.credit {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-top: 10px;
+    color: #ddd;
+}

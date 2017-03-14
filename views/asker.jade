@@ -1,0 +1,47 @@
+extends ./layout/default.jade
+
+block content
+    div.freshman
+        div.logout
+            i.fa.fa-sign-out
+        div.fresh-block.login
+            div.container
+                div.col-xs-12
+                    h1.header #ASK
+                    div.panel.panel-default
+                        div.panel-body
+                            div.form-group
+                                div.input-group.school
+                                    span.input-group-addon
+                                        i.fa.fa-graduation-cap
+                                    input.form-control(type="text",name='school',placeholder="โรงเรียน",value="")
+                            div.form-group
+                                div.input-group.username
+                                    span.input-group-addon
+                                        i.fa.fa-user
+                                    input.form-control(type="text",name='username',placeholder="ชื่อเล่น",value="")
+                            div.form-group
+                                input.btn.btn-primary.btn-block.pull-right.login-btn(type="submit",value="เข้าสู่ระบบ")
+                    p.credit Powered by #Alchemist
+
+        div.fresh-block.main.inactive
+            div.container
+                div.col-xs-12
+                    h1.header #ASK
+                    div.panel.panel-default
+                        div.panel-body
+                            p.id โรงเรียน :
+                                span
+                            p.name สวัสดีครับ : )
+                                span
+                            hr
+                            div.form-group
+                                label คำถาม
+                                textarea.form-control.sender-area(type="text",required)
+
+                            div.form-group
+                                button.btn.btn-primary.btn-block.pull-right.sender-button ส่งคำถาม
+                    p.credit Powered by #Alchemist
+
+
+    script(src='/javascript/asker.js')

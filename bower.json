@@ -1,0 +1,20 @@
+{
+  "name": "Ask",
+  "description": "Q&A System for IT#22 Freshman.",
+  "main": "server.js",
+  "authors": [
+    "KS"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Alchemist"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
