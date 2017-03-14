@@ -5,8 +5,6 @@ $(document).ready(function() {
     var socket = io.connect();
     var words = [
         {text: "ASK", weight: 13},
-        // {text: "เรซินปัจเจกชนคาร์โก้นางแบบ อุรังคธาตุ มอนสเตอร์ภูมิทัศน??", weight: 12},
-        // {text: "คอนเทนเนอร์โปรเจ็คสเตอริโอเปียโนเกรด?", weight: 10},
     ];
 
     socket.on('presentation', function(data) {
@@ -33,7 +31,7 @@ $(document).ready(function() {
                     },1000)
                 }
             });
-            
+
         });
 
     });

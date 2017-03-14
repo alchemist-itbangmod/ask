@@ -26,22 +26,26 @@ $(document).ready(function() {
             method: 'GET',
             url: "/question/get/ready",
         }).done(function(data) {
+
             questions = data
             questions.forEach(function(element) {
-                list.prepend(question(element.id,element.question))
+                list.prepend(question(element.id,element.question,element.attendee))
             }, this);
+
             $('.questions ul.list-group li').click(selectHandle);
+
             // Reset New-Question
             new_questions = 0;
             $('.new-questions').text(new_questions);
+
             // Reset Selected-Question
             selected_questions = 0;
             $('.selected-questions').text(selected_questions + " ข้อ");
         });
     }
 
-    var question = function(id,data){
-        return "<li class=\"list-group-item question\" data-id=\""+ id +"\"><p>"+ data +"</p></li>";
+    var question = function(id,data,atd){
+        return "<li class=\"list-group-item question\" data-id=\""+ id +"\"><p>"+ data +"</p><div class=\"atd text-right\">ผู้ถาม: "+atd+"</div></li>";
     }
 
     // click trigger
