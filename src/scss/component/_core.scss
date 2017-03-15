@@ -220,10 +220,12 @@ body.teacher {
 
         .question{
             cursor: pointer;
+            box-sizing: border-box;
 
             p {
                 font-size: 26px;
                 margin: 0;
+                padding-right: 50px;
             }
 
             &.active .delete-btn{

@@ -8,7 +8,6 @@ $(document).ready(function() {
     var questions = [];
 
     socket.on('teacher', function(data) {
-        console.log("Client Say"+data)
         if(data.success){
             new_questions += 1;
             $('.new-questions').text(new_questions);
