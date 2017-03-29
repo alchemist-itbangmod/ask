@@ -65,7 +65,7 @@ $(document).ready(function() {
             if (msg.success) {
                 swal({
                     title: "ลบคำถามเรียบร้อยแล้วครับ!",
-                    text: "เชิญต่อเลยครับอาจารย์.",
+                    text: "เชิญต่อเลยครับที่ปรึกษา.",
                     type: "success",
                 });
             } else {
@@ -92,7 +92,7 @@ $(document).ready(function() {
         if(selected.length > 0){
             swal({
                 title: "ตอบคำถาม ?",
-                text: "อาจารย์กำลังจะตอบคำถามทั้งหมด `" + selected.length + "` ข้อ",
+                text: "ที่ปรึกษากำลังจะตอบคำถามทั้งหมด `" + selected.length + "` ข้อ",
                 showCancelButton: true,
                 confirmButtonColor: "#37bc9b",
                 confirmButtonText: "ใช่, ถูกต้อง!",
@@ -111,7 +111,7 @@ $(document).ready(function() {
                                 data: { data : data }
                             }).done(function(data) {
                                 if (data.success) {
-                                    swal("คำถามขึ้นที่จอเรียบร้อยแล้วครับ!", "อาจารย์ตอบคำถามกับน้อง ๆ ได้เลยครับ : )", "success");
+                                    swal("คำถามขึ้นที่จอเรียบร้อยแล้วครับ!", "ที่ปรึกษาตอบคำถามกับผู้ฟังได้เลยครับ : )", "success");
                                 }
                             });
                         }

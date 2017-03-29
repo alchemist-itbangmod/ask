@@ -74,7 +74,7 @@ $(document).ready(function() {
                       if (msg.success) {
                           swal({
                               title: "ส่งเรียบร้อยแล้วครับ!",
-                              text: "นั่งรอฟังคำตอบจากอาจารย์ได้เลยครับ.",
+                              text: "นั่งรอฟังคำตอบจากที่ปรึกษาได้เลยครับ.",
                               type: "success",
                           });
                       } else {
@@ -116,7 +116,7 @@ $(document).ready(function() {
   socket.on('asker', function(data) {
     if (data.name == attendee.name) {
       swal({
-        title: "อาจารย์กำลังตอบคำถามของคุณอยู่!",
+        title: "ที่ปรึกษากำลังตอบคำถามของคุณอยู่!",
         text: "หน้าต่างนี้จะปิดเองภายใน 10 วินาที.",
         timer: 10000,
         showConfirmButton: false,
