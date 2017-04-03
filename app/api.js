@@ -160,7 +160,7 @@ app.post('/question/delete',function(req,res){
 
 // # REPORT API #
 // --------------------
-app.get('/question/report/',function(req,res){
+app.get('/report/',function(req,res){
   // get Question by ID
   knex('questions')
     .select('attendee',knex.raw('COUNT(*) as count'))
