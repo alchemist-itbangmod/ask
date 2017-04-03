@@ -138,8 +138,6 @@ app.post('/config/question/', function(req,res){
     res.json({ success: true, response: data});
     req.app.io.emit('teacher',{ refresh : true});
   });
-
-
 });
 
 app.post('/question/delete',function(req,res){
@@ -160,8 +158,20 @@ app.post('/question/delete',function(req,res){
 
 });
 
-// # PRESENTATION API #
+// # REPORT API #
 // --------------------
-
+app.get('/question/report/',function(req,res){
+  // get Question by ID
+  knex('questions')
+    .select('attendee',knex.raw('COUNT(*) as count'))
+    .groupBy('attendee')
+    .then(function(data){
+      console.log(data);
+      content = {
+        data: data
+      }
+      res.render('report',content);
+    });
+});
 
 module.exports = app;

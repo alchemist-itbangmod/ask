@@ -1,0 +1,17 @@
+extends ./layout/default.jade
+
+block content
+    div.container.report
+        div.row
+            h1 REPORT
+            div.col-xs-12
+                table.table
+                    thead
+                        tr
+                            th รหัสนักศึกษา
+                            th จำนวนครั้งที่ตอบ
+                    tbody
+                        each item in data
+                            tr
+                                td= item.attendee
+                                td= item.count
