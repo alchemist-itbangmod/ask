@@ -60,48 +60,39 @@ app.get('/question/id/:id/',function(req,res){
     });
 });
 
-// app.get('/question/std/:std/',function(req,res){
-//   // get Question by ID
-//   knex('questions')
-//     .where({
-//       std_id: req.params.std
-//     })
-//     .select('*')
-//     .then(function(data){
-//       res.json(data);
-//     });
-
-// });
 
 // # ATTENDEES API #
 // --------------------
 
-// app.post('/login',function(req,res){
-//   var id = req.body.std_id;
-//   console.log(id);
-
-//   knex('attendees').where('stdID', id).then(function(data){
-//     console.log('query',data)
-//     res.json(data);
-//   });
-// });
 
 app.post('/question/',function(req,res){
   // Send Question
 
-  knex('questions')
-    .returning('id')
-    .insert(
-      {
-        question: req.body.content,
-        attendee: req.body.attendee,
-      })
+  knex('config')
+  .where({
+      name: 'open_answer'
+    })
+    .select('*')
     .then(function(data){
-      console.log("[-- Sended Question --] #" + data + " " + req.body.content + " : " + req.body.attendee);
-      req.app.io.emit('teacher',{success: true});
-      setTimeout(function(){
-        res.json({ success: true, response: data});
-      },1000);
+      console.log(data);
+      if(data[0].value == 0)
+        res.json({ closed: true, response: data});
+      else {
+        knex('questions')
+        .returning('id')
+        .insert(
+          {
+            question: req.body.content,
+            attendee: req.body.attendee,
+          })
+        .then(function(data){
+          console.log("[-- Sended Question --] #" + data + " " + req.body.content + " : " + req.body.attendee);
+          req.app.io.emit('teacher',{success: true});
+          setTimeout(function(){
+            res.json({ success: true, response: data});
+          },1000);
+        });
+      }
     });
 
 });
@@ -130,6 +121,25 @@ app.post('/question/selects',function(req,res){
       req.app.io.emit('presentation',{ data : data });
     }
   });
+});
+
+app.post('/config/question/', function(req,res){
+  var data = req.body.data;
+  console.log(data);
+
+  var x = knex('config')
+  .where({
+    name: 'open_answer'
+  })
+  .update({
+    value: data
+  }).then(function(data){
+    console.log("[-- OPEN Question --]");
+    res.json({ success: true, response: data});
+    req.app.io.emit('teacher',{ refresh : true});
+  });
+
+
 });
 
 app.post('/question/delete',function(req,res){

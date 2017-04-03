@@ -76,6 +76,12 @@ $(document).ready(function() {
                               text: "นั่งรอฟังคำตอบจากที่ปรึกษาได้เลยครับ.",
                               type: "success",
                           });
+                      } else if(msg.closed){
+                        swal({
+                              title: "ยังไม่สามารถส่งคำถามได้ครับ!",
+                              text: "รอถึงช่วงเวลาส่งคำถามก่อนนะครับ.",
+                              type: "warning",
+                          });
                       } else {
                           swal({
                               title: "เกิดปัญหากับการส่ง!",

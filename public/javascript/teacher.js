@@ -123,6 +123,34 @@ $(document).ready(function() {
         }
     });
 
+    $('.open-questions').click(function(){
+       $(this).hide();
+       $('.close-questions').show();
+       $.ajax({
+            method: 'POST',
+            url: "/config/question/",
+            data: { data : 1 }
+        }).done(function(data) {
+            if (data.success) {
+                swal("เปิดรอบ!", "เปิดรอบส่งคำถามแล้วครับ", "success");
+            }
+        });
+    });
+
+    $('.close-questions').click(function(){
+        $(this).hide();
+        $('.open-questions').show();
+       $.ajax({
+            method: 'POST',
+            url: "/config/question/",
+            data: { data : 0 }
+        }).done(function(data) {
+            if (data.success) {
+                swal("ปิดรอบ!", "ปิดรอบส่งคำถามแล้วครับ", "warning");
+            }
+        });
+    });
+
     // function
     var render = function() {
       var list = $('.questions ul.questions-list');
