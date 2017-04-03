@@ -20,7 +20,6 @@ $(document).ready(function() {
 
       window.attendee = {
         name:     $('.name input').val(),
-        position: $('.position input').val()
       };
 
       localStorage.setItem('attendee', JSON.stringify(attendee));
@@ -63,7 +62,7 @@ $(document).ready(function() {
                   // init data
                   var data = {
                       content: $('.sender-area').val(),
-                      attendee: window.attendee.name+" / "+window.attendee.position
+                      attendee: window.attendee.name
                   };
                   // ajax
                   $.ajax({
