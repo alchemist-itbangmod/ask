@@ -94,7 +94,7 @@ app.post('/question/',function(req,res){
     .insert(
       {
         question: req.body.content,
-        attendee: req.body.attendee,
+        // attendee: req.body.attendee,
       })
     .then(function(data){
       console.log("[-- Sended Question --] #" + data + " " + req.body.content + " : " + req.body.attendee);

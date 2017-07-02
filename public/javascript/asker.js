@@ -5,6 +5,7 @@ $(document).ready(function() {
 
   if(localStorage.getItem('attendee') != null) {
     window.attendee = JSON.parse(localStorage.getItem('attendee'));
+
     $('.login').addClass('inactive');
     setTimeout(function(){
         $('.main').addClass('active');
@@ -89,6 +90,11 @@ $(document).ready(function() {
                   });
               }
           });
+
+          $('.sender-button').attr('disabled','true');
+          setTimeout(function(){
+            $('.sender-button').removeAttr('disabled');
+          },5000)
       } else {
           swal({
               title: "ยังส่งไม่ได้นะ!",
