@@ -12,10 +12,12 @@
     "lint": "eslint *.js components pages static public",
     "prettier": "prettier --no-semi --trailing-comma none --single-quote  --write \"!(node_modules|.next)/**/*.js\"",
     "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "coverage": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
+    "coveralls": "^2.13.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "next": "beta",
