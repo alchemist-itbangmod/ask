@@ -1,10 +1,17 @@
 {
   "name": "ask",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "2.0.0",
+  "main": "server.js",
   "repository": "https://github.com/alchemist-itbangmod/ask.git",
-  "author": "Kanisorn S. <firstziiz.k@gmail.com>",
+  "author": "Alchemist <alchemist.sitk@mail.kmutt.ac.th>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon ./server.js --watch ./server --watch server.js",
+    "start": "NODE_ENV=production node server.js",
+    "build": "next build",
+    "lint": "eslint *.js components pages static public",
+    "prettier": "prettier --no-semi --trailing-comma none --single-quote  --write \"!(node_modules|.next)/**/*.js\""
+  },
   "dependencies": {
     "body-parser": "^1.17.2",
     "dotenv": "^4.0.0",
@@ -12,5 +19,21 @@
     "next": "beta",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-inline-react-svg": "^0.4.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-config-standard": "^10.2.0",
+    "eslint-config-standard-react": "^4.3.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.0.1",
+    "eslint-plugin-standard": "^3.0.1",
+    "nodemon": "^1.11.0",
+    "prettier": "^1.4.2"
   }
 }
