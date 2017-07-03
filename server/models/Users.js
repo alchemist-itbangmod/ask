@@ -6,10 +6,11 @@ const UsersSchema = mongoose.Schema(
     email: { type: String, unique: true },
     facebookProviderId: { type: String, unique: true, require: true },
     telNo: String,
-    avatarUrl: String,
+    avatarUrl: String
   },
   {
-    timestamps: true, collection: 'users'
+    timestamps: true,
+    collection: 'users'
   }
 )
 

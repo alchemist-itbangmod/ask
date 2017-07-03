@@ -18,7 +18,8 @@
     "express": "^4.15.3",
     "next": "beta",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "recompose": "^0.23.5"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
