@@ -1,2 +1,3 @@
 # ASK
-Q&amp;A System for SIT Orientation
+
+[![Build Status](https://travis-ci.org/alchemist-itbangmod/ask.svg?branch=master)](https://travis-ci.org/alchemist-itbangmod/ask)

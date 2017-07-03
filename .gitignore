@@ -1,3 +1,5 @@
-/node_modules
-/bower_components
-config.js
+.idea
+.next
+coverage
+node_modules
+.DS_Store

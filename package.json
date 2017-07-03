@@ -1,44 +1,44 @@
 {
   "name": "ask",
-  "version": "1.0.0",
-  "description": "Q&A System for Orientation Day !",
+  "version": "2.0.0",
   "main": "server.js",
-  "dependencies": {
-    "cookie-parser": "^1.4.3",
-    "body-parser": "^1.15.2",
-    "connect-ensure-login": "^0.1.1",
-    "cheerio": "^0.20.0",
-    "express-session": "^1.14.0",
-    "express": "^4.14.0",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-cssnano": "^2.1.2",
-    "gulp-sass": "^2.3.2",
-    "knex": "^0.11.7",
-    "jade": "^1.11.0",
-    "method-override": "^2.3.6",
-    "morgan": "^1.7.0",
-    "mysql": "^2.11.1",
-    "mongoose": "^4.5.3",
-    "passport-local": "^1.0.0",
-    "passport": "^0.3.2",
-    "passport-local-mongoose": "^4.0.0",
-    "request": "^2.72.0",
-    "socket.io": "^1.4.8"
-  },
-  "devDependencies": {},
+  "repository": "https://github.com/alchemist-itbangmod/ask.git",
+  "author": "Alchemist <alchemist.sitk@mail.kmutt.ac.th>",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "dev": "nodemon ./server.js --watch ./server --watch server.js",
+    "start": "NODE_ENV=production node server.js",
+    "build": "next build",
+    "lint": "eslint *.js components pages static public",
+    "prettier": "prettier --no-semi --trailing-comma none --single-quote  --write \"!(node_modules|.next)/**/*.js\"",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://git.itbangmod.in.th/firstziiz/ASK.git"
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "next": "beta",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "recompose": "^0.23.5"
   },
-  "keywords": [
-    "alchemist"
-  ],
-  "author": "KS",
-  "license": "MIT"
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-config-standard": "^10.2.0",
+    "eslint-config-standard-react": "^4.3.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.0.1",
+    "eslint-plugin-standard": "^3.0.1",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
+    "nodemon": "^1.11.0",
+    "prettier": "^1.4.2",
+    "react-test-renderer": "^15.6.1"
+  }
 }
