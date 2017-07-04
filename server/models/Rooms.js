@@ -6,7 +6,7 @@ const RoomsSchema = mongoose.Schema(
       type: String,
       require: true,
       unique: true,
-      uppercase: true,
+      uppercase: true
     },
     title: { type: String, require: true, unique: true },
     _ownerId: Schema.Types.ObjectId,
@@ -17,11 +17,12 @@ const RoomsSchema = mongoose.Schema(
     public: Boolean,
     date: {
       start: Date,
-      end: Date,
+      end: Date
     }
   },
   {
-    timestamps: true, collection: 'rooms'
+    timestamps: true,
+    collection: 'rooms'
   }
 )
 

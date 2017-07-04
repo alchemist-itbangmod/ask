@@ -9,7 +9,8 @@ const QuestionsSchema = mongoose.Schema(
     anonymous: Boolean
   },
   {
-    timestamps: true, collection: 'questions'
+    timestamps: true,
+    collection: 'questions'
   }
 )
 

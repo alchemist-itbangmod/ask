@@ -10,19 +10,23 @@
     "start": "NODE_ENV=production node server.js",
     "build": "next build",
     "lint": "eslint *.js components pages static public",
-    "prettier": "prettier --no-semi --trailing-comma none --single-quote  --write \"!(node_modules|.next)/**/*.js\""
+    "prettier": "prettier --no-semi --trailing-comma none --single-quote  --write \"!(node_modules|.next)/**/*.js\"",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "coverage": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
+    "coveralls": "^2.13.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "next": "beta",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "recompose": "^0.23.5"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "babel-plugin-inline-react-svg": "^0.4.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-config-standard": "^10.2.0",
@@ -33,7 +37,10 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^7.0.1",
     "eslint-plugin-standard": "^3.0.1",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
     "nodemon": "^1.11.0",
-    "prettier": "^1.4.2"
+    "prettier": "^1.4.2",
+    "react-test-renderer": "^15.6.1"
   }
 }
