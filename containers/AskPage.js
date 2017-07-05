@@ -1,8 +1,8 @@
 import React from 'react'
 
-class Askpage extends React.Component {
+class AskPage extends React.Component {
   render() {
-    return(
+    return (
       <div className="col-sm-8 offset-sm-2">
         <div className="card text-center">
           <div className="card-block">
@@ -10,7 +10,7 @@ class Askpage extends React.Component {
               # ASK
             </h2>
             <form>
-              
+
             </form>
           </div>
         </div>
@@ -18,3 +18,4 @@ class Askpage extends React.Component {
     )
   }
 }
+export default AskPage
