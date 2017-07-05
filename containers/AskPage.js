@@ -9,6 +9,9 @@ class Askpage extends React.Component {
             <h2 className="card-title">
               # ASK
             </h2>
+            <form>
+              
+            </form>
           </div>
         </div>
       </div>  
