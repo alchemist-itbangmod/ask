@@ -1,5 +1,7 @@
 import React from 'react'
+import AskPage from '../containers/AskPage'
+import withApp from '../libs/withApp'
 
-export default props => (
-  <div>Organizer Ask</div>
-)
+const Ask = props => (<AskPage {...props} />)
+
+export default withApp('Index')(Ask)
