@@ -1,5 +1,5 @@
 // IMPORT MODELS
-const Questions = require('../models/Questions')
+const Rooms = require('../models/Rooms')
 
 // QUESTIONS CONTROLLER
 module.exports = {

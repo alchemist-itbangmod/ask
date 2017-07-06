@@ -1,7 +1,7 @@
 // IMPORT MODELS
-const Questions = require('../models/Questions')
+const Users = require('../models/Users')
 
-// QUESTIONS CONTROLLER
+// USERS CONTROLLER
 module.exports = {
   getQuestions: (req, res) => {
     res.send('Question.getQuestions')
