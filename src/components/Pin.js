@@ -4,7 +4,7 @@ import styled from 'styled-components'
 // style.css component
 const Line = styled.span`
   width: 25px;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #FF4312;
   display: inline-block;
   margin: 8px;
   margin-top: 0px;
@@ -15,6 +15,7 @@ const PIN = styled.input`
   letter-spacing: 28px;
   font-size: 22px;
   border: 0;
+  background: transparent;
 `
 const Text = styled.h3`
   font-family: Prompt;
