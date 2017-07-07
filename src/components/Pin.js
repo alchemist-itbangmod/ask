@@ -17,26 +17,29 @@ const PIN = styled.input`
   border: 0;
 `
 const Text = styled.h3`
-  font-family: Prompt
+  font-family: Prompt;
 `
 
-const H1 = Text.extend`
-  margin-top: 50px;
-  font-weight: semi-bold;
+const Header = Text.extend`
+  margin-top: 125px;
+  font-weight: 600;
+  font-size: 50px;
 `
 
-const H5 = Text.extend`
-
+const SubHeader = Text.extend`
+  margin-top: 30px;
+  font-weight: 200;
+  font-size: 18px;
 `
 
 const PinPage = props => (
   <div>
     <div className="container text-center">
-      <H1>#ASK</H1>
-      <H5>Enter room PIN</H5>
-      <div>
+      <Header>#ASK</Header>
+      <SubHeader>Enter room PIN</SubHeader>
+      <form>
         <PIN className="text-center" type="text" value="1234"/>
-      </div>
+      </form>
       <Line /><Line /><Line /><Line /> 
     </div>
   </div>
