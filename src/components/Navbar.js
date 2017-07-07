@@ -1,23 +1,39 @@
 import React from 'react'
 import { NavLink as Link } from 'react-router-dom'
 
+import { compose, withStats, withHandles } from 'recompose'
+
+class NavbarContainer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showNav: false
+    }
+    this.toggleNavbar = this.toggleNavbar.bind(this)
+  }
+
+  toggleNavbar() {
+    this.setState({ showNav: !this.state.showNav })
+  }
+
+  render() {
+    return (<Navbar toggle={this.toggleNavbar} show={this.state.showNav} />)
+  }
+}
+
 const Navbar = props =>
-  <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+  <nav className="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
     <button
       className="navbar-toggler navbar-toggler-right"
       type="button"
-      data-toggle="collapse"
-      data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
+      onClick={() => props.toggle()}
     >
       <span className="navbar-toggler-icon" />
     </button>
     <Link className="navbar-brand" to="/">
       ASK
     </Link>
-    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div className={"collapse navbar-collapse " + (props.show ? 'show' : '')}>
       <div className="navbar-nav">
         <Link className="nav-item nav-link" exact to="/">
           Home
@@ -32,4 +48,4 @@ const Navbar = props =>
     </div>
   </nav>
 
-export default Navbar
+export default NavbarContainer

@@ -6,50 +6,27 @@ import swal from 'sweetalert2'
 import './static/bootstrap/bootstrap.min.css'
 import '../node_modules/sweetalert2/dist/sweetalert2.min.css'
 
-const Home = props =>
-  <div>
-    <h2>Home</h2>
-  </div>
+import styled from 'styled-components'
 
-const Join = props => {
-  return (
-    <div>
-      <h2>Join</h2>
-    </div>
-  )
-}
+import Pin from './components/Pin'
+import Join from './components/Join'
+import Ask from './components/Ask'
+import Organizer from './components/Organizer'
 
-const Ask = props => {
-  return (
-    <div>
-      <h2>Ask</h2>
-      <button
-        type="button"
-        className="btn btn-primary"
-        onClick={() => swal('HI :)')}
-      >
-        POPUP
-      </button>
-    </div>
-  )
-}
-
-const Organizer = props => {
-  return (
-    <div>Organizer</div>
-  )
-}
+const Container = styled.div`
+  padding-top: 70px
+`
 
 const App = props =>
   <Router>
     <div>
       <Navbar />
-      <div className="container">
-        <Route exact path="/" component={Home} />
+      <Container className="container">
+        <Route exact path="/" component={Pin} />
         <Route path="/join" component={Join} />
         <Route path="/ask" component={Ask} />
         <Route path="/organizer" component={Organizer} />
-      </div>
+      </Container>
     </div>
   </Router>
 export default App
