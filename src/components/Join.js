@@ -2,7 +2,9 @@ import React from 'react'
 
 const JoinPage = props => (
   <div>
-    JOIN Page
+    <div className="container">
+      JOIN Page
+    </div>
   </div>
 )
 

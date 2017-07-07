@@ -1,9 +1,7 @@
 import React from 'react'
 import { NavLink as Link } from 'react-router-dom'
 
-import { compose, withStats, withHandles } from 'recompose'
-
-class NavbarContainer extends React.Component {
+class NavbarContainer extends React.Componsent {
   constructor(props) {
     super(props)
     this.state = {

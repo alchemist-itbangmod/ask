@@ -11,10 +11,12 @@ import Organizer from './components/Organizer'
 
 const App = props =>
   <Router>
-    <Route exact path="/" component={Pin} />
-    <Route path="/join" component={Join} />
-    <Route path="/ask" component={Ask} />
-    <Route path="/organizer" component={Organizer} />
+    <div>
+      <Route exact path="/" component={Pin} />
+      <Route path="/join" component={Join} />
+      <Route path="/ask" component={Ask} />
+      <Route path="/organizer" component={Organizer} />
+    </div>
   </Router>
 
 export default App
