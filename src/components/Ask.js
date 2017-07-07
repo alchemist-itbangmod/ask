@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import swal from 'sweetalert2'
 
 import Navbar from './Navbar'
 
@@ -26,7 +27,16 @@ const AskPage = props => (
           <label htmlFor="exampleTextarea">"Hi! เขมนิจ"</label>
           <textarea className="form-control" placeholder="Question here"  id="exampleTextarea" rows="3"></textarea>
         </Box>
-        <SentButton type="button" className="btn btn-primary btn-sm btn-block">Sent</SentButton>
+        <SentButton type="button" className="btn btn-primary btn-sm btn-block" 
+          onClick = {() => 
+            swal({
+              title: 'Are you sure',
+              text: '',
+              type: 'question',
+              confirmButtonText: 'Cool'
+            })
+          }
+        >Sent</SentButton>
       </div>
     </div>
   </div>
