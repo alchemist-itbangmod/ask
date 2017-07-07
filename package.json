@@ -6,14 +6,16 @@
   "author": "Alchemist <alchemist.sitk@mail.kmutt.ac.th>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./server.js --watch ./server --watch server.js",
+    "dev": "nodemon server.js",
     "start": "NODE_ENV=production node server.js",
-    "build": "next build",
-    "lint": "eslint *.js components pages static public",
-    "prettier": "prettier --no-semi --trailing-comma none --single-quote  --write \"!(node_modules|.next)/**/*.js\"",
+    "react-dev": "react-scripts start",
+    "react-build": "react-scripts build",
+    "eject": "react-scripts eject",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "coverage": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coverage": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "lint": "eslint *.js components pages static public",
+    "prettier": "prettier --no-semi --trailing-comma none --single-quote  --write \"!(node_modules|.next)/**/*.js\""
   },
   "dependencies": {
     "body-parser": "^1.17.2",
@@ -22,9 +24,10 @@
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "mongoose": "^4.11.1",
-    "next": "beta",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-router-dom": "^4.1.1",
+    "react-scripts": "1.0.10",
     "recompose": "^0.23.5"
   },
   "devDependencies": {
