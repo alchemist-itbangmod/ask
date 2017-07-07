@@ -1,7 +1,12 @@
 import React from 'react'
 
+import NavOrganizer from './NavdevOrganizer'
+
 const OrganizerLogin = props => (
-  <div>Login Form</div>
+  <div>
+    <NavOrganizer />
+    Login Form
+  </div>
 )
 
 export default OrganizerLogin
