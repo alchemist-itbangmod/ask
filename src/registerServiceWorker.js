@@ -39,7 +39,7 @@ export default function register() {
         // This is running on localhost. Lets check if a service worker still exists or not.
         checkValidServiceWorker(swUrl)
       }
-    });
+    })
   }
 }
 
@@ -68,7 +68,7 @@ function registerValidSW(swUrl) {
       }
     })
     .catch(error => {
-      console.error('Error during service worker registration:', error);
+      console.error('Error during service worker registration:', error)
     })
 }
 

@@ -32,7 +32,9 @@ router.route('/rooms/:id').put(RoomsController.updateRoomByID)
 router.route('/rooms/code/:code').get(RoomsController.getRoomByCode)
 
 // -- NESTED ROOMS ROUTE --
-router.route('/rooms/:id/questions').get(QuestionsController.getQuestionsByRoomID)
+router
+  .route('/rooms/:id/questions')
+  .get(QuestionsController.getQuestionsByRoomID)
 
 // --------------------------
 // |    QUESTIONS ROUTE.    |

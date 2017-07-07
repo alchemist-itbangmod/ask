@@ -63,7 +63,10 @@ module.exports = {
   update: args => {
     return new Promise(async (resolve, reject) => {
       try {
-        let question = await RoomsModel.update({ _id: args._id }, { $set: args })
+        let question = await RoomsModel.update(
+          { _id: args._id },
+          { $set: args }
+        )
         resolve(question)
       } catch (err) {
         reject(err)
