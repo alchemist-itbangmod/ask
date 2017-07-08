@@ -10,6 +10,7 @@ const Brand = styled.div`
 const Navbar = styled.nav`
   background: transparent;
   border-bottom: 2px solid orange;
+  height: 60px;
 `
 
 class NavbarContainer extends React.Component {
@@ -37,7 +38,7 @@ const Nav = props => (
     </Brand>
     <div className="navbar-toggler-right">
         Hello, <b>ครู-อาจารย์</b><br />
-        Welcome to #ASK
+        Welcome to #ASK <button>Logout</button>
     </div>
   </Navbar>
 )

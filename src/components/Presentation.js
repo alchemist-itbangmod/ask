@@ -14,13 +14,26 @@ const Div = styled.div`
   font-weight: bold;
 `
 
+const Pin = styled.div`
+  background: orange;
+  padding: 10px;
+  // color: white;
+  
+`
+
 export default props => (
   <div>
     <Nav />
-    <div className="show-pin">
-      PIN: 123456
-    </div>
+    <Pin className="text-center">
+      <h4>PIN: 1234</h4>
+    </Pin>
     <Div>
+      <div className="question">
+        ไก่กับไข่ อะไรเกิดก่อนกัน ?
+      </div>
+      <div className="question">
+        ไก่กับไข่ อะไรเกิดก่อนกัน ?
+      </div>
       <div className="question">
         ไก่กับไข่ อะไรเกิดก่อนกัน ?
       </div>
