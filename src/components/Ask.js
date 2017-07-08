@@ -33,7 +33,10 @@ const AskPage = props => (
               title: 'Are you sure',
               text: '',
               showCancelButton: true,
-              confirmButtonText: 'Confirm'
+              reverseButtons: true,
+              confirmButtonText: 'Confirm',
+              confirmButtonColor: '#FF4312',
+              customClass: 'btn'
             }) .then(function () {
               swal(
                 'Sucess',
