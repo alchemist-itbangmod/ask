@@ -2,9 +2,12 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styled from 'styled-components'
 
+// IMPORT GLOBAL CSS.
 import './static/bootstrap/bootstrap.min.css'
 import '../node_modules/sweetalert2/dist/sweetalert2.min.css'
 import '../node_modules/font-awesome/css/font-awesome.min.css'
+import './static/override.css'
+
 import BgImg from './static/images/bg.png'
 
 import Pin from './components/Pin'
