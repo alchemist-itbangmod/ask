@@ -5,12 +5,11 @@ import OrganizerLogin from './OrganizerLogin'
 import OrganizerMonitor from './OrganizerMonitor'
 import Presentation from './Presentation'
 
-const Organizer = ({ match }) => (
+const Organizer = ({ match }) =>
   <div>
     <Route path={`${match.url}/login`} component={OrganizerLogin} />
     <Route path={`${match.url}/:id/monitoring`} component={OrganizerMonitor} />
     <Route path={`${match.url}/:id/presentation`} component={Presentation} />
   </div>
-)
 
 export default Organizer

@@ -33,7 +33,7 @@ const SubHeader = Text.extend`
   font-size: 18px;
 `
 
-const PinPage = props => (
+const PinPage = props =>
   <div>
     <div className="container text-center">
       <Header>#ASK</Header>
@@ -44,6 +44,5 @@ const PinPage = props => (
       <Line /><Line /><Line /><Line /> 
     </div>
   </div>
-)
 
 export default PinPage

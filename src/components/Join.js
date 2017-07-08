@@ -18,7 +18,7 @@ const JoinButton = styled.button`
   padding-bottom: 8px; 
 `
 
-const JoinPage = props => (
+const JoinPage = props =>
   <div>
     <Navbar />
     <div className="container" style={{ marginTop: '200px' }}>
@@ -36,6 +36,5 @@ const JoinPage = props => (
       </div>
     </div>
   </div>
-)
 
 export default JoinPage

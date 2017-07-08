@@ -17,7 +17,7 @@ class NavbarContainer extends React.Component {
   }
 
   render() {
-    return (<Navbar toggle={this.toggleNavbar} show={this.state.showNav} />)
+    return <Navbar toggle={this.toggleNavbar} show={this.state.showNav} />
   }
 }
 

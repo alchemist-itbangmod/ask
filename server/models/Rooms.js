@@ -11,14 +11,9 @@ const RoomsSchema = mongoose.Schema(
     title: { type: String, require: true, unique: true },
     _ownerId: mongoose.Schema.Types.ObjectId,
     imgs: {
-      logo: String,
       cover: String
     },
-    public: Boolean,
-    date: {
-      start: Date,
-      end: Date
-    }
+    openSending: { type: Boolean, default: false }
   },
   {
     timestamps: true,

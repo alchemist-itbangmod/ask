@@ -1,5 +1,3 @@
 import React from 'react'
 
-export default props => (
-  <div>Presentation</div>
-)
+export default props => <div>Presentation</div>
