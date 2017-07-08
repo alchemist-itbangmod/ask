@@ -32,8 +32,14 @@ const AskPage = props => (
             swal({
               title: 'Are you sure',
               text: '',
-              type: 'question',
-              confirmButtonText: 'Cool'
+              showCancelButton: true,
+              confirmButtonText: 'Confirm'
+            }) .then(function () {
+              swal(
+                'Sucess',
+                'You question has been sent!',
+                'success'
+              )
             })
           }
         >Sent</SentButton>
