@@ -6,16 +6,13 @@ const Button = styled.button`
   border-radius: 0;
 `
 
-const ButtonEnter = Button.extend`
-  background-color: #ff0000
-`
+const ButtonEnter = Button.extend`background-color: #ff0000;`
 
-const PinPage = props => (
+const PinPage = props =>
   <div>
     Pin Page
     <Button className="btn btn-primary btn-block">ENTER</Button>
     <ButtonEnter className="btn btn-primary btn-block">Hi</ButtonEnter>
   </div>
-)
 
 export default PinPage

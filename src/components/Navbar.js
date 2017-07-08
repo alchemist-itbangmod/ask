@@ -15,7 +15,7 @@ class NavbarContainer extends React.Componsent {
   }
 
   render() {
-    return (<Navbar toggle={this.toggleNavbar} show={this.state.showNav} />)
+    return <Navbar toggle={this.toggleNavbar} show={this.state.showNav} />
   }
 }
 
@@ -31,7 +31,7 @@ const Navbar = props =>
     <Link className="navbar-brand" to="/">
       ASK
     </Link>
-    <div className={"collapse navbar-collapse " + (props.show ? 'show' : '')}>
+    <div className={'collapse navbar-collapse ' + (props.show ? 'show' : '')}>
       <div className="navbar-nav">
         <Link className="nav-item nav-link" exact to="/">
           Home
