@@ -17,8 +17,8 @@ server.use(cookieParser())
 server.use(bodyParser.urlencoded({ extended: true }))
 
 // API V.1
-// const routes = require('./server/routes.js')
-// server.use('/api/v1', routes)
+const routes = require('./server/routes.js')
+server.use('/api/v1', routes)
 
 // LISTEN PORT 3001
 server.listen(3001, (err) => {

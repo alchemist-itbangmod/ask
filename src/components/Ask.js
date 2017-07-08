@@ -25,7 +25,7 @@ const AskPage = props => (
       <div className="text-center">
         <Box className="form-group">
           <label htmlFor="exampleTextarea">"Hi! เขมนิจ"</label>
-          <textarea className="form-control" placeholder="Question here"  id="exampleTextarea" rows="3"></textarea>
+          <textarea className="form-control" placeholder="Question here"  id="exampleTextarea" rows="5"></textarea>
         </Box>
         <SentButton type="button" className="btn btn-primary btn-sm btn-block" 
           onClick = {() => 

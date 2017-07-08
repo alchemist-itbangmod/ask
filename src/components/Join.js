@@ -8,13 +8,6 @@ const Name = styled.input`
   border: 1px;
   border-radius: 22px;
   background: #EFEFEF;
-  display: inline-block;
-  margin-top: 200px;
-  margin-bottom: 20px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 60px;
-  padding-right: 60px;
   font-weight: 200;
 `
 const JoinButton = styled.button`
@@ -28,12 +21,18 @@ const JoinButton = styled.button`
 const JoinPage = props => (
   <div>
     <Navbar />
-    <div className="container">
+    <div className="container" style={{ marginTop: '200px' }}>
       <div className="text-center">
         <form>
-          <Name className="text-center" type="text" placeholder="Enter your name..."/>
+          <div className="form-group">
+            <Name className="text-center form-control" type="text" placeholder="Enter your name..."/>
+          </div>
+          <JoinButton
+            type="button"
+            className="btn btn-primary btn-sm btn-block"
+            onClick={() => props.history.push('/ask')}
+          >JOIN</JoinButton>
         </form>
-        <JoinButton type="button" className="btn btn-primary btn-sm btn-block">JOIN</JoinButton>
       </div>
     </div>
   </div>

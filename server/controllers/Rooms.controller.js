@@ -3,6 +3,9 @@ const Rooms = require('../models/Rooms')
 
 // QUESTIONS CONTROLLER
 module.exports = {
+  getAll: (req, res) => {
+    res.send("Question.getALL")
+  },
   getQuestions: (req, res) => {
     res.send('Question.getQuestions')
   },
