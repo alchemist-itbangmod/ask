@@ -14,22 +14,27 @@ const Div = styled.div`
   font-weight: bold;
 `
 
-const Pin = styled.div`
+const RoomTitle = styled.div`
   background: orange;
   padding: 10px;
-  // color: white;
   height: 40px;
-  
+`
+
+const RoomName = styled.div`
+  float: left;
+`
+
+const RoomPin = styled.div`
+  float: right;
 `
 
 export default props => (
   <div>
     <Nav />
-    <Pin className="">
-      <div style={{ background: 'gray', width: 40, height: 40, borderRadius: '50%', float: 'left', margin: '0 5px' }} />
-      <h4 style={{ float: 'left' }}>Room: eiei 5555</h4>
-      <h4 style={{ float: 'right' }}>PIN: 1234</h4>
-    </Pin>
+    <RoomTitle className="">
+      <RoomName>Room: eiei 5555</RoomName>
+      <RoomPin>PIN: 1234</RoomPin>
+    </RoomTitle>
     <Div>
       <div className="question">
         ไก่กับไข่ อะไรเกิดก่อนกัน ?

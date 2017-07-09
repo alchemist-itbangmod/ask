@@ -19,6 +19,12 @@ const Div = styled.div`
   margin-top: 20px;
 `
 
+const ScrollBox = styled.ul`
+  display: block;
+  height: 80vh;
+  overflow-y: scroll;
+`
+
 export default props => (
   <div>
     <Nav />
@@ -30,48 +36,22 @@ export default props => (
             <div className="card-header text-center">
               <h4>Question</h4>
             </div>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item">
-                <div className="col-10">
-                  Cras justo odio
-                </div>
-                <div className="col-2">
-                  <ButtonTrash className="card">
-                    <i className="fa fa-trash fa-2x" aria-hidden="true" />
-                  </ButtonTrash>
-                </div>
-              </li>
-              <li className="list-group-item">
-                <div className="col-10">
-                  Dapibus ac facilisis in
-                </div>
-                <div className="col-2">
-                  <ButtonTrash className="card">
-                    <i className="fa fa-trash fa-2x" aria-hidden="true" />
-                  </ButtonTrash>
-                </div>
-              </li>
-              <li className="list-group-item">
-                <div className="col-10">
-                  Vestibulum at eros
-                </div>
-                <div className="col-2">
-                  <ButtonTrash className="card">
-                    <i className="fa fa-trash fa-2x" aria-hidden="true" />
-                  </ButtonTrash>
-                </div>
-              </li>
-              <li className="list-group-item">
-                <div className="col-10">
-                  Vestibulum at eros
-                </div>
-                <div className="col-2">
-                  <ButtonTrash className="card">
-                    <i className="fa fa-trash fa-2x" aria-hidden="true" />
-                  </ButtonTrash>
-                </div>
-              </li>
-            </ul>
+            <ScrollBox className="list-group list-group-flush">
+              {
+                [1, 2, 3].map(e => (
+                  <li className="list-group-item">
+                    <div className="col-10">
+                      Cras justo odio {e}
+                    </div>
+                    <div className="col-2">
+                      <ButtonTrash className="card">
+                        <i className="fa fa-trash fa-2x" aria-hidden="true" />
+                      </ButtonTrash>
+                    </div>
+                  </li>
+                ))
+              }
+            </ScrollBox>
           </div>
         </div>
         <div className="right-side col-sm-4">
@@ -81,12 +61,13 @@ export default props => (
               ( MAX 5 )
             </div>
             <div>
-              <Card className="card col-12 btn">
-                Question 1
-              </Card>
-              <Card className="card col-12">
-                Question 2
-              </Card>
+              {
+                [1, 2, 3, 4, 5].map(e => (
+                  <Card className="card col-12 btn">
+                    Question {e}
+                  </Card>
+                ))
+              }
             </div>
             <div className="btn-group col-12">
               <button type="button" className="btn btn-warning col-6">CLEAR</button>
