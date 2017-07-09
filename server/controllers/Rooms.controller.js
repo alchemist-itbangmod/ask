@@ -42,6 +42,8 @@ module.exports = {
   },
   // Accress room by code
   getRoomByCode: async (req, res) => {
+    const userCode;
+    let existCode 
     res.send('Question.send')
   }
 }
