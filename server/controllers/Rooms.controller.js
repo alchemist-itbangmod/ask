@@ -44,19 +44,18 @@ module.exports = {
   getRoomByCode: async (req, res) => {
     const userCode = req.params.code
 
-    let findCode = await Rooms.getOne({
+    let room = await Rooms.getOne({
       code: userCode
     }).then(data => data)
 
     // Then sent part to go to ask room with key.
-    if (findCode === null)
+    if (room === null) {
       res.json({
         status: false
       })
-
-    console.log(findCode)
+    }
     res.json({
-      status: true
+      status: room._id
     })
   }
 }
