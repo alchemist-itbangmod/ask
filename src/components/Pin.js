@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { compose, withState, withHandlers } from 'recompose'
 import localforage from 'localforage'
 
+import repuireAsker from '../libs/requireAsker'
 // style.css component
 const Line = styled.span`
   width: 25px;
@@ -53,7 +54,6 @@ class PinPageComtainer extends React.Component {
         pin: e.target.value
       })
     }
-    console.log(await localforage.getItem('pin'))
   }
 
   async onSubmit(e) {
@@ -61,11 +61,10 @@ class PinPageComtainer extends React.Component {
     let status = await fetch(`http://localhost:3001/api/v1/rooms/code/${this.state.pin}`)
       .then(data => data.json())
       .then(data => data.status)
-    
     if (status === true) {
       console.log(`Correct PIN`)
-      this.props.history.push('/join')
       await localforage.setItem('pin', this.state.pin)
+      this.props.history.push('/join')
     } else {
       console.log(`Wrong PIN`)
     }
@@ -97,4 +96,4 @@ const PinPage = props =>
     </div>
   </div>
 
-export default PinPageComtainer
+export default repuireAsker()(PinPageComtainer)

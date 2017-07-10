@@ -68,7 +68,6 @@ module.exports = {
         status: false
       })
     }
-
     res.json({
       status: true,
       id: room._id
