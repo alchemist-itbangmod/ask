@@ -50,7 +50,8 @@ module.exports = {
 
     else {
       res.json({
-        status: returnRoomID
+        status: true,
+        //sent link url.
       })  
     }
   },
