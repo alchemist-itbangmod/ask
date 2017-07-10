@@ -3,8 +3,8 @@ const Questions = require('../models/Questions')
 
 // QUESTIONS CONTROLLER
 module.exports = {
-  getQuestions: (req, res) => {
-    res.send('Question.getQuestions')
+  getAllQuestion: (req, res) => {
+    res.send('Question.getAllQuestion')
   },
   getQuestion: (req, res) => {
     res.send(`Question.getQuestion with QID: ${req.params.id}`)

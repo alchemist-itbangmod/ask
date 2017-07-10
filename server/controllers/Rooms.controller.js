@@ -50,8 +50,7 @@ module.exports = {
 
     else {
       res.json({
-        status: true,
-        //sent link url.
+        status: true
       })  
     }
   },
