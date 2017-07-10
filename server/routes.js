@@ -27,7 +27,7 @@ const AuthController = require('./controllers/Authentication.controller')
 // // --------------------------
 router.route('/rooms').get(RoomsController.getAll)
 router.route('/rooms').post(RoomsController.create)
-// router.route('/rooms/:id').get(RoomsController.getRoomByID)
+router.route('/rooms/:id').get(RoomsController.getRoomByID)
 // router.route('/rooms/:id').put(RoomsController.updateRoomByID)
 router.route('/rooms/code/:code').get(RoomsController.getRoomByCode)
 
@@ -37,7 +37,7 @@ router.route('/rooms/code/:code').get(RoomsController.getRoomByCode)
 // // --------------------------
 // // |    QUESTIONS ROUTE.    |
 // // --------------------------
-// router.route('/questions').get(QuestionsController.getQuestions)
+// router.route('/questions').get(QuestionsController.getAllQuestion)
 // router.route('/questions/:id').get(QuestionsController.getQuestion)
 router.route('/questions/send').post(QuestionsController.send)
 // router.route('/questions').delete(QuestionsController.removeQuestion)

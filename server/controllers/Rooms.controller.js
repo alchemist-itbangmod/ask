@@ -34,7 +34,21 @@ module.exports = {
   },
   // To accress room that exist
   getRoomByID: async (req, res) => {
-    res.send('Question.getQuestions')
+    const roomID = req.params.id
+    // console.log(req.params)
+    let returnRoomID = await Rooms.getOne({
+      _id: roomID
+    }).then(data => data)
+
+    if (returnRoomID === null) {
+      res.json({
+        status: false
+      })
+    } else {
+      res.json({
+        status: true
+      })
+    }
   },
   // Update existing room
   updateRoomByID: async (req, res) => {
@@ -54,8 +68,10 @@ module.exports = {
         status: false
       })
     }
+
     res.json({
-      status: room._id
+      status: true,
+      id: room._id
     })
   }
 }
