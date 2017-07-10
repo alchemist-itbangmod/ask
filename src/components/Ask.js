@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import swal from 'sweetalert2'
 
+// HOC
+import repuireAsker from '../libs/requireAsker'
+
 import Navbar from './Navbar'
 
 // style.css component
@@ -26,7 +29,9 @@ class AskPageContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      question: ''
+      question: '',
+      name: '',
+      pin: ''
     }
     this.sendQuestion = this.sendQuestion.bind(this)
     this.handleQuestion = this.handleQuestion.bind(this)
@@ -63,7 +68,13 @@ class AskPageContainer extends React.Component {
       sendQuestion: this.sendQuestion,
       handleQuestion: this.handleQuestion
     }
-    return (<AskPage {...action} />)
+    if (this.props.name === '' || this.props.pin === '') {
+      return <div />
+    }
+    return (<AskPage
+      {...action}
+      name={this.state.name}
+    />)
   }
 }
 
@@ -73,7 +84,7 @@ const AskPage = props => (
     <div className="container">
       <div className="text-center">
         <Box className="form-group">
-          <label htmlFor="exampleTextarea">"Hi! เขมนิจ"</label>
+          <label htmlFor="exampleTextarea">"Hi! {props.name}"</label>
           <textarea
             className="form-control"
             placeholder="Question here"
@@ -91,4 +102,4 @@ const AskPage = props => (
   </div>
 )
 
-export default AskPageContainer
+export default repuireAsker()(AskPageContainer)

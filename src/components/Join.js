@@ -2,10 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import localforage from 'localforage'
 
+// HOC
+import repuireAsker from '../libs/requireAsker'
+
 import Navbar from './Navbar'
 
 // style.css componemt
-const Name = styled.input`
+const NameInput = styled.input`
   border: 1px;
   border-radius: 22px;
   background: #EFEFEF;
@@ -23,25 +26,38 @@ class JoinPageContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      pin: ''
+      pin: '',
+      name: ''
     }
+    this.onChangeName = this.onChangeName.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
-  async componentWillMount() {
-    let pin = await localforage.getItem('pin')
-    if (pin === null) {
-      this.props.history.push('/')
+  onChangeName(e) {
+    this.setState({
+      name: e.target.value
+    })
+  }
+
+  async onSubmit(e) {
+    e.preventDefault()
+    if (this.state.name.length < 2) {
+      console.log(`name should morethan 1 character`)
     } else {
-      this.setState({
-        pin: pin
-      })
+      await localforage.setItem('name', this.state.name)
+      this.props.history.push('/ask')
     }
   }
 
   render() {
-    if(this.state.pin === '')
-      return <div /> 
-    return <JoinPage />
+    if (this.props.pin === '') {
+      return <div />
+    }
+    return <JoinPage
+      name={this.state.name}
+      onSubmit={this.onSubmit}
+      onChangeName={this.onChangeName}
+    />
   }
 }
 
@@ -50,18 +66,23 @@ const JoinPage = props =>
     <Navbar />
     <div className="container" style={{ marginTop: '200px' }}>
       <div className="text-center">
-        <form>
+        <form onSubmit={props.onSubmit}>
           <div className="form-group">
-            <Name className="text-center form-control" type="text" placeholder="Enter your name..."/>
+            <NameInput
+              className="text-center form-control"
+              type="text"
+              placeholder="Enter your name ..."
+              onChange={e => props.onChangeName(e)}
+              value={props.name}
+            />
           </div>
           <JoinButton
-            type="button"
+            type="submit"
             className="btn btn-primary btn-sm btn-block"
-            onClick={() => props.history.push('/ask')}
           >JOIN</JoinButton>
         </form>
       </div>
     </div>
   </div>
 
-export default JoinPageContainer
+export default repuireAsker()(JoinPageContainer)
