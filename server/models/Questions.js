@@ -2,12 +2,21 @@ const mongoose = require('mongoose')
 
 const QuestionsSchema = mongoose.Schema(
   {
-    roomId: mongoose.Schema.Types.ObjectId,
-    question: String,
-    anonymous: Boolean,
-    name: String,
-    isAnswer: Boolean,
-    isDelete: Boolean
+    roomId: {
+      type: mongoose.Schema.Types.ObjectId,
+      require: true
+    },
+    question: {
+      type: String,
+      require: true
+    },
+    anonymous: { type: Boolean, default: true },
+    name: {
+      type: String,
+      require: true
+    },
+    isAnswer: { type: Boolean, default: false },
+    isDelete: { type: Boolean, default: false }
   },
   {
     timestamps: true,

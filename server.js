@@ -29,6 +29,7 @@ const server = express()
 server.use(cors())
 server.use(cookieParser())
 server.use(bodyParser.urlencoded({ extended: true }))
+server.use(bodyParser.json())
 
 // API V.1
 const routes = require('./server/routes.js')

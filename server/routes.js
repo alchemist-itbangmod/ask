@@ -39,7 +39,7 @@ router.route('/rooms/code/:code').get(RoomsController.getRoomByCode)
 // // --------------------------
 // router.route('/questions').get(QuestionsController.getQuestions)
 // router.route('/questions/:id').get(QuestionsController.getQuestion)
-// router.route('/questions/send').post(QuestionsController.send)
+router.route('/questions/send').post(QuestionsController.send)
 // router.route('/questions').delete(QuestionsController.removeQuestion)
 
 module.exports = router
