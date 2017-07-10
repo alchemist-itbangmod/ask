@@ -5,7 +5,7 @@ import { compose, withState, withHandlers } from 'recompose'
 // style.css component
 const Line = styled.span`
   width: 25px;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #FF4312;
   display: inline-block;
   margin: 8px;
   margin-top: 0px;
@@ -16,32 +16,32 @@ const PIN = styled.input`
   letter-spacing: 28px;
   font-size: 22px;
   border: 0;
+  background: transparent;
 `
 const Text = styled.h3`
-  font-family: Prompt
+  font-family: Prompt;
 `
 
-const H1 = Text.extend`
-  margin-top: 50px;
-  font-weight: semi-bold;
+const Header = Text.extend`
+  margin-top: 125px;
+  font-weight: 600;
+  font-size: 50px;
 `
 
-const H5 = Text.extend`
+const SubHeader = Text.extend`
+  margin-top: 30px;
+  font-weight: 200;
+  font-size: 18px;
 `
 
 const PinPage = props =>
   <div>
     <div className="container text-center">
-      <H1>#ASK</H1>
-      <H5>Enter room PIN</H5>
-      <div>
-        <PIN
-          className="text-center"
-          type="text"
-          value={props.pin}
-          onChange={(e) => props.setPin(e.target.value)}
-        />
-      </div>
+      <Header>#ASK</Header>
+      <SubHeader>Enter room PIN</SubHeader>
+      <form>
+        <PIN className="text-center" type="text" value="1234" />
+      </form>
       <Line /><Line /><Line /><Line /> 
     </div>
   </div>

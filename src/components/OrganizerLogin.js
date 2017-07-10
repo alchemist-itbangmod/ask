@@ -1,6 +1,6 @@
 import React from 'react'
 import { compose, withHandlers } from 'recompose'
-import io from '../libs/withSocket'
+// import io from '../libs/withSocket'
 
 const OrganizerLogin = props =>
   <div>
@@ -14,7 +14,7 @@ const OrganizerLoginCompose = compose(
   withHandlers({
     testSocket: props => () => {
       console.log('Hi')
-      io.emit('hello-world', { data: 'hi' })
+      // io.emit('hello-world', { data: 'hi' })
     }
   })
 )(OrganizerLogin)
