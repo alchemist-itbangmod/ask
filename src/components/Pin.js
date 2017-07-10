@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { compose, withState, withHandlers } from 'recompose'
 
 // style.css component
 const Line = styled.span`
@@ -26,7 +27,6 @@ const H1 = Text.extend`
 `
 
 const H5 = Text.extend`
-
 `
 
 const PinPage = props =>
@@ -35,10 +35,17 @@ const PinPage = props =>
       <H1>#ASK</H1>
       <H5>Enter room PIN</H5>
       <div>
-        <PIN className="text-center" type="text" value="1234"/>
+        <PIN
+          className="text-center"
+          type="text"
+          value={props.pin}
+          onChange={(e) => props.setPin(e.target.value)}
+        />
       </div>
       <Line /><Line /><Line /><Line /> 
     </div>
   </div>
 
-export default PinPage
+const PinPageCompose = withState('pin', 'setPin', 0)(PinPage)
+
+export default PinPageCompose
