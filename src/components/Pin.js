@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { compose, withState, withHandlers } from 'recompose'
+import localforage from 'localforage'
 
 // style.css component
 const Line = styled.span`
@@ -34,18 +35,66 @@ const SubHeader = Text.extend`
   font-size: 18px;
 `
 
+class PinPageComtainer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      pin: ''
+    }
+    this.onChangePin = this.onChangePin.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
+  }
+
+  async onChangePin(e) {
+    if (e.target.value.length > 4) {
+      console.log('can not typing')
+    } else {
+      this.setState({
+        pin: e.target.value
+      })
+    }
+    console.log(await localforage.getItem('pin'))
+  }
+
+  async onSubmit(e) {
+    e.preventDefault()
+    let status = await fetch(`http://localhost:3001/api/v1/rooms/code/${this.state.pin}`)
+      .then(data => data.json())
+      .then(data => data.status)
+    
+    if (status === true) {
+      console.log(`Correct PIN`)
+      this.props.history.push('/join')
+      await localforage.setItem('pin', this.state.pin)
+    } else {
+      console.log(`Wrong PIN`)
+    }
+  }
+
+  render() {
+    return <PinPage
+      pin={this.state.pin}
+      onChangePin={this.onChangePin}
+      onSubmit={this.onSubmit}
+    />
+  }
+}
+
 const PinPage = props =>
   <div>
     <div className="container text-center">
       <Header>#ASK</Header>
       <SubHeader>Enter room PIN</SubHeader>
-      <form>
-        <PIN className="text-center" type="text" value="1234" />
+      <form onSubmit={props.onSubmit}>
+        <PIN
+          className="text-center"
+          type="text"
+          onChange={(e) => props.onChangePin(e)}
+          value={props.pin}
+        />
       </form>
-      <Line /><Line /><Line /><Line /> 
+      <Line /><Line /><Line /><Line />
     </div>
   </div>
 
-const PinPageCompose = withState('pin', 'setPin', 0)(PinPage)
-
-export default PinPageCompose
+export default PinPageComtainer

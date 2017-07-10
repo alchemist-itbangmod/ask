@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import localforage from 'localforage'
 
 import Navbar from './Navbar'
 
@@ -17,6 +18,32 @@ const JoinButton = styled.button`
   padding-top: 8px;
   padding-bottom: 8px; 
 `
+
+class JoinPageContainer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      pin: ''
+    }
+  }
+
+  async componentWillMount() {
+    let pin = await localforage.getItem('pin')
+    if (pin === null) {
+      this.props.history.push('/')
+    } else {
+      this.setState({
+        pin: pin
+      })
+    }
+  }
+
+  render() {
+    if(this.state.pin === '')
+      return <div /> 
+    return <JoinPage />
+  }
+}
 
 const JoinPage = props =>
   <div>
@@ -37,4 +64,4 @@ const JoinPage = props =>
     </div>
   </div>
 
-export default JoinPage
+export default JoinPageContainer

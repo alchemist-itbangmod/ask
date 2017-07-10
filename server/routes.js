@@ -29,8 +29,7 @@ router.route('/rooms').get(RoomsController.getAll)
 router.route('/rooms').post(RoomsController.create)
 // router.route('/rooms/:id').get(RoomsController.getRoomByID)
 // router.route('/rooms/:id').put(RoomsController.updateRoomByID)
-// router.route('/rooms/:id').delete(RoomsController.removeRoomByID)
-// router.route('/rooms/code/:code').get(RoomsController.getRoomByCode)
+router.route('/rooms/code/:code').get(RoomsController.getRoomByCode)
 
 // // -- NESTED ROOMS ROUTE --
 // router.route('/rooms/:id/questions').get(QuestionsController.getQuestionsByRoomID)

@@ -10,6 +10,7 @@ module.exports = {
   },
   create: async (req, res) => {
     let code, chkRoomCode
+    // Random room code
     do {
       code = Math.floor(Math.random() * (9999 - 1000)) + 1000
       chkRoomCode = await Rooms.getOne({
@@ -17,6 +18,7 @@ module.exports = {
       }).then(data => data)
     } while (chkRoomCode !== null)
 
+    // Created room
     let result = await Rooms.create({
       code: code,
       title: req.body.title,
@@ -30,13 +32,31 @@ module.exports = {
 
     res.json(result)
   },
-  getQuestions: async (req, res) => {
+  // To accress room that exist
+  getRoomByID: async (req, res) => {
     res.send('Question.getQuestions')
   },
-  getQuestion: async (req, res) => {
+  // Update existing room
+  updateRoomByID: async (req, res) => {
     res.send(`Question.getQuestion with QID: ${req.params.id}`)
   },
-  send: async (req, res) => {
-    res.send('Question.send')
+  // Accress room by code
+  getRoomByCode: async (req, res) => {
+    const userCode = req.params.code
+
+    let findCode = await Rooms.getOne({
+      code: userCode
+    }).then(data => data)
+
+    // Then sent part to go to ask room with key.
+    if (findCode === null)
+      res.json({
+        status: false
+      })
+
+    console.log(findCode)
+    res.json({
+      status: true
+    })
   }
 }
