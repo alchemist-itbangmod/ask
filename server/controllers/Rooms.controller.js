@@ -42,8 +42,21 @@ module.exports = {
   },
   // Accress room by code
   getRoomByCode: async (req, res) => {
-    const userCode;
-    let existCode 
-    res.send('Question.send')
+    const userCode = req.params.code
+
+    let findCode = await Rooms.getOne({
+      code: userCode
+    }).then(data => data)
+
+    // Then sent part to go to ask room with key.
+    if (findCode === null)
+      res.json({
+        status: false
+      })
+
+    console.log(findCode)
+    res.json({
+      status: true
+    })
   }
 }
