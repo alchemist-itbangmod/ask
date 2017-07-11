@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import swal from 'sweetalert2'
+import localforage from 'localforage'
 
 // HOC
 import repuireAsker from '../libs/requireAsker'
@@ -28,10 +29,12 @@ class AskPageContainer extends React.Component {
     this.state = {
       question: '',
       name: '',
-      pin: ''
+      pin: '',
+      roomId: ''
     }
     this.sendQuestion = this.sendQuestion.bind(this)
     this.handleQuestion = this.handleQuestion.bind(this)
+    this.componentWillMount = this.componentWillMount.bind(this)
   }
 
   sendQuestion() {
@@ -51,8 +54,8 @@ class AskPageContainer extends React.Component {
       preConfirm: () => {
         return new Promise((resolve, reject) => {
           axios.post(`http://localhost:3001/api/v1/questions/send`, {
-            roomId: '5960a0a1e327597fe42be49d',
-            name: 'KS',
+            roomId: this.state.roomId,
+            name: this.state.name,
             question: this.state.question
           }).then(data => {
             resolve(data.data)
@@ -84,6 +87,18 @@ class AskPageContainer extends React.Component {
     this.setState({
       question: q
     })
+  }
+
+  async componentWillMount() {
+    let pin = await localforage.getItem(`pin`)
+    let name = await localforage.getItem(`name`)
+    let id = await fetch(`http://localhost:3001/api/v1/rooms/code/${pin}`)
+      .then(data => data.json())
+      .then(data => data.id)
+    console.log(id)
+    this.setState({ pin })
+    this.setState({ name })
+    this.setState({ roomId: id })
   }
 
   render() {
