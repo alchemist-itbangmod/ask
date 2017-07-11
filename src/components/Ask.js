@@ -96,7 +96,7 @@ class AskPageContainer extends React.Component {
     }
     return (<AskPage
       {...action}
-      name={this.state.name}
+      name={this.props.name}
     />)
   }
 }
