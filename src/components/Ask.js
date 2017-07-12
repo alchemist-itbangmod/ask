@@ -41,7 +41,7 @@ class AskPageContainer extends React.Component {
 
     swal({
       title: 'Are you sure to sent',
-      text: `Are yoo sure to sent this question that '${this.state.question}' to modurator`,
+      text: `Are you sure to sent this question that '${this.state.question}' to modurator`,
       showCancelButton: true,
       reverseButtons: true,
       confirmButtonText: 'Confirm',
