@@ -54,9 +54,14 @@ class OrganizeMonitorContainer extends React.Component {
     })
   }
 
+  deleteQuestion(e) {
+    console.log(e.target.id)
+    console.log(this.state.questions[e.target.id])
+  }
+
   render() {
     return (
-      <OrganizeMonitor questions={this.state.questions} />
+      <OrganizeMonitor questions={this.state.questions} onDelete={this.deleteQuestion.bind(this)} />
     )
   }
 }
@@ -74,14 +79,16 @@ const OrganizeMonitor = props => (
             </div>
             <ScrollBox className="list-group list-group-flush">
               {
-                props.questions.map(q => (
+                props.questions.map((q, index) => (
                   <li className="list-group-item" key={q._id}>
                     <div className="col-10">
                       { q.question }
                     </div>
                     <div className="col-2">
-                      <ButtonTrash className="card">
+                      <ButtonTrash className="card"
+                          onClick={props.onDelete}>
                         <i
+                          id={index}
                           className="fa fa-trash fa-2x"
                           aria-hidden="true"
                         />
