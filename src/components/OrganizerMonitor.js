@@ -5,6 +5,8 @@ import axios from 'axios'
 import Nav from './NavdevOrganizer'
 import NavOrganizer from './NavbarOrganizer'
 
+import socket from '../libs/withSocket'
+
 const ButtonTrash = styled.button`
   cursor: pointer;
   float: right;
@@ -90,7 +92,7 @@ const OrganizeMonitor = props => (
             <div>
               {
                 [1, 2, 3, 4, 5].map(e => (
-                  <Card className="card col-12 btn">
+                  <Card className="card col-12 btn" key={e}>
                     Question {e}
                   </Card>
                 ))

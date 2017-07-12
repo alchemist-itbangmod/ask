@@ -8,6 +8,8 @@ import repuireAsker from '../libs/requireAsker'
 import Navbar from './Navbar'
 import axios from 'axios'
 
+import socket from '../libs/withSocket'
+
 // style.css component
 const SentButton = styled.button`
   background-color: #FF4312;
@@ -83,7 +85,7 @@ class AskPageContainer extends React.Component {
     })
   }
 
-  handleQuestion(q) {
+  async handleQuestion(q) {
     this.setState({
       question: q
     })
