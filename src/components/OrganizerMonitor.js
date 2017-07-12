@@ -38,6 +38,10 @@ class OrganizeMonitorContainer extends React.Component {
   }
 
   async componentWillMount() {
+    let pin = this.props.match.params.id
+    let roomId = await axios.get(`http://localhost:3001/api/v1/rooms/code/${pin}`)
+      .then(resp => resp.data.roomId)
+    this.setState({ roomId })
     let questions = await axios.get(`http://localhost:3001/api/v1/questions?roomId=${this.state.roomId}`)
       .then(resp => resp.data)
     console.log(questions)
@@ -50,14 +54,11 @@ class OrganizeMonitorContainer extends React.Component {
     })
   }
 
-  //deleteQuestion()
-
   render() {
     return (
       <OrganizeMonitor questions={this.state.questions} />
     )
   }
-
 }
 
 const OrganizeMonitor = props => (
@@ -80,12 +81,9 @@ const OrganizeMonitor = props => (
                     </div>
                     <div className="col-2">
                       <ButtonTrash className="card">
-                        <i 
-                          className="fa fa-trash fa-2x" 
+                        <i
+                          className="fa fa-trash fa-2x"
                           aria-hidden="true"
-                          /*onClick = { () => (
-
-                          ) }*/
                         />
                       </ButtonTrash>
                     </div>
