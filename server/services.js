@@ -3,7 +3,7 @@ module.exports = function(io) {
     console.log('socket connected')
 
     socket.on('monitor', function(data) {
-      console.log('data-socket', data)
+      //console.log('data-socket', data)
     })
   })
 }

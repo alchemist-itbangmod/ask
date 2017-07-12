@@ -50,6 +50,8 @@ class OrganizeMonitorContainer extends React.Component {
     })
   }
 
+  //deleteQuestion()
+
   render() {
     return (
       <OrganizeMonitor questions={this.state.questions} />
@@ -78,7 +80,13 @@ const OrganizeMonitor = props => (
                     </div>
                     <div className="col-2">
                       <ButtonTrash className="card">
-                        <i className="fa fa-trash fa-2x" aria-hidden="true" />
+                        <i 
+                          className="fa fa-trash fa-2x" 
+                          aria-hidden="true"
+                          /*onClick = { () => (
+
+                          ) }*/
+                        />
                       </ButtonTrash>
                     </div>
                   </li>
