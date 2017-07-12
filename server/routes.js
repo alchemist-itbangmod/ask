@@ -39,7 +39,7 @@ module.exports = function(io) {
   // // |    QUESTIONS ROUTE.    |
   // // --------------------------
   router.route('/questions').get(QuestionsController.getAllQuestion)
-  router.route('/questions/:id').push(QuestionsController.updateIsDelete)
+  // router.route('/questions/:id').push(QuestionsController.updateIsDelete)
   // router.route('/questions/:id').get(QuestionsController.getQuestion)
   router.route('/questions/send').post(QuestionsController.send)
   // router.route('/questions').delete(QuestionsController.removeQuestion)
