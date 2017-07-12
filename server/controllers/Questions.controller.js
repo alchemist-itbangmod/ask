@@ -17,6 +17,22 @@ module.exports = (io) => {
     getQuestion: (req, res) => {
       res.send(`Question.getQuestion with QID: ${req.params.id}`)
     },
+    updateIsDelete: async (req, res) => {
+      let updateQuestion = await Questions.update({
+        _id: new mongoose.Types.ObjectId(req.body.id),
+        $isDelete: true
+      }) .then(data => data)
+
+      io.socket.emit('moitor', { sucess: updateQuestion })
+    },
+    updateIsAnser: async (req, res) => {
+      let updateQuestion = await Questions.update({
+        _id: new mongoose.Types.ObjectId(req.body.id),
+        $isDelete: true
+      }) .then(data => data)
+
+      io.socket.emit('moitor', { sucess: updateQuestion })
+    },
     send: async (req, res) => {
       let openSending = await Rooms.getOne({
         _id: new mongoose.Types.ObjectId(req.body.roomId)
@@ -51,5 +67,4 @@ module.exports = (io) => {
       }, 2000)
     }
   }
-
 }

@@ -56,7 +56,7 @@ class OrganizeMonitorContainer extends React.Component {
 
   deleteQuestion(e) {
     console.log(e.target.id)
-    console.log(this.state.questions[e.target.id])
+    // const question = await axios.put(`http://localhost:3000/api/v1/`)
   }
 
   render() {
@@ -88,7 +88,7 @@ const OrganizeMonitor = props => (
                       <ButtonTrash className="card"
                           onClick={props.onDelete}>
                         <i
-                          id={index}
+                          id={q._id}
                           className="fa fa-trash fa-2x"
                           aria-hidden="true"
                         />
