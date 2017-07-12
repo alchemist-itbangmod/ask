@@ -34,7 +34,7 @@ class NavbarContainer extends React.Component {
 const Nav = props => (
   <Navbar className="navbar navbar-toggleable-md navbar-light bg-faded text-center">
     <Brand className="navbar-brand text-center">
-      <h5>Happiness Room</h5>
+      <h5>"ROOM name"</h5>
     </Brand>
     <div className="navbar-toggler-right">
         Hello, <b>ครู-อาจารย์</b><br />
