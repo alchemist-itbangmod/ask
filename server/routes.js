@@ -37,7 +37,7 @@ router.route('/rooms/code/:code').get(RoomsController.getRoomByCode)
 // // --------------------------
 // // |    QUESTIONS ROUTE.    |
 // // --------------------------
-// router.route('/questions').get(QuestionsController.getAllQuestion)
+router.route('/questions').get(QuestionsController.getAllQuestion)
 // router.route('/questions/:id').get(QuestionsController.getQuestion)
 router.route('/questions/send').post(QuestionsController.send)
 // router.route('/questions').delete(QuestionsController.removeQuestion)

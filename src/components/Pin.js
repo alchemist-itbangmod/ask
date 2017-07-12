@@ -58,11 +58,12 @@ class PinPageComtainer extends React.Component {
 
   async onSubmit(e) {
     e.preventDefault()
-    let status = await fetch(`http://localhost:3001/api/v1/rooms/code/${this.state.pin}`)
+    let resp = await fetch(`http://localhost:3001/api/v1/rooms/code/${this.state.pin}`)
       .then(data => data.json())
-      .then(data => data.status)
-    if (status === true) {
+      .then(data => data)
+    if (resp.status === true) {
       console.log(`Correct PIN`)
+      await localforage.setItem('roomId', resp.roomId)
       await localforage.setItem('pin', this.state.pin)
       this.props.history.push('/join')
     } else {

@@ -70,7 +70,7 @@ module.exports = {
     }
     res.json({
       status: true,
-      id: room._id
+      roomId: room._id
     })
   }
 }

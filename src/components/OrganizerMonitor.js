@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 
 import Nav from './NavdevOrganizer'
 import NavOrganizer from './NavbarOrganizer'
@@ -25,7 +26,33 @@ const ScrollBox = styled.ul`
   overflow-y: scroll;
 `
 
-export default props => (
+class OrganizeMonitorContainer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      roomId: '59633cfd6f46821835ae4c64',
+      questions: []
+    }
+  }
+
+  async componentWillMount() {
+    let questions = await axios.get(`http://localhost:3001/api/v1/questions?roomId=${this.state.roomId}`)
+      .then(resp => resp.data)
+    console.log(questions)
+    this.setState({
+      questions
+    })
+  }
+
+  render() {
+    return (
+      <OrganizeMonitor questions={this.state.questions} />
+    )
+  }
+
+}
+
+const OrganizeMonitor = props => (
   <div>
     <Nav />
     <NavOrganizer />
@@ -38,10 +65,10 @@ export default props => (
             </div>
             <ScrollBox className="list-group list-group-flush">
               {
-                [1, 2, 3].map(e => (
-                  <li className="list-group-item">
+                props.questions.map(q => (
+                  <li className="list-group-item" key={q._id}>
                     <div className="col-10">
-                      Cras justo odio {e}
+                      { q.question }
                     </div>
                     <div className="col-2">
                       <ButtonTrash className="card">
@@ -79,3 +106,5 @@ export default props => (
     </Div>
   </div>
 )
+
+export default OrganizeMonitorContainer
