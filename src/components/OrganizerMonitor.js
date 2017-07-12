@@ -38,6 +38,10 @@ class OrganizeMonitorContainer extends React.Component {
   }
 
   async componentWillMount() {
+    let pin = this.props.match.params.id
+    let roomId = await axios.get(`http://localhost:3001/api/v1/rooms/code/${pin}`)
+      .then(resp => resp.data.roomId)
+    this.setState({ roomId })
     let questions = await axios.get(`http://localhost:3001/api/v1/questions?roomId=${this.state.roomId}`)
       .then(resp => resp.data)
     console.log(questions)
@@ -60,7 +64,6 @@ class OrganizeMonitorContainer extends React.Component {
       <OrganizeMonitor questions={this.state.questions} onDelete={this.deleteQuestion.bind(this)} />
     )
   }
-
 }
 
 const OrganizeMonitor = props => (
