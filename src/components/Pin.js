@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { compose, withState, withHandlers } from 'recompose'
+import swal from 'sweetalert2'
+import axios from 'axios'
 import localforage from 'localforage'
 
 import repuireAsker from '../libs/requireAsker'
@@ -61,13 +63,18 @@ class PinPageComtainer extends React.Component {
     let resp = await fetch(`http://localhost:3001/api/v1/rooms/code/${this.state.pin}`)
       .then(data => data.json())
       .then(data => data)
-    if (resp.status === true) {
-      console.log(`Correct PIN`)
+    if (resp.status) {
       await localforage.setItem('roomId', resp.roomId)
       await localforage.setItem('pin', this.state.pin)
       this.props.history.push('/join')
     } else {
-      console.log(`Wrong PIN`)
+      swal({
+        title: 'Join room fail!',
+        text: `pin code doesn't exist`,
+        type: 'warning',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#FF4312'
+      })
     }
   }
 
