@@ -44,6 +44,10 @@ class OrganizeMonitorContainer extends React.Component {
     this.setState({
       questions
     })
+
+    socket.on('monitor', data => {
+      console.log(data)
+    })
   }
 
   render() {

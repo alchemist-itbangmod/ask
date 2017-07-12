@@ -89,6 +89,7 @@ class AskPageContainer extends React.Component {
     this.setState({
       question: q
     })
+    socket.emit('monitor', { status: this.state.question })
   }
 
   render() {

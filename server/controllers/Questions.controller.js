@@ -12,7 +12,6 @@ module.exports = (io) => {
         roomId: new mongoose.Types.ObjectId(req.query.roomId)
       })
         .then(data => data)
-      io.sockets.emit('monitor', { success: true })
       res.json(allQuestion)
     },
     getQuestion: (req, res) => {
@@ -41,6 +40,8 @@ module.exports = (io) => {
         isDelete: false
       })
       .then(data => data)
+
+      io.sockets.emit('monitor', { success: question })
 
       setTimeout(() => {
         res.json({
