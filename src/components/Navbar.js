@@ -1,6 +1,6 @@
 import React from 'react'
-import { NavLink as Link } from 'react-router-dom'
-import FA from 'react-fontawesome'
+// import { NavLink as Link } from 'react-router-dom'
+// import FA from 'react-fontawesome'
 import styled from 'styled-components'
 
 class NavbarContainer extends React.Component {
