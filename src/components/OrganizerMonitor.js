@@ -118,23 +118,26 @@ const OrganizeMonitor = props => (
             </div>
             <ScrollBox className="list-group list-group-flush">
               {
-                props.questions.map((q, index) => (
-                  <li className="list-group-item" key={q._id}>
-                    <div className="col-10">
-                      { q.question }
-                    </div>
-                    <div className="col-2">
-                      <ButtonTrash className="card"
-                          onClick={props.onDelete}>
-                        <i
-                          id={index}
-                          className="fa fa-trash fa-2x"
-                          aria-hidden="true"
-                        />
-                      </ButtonTrash>
-                    </div>
-                  </li>
-                ))
+                props.questions.map((q, index) =>
+                  (q.isDelete || q.isAnswer)
+                  ? ('') : (
+                    <li className="list-group-item" key={q._id}>
+                      <div className="col-10">
+                        { q.question }
+                      </div>
+                      <div className="col-2">
+                        <ButtonTrash className="card"
+                            onClick={props.onDelete}>
+                          <i
+                            id={index}
+                            className="fa fa-trash fa-2x"
+                            aria-hidden="true"
+                          />
+                        </ButtonTrash>
+                      </div>
+                    </li>
+                  )
+                )
               }
             </ScrollBox>
           </div>
