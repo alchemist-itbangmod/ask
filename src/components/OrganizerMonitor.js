@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
-
+import swal from 'sweetalert2'
 import Nav from './NavdevOrganizer'
 import NavOrganizer from './NavbarOrganizer'
 
@@ -56,7 +56,46 @@ class OrganizeMonitorContainer extends React.Component {
 
   deleteQuestion(e) {
     console.log(e.target.id)
-    console.log(this.state.questions[e.target.id])
+    let questionObj = this.state.questions[e.target.id]
+    swal({
+      title: 'Are you sure to delete',
+      text: `Are you sure to delete this question that '${questionObj.question}' to modurator`,
+      showCancelButton: true,
+      reverseButtons: true,
+      confirmButtonText: 'Confirm',
+      confirmButtonColor: '#FF4312',
+      customClass: 'Button',
+      showLoaderOnConfirm: true
+      // preConfirm: () => {
+      //   return new Promise((resolve, reject) => {
+      //     axios.post(`http://localhost:3001/api/v1/questions/updateIsDelete`, {
+      //       roomId: roomId,
+      //       questionId: questionId
+      //     }).then(data => {
+      //       resolve(data.data)
+      //     })
+      //   })
+      // }
+    })
+    // .then((data) => {
+    //   if (data.status) {
+    //     swal({
+    //       title: 'Sucess',
+    //       text: `You question '${this.state.question}' has been sent!`,
+    //       type: 'success',
+    //       confirmButtonText: 'OK',
+    //       confirmButtonColor: '#FF4312'
+    //     })
+    //   } else {
+    //     swal({
+    //       title: 'Closed',
+    //       text: `Now. We can't to send the question.`,
+    //       type: 'warning',
+    //       confirmButtonText: 'OK',
+    //       confirmButtonColor: '#FF4312'
+    //     })
+    //   }
+    // })
   }
 
   render() {
