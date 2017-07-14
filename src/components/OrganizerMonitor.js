@@ -59,6 +59,10 @@ class OrganizeMonitorContainer extends React.Component {
     // const question = await axios.put(`http://localhost:3000/api/v1/`)
   }
 
+  answerQuestion(e) {
+    console.log(e.target.id)
+  }
+
   render() {
     return (
       <OrganizeMonitor questions={this.state.questions} onDelete={this.deleteQuestion.bind(this)} />
@@ -85,8 +89,9 @@ const OrganizeMonitor = props => (
                       { q.question }
                     </div>
                     <div className="col-2">
-                      <ButtonTrash className="card"
-                          onClick={props.onDelete}>
+                      <ButtonTrash 
+                        className="card"
+                        onClick = {props.onDelete}>
                         <i
                           id={q._id}
                           className="fa fa-trash fa-2x"
