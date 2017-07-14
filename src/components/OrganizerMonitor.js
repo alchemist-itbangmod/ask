@@ -63,6 +63,8 @@ class OrganizeMonitorContainer extends React.Component {
       let slot1 = questionsId.slice(0, index)
       let slot2 = questionsId.slice(index + 1)
       questionsId = slot1.concat(slot2)
+    } else if (questionsId.length > 4) {
+      return
     } else {
       questionsId.push(qid)
     }
