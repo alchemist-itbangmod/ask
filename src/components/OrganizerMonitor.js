@@ -33,8 +33,10 @@ class OrganizeMonitorContainer extends React.Component {
     super(props)
     this.state = {
       roomId: '59633cfd6f46821835ae4c64',
-      questions: []
+      questions: [],
+      selectedQuestionsId: []
     }
+    this.toggleQuestion = this.toggleQuestion.bind(this)
   }
 
   async componentWillMount() {
@@ -52,6 +54,20 @@ class OrganizeMonitorContainer extends React.Component {
     socket.on('monitor', data => {
       console.log(data)
     })
+  }
+
+  async toggleQuestion(qid) {
+    let questionsId = this.state.selectedQuestionsId
+    let index = (questionsId.findIndex(_qid => _qid === qid))
+    if (index > -1) {
+      let slot1 = questionsId.slice(0, index)
+      let slot2 = questionsId.slice(index + 1)
+      questionsId = slot1.concat(slot2)
+    } else {
+      questionsId.push(qid)
+    }
+    // console.log(questionsId)
+    this.setState({ selectedQuestionsId: questionsId })
   }
 
   deleteQuestion(e) {
@@ -100,7 +116,12 @@ class OrganizeMonitorContainer extends React.Component {
 
   render() {
     return (
-      <OrganizeMonitor questions={this.state.questions} onDelete={this.deleteQuestion.bind(this)} />
+      <OrganizeMonitor
+        questions={this.state.questions}
+        toggleQuestion={this.toggleQuestion}
+        selectedItem={this.state.selectedQuestionsId}
+        onDelete={this.deleteQuestion.bind(this)}
+      />
     )
   }
 }
@@ -121,7 +142,10 @@ const OrganizeMonitor = props => (
                 props.questions.map((q, index) =>
                   (q.isDelete || q.isAnswer)
                   ? ('') : (
-                    <li className="list-group-item" key={q._id}>
+                    <li
+                      className={`list-group-item ${props.selectedItem.indexOf(q._id) > -1 ? 'selected' : ''}`}
+                      onClick={(e) => props.toggleQuestion(q._id)} key={q._id}
+                    >
                       <div className="col-10">
                         { q.question }
                       </div>
@@ -165,6 +189,12 @@ const OrganizeMonitor = props => (
         </div>
       </div>
     </Div>
+    <style>{`
+      .selected{
+        background: #1f77ff;
+        color: white;
+      }
+    `}</style>
   </div>
 )
 
