@@ -49,15 +49,21 @@ class OrganizeSettingContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      roomName: 'ปฐมนิเทศ คณะเทคโนโลยีสารสนเทศ'.trim(),
+      roomName: 'ปฐมนิเทศ คณะเทคโนโลยีสารสนเทศ',
       sending: true,
       pin: 1010
     }
     this.changeToggle = this.changeToggle.bind(this)
+    this.changeRoomName = this.changeRoomName.bind(this)
   }
 
   changeToggle() {
     this.setState({ sending: !this.state.sending })
+  }
+
+  changeRoomName(e) {
+    let roomName = e.target.value
+    this.setState({ roomName })
   }
 
   render() {
@@ -68,6 +74,15 @@ class OrganizeSettingContainer extends React.Component {
             <div className="col-12">{ this.state.roomName }</div>
             <PreviousMenu className="fa fa-angle-left text-primary" />
             <SaveMenu className="fa fa-save text-primary" />
+          </WithBorder>
+          <WithBorder className="row">
+            <div className="col-2">
+              TITLE:
+            </div>
+            <input type="text" className="col-9"
+              value={this.state.roomName}
+              onChange={e => this.changeRoomName(e)}
+              style={{ height: '60px' }} />
           </WithBorder>
           <WithBorder className="row">
             <div className="col-10">
