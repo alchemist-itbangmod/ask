@@ -5,17 +5,37 @@ import axios from 'axios'
 
 import NavOrganizer from './NavbarOrganizer'
 
-class CreateRoomController extends React.Component{
+class CreateRoomController extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       name: '',
-      pin: '',
+      pin: ''
     }
+    this.onChangeName = this.onChangeName.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
+  }
 
-    render() {
-      return <createdRoom />
+  onChangeName(e) {
+    this.setState({
+      name: e.target.value
+    })
+  }
+
+  async onSubmit(e) {
+    e.preventDefault()
+    if (this.state.name.length < 2) {
+      console.log(`name should morethan 1 character`)
+    } else {
+     // await localforage.setItem('name', this.state.name)
+      this.props.history.push('/organizer/dashboard')
     }
+  }
+
+  render() {
+    return (
+      <createdRoom />
+    )
   }
 }
 
@@ -28,12 +48,14 @@ const createdRoom = props => (
       </div>
       <div className="text-center">
         <form>
-          <div class="form-group">
-            <label for="formGroupExampleInput">Example label</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+          <div className="form-group">
+            <p>Room name</p>
+            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Enter Room name" />
           </div>
         </form>
       </div>
     </div>
-  </div>  
+  </div>
 )
+
+export default CreateRoomController

@@ -51,7 +51,7 @@ const OrganizerRooms = props => (
         }
       </div>
     </div>
-  </div>  
+  </div>
 )
 
 export default DashboardController
