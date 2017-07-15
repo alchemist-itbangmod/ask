@@ -70,7 +70,9 @@ module.exports = {
     }
     res.json({
       status: true,
-      roomId: room._id
+      roomId: room._id,
+      title: room.title,
+      sending: room.openSending
     })
   }
 }

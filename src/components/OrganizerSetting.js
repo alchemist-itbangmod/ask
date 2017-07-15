@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 import swal from 'sweetalert2'
 import Toggle from 'react-toggle'
 import '../static/toggle.css'
@@ -51,12 +52,13 @@ class OrganizeSettingContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      roomName: 'ปฐมนิเทศ คณะเทคโนโลยีสารสนเทศ',
-      sending: true,
-      pin: this.props.match.params.id
+      roomName: '',
+      sending: false,
+      pin: ''
     }
     this.changeToggle = this.changeToggle.bind(this)
     this.changeRoomName = this.changeRoomName.bind(this)
+    this.componentWillMount = this.componentWillMount.bind(this)
   }
 
   changeToggle() {
@@ -81,6 +83,15 @@ class OrganizeSettingContainer extends React.Component {
       customClass: 'Button',
       showLoaderOnConfirm: true
     })
+  }
+
+  async componentWillMount() {
+    let pin = this.props.match.params.id
+    let room = await axios.get(`http://localhost:3001/api/v1/rooms/code/${pin}`)
+      .then(resp => resp.data)
+    this.setState({ roomName: room.title })
+    this.setState({ sending: room.sending })
+    this.setState({ pin })
   }
 
   render() {
@@ -116,7 +127,7 @@ class OrganizeSettingContainer extends React.Component {
               </div>
               <div className="col-2 text-right">
                 <Toggle
-                  defaultChecked={this.state.sending}
+                  checked={this.state.sending}
                   icons={{
                     checked: <ToggleStyled>ON</ToggleStyled>,
                     unchecked: <ToggleStyled style={{ left: '-24px' }}>OFF</ToggleStyled>
