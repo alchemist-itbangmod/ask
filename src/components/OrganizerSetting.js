@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import swal from 'sweetalert2'
 import Toggle from 'react-toggle'
 import '../static/toggle.css'
 
@@ -38,10 +38,12 @@ const PreviousMenu = styled.span`
   font-weight: bold;
 `
 
-const SaveMenu = styled.span`
+const SaveMenu = styled.button`
   position: absolute;
   top: 15px;
   right: 30px;
+  background: transparent;
+  border: 0;
   font-weight: bold;
 `
 
@@ -51,7 +53,7 @@ class OrganizeSettingContainer extends React.Component {
     this.state = {
       roomName: 'ปฐมนิเทศ คณะเทคโนโลยีสารสนเทศ',
       sending: true,
-      pin: 1010
+      pin: this.props.match.params.id
     }
     this.changeToggle = this.changeToggle.bind(this)
     this.changeRoomName = this.changeRoomName.bind(this)
@@ -66,47 +68,64 @@ class OrganizeSettingContainer extends React.Component {
     this.setState({ roomName })
   }
 
+  onSubmit(e) {
+    e.preventDefault()
+    console.log(this.state)
+    swal({
+      title: 'Comfirm update data',
+      text: `Are you sure to update these setting`,
+      showCancelButton: true,
+      reverseButtons: true,
+      confirmButtonText: 'Confirm',
+      confirmButtonColor: '#FF4312',
+      customClass: 'Button',
+      showLoaderOnConfirm: true
+    })
+  }
+
   render() {
     return (
       <div>
         <Div className="container" >
-          <WithBorder className="row h1 text-center">
-            <div className="col-12">{ this.state.roomName }</div>
-            <PreviousMenu className="fa fa-angle-left text-primary" />
-            <SaveMenu className="fa fa-save text-primary" />
-          </WithBorder>
-          <WithBorder className="row">
-            <div className="col-2">
-              TITLE:
-            </div>
-            <input type="text" className="col-9"
-              value={this.state.roomName}
-              onChange={e => this.changeRoomName(e)}
-              style={{ height: '60px' }} />
-          </WithBorder>
-          <WithBorder className="row">
-            <div className="col-10">
-              PIN:
-            </div>
-            <div className="col-2 text-right">
-              <Pin readOnly value={this.state.pin} />
-            </div>
-          </WithBorder>
-          <WithBorder className="row">
-            <div className="col-10">
-              OPEN SENDING:
-            </div>
-            <div className="col-2 text-right">
-              <Toggle
-                defaultChecked={this.state.sending}
-                icons={{
-                  checked: <ToggleStyled>ON</ToggleStyled>,
-                  unchecked: <ToggleStyled style={{ left: '-24px' }}>OFF</ToggleStyled>
-                }}
-                onChange={this.changeToggle}
-              />
-            </div>
-          </WithBorder>
+          <form onSubmit={e => this.onSubmit(e)}>
+            <WithBorder className="row h1 text-center">
+              <div className="col-12">{ this.state.roomName }</div>
+              <PreviousMenu className="fa fa-angle-left text-primary" />
+              <SaveMenu type="submit" className="fa fa-save text-primary" />
+            </WithBorder>
+            <WithBorder className="row">
+              <div className="col-2">
+                TITLE:
+              </div>
+              <input type="text" className="col-9"
+                value={this.state.roomName}
+                onChange={e => this.changeRoomName(e)}
+                style={{ height: '60px' }} />
+            </WithBorder>
+            <WithBorder className="row">
+              <div className="col-10">
+                PIN:
+              </div>
+              <div className="col-2 text-right">
+                <Pin readOnly value={this.state.pin} />
+              </div>
+            </WithBorder>
+            <WithBorder className="row">
+              <div className="col-10">
+                OPEN SENDING:
+              </div>
+              <div className="col-2 text-right">
+                <Toggle
+                  defaultChecked={this.state.sending}
+                  icons={{
+                    checked: <ToggleStyled>ON</ToggleStyled>,
+                    unchecked: <ToggleStyled style={{ left: '-24px' }}>OFF</ToggleStyled>
+                  }}
+                  onChange={this.changeToggle}
+                />
+              </div>
+            </WithBorder>
+          </form>
           <div
             className="row"
             style={{
