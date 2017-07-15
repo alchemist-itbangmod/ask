@@ -54,14 +54,16 @@ class OrganizeSettingContainer extends React.Component {
     this.state = {
       roomName: '',
       sending: false,
-      pin: ''
+      pin: '',
+      notExists: true
     }
-    this.changeToggle = this.changeToggle.bind(this)
+    this.toggleSending = this.toggleSending.bind(this)
     this.changeRoomName = this.changeRoomName.bind(this)
     this.componentWillMount = this.componentWillMount.bind(this)
+    this.onDeleteRoom = this.onDeleteRoom.bind(this)
   }
 
-  changeToggle() {
+  toggleSending() {
     this.setState({ sending: !this.state.sending })
   }
 
@@ -92,67 +94,133 @@ class OrganizeSettingContainer extends React.Component {
     this.setState({ roomName: room.title })
     this.setState({ sending: room.sending })
     this.setState({ pin })
+    this.setState({ notExists: !room.status })
+  }
+
+  async onDeleteRoom() {
+    swal({
+      title: 'Are you sure to delete this room',
+      text: `Are you sure to delete '${this.state.roomName}'`,
+      showCancelButton: true,
+      reverseButtons: true,
+      confirmButtonText: 'Confirm',
+      confirmButtonColor: '#FF4312',
+      customClass: 'Button',
+      showLoaderOnConfirm: true,
+      preConfirm: () => {
+        return new Promise(async (resolve, reject) => {
+          let room = await axios.get(`http://localhost:3001/api/v1/rooms/code/${this.state.pin}`)
+            .then(resp => {
+              console.log('room')
+              return resp.data
+            })
+          console.log(room)
+          axios.post(`http://localhost:3001/api/v1/room/delete`, {
+            getidbodynaja: room.roomId
+          }).then(data => {
+            console.log('room2')
+            resolve(data.data)
+          })
+        })
+      }
+    }).then((data) => {
+      if (data.status) {
+        swal({
+          title: 'Sucess',
+          text: `This room has been deleted!`,
+          type: 'success',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#FF4312'
+        })
+        this.setState({ notExists: true })
+      } else {
+        swal({
+          title: 'Fail',
+          text: `Error, cannot delete please try again.`,
+          type: 'warning',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#FF4312'
+        })
+      }
+    })
   }
 
   render() {
+    if (this.state.notExists) {
+      return <div />
+    }
     return (
-      <div>
-        <Div className="container" >
-          <form onSubmit={e => this.onSubmit(e)}>
-            <WithBorder className="row h1 text-center">
-              <div className="col-12">{ this.state.roomName }</div>
-              <PreviousMenu className="fa fa-angle-left text-primary" />
-              <SaveMenu type="submit" className="fa fa-save text-primary" />
-            </WithBorder>
-            <WithBorder className="row">
-              <div className="col-2">
-                TITLE:
-              </div>
-              <input type="text" className="col-9"
-                value={this.state.roomName}
-                onChange={e => this.changeRoomName(e)}
-                style={{ height: '60px' }} />
-            </WithBorder>
-            <WithBorder className="row">
-              <div className="col-10">
-                PIN:
-              </div>
-              <div className="col-2 text-right">
-                <Pin readOnly value={this.state.pin} />
-              </div>
-            </WithBorder>
-            <WithBorder className="row">
-              <div className="col-10">
-                OPEN SENDING:
-              </div>
-              <div className="col-2 text-right">
-                <Toggle
-                  checked={this.state.sending}
-                  icons={{
-                    checked: <ToggleStyled>ON</ToggleStyled>,
-                    unchecked: <ToggleStyled style={{ left: '-24px' }}>OFF</ToggleStyled>
-                  }}
-                  onChange={this.changeToggle}
-                />
-              </div>
-            </WithBorder>
-          </form>
-          <div
-            className="row"
-            style={{
-              position: 'absolute',
-              bottom: '2vh',
-              width: '100%'
-            }}>
-            <div className="col-12 text-center">
-              <div className="btn btn-danger btn-lg">DELETE THIS ROOM</div>
-            </div>
-          </div>
-        </Div>
-
-      </div>
+      <Setting
+        title={this.state.roomName}
+        onSubmit={this.onSubmit}
+        changeTitle={this.changeRoomName}
+        pin={this.state.pin}
+        openSending={this.state.sending}
+        toggleSending={this.toggleSending}
+        deleteRoom={this.onDeleteRoom}
+      />
     )
   }
 }
+
+const Setting = props => (
+  <div>
+    <Div className="container" >
+      <form onSubmit={e => props.onSubmit(e)}>
+        <WithBorder className="row h1 text-center">
+          <div className="col-12">{ props.title }</div>
+          <PreviousMenu className="fa fa-angle-left text-primary" />
+          <SaveMenu type="submit" className="fa fa-save text-primary" />
+        </WithBorder>
+        <WithBorder className="row">
+          <div className="col-2">
+            TITLE:
+          </div>
+          <input type="text" className="col-9"
+            value={props.title}
+            onChange={e => props.changeTitle(e)}
+            style={{ height: '60px' }} />
+        </WithBorder>
+        <WithBorder className="row">
+          <div className="col-10">
+            PIN:
+          </div>
+          <div className="col-2 text-right">
+            <Pin readOnly value={props.pin} />
+          </div>
+        </WithBorder>
+        <WithBorder className="row">
+          <div className="col-10">
+            OPEN SENDING:
+          </div>
+          <div className="col-2 text-right">
+            <Toggle
+              checked={props.openSending}
+              icons={{
+                checked: <ToggleStyled>ON</ToggleStyled>,
+                unchecked: <ToggleStyled style={{ left: '-24px' }}>OFF</ToggleStyled>
+              }}
+              onChange={props.toggleSending}
+            />
+          </div>
+        </WithBorder>
+      </form>
+      <div
+        className="row"
+        style={{
+          position: 'absolute',
+          bottom: '2vh',
+          width: '100%'
+        }}>
+        <div className="col-12 text-center">
+          <button
+            onClick={props.deleteRoom}
+            className="btn btn-danger btn-lg"
+          >DELETE THIS ROOM</button>
+        </div>
+      </div>
+    </Div>
+  </div>
+)
 
 export default OrganizeSettingContainer

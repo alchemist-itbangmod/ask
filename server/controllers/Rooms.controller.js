@@ -50,6 +50,30 @@ module.exports = {
       })
     }
   },
+  // Deleting room
+  updateIsDelete: async (req, res) => {
+    let reqId = req.body.getidbodynaja
+
+    let chkRoom = await Rooms.getOne({
+      _id: reqId
+    }).then(data => data)
+
+    if (chkRoom === null) { // Room does not exists
+      res.json({
+        status: false,
+        message: 'Room dose not exists'
+      })
+    } else {
+      await Rooms.update({
+        _id: reqId,
+        deleted: true
+      }).then(data => data)
+      res.json({
+        status: true,
+        message: 'the room was deleted'
+      })
+    }
+  },
   // Update existing room
   updateRoomByID: async (req, res) => {
     res.send(`Question.getQuestion with QID: ${req.params.id}`)
@@ -63,7 +87,7 @@ module.exports = {
     }).then(data => data)
 
     // Then sent part to go to ask room with key.
-    if (room === null) {
+    if (room === null || room.deleted) {
       res.json({
         status: false
       })
