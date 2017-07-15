@@ -13,15 +13,6 @@ const ButtonTrash = styled.button`
   display: block;
 `
 
-const Card = styled.button`
-  padding: 20px;
-  margin: 10px 0;
-  display: block;
-`
-const Div = styled.div`
-  margin-top: 20px;
-`
-
 const ScrollBox = styled.ul`
   display: block;
   height: 80vh;
@@ -39,6 +30,7 @@ class OrganizeMonitorContainer extends React.Component {
     }
     this.toggleQuestion = this.toggleQuestion.bind(this)
     this.switchTab = this.switchTab.bind(this)
+    this.fetchQuestion = this.fetchQuestion.bind(this)
   }
 
   async componentWillMount() {
@@ -126,6 +118,14 @@ class OrganizeMonitorContainer extends React.Component {
     }
   }
 
+  async fetchQuestion() {
+    console.log('fetch')
+    let questions = await axios.get(`http://localhost:3001/api/v1/questions?roomId=${this.state.roomId}`)
+      .then(resp => resp.data)
+    this.setState({ questions })
+    console.log(questions)
+  }
+
   render() {
     return (
       <OrganizeMonitor
@@ -135,6 +135,7 @@ class OrganizeMonitorContainer extends React.Component {
         onDelete={this.deleteQuestion.bind(this)}
         tab={this.state.tab}
         toggleTab={this.switchTab}
+        loadQuestion={this.fetchQuestion}
       />
     )
   }
@@ -159,6 +160,8 @@ const OrganizeMonitor = props => (
           <div className="col-3" style={{ padding: 5 }}>
             <button
               className="btn btn-success"
+              style={{ cursor: 'pointer' }}
+              onClick={props.loadQuestion}
             >Load new question(s)
             </button>
           </div>
@@ -170,6 +173,7 @@ const OrganizeMonitor = props => (
               </div>
               <div className="col-4" style={{ padding: 5 }}>
                 <button
+                  style={{ cursor: 'pointer' }}
                   className="btn btn-success"
                 >answer the Question
                 </button>
@@ -208,13 +212,14 @@ const OrganizeMonitor = props => (
       </ul>
       <div className="tab-content">
         <div className={`tab-pane row ${props.tab === 'tab1' ? 'active' : ''}`} >
-          <div classNAme="card" style={{ background: 'lightgray' }}>
+          <div className="card" style={{ background: 'lightgray' }}>
             <ScrollBox className="list-group list-group-flush">
               {
                 props.questions.map((q, index) =>
                   (q.isDelete || q.isAnswer)
                   ? ('') : (
                     <li
+                      style={{ cursor: 'pointer' }}
                       className={`list-group-item ${props.selectedItem.indexOf(q._id) > -1 ? 'selected' : ''}`}
                       onClick={() => props.toggleQuestion(q._id)} key={q._id}
                     >
@@ -239,13 +244,13 @@ const OrganizeMonitor = props => (
           </div>
         </div>
         <div className={`tab-pane row ${props.tab === 'tab2' ? 'active' : ''}`} >
-          <div classNAme="card" style={{ background: 'lightgray' }}>
+          <div className="card" style={{ background: 'lightgray' }}>
             <ScrollBox className="list-group list-group-flush">
               {
                 props.questions.map((q, index) =>
                   (q.isAnswer)
                    ? (
-                    <li
+                    <li key={q._id}
                       className={`list-group-item`}
                     >
                       { q.question }
@@ -257,13 +262,13 @@ const OrganizeMonitor = props => (
           </div>
         </div>
         <div className={`tab-pane row ${props.tab === 'tab3' ? 'active' : ''}`} >
-          <div classNAme="card" style={{ background: 'lightgray' }}>
+          <div className="card" style={{ background: 'lightgray' }}>
             <ScrollBox className="list-group list-group-flush">
               {
                 props.questions.map((q, index) =>
                   (q.isDelete)
                   ? (
-                    <li
+                    <li key={q._id}
                       className={`list-group-item`}
                     >
                       { q.question }
