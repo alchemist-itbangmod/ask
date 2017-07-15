@@ -34,9 +34,11 @@ class OrganizeMonitorContainer extends React.Component {
     this.state = {
       roomId: '59633cfd6f46821835ae4c64',
       questions: [],
-      selectedQuestionsId: []
+      selectedQuestionsId: [],
+      tab: 'tab1'
     }
     this.toggleQuestion = this.toggleQuestion.bind(this)
+    this.switchTab = this.switchTab.bind(this)
   }
 
   async componentWillMount() {
@@ -116,6 +118,14 @@ class OrganizeMonitorContainer extends React.Component {
     // })
   }
 
+  switchTab(e) {
+    console.log('switch')
+    let tab = e.target.getAttribute('data-tab')
+    if (['tab1', 'tab2', 'tab3'].indexOf(tab) > -1) {
+      this.setState({ tab })
+    }
+  }
+
   render() {
     return (
       <OrganizeMonitor
@@ -123,22 +133,82 @@ class OrganizeMonitorContainer extends React.Component {
         toggleQuestion={this.toggleQuestion}
         selectedItem={this.state.selectedQuestionsId}
         onDelete={this.deleteQuestion.bind(this)}
+        tab={this.state.tab}
+        toggleTab={this.switchTab}
       />
     )
   }
 }
 
+const Tab = styled.li`
+  padding: 0;
+  margin: 0
+`
+
 const OrganizeMonitor = props => (
   <div>
-    <Nav />
-    <NavOrganizer />
-    <Div className="container-fluid">
-      <div className="row">
-        <div className="left-side col-sm-8">
-          <div className="card">
-            <div className="card-header text-center">
-              <h4>Question</h4>
+    <nav className="bg-primary text-white">
+      <div className="container">
+        <div className="row">
+          <div className="col-xs-3 btn navbar-brand">
+            #ASK 2.0
+          </div>
+          <div className="btn bg-info col-xs-3" style={{ borderRadius: 0 }}>
+            คำถามใหม่ <span style={{ background: '#aab2bd' }}className="badge badge-default">0</span>
+          </div>
+          <div className="col-3" style={{ padding: 5 }}>
+            <button
+              className="btn btn-success"
+            >Load new question(s)
+            </button>
+          </div>
+          <div className="text-right col-5">
+            <div className="row">
+              <div className="col-2" />
+              <div className="col-6" style={{ marginTop: 10 }}>
+                selected question <span className="badge badge-default">{ props.selectedItem.length }</span>
+              </div>
+              <div className="col-4" style={{ padding: 5 }}>
+                <button
+                  className="btn btn-success"
+                >answer the Question
+                </button>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div className="container" style={{ marginTop: 10 }}>
+      <ul className="nav nav-tabs row" role="tablist">
+        <Tab className="nav-item col-4">
+          <a
+            className={`nav-link h4 ${props.tab === 'tab1' ? 'active' : ''}`}
+            onClick={(e) => props.toggleTab(e)}
+            style={{ margin: 0 }}
+            data-tab="tab1"
+          >Question</a>
+        </Tab>
+        <Tab className="nav-item col-4">
+          <a
+            className={`nav-link h4 ${props.tab === 'tab2' ? 'active' : ''}`}
+            data-tab="tab2"
+            style={{ margin: 0 }}
+            onClick={(e) => props.toggleTab(e)}
+          >Answered question</a>
+        </Tab>
+        <Tab className="nav-item col-4">
+          <a
+            className={`nav-link h4 ${props.tab === 'tab3' ? 'active' : ''}`}
+            data-tab="tab3"
+            style={{ margin: 0 }}
+            onClick={(e) => props.toggleTab(e)}
+          >Deleted question</a>
+        </Tab>
+      </ul>
+      <div className="tab-content">
+        <div className={`tab-pane row ${props.tab === 'tab1' ? 'active' : ''}`} >
+          <div classNAme="card" style={{ background: 'lightgray' }}>
             <ScrollBox className="list-group list-group-flush">
               {
                 props.questions.map((q, index) =>
@@ -146,14 +216,14 @@ const OrganizeMonitor = props => (
                   ? ('') : (
                     <li
                       className={`list-group-item ${props.selectedItem.indexOf(q._id) > -1 ? 'selected' : ''}`}
-                      onClick={(e) => props.toggleQuestion(q._id)} key={q._id}
+                      onClick={() => props.toggleQuestion(q._id)} key={q._id}
                     >
                       <div className="col-10">
                         { q.question }
                       </div>
                       <div className="col-2">
                         <ButtonTrash className="card"
-                            onClick={props.onDelete}>
+                          onClick={props.onDelete}>
                           <i
                             id={index}
                             className="fa fa-trash fa-2x"
@@ -168,29 +238,44 @@ const OrganizeMonitor = props => (
             </ScrollBox>
           </div>
         </div>
-        <div className="right-side col-sm-4">
-          <form action="" method="post">
-            <div className="title text-center">
-              <h4>Selected Question</h4>
-              ( MAX 5 )
-            </div>
-            <div>
+        <div className={`tab-pane row ${props.tab === 'tab2' ? 'active' : ''}`} >
+          <div classNAme="card" style={{ background: 'lightgray' }}>
+            <ScrollBox className="list-group list-group-flush">
               {
-                [1, 2, 3, 4, 5].map(e => (
-                  <Card className="card col-12 btn" key={e}>
-                    Question {e}
-                  </Card>
-                ))
+                props.questions.map((q, index) =>
+                  (q.isAnswer)
+                   ? (
+                    <li
+                      className={`list-group-item`}
+                    >
+                      { q.question }
+                    </li>
+                  ) : ('')
+                )
               }
-            </div>
-            <div className="btn-group col-12">
-              <button type="button" className="btn btn-warning col-6">CLEAR</button>
-              <button type="button" className="btn btn-primary col-6">SEND</button>
-            </div>
-          </form>
+            </ScrollBox>
+          </div>
+        </div>
+        <div className={`tab-pane row ${props.tab === 'tab3' ? 'active' : ''}`} >
+          <div classNAme="card" style={{ background: 'lightgray' }}>
+            <ScrollBox className="list-group list-group-flush">
+              {
+                props.questions.map((q, index) =>
+                  (q.isDelete)
+                  ? (
+                    <li
+                      className={`list-group-item`}
+                    >
+                      { q.question }
+                    </li>
+                  ) : ('')
+                )
+              }
+            </ScrollBox>
+          </div>
         </div>
       </div>
-    </Div>
+    </div>
     <style>{`
       .selected{
         background: #1f77ff;
