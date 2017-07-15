@@ -10,9 +10,9 @@ const AuthController = require('./controllers/Authentication.controller')
 // // --------------------------
 // // |  AUTHENTICATION ROUTE  |
 // // --------------------------
-// router.route('/auth/login').get(AuthController.login)
-// router.route('/auth/logout').get(AuthController.logout)
-// router.route('/auth/register').get(AuthController.register)
+router.route('/auth/login').get(AuthController.login)
+router.route('/auth/logout').get(AuthController.logout)
+router.route('/auth/register').get(AuthController.signup)
 
 // // --------------------------
 // // |      USERS ROUTE.      |

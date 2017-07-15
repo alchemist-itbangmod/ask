@@ -54,6 +54,7 @@ class JoinPageContainer extends React.Component {
       return <div />
     }
     return <JoinPage
+      {...this.props}
       name={this.state.name}
       onSubmit={this.onSubmit}
       onChangeName={this.onChangeName}
@@ -63,7 +64,7 @@ class JoinPageContainer extends React.Component {
 
 const JoinPage = props =>
   <div>
-    <Navbar />
+    <Navbar {...props} />
     <div className="container" style={{ marginTop: '200px' }}>
       <div className="text-center">
         <form onSubmit={props.onSubmit}>

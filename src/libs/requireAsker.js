@@ -20,7 +20,7 @@ const requireAsker = () => {
           this.props.history.push('/')
         } else if (name === null) {
           this.setState({ pin })
-          this.notState.pin = pin
+          // this.notState.pin = pin
           this.props.history.push('/join')
         } else {
           this.setState({ pin })

@@ -95,7 +95,6 @@ class AskPageContainer extends React.Component {
     let id = await fetch(`http://localhost:3001/api/v1/rooms/code/${pin}`)
       .then(data => data.json())
       .then(data => data.id)
-    console.log(id)
     this.setState({ pin })
     this.setState({ name })
     this.setState({ roomId: id })
@@ -111,6 +110,7 @@ class AskPageContainer extends React.Component {
     }
     return (<AskPage
       {...action}
+      {...this.props}
       name={this.props.name}
     />)
   }
@@ -118,7 +118,7 @@ class AskPageContainer extends React.Component {
 
 const AskPage = props => (
   <div>
-    <Navbar />
+    <Navbar {...props} />
     <div className="container">
       <div className="text-center">
         <Box className="form-group">
