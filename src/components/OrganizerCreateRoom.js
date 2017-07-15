@@ -34,12 +34,12 @@ class CreateRoomController extends React.Component {
 
   render() {
     return (
-      <createdRoom />
+      <CreatedRoom />
     )
   }
 }
 
-const createdRoom = props => (
+const CreatedRoom = props => (
   <div>
     <NavOrganizer />
     <div className="container">
