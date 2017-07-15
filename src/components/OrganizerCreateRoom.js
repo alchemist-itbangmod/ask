@@ -40,7 +40,7 @@ class CreateRoomController extends React.Component {
 }
 
 const createdRoom = props => (
-   <div>
+  <div>
     <NavOrganizer />
     <div className="container">
       <div className="button pull-right">
