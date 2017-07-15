@@ -47,10 +47,16 @@ const createdRoom = props => (
         <button type="button" className="btn btn-success">Created room</button>
       </div>
       <div className="text-center">
-        <form>
+        <form onSubmit={props.onSubmit}>
           <div className="form-group">
             <p>Room name</p>
-            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Enter Room name" />
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter Room name"
+              onChange={e => props.onChangeName(e)}
+              value={props.name}
+             />
           </div>
         </form>
       </div>

@@ -19,6 +19,15 @@ class DashboardController extends React.Component {
     }
     this.createRoom = this.createRoom.bind(this)
   }
+  async listRoom() {
+    let userID = this.props.match.params.id
+    let rooms = await axios.get(`http://localhost:3001/api/v1/rooms/${userID}`)
+      .then(resp => resp.data.roomId)
+    this.setState({
+      rooms
+    })
+  }
+
   createRoom() {
     let rooms = this.Rooms.getAll()
     console.log(rooms)
@@ -38,7 +47,12 @@ const OrganizerRooms = props => (
     <NavOrganizer />
     <div className="container">
       <div className="button pull-right">
-        <button type="button" className="btn btn-success">Created Room</button>
+        <button
+          type="button"
+          className="btn btn-success"
+          //onClick=() => {this.props.history.push(`/create`)}
+          >Created Room
+        </button>
       </div>
       <h4>List of Rooms</h4>
       <div>
