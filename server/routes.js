@@ -44,6 +44,7 @@ module.exports = function(io) {
   // router.route('/questions/:id').get(QuestionsController.getQuestion)
   router.route('/questions/send').post(QuestionsController.send)
   // router.route('/questions').delete(QuestionsController.removeQuestion)
-  
+  router.route('/question/delete').post(QuestionsController.updateIsDelete)
+
   return router
 }

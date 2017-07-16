@@ -66,7 +66,7 @@ module.exports = {
     } else {
       await Rooms.update({
         _id: reqId,
-        deleted: true
+        isDelete: true
       }).then(data => data)
       res.json({
         status: true,
@@ -111,7 +111,7 @@ module.exports = {
     }).then(data => data)
 
     // Then sent part to go to ask room with key.
-    if (room === null || room.deleted) {
+    if (room === null || room.isDelete) {
       res.json({
         status: false
       })

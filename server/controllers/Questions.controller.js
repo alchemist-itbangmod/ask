@@ -17,6 +17,30 @@ module.exports = (io) => {
     getQuestion: (req, res) => {
       res.send(`Question.getQuestion with QID: ${req.params.id}`)
     },
+    updateIsDelete: async (req, res) => {
+      let qId = req.body._id
+      let isDelete = req.body.isDelete
+
+      let chkQuestion = await Questions.getOne({
+        _id: qId
+      }).then(data => data)
+
+      if (chkQuestion === null) {
+        res.json({
+          status: false,
+          message: `cannot update isDelete question`
+        })
+      } else {
+        await Questions.update({
+          _id: qId,
+          isDelete: isDelete
+        }).then(data => data)
+        res.json({
+          status: true,
+          message: `update isDelte success`
+        })
+      }
+    },
     send: async (req, res) => {
       let openSending = await Rooms.getOne({
         _id: new mongoose.Types.ObjectId(req.body.roomId)
@@ -51,5 +75,4 @@ module.exports = (io) => {
       }, 2000)
     }
   }
-
 }

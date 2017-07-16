@@ -25,12 +25,15 @@ class OrganizeMonitorContainer extends React.Component {
     this.state = {
       roomId: '59633cfd6f46821835ae4c64',
       questions: [],
+      answeredQuestion: [],
+      deletedQuestion: [],
       selectedQuestionsId: [],
       tab: 'tab1'
     }
     this.toggleQuestion = this.toggleQuestion.bind(this)
     this.switchTab = this.switchTab.bind(this)
     this.fetchQuestion = this.fetchQuestion.bind(this)
+    this.undoDelte = this.undoDelte.bind(this)
   }
 
   async componentWillMount() {
@@ -41,9 +44,10 @@ class OrganizeMonitorContainer extends React.Component {
     let questions = await axios.get(`http://localhost:3001/api/v1/questions?roomId=${this.state.roomId}`)
       .then(resp => resp.data)
     console.log(questions)
-    this.setState({
-      questions
-    })
+    let newQuestions = questions.filter(q => q.isAnswer === false && q.isDelete === false)
+    let answeredQuestion = questions.filter(q => q.isAnswer === true)
+    let deletedQuestion = questions.filter(q => q.isDelete === true)
+    this.setState({ questions: newQuestions, answeredQuestion, deletedQuestion })
 
     socket.on('monitor', data => {
       console.log(data)
@@ -66,9 +70,44 @@ class OrganizeMonitorContainer extends React.Component {
     this.setState({ selectedQuestionsId: questionsId })
   }
 
+  async undoDelte(e) {
+    let index = e.target.id
+    let questionObj = this.state.deletedQuestion[index]
+    await axios.post(`http://localhost:3001/api/v1/question/delete`, {
+      _id: questionObj._id,
+      isDelete: !questionObj.isDelete
+    }).then(async data => {
+      if (data.status) {
+        swal({
+          title: 'Sucess',
+          text: `Undo question`,
+          type: 'success',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#FF4312'
+        })
+        let questions = await axios.get(`http://localhost:3001/api/v1/questions?roomId=${this.state.roomId}`)
+          .then(resp => resp.data)
+        let newQuestions = questions.filter(q => q.isAnswer === false && q.isDelete === false)
+        let answeredQuestion = questions.filter(q => q.isAnswer === true)
+        let deletedQuestion = questions.filter(q => q.isDelete === true)
+        this.setState({ questions: newQuestions, answeredQuestion, deletedQuestion })
+      } else {
+        swal({
+          title: 'Fail',
+          text: `Undo question has not success!`,
+          type: 'warning',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#FF4312'
+        })
+      }
+    })
+  }
+
   deleteQuestion(e) {
-    console.log(e.target.id)
-    let questionObj = this.state.questions[e.target.id]
+    let index = e.target.id
+    let questions = this.state.questions
+    let questionObj = questions[index]
+    console.log(questionObj)
     swal({
       title: 'Are you sure to delete',
       text: `Are you sure to delete this question that '${questionObj.question}' to modurator`,
@@ -77,37 +116,43 @@ class OrganizeMonitorContainer extends React.Component {
       confirmButtonText: 'Confirm',
       confirmButtonColor: '#FF4312',
       customClass: 'Button',
-      showLoaderOnConfirm: true
-      // preConfirm: () => {
-      //   return new Promise((resolve, reject) => {
-      //     axios.post(`http://localhost:3001/api/v1/questions/updateIsDelete`, {
-      //       roomId: roomId,
-      //       questionId: questionId
-      //     }).then(data => {
-      //       resolve(data.data)
-      //     })
-      //   })
-      // }
+      showLoaderOnConfirm: true,
+      preConfirm: () => {
+        return new Promise((resolve, reject) => {
+          axios.post(`http://localhost:3001/api/v1/question/delete`, {
+            _id: questionObj._id,
+            isDelete: !questionObj.isDelete
+          }).then(data => {
+            resolve(data.data)
+          })
+        })
+      }
     })
-    // .then((data) => {
-    //   if (data.status) {
-    //     swal({
-    //       title: 'Sucess',
-    //       text: `You question '${this.state.question}' has been sent!`,
-    //       type: 'success',
-    //       confirmButtonText: 'OK',
-    //       confirmButtonColor: '#FF4312'
-    //     })
-    //   } else {
-    //     swal({
-    //       title: 'Closed',
-    //       text: `Now. We can't to send the question.`,
-    //       type: 'warning',
-    //       confirmButtonText: 'OK',
-    //       confirmButtonColor: '#FF4312'
-    //     })
-    //   }
-    // })
+    .then(async (data) => {
+      if (data.status) {
+        swal({
+          title: 'Sucess',
+          text: `Your question has been deleted!`,
+          type: 'success',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#FF4312'
+        })
+        let questions = await axios.get(`http://localhost:3001/api/v1/questions?roomId=${this.state.roomId}`)
+          .then(resp => resp.data)
+        let newQuestions = questions.filter(q => q.isAnswer === false && q.isDelete === false)
+        let answeredQuestion = questions.filter(q => q.isAnswer === true)
+        let deletedQuestion = questions.filter(q => q.isDelete === true)
+        this.setState({ questions: newQuestions, answeredQuestion, deletedQuestion })
+      } else {
+        swal({
+          title: 'Fail',
+          text: `Cannot delete question. please try again!`,
+          type: 'warning',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#FF4312'
+        })
+      }
+    })
   }
 
   switchTab(e) {
@@ -130,9 +175,12 @@ class OrganizeMonitorContainer extends React.Component {
     return (
       <OrganizeMonitor
         questions={this.state.questions}
+        deletedQuestion={this.state.deletedQuestion}
+        answeredQuestion={this.state.answeredQuestion}
         toggleQuestion={this.toggleQuestion}
         selectedItem={this.state.selectedQuestionsId}
         onDelete={this.deleteQuestion.bind(this)}
+        unDelete={this.undoDelte}
         tab={this.state.tab}
         toggleTab={this.switchTab}
         loadQuestion={this.fetchQuestion}
@@ -146,6 +194,18 @@ const Tab = styled.li`
   margin: 0
 `
 
+const DeltedCard = styled.li`
+  background: #ff7777;
+  color: white;
+  cursor: not-allowed;
+`
+
+const UndoButton = styled.button`
+  background: #61da61;
+  cursor: pointer;
+  float: right;
+`
+
 const OrganizeMonitor = props => (
   <div>
     <nav className="bg-primary text-white">
@@ -155,7 +215,7 @@ const OrganizeMonitor = props => (
             #ASK 2.0
           </div>
           <div className="btn bg-info col-xs-3" style={{ borderRadius: 0 }}>
-            คำถามใหม่ <span style={{ background: '#aab2bd' }}className="badge badge-default">0</span>
+            คำถามใหม่ <span style={{ background: '#aab2bd' }}className="badge badge-default">NaN</span>
           </div>
           <div className="col-3" style={{ padding: 5 }}>
             <button
@@ -215,9 +275,7 @@ const OrganizeMonitor = props => (
           <div className="card" style={{ background: 'lightgray' }}>
             <ScrollBox className="list-group list-group-flush">
               {
-                props.questions.map((q, index) =>
-                  (q.isDelete || q.isAnswer)
-                  ? ('') : (
+                props.questions.map((q, index) => (
                     <li
                       style={{ cursor: 'pointer' }}
                       className={`list-group-item ${props.selectedItem.indexOf(q._id) > -1 ? 'selected' : ''}`}
@@ -228,7 +286,7 @@ const OrganizeMonitor = props => (
                       </div>
                       <div className="col-2">
                         <ButtonTrash className="card"
-                          onClick={props.onDelete}>
+                          onClick={e => props.onDelete(e)}>
                           <i
                             id={index}
                             className="fa fa-trash fa-2x"
@@ -247,15 +305,15 @@ const OrganizeMonitor = props => (
           <div className="card" style={{ background: 'lightgray' }}>
             <ScrollBox className="list-group list-group-flush">
               {
-                props.questions.map((q, index) =>
-                  (q.isAnswer)
-                   ? (
+                props.answeredQuestion.map((q, index) => (
                     <li key={q._id}
                       className={`list-group-item`}
                     >
-                      { q.question }
+                      <div className="col-12">
+                        { q.question }
+                      </div>
                     </li>
-                  ) : ('')
+                  )
                 )
               }
             </ScrollBox>
@@ -265,15 +323,23 @@ const OrganizeMonitor = props => (
           <div className="card" style={{ background: 'lightgray' }}>
             <ScrollBox className="list-group list-group-flush">
               {
-                props.questions.map((q, index) =>
-                  (q.isDelete)
-                  ? (
-                    <li key={q._id}
+                props.deletedQuestion.map((q, index) => (
+                    <DeltedCard key={q._id}
                       className={`list-group-item`}
                     >
-                      { q.question }
-                    </li>
-                  ) : ('')
+                      <div className="col-11">
+                        { q.question }
+                      </div>
+                      <div className="col-1">
+                        <UndoButton
+                          className="card fa fa-undo fa-2x"
+                          onClick={e => props.unDelete(e)}
+                          id={index}
+                          aria-hidden="true"
+                        />
+                      </div>
+                    </DeltedCard>
+                  )
                 )
               }
             </ScrollBox>
