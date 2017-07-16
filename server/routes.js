@@ -32,6 +32,7 @@ module.exports = function(io) {
   // router.route('/rooms/:id').put(RoomsController.updateRoomByID)
   router.route('/rooms/code/:code').get(RoomsController.getRoomByCode)
   router.route('/room/delete').post(RoomsController.updateIsDelete)
+  router.route('/room/update').post(RoomsController.updateRoomByID)
 
   // // -- NESTED ROOMS ROUTE --
   // router.route('/rooms/:id/questions').get(QuestionsController.getQuestionsByRoomID)

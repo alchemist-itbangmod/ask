@@ -76,7 +76,31 @@ module.exports = {
   },
   // Update existing room
   updateRoomByID: async (req, res) => {
-    res.send(`Question.getQuestion with QID: ${req.params.id}`)
+    // res.send(`Question.getQuestion with QID: ${req.params.id}`)
+    let reqId = req.body.getidbodynaja
+    let title = req.body.title
+    let openSending = req.body.sending
+
+    let chkRoom = await Rooms.getOne({
+      _id: reqId
+    }).then(data => data)
+
+    if (chkRoom === null) { // Room does not exists
+      res.json({
+        status: false,
+        message: 'Room dose not exists'
+      })
+    } else {
+      await Rooms.update({
+        _id: reqId,
+        title: title,
+        openSending: openSending
+      }).then(data => data)
+      res.json({
+        status: true,
+        message: 'update data success!'
+      })
+    }
   },
   // Accress room by code
   getRoomByCode: async (req, res) => {

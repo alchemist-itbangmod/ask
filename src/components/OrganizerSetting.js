@@ -46,6 +46,7 @@ const SaveMenu = styled.button`
   background: transparent;
   border: 0;
   font-weight: bold;
+  cursor: pointer;
 `
 
 class OrganizeSettingContainer extends React.Component {
@@ -61,6 +62,7 @@ class OrganizeSettingContainer extends React.Component {
     this.changeRoomName = this.changeRoomName.bind(this)
     this.componentWillMount = this.componentWillMount.bind(this)
     this.onDeleteRoom = this.onDeleteRoom.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   toggleSending() {
@@ -83,7 +85,40 @@ class OrganizeSettingContainer extends React.Component {
       confirmButtonText: 'Confirm',
       confirmButtonColor: '#FF4312',
       customClass: 'Button',
-      showLoaderOnConfirm: true
+      showLoaderOnConfirm: true,
+      preConfirm: () => {
+        return new Promise(async (resolve, reject) => {
+          let room = await axios.get(`http://localhost:3001/api/v1/rooms/code/${this.state.pin}`)
+            .then(resp => {
+              return resp.data
+            })
+          axios.post(`http://localhost:3001/api/v1/room/update`, {
+            getidbodynaja: room.roomId,
+            title: this.state.roomName,
+            sending: this.state.sending
+          }).then(data => {
+            resolve(data.data)
+          })
+        })
+      }
+    }).then((data) => {
+      if (data.status) {
+        swal({
+          title: 'Sucess',
+          text: `update success`,
+          type: 'success',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#FF4312'
+        })
+      } else {
+        swal({
+          title: 'Fail',
+          text: `Error, cannot update please try again.`,
+          type: 'warning',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#FF4312'
+        })
+      }
     })
   }
 
@@ -111,14 +146,11 @@ class OrganizeSettingContainer extends React.Component {
         return new Promise(async (resolve, reject) => {
           let room = await axios.get(`http://localhost:3001/api/v1/rooms/code/${this.state.pin}`)
             .then(resp => {
-              console.log('room')
               return resp.data
             })
-          console.log(room)
           axios.post(`http://localhost:3001/api/v1/room/delete`, {
             getidbodynaja: room.roomId
           }).then(data => {
-            console.log('room2')
             resolve(data.data)
           })
         })
@@ -158,6 +190,7 @@ class OrganizeSettingContainer extends React.Component {
         openSending={this.state.sending}
         toggleSending={this.toggleSending}
         deleteRoom={this.onDeleteRoom}
+        updateRoom={this.onSubmit}
       />
     )
   }
@@ -170,7 +203,7 @@ const Setting = props => (
         <WithBorder className="row h1 text-center">
           <div className="col-12">{ props.title }</div>
           <PreviousMenu className="fa fa-angle-left text-primary" />
-          <SaveMenu type="submit" className="fa fa-save text-primary" />
+          <SaveMenu onClick={props.updateRoom} type="submit" className="fa fa-save text-primary" />
         </WithBorder>
         <WithBorder className="row">
           <div className="col-2">
@@ -214,6 +247,7 @@ const Setting = props => (
         }}>
         <div className="col-12 text-center">
           <button
+            style={{ cursor: 'pointer' }}
             onClick={props.deleteRoom}
             className="btn btn-danger btn-lg"
           >DELETE THIS ROOM</button>
