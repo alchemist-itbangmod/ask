@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import swal from 'sweetalert2'
-
+import localforage from 'localforage'
 // HOC
 import repuireAsker from '../libs/requireAsker'
 
 import Navbar from './Navbar'
 import axios from 'axios'
+
+import socket from '../libs/withSocket'
 
 // style.css component
 const SentButton = styled.button`
@@ -34,10 +36,13 @@ class AskPageContainer extends React.Component {
     this.handleQuestion = this.handleQuestion.bind(this)
   }
 
-  sendQuestion() {
+  async sendQuestion() {
     if (this.state.question.length < 4) {
       return
     }
+
+    let roomId = await localforage.getItem('roomId')
+    let name = await localforage.getItem('name')
 
     swal({
       title: 'Are you sure to sent',
@@ -51,8 +56,8 @@ class AskPageContainer extends React.Component {
       preConfirm: () => {
         return new Promise((resolve, reject) => {
           axios.post(`http://localhost:3001/api/v1/questions/send`, {
-            roomId: '5960a0a1e327597fe42be49d',
-            name: 'KS',
+            roomId: roomId,
+            name: name,
             question: this.state.question
           }).then(data => {
             resolve(data.data)
@@ -80,10 +85,11 @@ class AskPageContainer extends React.Component {
     })
   }
 
-  handleQuestion(q) {
+  async handleQuestion(q) {
     this.setState({
       question: q
     })
+    socket.emit('monitor', { status: this.state.question })
   }
 
   render() {
