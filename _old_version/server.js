@@ -31,7 +31,9 @@ server.use(cookieParser())
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
 
-<<<<<<< HEAD
+// INITIAL SOCKET.IO
+const io = require('socket.io').listen(3002)
+require('./server/services')(io)
 // ----------------------
 //     PASSPORT AUTH!
 // ----------------------
@@ -51,11 +53,6 @@ server.use(session({
 }))
 server.use(passport.initialize())
 server.use(passport.session())
-=======
-// INITIAL SOCKET.IO
-const io = require('socket.io').listen(3002)
-require('./server/services')(io)
->>>>>>> 84b91a0b6bf0583332876e5c8225da47b3d337d3
 
 // API V.1
 const routes = require('./server/routes.js')(io)

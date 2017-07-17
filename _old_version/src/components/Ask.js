@@ -2,10 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import swal from 'sweetalert2'
 import localforage from 'localforage'
-<<<<<<< HEAD
 
-=======
->>>>>>> 84b91a0b6bf0583332876e5c8225da47b3d337d3
 // HOC
 import repuireAsker from '../libs/requireAsker'
 
@@ -62,13 +59,10 @@ class AskPageContainer extends React.Component {
       preConfirm: () => {
         return new Promise((resolve, reject) => {
           axios.post(`http://localhost:3001/api/v1/questions/send`, {
-<<<<<<< HEAD
             roomId: this.state.roomId,
             name: this.state.name,
-=======
-            roomId: roomId,
-            name: name,
->>>>>>> 84b91a0b6bf0583332876e5c8225da47b3d337d3
+            roomId: this.state.roomId,
+            name: this.state.name,
             question: this.state.question
           }).then(data => {
             resolve(data.data)
