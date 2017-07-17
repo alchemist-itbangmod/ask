@@ -62,7 +62,9 @@ module.exports = {
     } else {
       res.json({
         status: true,
-        roomId: roomID._id
+        data: {
+          roomId: roomID._id
+        }
       })
     }
   },
@@ -85,7 +87,9 @@ module.exports = {
     }
     res.json({
       status: true,
-      room
+      data: {
+        room
+      }
     })
   },
   // Update existing room

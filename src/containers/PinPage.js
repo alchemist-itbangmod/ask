@@ -1,5 +1,7 @@
 import React from 'react'
 import { compose, withState, withHandlers } from 'recompose'
+import instance from '../libs/axios'
+import localforage from '../libs/localforage'
 
 const PinPage = props => (
   <div>
@@ -46,9 +48,12 @@ const PinPageCompose = compose(
         props.setError(`Can't enter more than 4 character.`)
       }
     },
-    submitPin: props => (e) => {
+    submitPin: props => async (e) => {
       e.preventDefault()
-      console.log(props)
+      let data = await instance(`/rooms/code/${props.pin}`)
+        .then(resp => resp.data)
+      localforage.setItem('roomId', data.data.roomId)
+      props.history.push('/join')
     }
   })
 )(PinPage)

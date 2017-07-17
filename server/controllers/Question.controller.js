@@ -43,6 +43,5 @@ module.exports = {
       _id: req.body._id,
       isDelete: true
     }).then(data => data)
-    if 
   }
 }

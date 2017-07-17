@@ -5,14 +5,6 @@ const router = require('express').Router()
 const RoomController = require('./controllers/Room.controller')
 const QuestionsController = require('./controllers/Question.controller')
 
-// Test function
-const testRouter = (req, res) => {
-  res.json({
-    name: 'abc',
-    sucess: true
-  })
-}
-
 // // --------------------------
 // // |  AUTHENTICATION ROUTE  |
 // // --------------------------
@@ -35,7 +27,7 @@ router.route('/rooms/:id/delete').post(RoomController.updateIsDelete)
 router.route('/rooms/:id/questions').get(QuestionsController.getAll)
 router.route('/questions/:id').get(QuestionsController.getQuestion)
 router.route('/questions/:id').post(QuestionsController.createQuestion)
-router.route('/questions/:id').push(QuestionsController.updateIsDelete)
+router.route('/questions/:id').put(QuestionsController.updateIsDelete)
 // router.route('/questions/send').post(QuestionsController.send)
 // router.route('/questions').delete(QuestionsController.removeQuestion)
 // router.route('/question/delete').post(QuestionsController.updateIsDelete)
