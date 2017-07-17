@@ -37,5 +37,12 @@ module.exports = {
       .then(data => data)
       .catch(err => err)
     res.json(result)
+  },
+  updateIsDelete: async (req, res) => {
+    let result = await Question.update({
+      _id: req.body._id,
+      isDelete: true
+    }).then(data => data)
+    if 
   }
 }
