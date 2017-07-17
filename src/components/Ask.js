@@ -2,12 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import swal from 'sweetalert2'
 import localforage from 'localforage'
+<<<<<<< HEAD
 
+=======
+>>>>>>> 84b91a0b6bf0583332876e5c8225da47b3d337d3
 // HOC
 import repuireAsker from '../libs/requireAsker'
 
 import Navbar from './Navbar'
 import axios from 'axios'
+
+import socket from '../libs/withSocket'
 
 // style.css component
 const SentButton = styled.button`
@@ -37,14 +42,17 @@ class AskPageContainer extends React.Component {
     this.componentWillMount = this.componentWillMount.bind(this)
   }
 
-  sendQuestion() {
+  async sendQuestion() {
     if (this.state.question.length < 4) {
       return
     }
 
+    let roomId = await localforage.getItem('roomId')
+    let name = await localforage.getItem('name')
+
     swal({
       title: 'Are you sure to sent',
-      text: `Are yoo sure to sent this question that '${this.state.question}' to modurator`,
+      text: `Are you sure to sent this question that '${this.state.question}' to modurator`,
       showCancelButton: true,
       reverseButtons: true,
       confirmButtonText: 'Confirm',
@@ -54,8 +62,13 @@ class AskPageContainer extends React.Component {
       preConfirm: () => {
         return new Promise((resolve, reject) => {
           axios.post(`http://localhost:3001/api/v1/questions/send`, {
+<<<<<<< HEAD
             roomId: this.state.roomId,
             name: this.state.name,
+=======
+            roomId: roomId,
+            name: name,
+>>>>>>> 84b91a0b6bf0583332876e5c8225da47b3d337d3
             question: this.state.question
           }).then(data => {
             resolve(data.data)
@@ -83,10 +96,11 @@ class AskPageContainer extends React.Component {
     })
   }
 
-  handleQuestion(q) {
+  async handleQuestion(q) {
     this.setState({
       question: q
     })
+    socket.emit('monitor', { status: this.state.question })
   }
 
   async componentWillMount() {

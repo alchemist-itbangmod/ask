@@ -1,5 +1,10 @@
 import React from 'react'
+<<<<<<< HEAD
 import { NavLink as Link } from 'react-router-dom'
+=======
+// import { NavLink as Link } from 'react-router-dom'
+// import FA from 'react-fontawesome'
+>>>>>>> 84b91a0b6bf0583332876e5c8225da47b3d337d3
 import styled from 'styled-components'
 import localforage from 'localforage'
 

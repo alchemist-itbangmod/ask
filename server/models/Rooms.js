@@ -13,6 +13,7 @@ const RoomsSchema = mongoose.Schema(
     imgs: {
       cover: String
     },
+    isDelete: { type: Boolean, default: false },
     openSending: { type: Boolean, default: false }
   },
   {
