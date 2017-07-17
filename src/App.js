@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { injectGlobal } from 'styled-components'
 
 import './static/bootstrap/bootstrap.min.css'
 
@@ -10,6 +11,10 @@ import {
   OrgPage,
   NotFoundPage
 } from './containers'
+
+injectGlobal`
+
+`
 
 const App = props => (
   <Router>

@@ -1,9 +1,12 @@
 import React from 'react'
+import { compose, withState, withHandlers } from 'recompose'
+import requireAsker from '../libs/requireAsker'
+import Navbar from '../components/Navbar/Navbar'
 
 const AskPage = props => (
   <div>
+    <Navbar {...props} />
     <div className="container">
-      <h1 className="text-center">#ASK</h1>
       <h4 className="text-center">Welcome to `ABC ROOM`</h4>
       <div className="row">
         <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
@@ -18,7 +21,6 @@ const AskPage = props => (
           <button
             type="button"
             className="btn btn-secondary btn-block"
-            role="button"
             style={{ marginTop: '15px' }}
           >
             JOIN ROOM
@@ -29,4 +31,8 @@ const AskPage = props => (
   </div>
 )
 
-export default AskPage
+const AskPageCompose = compose(
+  requireAsker()
+)(AskPage)
+
+export default AskPageCompose

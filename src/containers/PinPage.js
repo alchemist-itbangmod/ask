@@ -1,5 +1,8 @@
 import React from 'react'
 import { compose, withState, withHandlers } from 'recompose'
+import instance from '../libs/axios'
+import localforage from '../libs/localforage'
+import requireAsker from '../libs/requireAsker'
 
 const PinPage = props => (
   <div>
@@ -24,7 +27,6 @@ const PinPage = props => (
             <button
               type="submit"
               className="btn btn-secondary btn-block"
-              role="button"
             >
               ENTER ROOM
             </button>
@@ -36,6 +38,7 @@ const PinPage = props => (
 )
 
 const PinPageCompose = compose(
+  requireAsker(),
   withState('pin', 'setPin', ''),
   withState('error', 'setError', ''),
   withHandlers({
@@ -47,9 +50,16 @@ const PinPageCompose = compose(
         props.setError(`Can't enter more than 4 character.`)
       }
     },
-    submitPin: props => (e) => {
+    submitPin: props => async (e) => {
       e.preventDefault()
-      console.log(props.pin)
+      let data = await instance(`/rooms/code/${props.pin}`)
+        .then(resp => resp.data)
+      if (data.status) {
+        localforage.setItem('roomId', data.data.roomId)
+        props.history.push('/join')
+      } else {
+        props.setError(`Code is incorrect.`)
+      }
     }
   })
 )(PinPage)
