@@ -26,6 +26,6 @@ router.route('/rooms/create').post(RoomController.create)
 router.route('/rooms/:id').get(RoomController.getRoomByID)
 router.route('/rooms/code/:code').get(RoomController.getRoomIDbyCode)
 router.route('/rooms/:id').put(RoomController.updateRoomByID)
-// router.route('/rooms/:id/delete').post(RoomController.updateIsDelete)
+router.route('/rooms/:id/delete').post(RoomController.updateIsDelete)
 
 module.exports = router
