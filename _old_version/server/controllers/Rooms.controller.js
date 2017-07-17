@@ -1,3 +1,5 @@
+const mongoose = require('mongoose')
+
 // IMPORT MODELS
 const Rooms = require('../models/Rooms')
 
