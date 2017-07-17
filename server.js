@@ -31,9 +31,31 @@ server.use(cookieParser())
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
 
+<<<<<<< HEAD
 // INITIAL SOCKET.IO
 const io = require('socket.io').listen(3002)
 require('./server/services')(io)
+=======
+// ----------------------
+//     PASSPORT AUTH!
+// ----------------------
+const passport = require('passport')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+
+server.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  cookie: { maxAge: 86400000 },
+  store: new MongoStore({
+    url: process.env.MONGO_URI,
+    autoReconnect: true
+  })
+}))
+server.use(passport.initialize())
+server.use(passport.session())
+>>>>>>> develop
 
 // API V.1
 const routes = require('./server/routes.js')(io)

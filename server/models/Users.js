@@ -2,11 +2,11 @@ const mongoose = require('mongoose')
 
 const UsersSchema = mongoose.Schema(
   {
-    displayName: String,
+    displayName: { type: String, default: 'Alpaca' },
     email: { type: String, unique: true, require: true },
     password: { type: String, require: true },
     telNo: String,
-    avatarUrl: String
+    avatarUrl: { type: String, default: 'https://upload.wikimedia.org/wikipedia/commons/7/70/KnapperAlpakkaCorazonFull.jpg' }
   },
   {
     timestamps: true,

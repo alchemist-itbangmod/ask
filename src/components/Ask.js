@@ -2,6 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import swal from 'sweetalert2'
 import localforage from 'localforage'
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
 // HOC
 import repuireAsker from '../libs/requireAsker'
 
@@ -30,10 +34,12 @@ class AskPageContainer extends React.Component {
     this.state = {
       question: '',
       name: '',
-      pin: ''
+      pin: '',
+      roomId: ''
     }
     this.sendQuestion = this.sendQuestion.bind(this)
     this.handleQuestion = this.handleQuestion.bind(this)
+    this.componentWillMount = this.componentWillMount.bind(this)
   }
 
   async sendQuestion() {
@@ -56,8 +62,13 @@ class AskPageContainer extends React.Component {
       preConfirm: () => {
         return new Promise((resolve, reject) => {
           axios.post(`http://localhost:3001/api/v1/questions/send`, {
+<<<<<<< HEAD
             roomId: roomId,
             name: name,
+=======
+            roomId: this.state.roomId,
+            name: this.state.name,
+>>>>>>> develop
             question: this.state.question
           }).then(data => {
             resolve(data.data)
@@ -92,6 +103,17 @@ class AskPageContainer extends React.Component {
     socket.emit('monitor', { status: this.state.question })
   }
 
+  async componentWillMount() {
+    let pin = await localforage.getItem(`pin`)
+    let name = await localforage.getItem(`name`)
+    let id = await fetch(`http://localhost:3001/api/v1/rooms/code/${pin}`)
+      .then(data => data.json())
+      .then(data => data.id)
+    this.setState({ pin })
+    this.setState({ name })
+    this.setState({ roomId: id })
+  }
+
   render() {
     const action = {
       sendQuestion: this.sendQuestion,
@@ -102,6 +124,7 @@ class AskPageContainer extends React.Component {
     }
     return (<AskPage
       {...action}
+      {...this.props}
       name={this.props.name}
     />)
   }
@@ -109,7 +132,7 @@ class AskPageContainer extends React.Component {
 
 const AskPage = props => (
   <div>
-    <Navbar />
+    <Navbar {...props} />
     <div className="container">
       <div className="text-center">
         <Box className="form-group">

@@ -1,7 +1,12 @@
 import React from 'react'
+<<<<<<< HEAD
 // import { NavLink as Link } from 'react-router-dom'
 // import FA from 'react-fontawesome'
+=======
+import { NavLink as Link } from 'react-router-dom'
+>>>>>>> develop
 import styled from 'styled-components'
+import localforage from 'localforage'
 
 class NavbarContainer extends React.Component {
   constructor(props) {
@@ -9,15 +14,16 @@ class NavbarContainer extends React.Component {
     this.state = {
       showNav: false
     }
-    this.toggleNavbar = this.toggleNavbar.bind(this)
+    this.signOut = this.signOut.bind(this)
   }
 
-  toggleNavbar() {
-    this.setState({ showNav: !this.state.showNav })
+  signOut() {
+    localforage.clear()
+    this.props.history.push('/')
   }
 
   render() {
-    return <Navbar toggle={this.toggleNavbar} show={this.state.showNav} />
+    return <Navbar signOut={this.signOut} show={this.state.showNav} />
   }
 }
 
@@ -25,12 +31,22 @@ const HeadNav = styled.div`
   margin-top: 10px;
 `
 
+const SignOutButton = styled.button`
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 10px;
+  background: transparent;
+`
+
 const Navbar = props =>
   <HeadNav>
     <div className="container">
-      <div className="pull-right">
+      <SignOutButton
+        className="pull-right"
+        onClick={() => props.signOut()}
+      >
         <i className="fa fa-sign-out fa-2"></i>
-      </div>
+      </SignOutButton>
       <div className="text-center">
         <h5>
           Room name

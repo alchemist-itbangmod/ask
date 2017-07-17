@@ -22,17 +22,16 @@ const PIN = styled.input`
   border: 0;
   background: transparent;
 `
-const Text = styled.h3`
-  font-family: Prompt;
-`
 
-const Header = Text.extend`
+const Header = styled.h2`
+  font-family: Prompt;
   margin-top: 125px;
   font-weight: 600;
   font-size: 50px;
 `
 
-const SubHeader = Text.extend`
+const SubHeader = styled.h3`
+  font-family: Prompt;
   margin-top: 30px;
   font-weight: 200;
   font-size: 18px;
