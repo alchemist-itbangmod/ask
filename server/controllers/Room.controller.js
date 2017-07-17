@@ -30,7 +30,7 @@ module.exports = {
     } while (checkCode !== null)
 
     // Create room
-    result = result = await Room.create({
+    result = await Room.create({
       code: code,
       title: req.body.title,
       // _ownerId: req.user.id,

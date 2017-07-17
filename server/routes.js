@@ -3,6 +3,7 @@ const router = require('express').Router()
 
 // Import controller
 const RoomController = require('./controllers/Room.controller')
+const QuestionsController = require('./controllers/Question.controller')
 
 // Test function
 const testRouter = (req, res) => {
@@ -27,5 +28,16 @@ router.route('/rooms/:id').get(RoomController.getRoomByID)
 router.route('/rooms/code/:code').get(RoomController.getRoomIDbyCode)
 router.route('/rooms/:id').put(RoomController.updateRoomByID)
 router.route('/rooms/:id/delete').post(RoomController.updateIsDelete)
+
+// // --------------------------
+// // |    QUESTIONS ROUTE.    |
+// // --------------------------
+router.route('/rooms/:id/questions').get(QuestionsController.getAll)
+router.route('/questions/:id').get(QuestionsController.getQuestion)
+router.route('/questions/:id').post(QuestionsController.createQuestion)
+// router.route('/questions/:id').push(QuestionsController.updateIsDelete)
+// router.route('/questions/send').post(QuestionsController.send)
+// router.route('/questions').delete(QuestionsController.removeQuestion)
+// router.route('/question/delete').post(QuestionsController.updateIsDelete)
 
 module.exports = router
