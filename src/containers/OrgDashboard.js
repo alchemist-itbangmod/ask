@@ -1,14 +1,12 @@
 import React from 'react'
 
 import OrgNavbar from '../components/Navbar/OrgNavbar'
-
 import BG from '../static/images/bg.png'
 
 const OrgDashboard = props => (
   <div>
     <OrgNavbar />
     <div className="container">
-      <h1 className="text-center">DASHBOARD</h1>
       <div className="row">
         {
           [1, 2, 3, 4, 5].map(e => (
@@ -16,7 +14,7 @@ const OrgDashboard = props => (
               <div
                 className="card card-inverse mb-3 text-center"
               >
-                <img className="card-img" src={BG} style={{ height: '190px' }} alt="Card image" />
+                <img className="card-img" src={BG} style={{ height: '190px' }} alt="Room=" />
                 <div
                   className="card-img-overlay"
                   style={{
@@ -26,7 +24,7 @@ const OrgDashboard = props => (
                 >
                   <h3 className="card-title">Special title treatment</h3>
                   <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" className="btn btn-secondary">Manage</a>
+                  <button className="btn btn-secondary">Manage</button>
                 </div>
               </div>
             </div>
@@ -36,4 +34,5 @@ const OrgDashboard = props => (
     </div>
   </div>
 )
+
 export default OrgDashboard

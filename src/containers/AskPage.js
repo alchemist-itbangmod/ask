@@ -18,7 +18,6 @@ const AskPage = props => (
           <button
             type="button"
             className="btn btn-secondary btn-block"
-            role="button"
             style={{ marginTop: '15px' }}
           >
             JOIN ROOM

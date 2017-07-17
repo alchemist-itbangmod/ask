@@ -24,7 +24,6 @@ const PinPage = props => (
             <button
               type="submit"
               className="btn btn-secondary btn-block"
-              role="button"
             >
               ENTER ROOM
             </button>
@@ -49,7 +48,7 @@ const PinPageCompose = compose(
     },
     submitPin: props => (e) => {
       e.preventDefault()
-      console.log(props.pin)
+      console.log(props)
     }
   })
 )(PinPage)
