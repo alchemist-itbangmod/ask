@@ -43,6 +43,31 @@ module.exports = {
       _id: req.body._id,
       isDelete: true
     }).then(data => data)
-    if 
+    if (result === null) {
+      res.json({
+        status: false
+      })
+    } else {
+      res.json({
+        status: true,
+        result
+      })
+    }
+  },
+  updateIsAns: async (req, res) => {
+    let result = await Question.update({
+      _id: req.body._id,
+      isAnswere: true
+    }).then(data => data)
+    if (result === null) {
+      res.json({
+        status: false
+      })
+    } else {
+      res.json({
+        status: true,
+        result
+      })
+    }
   }
 }
