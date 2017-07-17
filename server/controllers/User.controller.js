@@ -17,7 +17,7 @@ module.exports = {
       avatarUrl: req.body.avatarUrl
     }).then(data => data)
       .catch(err => err)
-    
+
     // Sending out data
     if (newUser === null) {
       res.json({
