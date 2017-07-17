@@ -1,9 +1,6 @@
 extends:
   - standard
   - standard-react
-  - plugin:jsx-a11y/recommended
-plugins:
-  - jsx-a11y
 parser: babel-eslint
 rules:
   object-curly-spacing: [ error, always ]

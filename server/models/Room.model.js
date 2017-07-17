@@ -1,27 +1,39 @@
+// Import mongoose
 const mongoose = require('mongoose')
 
-const UsersSchema = mongoose.Schema(
+// RoomSchema for mongoDB 
+const RoomSchema = mongoose.Schema(
   {
-    displayName: String,
-    email: { type: String, unique: true, require: true },
-    password: { type: String, require: true },
-    telNo: String,
-    avatarUrl: String
+    code: {
+      type: String,
+      require: true,
+      unique: true,
+      uppercase: true
+    },
+    title: { type: String, require: true, unique: true },
+    _ownerId: mongoose.Schema.Types.ObjectId,
+    imgs: {
+      cover: String
+    },
+    isDelete: { type: Boolean, default: false },
+    openSending: { type: Boolean, default: false }
   },
   {
     timestamps: true,
-    collection: 'users'
+    collection: 'rooms'
   }
 )
 
-const UsersModel = mongoose.model('UsersModel', UsersSchema)
+// Import model to create model
+const RoomModel = mongoose.model('RoomsModel', RoomSchema)
 
+// Created model
 module.exports = {
-  model: UsersModel,
+  model: RoomModel,
   create: args => {
     return new Promise(async (resolve, reject) => {
       try {
-        let question = await UsersModel.create(args)
+        let question = await RoomModel.create(args)
         resolve(question)
       } catch (err) {
         reject(err)
@@ -31,7 +43,7 @@ module.exports = {
   getAll: args => {
     return new Promise(async (resolve, reject) => {
       try {
-        let questions = await UsersModel.find(args)
+        let questions = await RoomModel.find(args)
         resolve(questions)
       } catch (err) {
         reject(err)
@@ -41,7 +53,7 @@ module.exports = {
   getOne: args => {
     return new Promise(async (resolve, reject) => {
       try {
-        let questions = await UsersModel.findOne(args)
+        let questions = await RoomModel.findOne(args)
         resolve(questions)
       } catch (err) {
         reject(err)
@@ -51,7 +63,7 @@ module.exports = {
   update: args => {
     return new Promise(async (resolve, reject) => {
       try {
-        let question = await UsersModel.update(
+        let question = await RoomModel.update(
           { _id: args._id },
           { $set: args }
         )
@@ -64,7 +76,7 @@ module.exports = {
   remove: args => {
     return new Promise(async (resolve, reject) => {
       try {
-        let question = await UsersModel.findOneAndRemove(args)
+        let question = await RoomModel.findOneAndRemove(args)
         resolve(question)
       } catch (err) {
         reject(err)

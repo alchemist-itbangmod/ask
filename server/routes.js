@@ -1,50 +1,33 @@
 // IMPORT ROUTER.
 const router = require('express').Router()
 
-module.exports = function(io) {
-  // IMPORT CONTROLLER
-  const QuestionsController = require('./controllers/Questions.controller')(io)
-  const RoomsController = require('./controllers/Rooms.controller')
-  const UsersController = require('./controllers/Users.controller')
-  const AuthController = require('./controllers/Authentication.controller')
+// Import controller
+const RoomController = require('./controllers/Room.controller')
+const QuestionsController = require('./controllers/Question.controller')
 
-  // // --------------------------
-  // // |  AUTHENTICATION ROUTE  |
-  // // --------------------------
-  // router.route('/auth/login').get(AuthController.login)
-  // router.route('/auth/logout').get(AuthController.logout)
-  // router.route('/auth/register').get(AuthController.register)
+// // --------------------------
+// // |  AUTHENTICATION ROUTE  |
+// // --------------------------
+//router.route('/auth/login').get(AuthController.login)
+//router.route('/auth/logout').get(AuthController.logout)
 
-  // // --------------------------
-  // // |      USERS ROUTE.      |
-  // // --------------------------
-  // router.route('/user').get(UsersController.getCurrentUser)
+// // --------------------------
+// // |      ROOMS ROUTE.      |
+// // --------------------------
+router.route('/rooms').get(RoomController.getAll)
+router.route('/rooms/create').post(RoomController.create)
+router.route('/rooms/:id').get(RoomController.getRoomByID)
+router.route('/rooms/code/:code').get(RoomController.getRoomIDbyCode)
+router.route('/rooms/:id').put(RoomController.updateRoomByID)
+router.route('/rooms/:id/delete').post(RoomController.updateIsDelete)
 
-  // // -- NESTED USERS ROUTE --
-  // router.route('/users/:id/rooms').get(RoomsController.getRoomsByUserID)
+// // --------------------------
+// // |    QUESTIONS ROUTE.    |
+// // --------------------------
+router.route('/rooms/:id/questions').get(QuestionsController.getAll)
+router.route('/questions/:id').get(QuestionsController.getQuestion)
+router.route('/questions/:id').post(QuestionsController.createQuestion)
+router.route('/questions/:id/del').put(QuestionsController.updateIsDelete)
+router.route('/questions/:id/ans').put(QuestionsController.updateIsAns)
 
-  // // --------------------------
-  // // |      ROOMS ROUTE.      |
-  // // --------------------------
-  router.route('/rooms').get(RoomsController.getAll)
-  router.route('/rooms').post(RoomsController.create)
-  router.route('/rooms/:id').get(RoomsController.getRoomByID)
-  // router.route('/rooms/:id').put(RoomsController.updateRoomByID)
-  router.route('/rooms/code/:code').get(RoomsController.getRoomByCode)
-  router.route('/room/delete').post(RoomsController.updateIsDelete)
-  router.route('/room/update').post(RoomsController.updateRoomByID)
-
-  // // -- NESTED ROOMS ROUTE --
-  // router.route('/rooms/:id/questions').get(QuestionsController.getQuestionsByRoomID)
-
-  // // --------------------------
-  // // |    QUESTIONS ROUTE.    |
-  // // --------------------------
-  router.route('/questions').get(QuestionsController.getAllQuestion)
-  // router.route('/questions/:id').get(QuestionsController.getQuestion)
-  router.route('/questions/send').post(QuestionsController.send)
-  // router.route('/questions').delete(QuestionsController.removeQuestion)
-  router.route('/question/delete').post(QuestionsController.updateIsDelete)
-
-  return router
-}
+module.exports = router

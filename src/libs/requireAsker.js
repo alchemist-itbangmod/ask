@@ -1,39 +1,24 @@
 import React from 'react'
-import localforage from 'localforage'
+import localforage from '../libs/localforage'
 
 const requireAsker = () => {
   return (Component) =>
     class requireAsker extends React.Component {
-      constructor(props) {
-        super(props)
-        this.state = {
-          pin: '',
-          name: ''
-        }
-        this.componentWillMount = this.componentWillMount.bind(this)
-      }
-
       async componentWillMount() {
-        let pin = await localforage.getItem('pin')
+        let roomId = await localforage.getItem('roomId')
         let name = await localforage.getItem('name')
-        if (pin === null) {
+
+        if (roomId === null) {
           this.props.history.push('/')
         } else if (name === null) {
-          this.setState({ pin })
           this.props.history.push('/join')
         } else {
-          this.setState({ pin })
-          this.setState({ name })
           this.props.history.push('/ask')
         }
       }
 
       render() {
-        return <Component
-          {...this.props}
-          name={this.state.name}
-          pin={this.state.pin}
-        />
+        return <Component {...this.props} />
       }
     }
 }
