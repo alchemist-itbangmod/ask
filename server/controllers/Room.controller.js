@@ -13,7 +13,19 @@ module.exports = {
     allRoom = await Room.getAll({})
       .then(data => data)
       .catch(err => err)
-    res.json(allRoom)
+    if (allRoom === null) {
+      res.json({
+        status: false,
+        error: 'No rooms in database'
+      })
+    } else {
+      res.json({
+        status: true,
+        data: {
+          allRoom
+        }
+      })
+    }
   },
   // Create new room
   create: async (req, res) => {
@@ -43,7 +55,20 @@ module.exports = {
     })
     .then(data => data)
     .catch(err => err)
-    res.json(result)
+
+    if (result === null) {
+      res.json({
+        status: false,
+        error: 'Fail to created'
+      })
+    } else {
+      res.json({
+        status: true,
+        data: {
+          result
+        }
+      })
+    }
   },
   // Accress room by roomID
   getRoomIDbyCode: async (req, res) => {
@@ -57,7 +82,8 @@ module.exports = {
     // Check that found room or not
     if (roomID === null) {
       res.json({
-        status: false
+        status: false,
+        error: `Doesn't exist`
       })
     } else {
       res.json({
@@ -81,7 +107,8 @@ module.exports = {
     // Then sent part to go to ask room with key.
     if (room === null || room.isDelete) {
       res.json({
-        status: false
+        status: false,
+        error: `Fail to create room`
       })
       return
     }
@@ -123,7 +150,7 @@ module.exports = {
   },
   // Deleting room
   updateIsDelete: async (req, res) => {
-    let reqId = req.body.getidbodynaja
+    let reqId = req.body.id
 
     let chkRoom = await Room.getOne({
       _id: reqId

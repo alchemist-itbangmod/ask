@@ -2,6 +2,7 @@ import React from 'react'
 import { compose, withState, withHandlers } from 'recompose'
 import instance from '../libs/axios'
 import localforage from '../libs/localforage'
+import requireAsker from '../libs/requireAsker'
 
 const PinPage = props => (
   <div>
@@ -37,6 +38,7 @@ const PinPage = props => (
 )
 
 const PinPageCompose = compose(
+  requireAsker(),
   withState('pin', 'setPin', ''),
   withState('error', 'setError', ''),
   withHandlers({
@@ -52,8 +54,12 @@ const PinPageCompose = compose(
       e.preventDefault()
       let data = await instance(`/rooms/code/${props.pin}`)
         .then(resp => resp.data)
-      localforage.setItem('roomId', data.data.roomId)
-      props.history.push('/join')
+      if (data.status) {
+        localforage.setItem('roomId', data.data.roomId)
+        props.history.push('/join')
+      } else {
+        props.setError(`Code is incorrect.`)
+      }
     }
   })
 )(PinPage)

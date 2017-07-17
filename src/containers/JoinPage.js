@@ -1,12 +1,13 @@
 import React from 'react'
 import { compose, withState, withHandlers } from 'recompose'
 import localforage from '../libs/localforage'
+import requireAsker from '../libs/requireAsker'
 
 import Navbar from '../components/Navbar/Navbar'
 
 const JoinPage = props => (
   <div>
-    <Navbar />
+    <Navbar {...props} />
     <div className="container">
       <h4 className="text-center">Welcome to `ABC ROOM`</h4>
       <div className="row">
@@ -34,6 +35,7 @@ const JoinPage = props => (
 )
 
 const JoinPageCompose = compose(
+  requireAsker(),
   withState('name', 'setName', ''),
   withHandlers({
     joinRoom: props => async (e) => {

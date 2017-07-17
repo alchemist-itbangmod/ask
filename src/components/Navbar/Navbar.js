@@ -1,30 +1,30 @@
 import React from 'react'
-import { compose, withState, withHandlers } from 'recompose'
+import { compose, withHandlers } from 'recompose'
 import localforage from '../../libs/localforage'
 
+import {
+  UserNavbar,
+  BrandName,
+  LogoutButton
+} from '../../styles/Navbar.js'
+
 const Navbar = props => (
-  <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
-    <button
-      className="navbar-toggler navbar-toggler-right"
-      type="button"
-      onClick={() => props.setOpen(!props.open)}
-    >
-      <span className="navbar-toggler-icon" />
-    </button>
-    <a className="navbar-brand" href="#">#ASK</a>
-    <div
-      className={'collapse navbar-collapse ' + (props.open ? 'show' : '')}
-    >
-      <span className="navbar-text">
-        Navbar text with an inline element
-      </span>
-      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </div>
-  </nav>
+  <UserNavbar className="navbar navbar-toggleable-md navbar-light bg-faded">
+    <BrandName className="navbar-brand" href="#">#ASK</BrandName>
+    <LogoutButton
+      className="btn btn-danger"
+      onClick={() => props.logout()}
+    >LOGOUT</LogoutButton>
+  </UserNavbar>
 )
 
 const NavbarCompose = compose(
-  withState('open', 'setOpen', false)
+  withHandlers({
+    logout: props => () => {
+      localforage.clear()
+      props.history.push('/')
+    }
+  })
 )(Navbar)
 
 export default NavbarCompose

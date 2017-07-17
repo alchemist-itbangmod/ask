@@ -1,12 +1,11 @@
 import React from 'react'
 import { compose, withState, withHandlers } from 'recompose'
-import localforage from '../libs/localforage'
-
+import requireAsker from '../libs/requireAsker'
 import Navbar from '../components/Navbar/Navbar'
 
 const AskPage = props => (
   <div>
-    <Navbar />
+    <Navbar {...props} />
     <div className="container">
       <h4 className="text-center">Welcome to `ABC ROOM`</h4>
       <div className="row">
@@ -32,4 +31,8 @@ const AskPage = props => (
   </div>
 )
 
-export default AskPage
+const AskPageCompose = compose(
+  requireAsker()
+)(AskPage)
+
+export default AskPageCompose

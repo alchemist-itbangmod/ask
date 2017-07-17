@@ -14,18 +14,43 @@ module.exports = {
       roomId: new mongoose.Types.ObjectId(req.params.id)
     })
       .then(data => data)
-    res.json(allQuestion)
+    if (allQuestion === null) {
+      res.json({
+        status: false,
+        error: 'Fail to created'
+      })
+    } else {
+      res.json({
+        status: true,
+        data: {
+          allQuestion
+        }
+      })
+    }
   },
   // Get only one question by question ID
   getQuestion: async (req, res) => {
-    const questionId = req.params.id
+    const questionId = req.params.id // ID of each-question
     let oneQuestion // Question that select
 
     oneQuestion = await Question.getOne({
       _id: new mongoose.Types.ObjectId(questionId)
     }).then(data => data)
+      .catch(err => err)
 
-    res.json(oneQuestion)
+    if (oneQuestion === null) {
+      res.json({
+        status: false,
+        error: 'Fail to created'
+      })
+    } else {
+      res.json({
+        status: true,
+        data: {
+          oneQuestion
+        }
+      })
+    }
   },
   createQuestion: async (req, res) => {
     let result = await Question.create({
@@ -36,12 +61,52 @@ module.exports = {
     })
       .then(data => data)
       .catch(err => err)
-    res.json(result)
+    if (result === null) {
+      res.json({
+        status: false,
+        error: 'Fail to created'
+      })
+    } else {
+      res.json({
+        status: true,
+        data: {
+          result
+        }
+      })
+    }
   },
   updateIsDelete: async (req, res) => {
     let result = await Question.update({
       _id: req.body._id,
       isDelete: true
     }).then(data => data)
+    if (result === null) {
+      res.json({
+        status: false,
+        error: 'Fail to update'
+      })
+    } else {
+      res.json({
+        status: true,
+        message: 'Already delete'
+      })
+    }
+  },
+  updateIsAns: async (req, res) => {
+    let result = await Question.update({
+      _id: req.body._id,
+      isAnswere: true
+    }).then(data => data)
+    if (result === null) {
+      res.json({
+        status: false,
+        error: 'Fail to update'
+      })
+    } else {
+      res.json({
+        status: true,
+        message: 'Already answer'
+      })
+    }
   }
 }
