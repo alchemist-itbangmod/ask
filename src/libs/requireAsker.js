@@ -1,4 +1,5 @@
 import React from 'react'
+import localforage from 'localforage'
 
 const requireAsker = () => {
   return (Component) =>
@@ -13,8 +14,8 @@ const requireAsker = () => {
       }
 
       async componentWillMount() {
-        let pin = await localStorage.getItem('pin')
-        let name = await localStorage.getItem('name')
+        let pin = await localforage.getItem('pin')
+        let name = await localforage.getItem('name')
         if (pin === null) {
           this.props.history.push('/')
         } else if (name === null) {

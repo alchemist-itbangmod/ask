@@ -1,16 +1,25 @@
 import React from 'react'
-
-import PinInput from '../components/Pin'
+import { compose, withState, withHandlers } from 'recompose'
 
 const PinPage = props => (
   <div>
     <div className="container">
       <h1 className="text-center">#ASK</h1>
       <div className="row">
-        <div className="col-12">
+        <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
           <div className="form-group">
-            <PinInput />
+            <input
+              type="text"
+              className="form-control text-center"
+              value={props.pin}
+              onChange={e => props.handlePin(e.target.value)}
+            />
           </div>
+          {
+            props.error
+            ? (<p className="text-center">{props.error}</p>)
+            : ''
+          }
           <button
             type="button"
             className="btn btn-secondary btn-block"
@@ -24,4 +33,19 @@ const PinPage = props => (
   </div>
 )
 
-export default PinPage
+const PinPageCompose = compose(
+  withState('pin', 'setPin', ''),
+  withState('error', 'setError', ''),
+  withHandlers({
+    handlePin: props => (pin) => {
+      if (pin.length <= 4) {
+        props.setPin(pin)
+        props.setError(``)
+      } else {
+        props.setError(`Can't enter more than 4 character.`)
+      }
+    }
+  })
+)(PinPage)
+
+export default PinPageCompose

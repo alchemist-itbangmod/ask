@@ -6,18 +6,12 @@ const AskPage = props => (
       <h1 className="text-center">#ASK</h1>
       <h4 className="text-center">Welcome to `ABC ROOM`</h4>
       <div className="row">
-        <div className="col-12">
+        <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
           <div className="card">
             <div className="card-block">
               <p className="text-right">Hola! Kanisorn S.</p>
               <div className="form-group">
-                <textarea name="" id="" rows="5" className="form-control" />
-              </div>
-              <div className="form-check">
-                <label className="form-check-label">
-                  <input className="form-check-input" type="checkbox" value="" />
-                  <p>I want to not show me on the question.</p>
-                </label>
+                <textarea id="" rows="5" className="form-control" />
               </div>
             </div>
           </div>
