@@ -30,7 +30,7 @@ module.exports = {
   },
   // Get only one question by question ID
   getQuestion: async (req, res) => {
-    const questionId = req.params.id
+    const questionId = req.params.id // ID of each-question
     let oneQuestion // Question that select
 
     oneQuestion = await Question.getOne({
