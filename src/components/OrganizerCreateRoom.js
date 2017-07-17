@@ -9,8 +9,7 @@ class CreateRoomController extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
-      pin: ''
+      name: ''
     }
     this.onChangeName = this.onChangeName.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
@@ -24,17 +23,27 @@ class CreateRoomController extends React.Component {
 
   async onSubmit(e) {
     e.preventDefault()
-    if (this.state.name.length < 2) {
+    let resp = await axios.post(`http://localhost:3001/api/v1/rooms/${this.state.name}`)
+      .then(data => data.json())
+      .then(data => data)
+    if (resp.state.name.length < 2) {
       console.log(`name should morethan 1 character`)
     } else {
-     // await localforage.setItem('name', this.state.name)
-      this.props.history.push('/organizer/dashboard')
+      console.log(resp.state.name)
     }
   }
 
   render() {
     return (
+<<<<<<< HEAD
       <CreatedRoom />
+=======
+      <CreatedRoom
+        name={this.state.name}
+        onChangeName={this.onChangeName}
+        onSubmit={this.state.onSubmit}
+      />
+>>>>>>> 1c482cc0adae6d787fd22921f2891b0d32a21935
     )
   }
 }
@@ -44,12 +53,16 @@ const CreatedRoom = props => (
     <NavOrganizer />
     <div className="container">
       <div className="button pull-right">
-        <button type="button" className="btn btn-success">Created room</button>
+        <button
+          type="button"
+          className="btn btn-success"
+          onSubmit={e => props.onSubmit(e)}
+        >Submit</button>
       </div>
       <div className="text-center">
         <form onSubmit={props.onSubmit}>
           <div className="form-group">
-            <p>Room name</p>
+            <p>Create Room</p>
             <input
               type="text"
               className="form-control"
