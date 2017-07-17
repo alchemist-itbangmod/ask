@@ -53,12 +53,12 @@ module.exports = {
     }
   },
   getUserByName: async (req, res) => {
-    const userName = res.params.displayName   // userName that get from user
+    const userName = req.params.displayName   // userName that get from user
     let oneUser   // user that found
 
     oneUser = await User.getOne({
       displayName: userName
-    }).then(date => data)
+    }).then(data => data)
       .catch(err => err)
 
     if (oneUser === null) {
@@ -70,6 +70,59 @@ module.exports = {
       res.json({
         status: true,
         data: res.json(oneUser)
+      })
+    }
+  },
+  editUser: async (req, res) => {
+    const userName = req.params.displayName   // userName that get from user
+    let oneUser   // user that found
+
+    oneUser = await User.getOne({
+      displayName: userName
+    }).then(data => data)
+      .catch(err => err)
+
+    // Check that it has user or not
+    if (oneUser === null) {
+      res.json({
+        status: false,
+        error: 'cannot find user'
+      })
+    } else {
+      await User.update({
+        displayName: req.body.displayName,
+        email: req.body.email,
+        password: req.body.password,
+        telNo: req.body.telNo,
+        avatarUrl: req.body.avatarUrl
+      }).then(data => data)
+      res.json({
+        status: true,
+        message: 'sucess'
+      })
+    }
+  },
+  deleteUser: async (req, res) => {
+    const userName = req.params.displayName   // userName that get from user
+    let oneUser   // User that found
+
+    oneUser = await User.getOne({
+      displayName: userName
+    }).then(data => data)
+      .catch(err => err)
+
+    // Check that it has user or not
+    if (oneUser === null) {
+      res.json({
+        status: false,
+        error: 'cannot find user'
+      })
+    } else {
+      await User.remove({})
+      .then(data => data)
+      res.json({
+        status: true,
+        message: 'sucess'
       })
     }
   }
