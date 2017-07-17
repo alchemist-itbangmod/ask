@@ -7,26 +7,28 @@ const PinPage = props => (
       <h1 className="text-center">#ASK</h1>
       <div className="row">
         <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control text-center"
-              value={props.pin}
-              onChange={e => props.handlePin(e.target.value)}
-            />
-          </div>
-          {
-            props.error
-            ? (<p className="text-center">{props.error}</p>)
-            : ''
-          }
-          <button
-            type="button"
-            className="btn btn-secondary btn-block"
-            role="button"
-          >
-            ENTER ROOM
-          </button>
+          <form onSubmit={e => props.submitPin(e)}>
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control text-center"
+                value={props.pin}
+                onChange={e => props.handlePin(e.target.value)}
+              />
+            </div>
+            {
+              props.error
+              ? (<p className="text-center">{props.error}</p>)
+              : ''
+            }
+            <button
+              type="submit"
+              className="btn btn-secondary btn-block"
+              role="button"
+            >
+              ENTER ROOM
+            </button>
+          </form>
         </div>
       </div>
     </div>
@@ -44,6 +46,10 @@ const PinPageCompose = compose(
       } else {
         props.setError(`Can't enter more than 4 character.`)
       }
+    },
+    submitPin: props => (e) => {
+      e.preventDefault()
+      console.log(props.pin)
     }
   })
 )(PinPage)
