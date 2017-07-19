@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
+import OrgCreate from './OrgCreate'
 import OrgLogin from './OrgLogin'
 import OrgDashboard from './OrgDashboard'
 import OrgMonitor from './OrgMonitor'
@@ -12,6 +13,7 @@ const OrgPage = ({ match }) => (
   <Switch>
     <Route exact path={`${match.url}/`} component={OrgDashboard} />
     <Route path={`${match.url}/login`} component={OrgLogin} />
+    <Route path={`${match.url}/create`} component={OrgCreate} />
     <Route path={`${match.url}/:id/monitor`} component={OrgMonitor} />
     <Route path={`${match.url}/:id/presentation`} component={OrgPresentation} />
     <Route path={`${match.url}/:id/setting`} component={OrgSetting} />
