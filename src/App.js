@@ -4,6 +4,8 @@ import { injectGlobal } from 'styled-components'
 
 import './static/bootstrap/bootstrap.min.css'
 
+import BG from './static/images/bg.png'
+
 import {
   PinPage,
   JoinPage,
@@ -13,7 +15,22 @@ import {
 } from './containers'
 
 injectGlobal`
+  html {
+    height: 100%;
+  }
 
+  body {
+    background: url(${BG}) no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    color: white;
+  }
+
+  #root {
+    background:rgba(81,99,149,0.9);
+    background: linear-gradient(to right, rgba(81,99,149,0.2), rgba(97,67,133,0.2));
+    height: 100%;
+  }
 `
 
 const App = props => (
