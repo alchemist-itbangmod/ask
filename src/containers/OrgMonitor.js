@@ -1,7 +1,8 @@
 import React from 'react'
-import { compose, withState, withHandlers } from 'recompose'
+import { compose, withState, withHandlers, lifecycle } from 'recompose'
 import OrgNavbar from '../components/Navbar/OrgNavbar'
 import { QuestionCard, Trash } from '../styles/Global'
+import instance from '../libs/axios'
 
 const OrgMonitor = props => (
   <div>
@@ -19,8 +20,9 @@ const OrgMonitor = props => (
           </div>
           <div className="card">
             <div className="list-group list-group-flush">
+              { props.questions.length }
               {
-                [1, 2, 3, 4, 5].map(e => (
+                props.questions.map(e => (
                   <div
                     className="row"
                     key={e}
@@ -46,7 +48,7 @@ const OrgMonitor = props => (
           </div>
           <div className="row">
             {
-              [1, 2, 3, 4, 5].map(e => (
+              props.selectedQuestions.map(e => (
                 <div key={e} className="card col-12">
                   Question {e}
                 </div>
@@ -67,13 +69,18 @@ const MonitorCompose = compose(
   withState('roomId', 'setRoomId', ''),
   withState('selected', 'setSel', true),
   withState('selectedQuestions', 'setSelected', []),
+  lifecycle({
+    async componentWillMount() {
+      let id = this.props.match.params.id
+      let questions = await instance.get(`/rooms/${id}/questions`)
+        .then(resp => resp.data)
+      console.log(questions)
+    }
+  }),
   withHandlers({
     onSelect: props => (e) => {
       console.log(e.target.childNodes)
       props.setSel(!props.selected)
-    },
-    componentWillMount: props => (e) => {
-      console.log('test')
     }
   })
 )(OrgMonitor)
