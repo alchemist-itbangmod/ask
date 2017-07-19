@@ -36,7 +36,7 @@ router.route('/rooms/:id/delete').post(RoomController.updateIsDelete)
 // // --------------------------
 router.route('/rooms/:id/questions').get(QuestionsController.getAll)
 router.route('/questions/:id').get(QuestionsController.getQuestion)
-router.route('/questions/:id').post(QuestionsController.createQuestion)
+router.route('/questions').post(QuestionsController.createQuestion)
 router.route('/questions/:id/del').put(QuestionsController.updateIsDelete)
 router.route('/questions/:id/ans').put(QuestionsController.updateIsAns)
 

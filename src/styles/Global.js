@@ -14,9 +14,12 @@ const QuestionCard = styled.div`
 `
 const Trash = styled.button`
 `
-
+const Div = styled.div`
+  color: black;
+`
 export {
   AbsoluteCenterContainer,
   QuestionCard,
-  Trash
+  Trash,
+  Div
 }

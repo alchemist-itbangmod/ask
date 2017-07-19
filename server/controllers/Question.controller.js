@@ -14,6 +14,7 @@ module.exports = {
       roomId: new mongoose.Types.ObjectId(req.params.id)
     })
       .then(data => data)
+
     if (allQuestion === null) {
       res.json({
         status: false,
