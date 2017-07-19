@@ -52,7 +52,7 @@ const PinPageCompose = compose(
     },
     submitPin: props => async (e) => {
       e.preventDefault()
-      let data = await instance(`/rooms/code/${props.pin}`)
+      let data = await instance.get(`/rooms/code/${props.pin}`)
         .then(resp => resp.data)
       if (data.status) {
         localforage.setItem('roomId', data.data.roomId)
