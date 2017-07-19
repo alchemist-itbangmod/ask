@@ -1,5 +1,6 @@
 import React from 'react'
 import { compose, withState, withHandlers } from 'recompose'
+import instance from '../libs/axios'
 
 import OrgNavbar from '../components/Navbar/OrgNavbar'
 import BG from '../static/images/bg.png'
@@ -8,6 +9,9 @@ const OrgDashboard = props => (
   <div>
     <OrgNavbar />
     <div className="container">
+      {
+        console.log(props)
+      }
       <div className="row">
         {
           [1, 2, 3, 4, 5].map(e => (
@@ -37,7 +41,10 @@ const OrgDashboard = props => (
 )
 
 const DashboardCompose = compose(
-  withState('allRoom', 'setAllRoom', []),
+  withState('allRoom', 'getAllRoom', () => {
+    return instance('/rooms')
+      .then(resp => resp.data)
+  }),
   withState('user', 'getUser', ''),
   withState('selected', 'setSel', true),
   withState('selectedRoom', 'setSelected', []),
