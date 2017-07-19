@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 
 const UsersSchema = mongoose.Schema(
   {
@@ -6,7 +7,11 @@ const UsersSchema = mongoose.Schema(
     email: { type: String, unique: true, require: true },
     password: { type: String, require: true },
     telNo: String,
-    avatarUrl: { type: String, default: 'https://upload.wikimedia.org/wikipedia/commons/7/70/KnapperAlpakkaCorazonFull.jpg' }
+    avatarUrl: { type: String, default: 'https://upload.wikimedia.org/wikipedia/commons/7/70/KnapperAlpakkaCorazonFull.jpg' },
+    roles: [{
+      type: String
+    }]
+
   },
   {
     timestamps: true,
@@ -21,6 +26,8 @@ module.exports = {
   create: args => {
     return new Promise(async (resolve, reject) => {
       try {
+        let hash = await bcrypt.hash(args.password, 10)
+        args.password = hash
         let question = await UsersModel.create(args)
         resolve(question)
       } catch (err) {
