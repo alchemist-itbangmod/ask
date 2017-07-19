@@ -37,6 +37,18 @@ const OrgDashboard = props => (
 )
 
 const DashboardCompose = compose(
-  
+  withState('allRoom', 'setAllRoom', []),
+  withState('user', 'getUser', ''),
+  withState('selected', 'setSel', true),
+  withState('selectedRoom', 'setSelected', []),
+  withHandlers({
+    onSelect: props => (e) => {
+      console.log(e.target.childNodes)
+      props.setSel(!props.selected)
+    },
+    componentWillMount: props => (e) => {
+      console.log('test')
+    }
+  })
 )(OrgDashboard)
 export default DashboardCompose
