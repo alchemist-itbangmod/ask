@@ -94,11 +94,15 @@ module.exports = {
     }
   },
   updateIsAns: async (req, res) => {
-    let result = await Question.update({
-      _id: req.body._id,
-      isAnswere: true
-    }).then(data => data)
-    if (result === null) {
+    let questions = req.body.questions
+    let result = []
+    questions.map(async (q, index) => {
+      result[index] = await Question.update({
+        _id: q._id,
+        isAnswer: true
+      }).then(data => data)
+    })
+    if (result.find(r => r === null) > 0) {
       res.json({
         status: false,
         error: 'Fail to update'

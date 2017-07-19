@@ -71,7 +71,12 @@ const OrgMonitor = props => (
             ))
           }
           <div className="col-12 text-center">
-            <button className="btn btn-success btn-lg">SEND</button>
+            <button
+              className="btn btn-success btn-lg"
+              onClick={props.onAnswerQuestion}
+            >
+              SEND
+            </button>
           </div>
         </div>
       </div>
@@ -108,7 +113,6 @@ const MonitorCompose = compose(
         selectedQuestions = selectedQuestions.filter(q => q !== select)
       }
       props.setSelected(selectedQuestions)
-      console.log(selectedQuestions)
     },
     fetchQuestions: props => async (e) => {
       let id = props.match.params.id
@@ -120,7 +124,6 @@ const MonitorCompose = compose(
     onUpdateIsDelete: props => async (e) => {
       let qId = e.target.id
       let q = props.questions.find(q => q._id === qId)
-      console.log(q._id)
       swal({
         title: 'Are you sure to delete',
         text: `Are you sure to delete this question that '${q.question}'`,
@@ -141,6 +144,7 @@ const MonitorCompose = compose(
         }
       }).then(async (data) => {
         if (data.status) {
+          props.setSelected([])
           swal({
             title: 'Sucess',
             text: `Your question has been delete!`,
@@ -157,6 +161,52 @@ const MonitorCompose = compose(
           swal({
             title: 'Failed',
             text: `Sorry, cannot delete question. please try again.`,
+            type: 'warning',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#FF4312'
+          })
+        }
+      })
+    },
+    onAnswerQuestion: props => (e) => {
+      let selectQ = props.selectedQuestions
+      swal({
+        title: `Are you sure to answer the question${selectQ.length > 1 ? 's' : ''}`,
+        text: `Are you sure to answer ${selectQ.length} question${selectQ.length > 1 ? 's' : ''}`,
+        showCancelButton: true,
+        reverseButtons: true,
+        confirmButtonText: 'Confirm',
+        confirmButtonColor: '#FF4312',
+        customClass: 'Button',
+        showLoaderOnConfirm: true,
+        preConfirm: () => {
+          return new Promise((resolve, reject) => {
+            instance.put(`/questions/${selectQ[0]._id}/ans`, {
+              questions: selectQ
+            }).then(data => {
+              resolve(data.data)
+            })
+          })
+        }
+      }).then(async (data) => {
+        if (data.status) {
+          swal({
+            title: 'Sucess',
+            text: `Question has been answered!`,
+            type: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#FF4312'
+          })
+          let id = props.match.params.id
+          let questions = await instance.get(`/rooms/${id}/questions`)
+            .then(resp => resp.data.data.allQuestion)
+          questions = questions.filter(q => !q.isDelete && !q.isAnswer)
+          props.setQuestions(questions)
+          props.setSelected([])
+        } else {
+          swal({
+            title: 'Failed',
+            text: `Sorry, cannot answer question. please try again.`,
             type: 'warning',
             confirmButtonText: 'OK',
             confirmButtonColor: '#FF4312'
