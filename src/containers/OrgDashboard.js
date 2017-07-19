@@ -1,6 +1,7 @@
 import React from 'react'
 import { compose, withState, withHandlers, lifecycle } from 'recompose'
 import instance from '../libs/axios'
+import requireAuth from '../libs/requireAuth'
 
 import OrgNavbar from '../components/Navbar/OrgNavbar'
 import BG from '../static/images/bg.png'
@@ -39,6 +40,7 @@ const OrgDashboard = props => (
 )
 
 const DashboardCompose = compose(
+  requireAuth(),
   withState('rooms', 'setRooms', []),
   lifecycle({
     async componentDidMount() {

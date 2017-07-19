@@ -3,6 +3,7 @@ import { compose, withState, withHandlers, lifecycle } from 'recompose'
 import OrgNavbar from '../components/Navbar/OrgNavbar'
 import { QuestionCard, Trash, Div } from '../styles/Global'
 import instance from '../libs/axios'
+import requireAuth from '../libs/requireAuth'
 
 const OrgMonitor = props => (
   <Div>
@@ -71,6 +72,7 @@ const OrgMonitor = props => (
 )
 
 const MonitorCompose = compose(
+  requireAuth(),
   withState('questions', 'setQuestions', []),
   withState('roomId', 'setRoomId', ''),
   withState('selectedQuestions', 'setSelected', []),
