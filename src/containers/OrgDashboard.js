@@ -1,4 +1,5 @@
 import React from 'react'
+import { compose, withState, withHandlers } from 'recompose'
 
 import OrgNavbar from '../components/Navbar/OrgNavbar'
 import BG from '../static/images/bg.png'
@@ -35,4 +36,7 @@ const OrgDashboard = props => (
   </div>
 )
 
-export default OrgDashboard
+const DashboardCompose = compose(
+  
+)(OrgDashboard)
+export default DashboardCompose
