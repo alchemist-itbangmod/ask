@@ -5,63 +5,62 @@ import instance from '../libs/axios'
 import OrgNavbar from '../components/Navbar/OrgNavbar'
 import BG from '../static/images/bg.png'
 
-const OrgCreate = props => {
+
+const OrgCreate = props => (
   <div>
     <OrgNavbar />
-    <h1>Hello world</h1>
     <div className="container">
-      <div className="row">
+      <div className="container">
         <div className="card">
           <div className="card-block">
-            <div className="col-sm-10">
-              <form>
-                <div className="form-group">
-                  <label for='exampleInputEmail1'>New room name</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter room name"
-                  />
+            <form onSubmit={() => props.onSending}>
+              <div className="row">
+                <h1>Create Room</h1>
+                <div className="col-10">
+                  <div className="form-group">
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter room name"
+                    />
+                  </div>
                 </div>
-              </form>
-            </div>
-            <div className="col-sm-2">
-              <div className="btn-group" data-toggle="buttons">
-                <label className="btn btn-primary active">
-                  <input
-                    type="radio"
-                    name="options"
-                    id="option1"
-                    autoComplete='off'
-                    checked
-                  />
-                  OPEN
-                </label>
-                <label className="btn btn-primary">
-                  <input
-                    type="radio"
-                    name="options"
-                    id="option2"
-                    autoComplete='off'
-                  />
-                  CLOSE
-                </label>
+                <div className="col-2">
+                  <div className="form group">
+                    <div className="btn-group" role="group" aria-label="Basic example">
+                      <button
+                        type="button"
+                        className={'btn btn-secondary ' + (props.isOpen ? 'active' : '')}
+                        onClick={() => props.setRoomOpen(true)}
+                      >
+                        {'Open'}
+                      </button>
+                      <button
+                        type="button"
+                        className={'btn btn-secondary ' + (!props.isOpen ? 'active' : '')}
+                        onClick={() => props.setRoomOpen(false)}
+                      >
+                        {'Close'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <button
-              type="button"
-              className="btn btn-success btn-block"
-              >
-              Sent
-            </button>
+              <button
+                type="button"
+                className="btn btn-success btn-block"
+                >
+                Sent
+              </button>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-}
+)
 
 const CreateConpose = compose(
   withState('roomName', 'setRoomName', ''),
@@ -77,10 +76,7 @@ const CreateConpose = compose(
     }
   }),
   withHandlers({
-    onSending: props => (e) => {
-      console.log(e.target.childNodes)
-    },
-    onSelect: props => (e) => {
+    onSending: props => async (e) => {
       console.log(e.target.childNodes)
     }
   })
