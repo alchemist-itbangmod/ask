@@ -8,12 +8,11 @@ const AbsoluteCenterContainer = Component => styled(Component)`
   width: 100%;
 `
 // Question Card use in orgMonitor
-const QuestionCard = styled.div`
+const QuestionCard = styled.li`
   background: ${props => props.active ? '#2badfb' : ''};
   color: ${props => props.active ? 'white' : ''};
 `
-const Trash = styled.button`
-`
+
 const Div = styled.div`
   color: black;
 `
@@ -43,10 +42,16 @@ const Closebtn = styled.button`
     color: ${props => props.active ? '#fff' : ''};
   }
 `
+
+const Question = styled.p`
+  display: flex;
+  flex: 1;
+  margin: 5px 0;
+`
 export {
   AbsoluteCenterContainer,
   QuestionCard,
-  Trash,
+  Question,
   Div,
   SettingContainer,
   Dropdown,

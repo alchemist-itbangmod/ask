@@ -58,7 +58,7 @@ module.exports = {
       roomId: req.body.roomId,
       question: req.body.question,
       name: req.body.name,
-      anonymous: req.body.anonymous
+      anonymous: false
     })
       .then(data => data)
       .catch(err => err)
@@ -68,6 +68,9 @@ module.exports = {
         error: 'Fail to created'
       })
     } else {
+      res.io.sockets
+        .in(req.body.roomId)
+        .emit('monitor', { status: 200, data: result })
       res.json({
         status: true,
         data: {
@@ -108,6 +111,9 @@ module.exports = {
         error: 'Fail to update'
       })
     } else {
+      res.io.sockets
+        .in(req.body.roomId)
+        .emit('presentation', { status: 200, data: questions })
       res.json({
         status: true,
         message: 'Already answer'
