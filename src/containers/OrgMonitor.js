@@ -4,10 +4,12 @@ import OrgNavbar from '../components/Navbar/OrgNavbar'
 import { QuestionCard, Trash, Div } from '../styles/Global'
 import instance from '../libs/axios'
 import swal from 'sweetalert2'
+import OrgSetting from './OrgSetting'
 
 const OrgMonitor = props => (
   <Div>
     <OrgNavbar {...props} />
+    <OrgSetting {...props} />
     <div className="container">
       <div className="row">
         <div className="col-12 text-center h2 text-white">
