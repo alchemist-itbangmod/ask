@@ -13,17 +13,18 @@ const OrgCreate = props => (
       <div className="container">
         <div className="card">
           <div className="card-block">
-            <form onSubmit={() => props.onSending}>
+            <form onSubmit={(e) => props.onSending(e)}>
               <div className="row">
                 <h1>Create Room</h1>
                 <div className="col-10">
                   <div className="form-group">
                     <input
-                      type="email"
+                      type="text"
                       className="form-control"
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
                       placeholder="Enter room name"
+                      onChange={e => props.onChangeRoomName(e)}
                     />
                   </div>
                 </div>
@@ -49,7 +50,7 @@ const OrgCreate = props => (
                 </div>
               </div>
               <button
-                type="button"
+                type="submit"
                 className="btn btn-success btn-block"
                 >
                 Sent
@@ -65,19 +66,27 @@ const OrgCreate = props => (
 const CreateConpose = compose(
   withState('roomName', 'setRoomName', ''),
   withState('isOpen', 'setRoomOpen', false),
-  lifecycle({
-    async componentsDidMount() {
-      let newRooms = await instance('/rooms/create')
-        .then(resp => resp.data)
-      this.props.setRoomName(newRooms.data.title)
-      let isOpen = await instance('/rooms/create')
-        .then(resp => resp.data)
-      this.props.setRoomOpen(isOpen.data.openSending)
-    }
-  }),
+  // lifecycle({
+  //   async componentsDidMount() {
+  //   }
+  // }),
   withHandlers({
     onSending: props => async (e) => {
-      console.log(e.target.childNodes)
+      e.preventDefault()
+      console.log(props)
+      await instance.post('/rooms/create', {
+        title: props.roomName,
+        openSending: props.openSending
+      })
+        .then(resp => resp.data)
+    },
+    onChangeRoomName: props => (e) => {
+      let title = e.target.value
+      props.setRoomName(title)
+    },
+    onToggleStatus: props => (e) => {
+      let openSending = e.target.value
+      props.isOpen(openSending)
     }
   })
 )(OrgCreate)
