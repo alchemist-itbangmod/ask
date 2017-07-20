@@ -13,7 +13,7 @@ const OrgCreate = props => (
         className="card"
         style={{
           marginTop: 20,
-          backgroundColor: 'rgba(255,255,255,0.8)',
+          backgroundColor: 'rgba(255,255,255,0.8)'
         }}
       >
         <div className="card-block" >
