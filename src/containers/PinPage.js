@@ -4,7 +4,7 @@ import instance from '../libs/axios'
 import localforage from '../libs/localforage'
 import requireAsker from '../libs/requireAsker'
 
-import { Container } from '../styles/Global'
+import { Container, Button } from '../styles/Global'
 
 const PinPage = props => (
   <Container className="container">
@@ -38,12 +38,12 @@ const PinPage = props => (
                 ? (<p className="text-center">{props.error}</p>)
                 : ''
               }
-              <button
+              <Button
                 type="submit"
                 className="btn btn-secondary btn-block"
               >
                 ENTER ROOM
-              </button>
+              </Button>
             </form>
           </div>
         </div>

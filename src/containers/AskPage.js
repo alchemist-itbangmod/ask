@@ -7,7 +7,7 @@ import instance from '../libs/axios'
 import swal from 'sweetalert2'
 
 import withNavbar from '../libs/withNavbar'
-import { Container } from '../styles/Global'
+import { Container, Button } from '../styles/Global'
 
 const AskPage = props => (
   <Container className="container">
@@ -33,13 +33,13 @@ const AskPage = props => (
               </div>
             </div>
           </div>
-          <button
+          <Button
             type="submit"
             className="btn btn-secondary btn-block"
             style={{ marginTop: '15px' }}
           >
             JOIN ROOM
-          </button>
+          </Button>
         </form>
       </div>
     </div>
@@ -68,7 +68,7 @@ const AskPageCompose = compose(
       if (props.question.length <= 4) {
         swal({
           title: 'Warning!',
-          text: `Please. Enter question for than 4 character.`,
+          text: `Please enter question at lease 4 character.`,
           type: 'warning',
           confirmButtonText: 'OK',
           confirmButtonColor: '#FF4312'
@@ -79,8 +79,8 @@ const AskPageCompose = compose(
       let name = await localforage.getItem('name')
 
       swal({
-        title: 'Are you sure to sent',
-        text: `Are you sure to sent this question that '${props.question}' to modurator`,
+        title: 'Sending question!',
+        html: `Are you sure to sent this question:  <br /> <b> " ${props.question} "</b>`,
         showCancelButton: true,
         reverseButtons: true,
         confirmButtonText: 'Confirm',
@@ -102,7 +102,7 @@ const AskPageCompose = compose(
         if (data.status) {
           swal({
             title: 'Sucess',
-            text: `You question '${props.question}' has been sent!`,
+            html: `Your question<b>" ${props.question} "</b> <br />has been sent!`,
             type: 'success',
             confirmButtonText: 'OK',
             confirmButtonColor: '#FF4312'

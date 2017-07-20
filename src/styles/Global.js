@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+const PrimaryColor = '#FF4312'
+
 const Container = styled.div`
   padding-top: 100px
 `
@@ -52,8 +54,21 @@ const Question = styled.p`
   flex: 1;
   margin: 5px 0;
 `
+
+const Button = styled.button`
+  color: white;
+  background-color: ${PrimaryColor};
+  border-color: ${PrimaryColor};
+
+  &:hover {
+    color: white;
+    background-color: #ff5123;
+    border-color: #e84e26;
+  }
+`
 export {
   AbsoluteCenterContainer,
+  Button,
   Container,
   QuestionCard,
   Question,

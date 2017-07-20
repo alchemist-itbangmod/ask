@@ -5,17 +5,22 @@ import instance from '../libs/axios'
 import requireAsker from '../libs/requireAsker'
 
 import withNavbar from '../libs/withNavbar'
-import { Container } from '../styles/Global'
+import { Container, Button } from '../styles/Global'
 
 const JoinPage = props => (
   <Container className="container">
     <div className="row">
       <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
-        <h1
+        <h2
           className="text-center"
         >
-          {`Welcome to ${props.roomName}.`}
-        </h1>
+          {`Welcome to`}
+        </h2>
+        <h4
+          className="text-center"
+        >
+          {`" ${props.roomName} "`}
+        </h4>
         <div className="card">
           <div className="card-block">
             <form onSubmit={e => props.joinRoom(e)}>
@@ -28,12 +33,12 @@ const JoinPage = props => (
                   value={props.name}
                 />
               </div>
-              <button
+              <Button
                 type="submit"
                 className="btn btn-secondary btn-block"
               >
                 JOIN ROOM
-              </button>
+              </Button>
             </form>
           </div>
         </div>

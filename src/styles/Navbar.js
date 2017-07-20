@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+const PrimaryColor = '#FF4312'
+
 const UserNavbar = styled.nav`
   flex-direction: row;
   background-color: rgba(255,255,255,0.8);
@@ -18,6 +20,15 @@ const BrandName = styled.a`
 
 const LogoutButton = styled.button`
   flex: 1;
+  color: white;
+  background-color: ${PrimaryColor};
+  border-color: ${PrimaryColor};
+
+  &:hover {
+    color: white;
+    background-color: #ff5123;
+    border-color: #e84e26;
+  }
 `
 
 export {
