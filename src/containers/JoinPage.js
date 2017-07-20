@@ -1,6 +1,7 @@
 import React from 'react'
-import { compose, withState, withHandlers } from 'recompose'
+import { compose, withState, withHandlers, lifecycle } from 'recompose'
 import localforage from '../libs/localforage'
+import instance from '../libs/axios'
 import requireAsker from '../libs/requireAsker'
 
 import Navbar from '../components/Navbar/Navbar'
@@ -9,7 +10,7 @@ const JoinPage = props => (
   <div>
     <Navbar {...props} />
     <div className="container">
-      <h4 className="text-center">Welcome to `ABC ROOM`</h4>
+      <h4 className="text-center">{`Welcome to ${props.roomName}.`}</h4>
       <div className="row">
         <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
           <form onSubmit={e => props.joinRoom(e)}>
@@ -37,6 +38,15 @@ const JoinPage = props => (
 const JoinPageCompose = compose(
   requireAsker(),
   withState('name', 'setName', ''),
+  withState('roomName', 'setRoomName', ''),
+  lifecycle({
+    async componentWillMount() {
+      let roomId = await localforage.getItem('roomId')
+      let roomName = await instance.get(`/rooms/${roomId}`).then(data => data.data.data.room.title)
+      console.log(roomName)
+      this.props.setRoomName(roomName)
+    }
+  }),
   withHandlers({
     joinRoom: props => async (e) => {
       e.preventDefault()
