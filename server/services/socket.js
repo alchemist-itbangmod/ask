@@ -1,4 +1,3 @@
-const io = require('socket.io').listen(3002)
 
 module.exports = function(io) {
   io.on('connection', function(socket) {

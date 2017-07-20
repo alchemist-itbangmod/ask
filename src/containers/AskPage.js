@@ -49,7 +49,7 @@ const AskPageCompose = compose(
     sendQuestion: props => async (e) => {
       e.preventDefault()
 
-      if (props.question.length > 4) {
+      if (props.question.length <= 4) {
         swal({
           title: 'Warning!',
           text: `Please. Enter question for than 4 character.`,

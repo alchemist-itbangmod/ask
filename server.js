@@ -28,8 +28,13 @@ server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
 
 // INITIAL SOCKET.IO
+const io = require('socket.io').listen(3002)
+require('./server/services/socket')(io)
 
-// require('./server/services')(io)
+server.use(function(req, res, next) {
+  res.io = io
+  next()
+})
 
 // ----------------------
 //     PASSPORT AUTH!

@@ -68,6 +68,7 @@ module.exports = {
         error: 'Fail to created'
       })
     } else {
+      res.io.sockets.emit('monitor', { data: result })
       res.json({
         status: true,
         data: {

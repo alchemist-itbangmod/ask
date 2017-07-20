@@ -1,12 +1,14 @@
 import React from 'react'
 import { compose, withState, withHandlers, lifecycle } from 'recompose'
 import { QuestionCard, Trash, Div } from '../styles/Global'
+
 import instance from '../libs/axios'
 import requireAuth from '../libs/requireAuth'
 import withNavbar from '../libs/withNavbar'
+import socket from '../libs/socket'
 
 const OrgMonitor = props => (
-  <div>
+  <Div>
     <div className="container">
       <div className="row">
         <div className="col-12 text-center h2 text-white">
@@ -67,7 +69,7 @@ const OrgMonitor = props => (
         </div>
       </div>
     </div>
-  </div>
+  </Div>
 )
 
 const MonitorCompose = compose(
@@ -83,6 +85,11 @@ const MonitorCompose = compose(
         .then(resp => resp.data.data.allQuestion)
         // console.log(questions)
       this.props.setQuestions(questions)
+    },
+    async componentDidMount() {
+      socket.on('monitor', (data) => {
+        console.log(data)
+      })
     }
   }),
   withHandlers({

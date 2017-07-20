@@ -24,7 +24,6 @@ injectGlobal`
     background: url(${BG}) no-repeat center center fixed;
     background-size: cover;
     height: 100%;
-    color: white;
   }
 
   #root {
