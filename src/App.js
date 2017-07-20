@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { injectGlobal } from 'styled-components'
 
 import './static/bootstrap/bootstrap.min.css'
+import '../node_modules/sweetalert2/dist/sweetalert2.min.css'
+import '../node_modules/font-awesome/css/font-awesome.min.css'
 
 import BG from './static/images/bg.png'
 
@@ -23,7 +25,6 @@ injectGlobal`
     background: url(${BG}) no-repeat center center fixed;
     background-size: cover;
     height: 100%;
-    color: white;
   }
 
   #root {
