@@ -1,5 +1,5 @@
 import React from 'react'
-import { compose, withState, withHandlers } from 'recompose'
+import { compose, withState, withHandlers, lifecycle } from 'recompose'
 import requireAsker from '../libs/requireAsker'
 import localforage from '../libs/localforage'
 import instance from '../libs/axios'
@@ -11,13 +11,18 @@ import { Container } from '../styles/Global'
 
 const AskPage = props => (
   <Container className="container">
-    <h4 className="text-center">Welcome to `ABC ROOM`</h4>
+    <h2 className="text-center">
+      {'Welcome to'}
+    </h2>
+    <h4 className="text-center">
+      {`" ${props.roomName} "`}
+    </h4>
     <div className="row">
       <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
         <form onSubmit={e => props.sendQuestion(e)}>
           <div className="card">
             <div className="card-block">
-              <p className="text-right">Hola! Kanisorn S.</p>
+              <p className="text-right">Hola!: {props.name}.</p>
               <div className="form-group">
                 <textarea
                   rows="5"
@@ -45,6 +50,17 @@ const AskPageCompose = compose(
   requireAsker(),
   withNavbar(),
   withState('question', 'setQuestion', ''),
+  withState('roomName', 'setRoomName', ''),
+  withState('name', 'setName', ''),
+  lifecycle({
+    async componentWillMount() {
+      let roomId = await localforage.getItem('roomId')
+      let roomName = await instance.get(`/rooms/${roomId}`).then(data => data.data.data.room.title)
+      let name = await localforage.getItem('name')
+      this.props.setName(name)
+      this.props.setRoomName(roomName)
+    }
+  }),
   withHandlers({
     sendQuestion: props => async (e) => {
       e.preventDefault()
