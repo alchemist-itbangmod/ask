@@ -1,24 +1,20 @@
 import React from 'react'
 import { TagCloud } from 'react-tagcloud'
+import { compose, withState, withHandlers, lifecycle } from 'recompose'
+import socket from '../libs/socket'
 
 import {
   AbsoluteCenterContainer,
   StyledTag
 } from '../styles/OrgPresentation.js'
 
-const data = [
-  { value: '"สวัสดีครับอาจารย์"', count: 30 },
-  { value: '"อาจารย์ที่คณะใจดีไหมครับ"', count: 28 },
-  // { value: '"อาหารอะไรที่อร่อยที่สุด"', count: 25 },
-  // { value: '"มีแฟนตอนเรียน ดูแลยังไงดีครับ"', count: 30 },
-  // { value: '"มีแฟนตอนเรียน! ดูแลยังไงดีครับ?"', count: 32 }
-]
+const data = [{ _id: 7, value: '"WE ARE ASK"', count: 30 }]
 
 const TagCloudAbsolute = AbsoluteCenterContainer(TagCloud)
 
 const Tag = (tag, size, color) => (
   <StyledTag
-    key={tag.value}
+    key={tag._id}
     size={size}
   >
     {tag.value}
@@ -33,7 +29,7 @@ const OrgPresentation = props => {
           className="text-center"
           minSize={28}
           maxSize={48}
-          tags={data}
+          tags={props.question}
           renderer={Tag}
         />
       </div>
@@ -41,4 +37,36 @@ const OrgPresentation = props => {
   )
 }
 
-export default OrgPresentation
+const OrgPresentationCompose = compose(
+  withState('question', 'setQuestion', data),
+  withState('active', 'setActive', false),
+  withHandlers({
+    fetchQuestion: props => (questions) => {
+      let newQ = questions.map(q => {
+        return {
+          _id: q._id,
+          value: `"${q.question}"`,
+          count: (Math.random() * 8) + 25
+        }
+      })
+      props.setQuestion(newQ)
+    }
+  }),
+  lifecycle({
+    async componentDidMount() {
+      let roomId = this.props.match.params.id
+      // Signup the `room`
+      socket.on('connect', function() {
+        socket.emit('room', roomId)
+      })
+      // Get data from 'monitor' in the `room`
+      socket.on('presentation', (data) => {
+        if (data.status === 200) {
+          this.props.fetchQuestion(data.data)
+        }
+      })
+    }
+  })
+)(OrgPresentation)
+
+export default OrgPresentationCompose
