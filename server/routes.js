@@ -18,11 +18,11 @@ router.route('/auth/currentUser').get(AuthController.currentUser)
 // // --------------------------
 // // |      USER ROUTE.       |
 // // --------------------------
-router.route('users').get(UserController.getAll)
-router.route('users/create').post(UserController.createUser)
-router.route('users/:username').get(UserController.getUserByName)
-router.route('users/:username').put(UserController.editUser)
-router.route('users/:username').delete(UserController.deleteUser)
+// router.route('users').get(UserController.getAll)
+// router.route('users/create').post(UserController.createUser)
+// router.route('users/:username').get(UserController.getUserByName)
+// router.route('users/:username').put(UserController.editUser)
+// router.route('users/:username').delete(UserController.deleteUser)
 
 // // --------------------------
 // // |      ROOMS ROUTE.      |

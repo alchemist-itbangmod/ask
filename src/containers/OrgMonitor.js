@@ -2,6 +2,7 @@ import React from 'react'
 import { compose, withState, withHandlers, lifecycle } from 'recompose'
 import { QuestionCard, Div, Question } from '../styles/Global'
 import swal from 'sweetalert2'
+import OrgSetting from './OrgSetting'
 
 import instance from '../libs/axios'
 import requireAuth from '../libs/requireAuth'
@@ -10,6 +11,7 @@ import socket from '../libs/socket'
 
 const OrgMonitor = props => (
   <Div>
+    <OrgSetting {...props} />
     <div className="container">
       <div className="row">
         <div className="col-12 text-center h2 text-white">
