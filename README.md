@@ -9,17 +9,35 @@
 2. [MongoDB](https://www.mongodb.com/) ( In case you don't want to run Docker )
     - Version 3.4.2
 
-# Installation Guide
+# Developemnt Guide
 After you already pull this repository, you need to install `node_modules` by using this command.
 
 ```
 $ yarn
 ```
 
-And. You can start to develop `ASK` by using this command.
+Then, If you're want to develop `React Frontend`, you can start to develop by using this command.
 ```
-$ yarn dev
+$ yarn react-dev
 ```
+
+And. If you're want to develop `Nodejs Backend`, you can start to develop by using this command.
+```
+$ yarn server-dev
+```
+
+**Important!** you must start `Mongodb` together for using database.
+```
+$ sudo mongod
+```
+
+# Production Guide
+
+Comming soon.
+
+---
+
+You can start to develop `ASK` by using this command.
 
 coding by handsome guys 🕶
 
