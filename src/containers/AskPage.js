@@ -5,45 +5,45 @@ import localforage from '../libs/localforage'
 import instance from '../libs/axios'
 
 import swal from 'sweetalert2'
-import Navbar from '../components/Navbar/Navbar'
+
+import withNavbar from '../libs/withNavbar'
+import { Container } from '../styles/Global'
 
 const AskPage = props => (
-  <div>
-    <Navbar {...props} />
-    <div className="container">
-      <h4 className="text-center">Welcome to `ABC ROOM`</h4>
-      <div className="row">
-        <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
-          <form onSubmit={e => props.sendQuestion(e)}>
-            <div className="card">
-              <div className="card-block">
-                <p className="text-right">Hola! Kanisorn S.</p>
-                <div className="form-group">
-                  <textarea
-                    rows="5"
-                    className="form-control"
-                    onChange={e => props.setQuestion(e.target.value)}
-                    value={props.question}
-                  />
-                </div>
+  <Container className="container">
+    <h4 className="text-center">Welcome to `ABC ROOM`</h4>
+    <div className="row">
+      <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+        <form onSubmit={e => props.sendQuestion(e)}>
+          <div className="card">
+            <div className="card-block">
+              <p className="text-right">Hola! Kanisorn S.</p>
+              <div className="form-group">
+                <textarea
+                  rows="5"
+                  className="form-control"
+                  onChange={e => props.setQuestion(e.target.value)}
+                  value={props.question}
+                />
               </div>
             </div>
-            <button
-              type="submit"
-              className="btn btn-secondary btn-block"
-              style={{ marginTop: '15px' }}
-            >
-              JOIN ROOM
-            </button>
-          </form>
-        </div>
+          </div>
+          <button
+            type="submit"
+            className="btn btn-secondary btn-block"
+            style={{ marginTop: '15px' }}
+          >
+            JOIN ROOM
+          </button>
+        </form>
       </div>
     </div>
-  </div>
+  </Container>
 )
 
 const AskPageCompose = compose(
   requireAsker(),
+  withNavbar(),
   withState('question', 'setQuestion', ''),
   withHandlers({
     sendQuestion: props => async (e) => {

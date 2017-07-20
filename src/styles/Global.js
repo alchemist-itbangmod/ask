@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+const Container = styled.div`
+  padding-top: 100px
+`
+
 const AbsoluteCenterContainer = Component => styled(Component)`
   position: absolute;
   top: 50%;
@@ -24,6 +28,7 @@ const Question = styled.p`
 `
 export {
   AbsoluteCenterContainer,
+  Container,
   QuestionCard,
   Question,
   Div
