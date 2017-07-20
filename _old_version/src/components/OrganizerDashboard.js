@@ -44,7 +44,7 @@ class DashboardController extends React.Component {
 
 const OrganizerRooms = props => (
   <div>
-    <NavOrganizer />
+    <NavOrganizer {...props} />
     <div className="container">
       <div className="button pull-right">
         <button

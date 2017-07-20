@@ -22,7 +22,7 @@ const NavbarCompose = compose(
   withHandlers({
     logout: props => () => {
       localforage.clear()
-      props.history.push('/')
+      props.history.push('/organizer')
     }
   })
 )(Navbar)

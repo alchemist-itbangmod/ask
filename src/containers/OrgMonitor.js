@@ -3,6 +3,7 @@ import { compose, withState, withHandlers, lifecycle } from 'recompose'
 import { QuestionCard, Div, Question } from '../styles/Global'
 import swal from 'sweetalert2'
 import OrgSetting from './OrgSetting'
+import OrgNavbar from '../components/Navbar/OrgNavbar'
 
 import instance from '../libs/axios'
 import requireAuth from '../libs/requireAuth'
@@ -11,6 +12,7 @@ import socket from '../libs/socket'
 
 const OrgMonitor = props => (
   <Div>
+    <OrgNavbar {...props} />
     <OrgSetting {...props} />
     <div className="container">
       <div className="row">

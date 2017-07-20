@@ -9,7 +9,7 @@ import BG from '../static/images/bg.jpg'
 const OrgDashboard = props => (
   <div>
     { console.log(props.rooms) }
-    <OrgNavbar />
+    <OrgNavbar {...props} />
     <div className="container">
       <div className="row">
         {
