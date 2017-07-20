@@ -1,12 +1,12 @@
 import React from 'react'
 import { compose, withState, withHandlers, lifecycle } from 'recompose'
-import { QuestionCard, Trash, Div } from '../styles/Global'
+import { QuestionCard, Div, Question } from '../styles/Global'
+import swal from 'sweetalert2'
 
 import instance from '../libs/axios'
 import requireAuth from '../libs/requireAuth'
 import withNavbar from '../libs/withNavbar'
 import socket from '../libs/socket'
-import swal from 'sweetalert2'
 
 const OrgMonitor = props => (
   <Div>
@@ -15,70 +15,79 @@ const OrgMonitor = props => (
         <div className="col-12 text-center h2 text-white">
           Room name
         </div>
-        <div className="col-7">
-          <div className="card row">
-            <div className="col-12 row">
-              <div className="col-11 h3">
-                Question
-              </div>
-              <button
-                className="col-1 fa fa-refresh btn btn-info"
-                onClick={props.fetchQuestions}
-              />
-            </div>
-          </div>
+      </div>
+      <div className="row">
+        <div className="col-8">
           <div className="card">
-            <div className="list-group list-group-flush">
+            <div className="card-block">
+              <button
+                className="btn btn-info pull-right"
+                onClick={props.fetchQuestions}
+              >
+                <i className="fa fa-refresh" />
+                {` Refresh (${props.remain})`}
+              </button>
+              <h2>Question</h2>
+            </div>
+            <ul className="list-group list-group-flush">
               {
                 props.questions.map((q, index) => (
-                  <div
-                    className="row"
+                  <QuestionCard
                     key={q._id}
+                    onClick={() => props.onSelect(q._id)}
+                    active={props.selectedQuestions.find(sq => sq === q) !== undefined}
+                    className="list-group-item"
                   >
-                    <QuestionCard
-                      onClick={props.onSelect}
-                      active={props.selectedQuestions.find(sq => sq === q) !== undefined}
-                      className="list-group-item col-11"
-                      id={q._id}
-                    >
+                    <Question className="lead">
                       { q.question }
-                    </QuestionCard>
-                    <Trash
-                      className="fa fa-trash fa-2x btn btn-danger col-1"
+                    </Question>
+                    <button
+                      className="btn btn-danger pull-right"
                       onClick={props.onUpdateIsDelete}
                       id={q._id}
-                     />
-                  </div>
+                    >
+                      <i className="fa fa-trash" />
+                    </button>
+                  </QuestionCard>
                 ))
               }
-            </div>
+            </ul>
           </div>
         </div>
-        <div className="col-5">
-          <div className="card">
-            <div className="row">
-              <div className="col-4">
-                Selected question
-              </div>
-              <div className="col-1">
-                <span className="badge badge-default">{props.selectedQuestions.length}</span>
-              </div>
+        <div className="col-4">
+          <div className="row">
+            <div className="col-12">
+              <button
+                className="btn btn-success btn-lg btn-block mb-2"
+                onClick={props.onAnswerQuestion}
+              >
+                {'SEND QUESTION '}<span className="badge badge-default">{props.selectedQuestions.length}</span>
+              </button>
             </div>
           </div>
-          {
-            props.selectedQuestions.map(q => (
-              <div key={q._id} className="card col-12">
-                {q.question}
-              </div>
-            ))
-          }
-          <div className="col-12 text-center">
-            <button
-              className="btn btn-success btn-lg"
-              onClick={props.onAnswerQuestion}
-            >
-              SEND
-            </button>
+          <div className="row">
+            <div className="col-12">
+              {
+                props.selectedQuestions.length > 0 && (
+                  <div className="card">
+                    <ul className="list-group list-group-flush">
+                      {
+                        props.selectedQuestions.map(q => (
+                          <QuestionCard
+                            key={q._id}
+                            className="list-group-item"
+                          >
+                            <Question>
+                              { q.question }
+                            </Question>
+                          </QuestionCard>
+                        ))
+                      }
+                    </ul>
+                  </div>
+                )
+              }
+            </div>
           </div>
         </div>
       </div>
@@ -90,6 +99,7 @@ const MonitorCompose = compose(
   requireAuth(),
   withNavbar(),
   withState('questions', 'setQuestions', []),
+  withState('remain', 'setRemain', 0),
   withState('roomId', 'setRoomId', ''),
   withState('selectedQuestions', 'setSelected', []),
   lifecycle({
@@ -98,18 +108,25 @@ const MonitorCompose = compose(
       let questions = await instance.get(`/rooms/${id}/questions`)
         .then(resp => resp.data.data.allQuestion)
         // console.log(questions)
-      questions = questions.filter(q => !q.isDelete && !q.isAnswer)
+      questions = questions.filter(q => !q.isDelete && !q.isAnswer).reverse()
       this.props.setQuestions(questions)
     },
     async componentDidMount() {
+      let roomId = this.props.match.params.id
+      // Signup the `room`
+      socket.on('connect', function() {
+        socket.emit('room', roomId)
+      })
+      // Get data from 'monitor' in the `room`
       socket.on('monitor', (data) => {
-        console.log(data)
+        if (data.status === 200) {
+          this.props.setRemain(this.props.remain + 1)
+        }
       })
     }
   }),
   withHandlers({
-    onSelect: props => (e) => {
-      let id = e.target.id
+    onSelect: props => (id) => {
       let questions = props.questions
       let select = questions.find(q => q._id === id)
       let selectedQuestions = props.selectedQuestions
@@ -127,7 +144,9 @@ const MonitorCompose = compose(
       let id = props.match.params.id
       let questions = await instance.get(`/rooms/${id}/questions`)
         .then(resp => resp.data.data.allQuestion)
-      questions = questions.filter(q => !q.isDelete && !q.isAnswer)
+      questions = questions.filter(q => !q.isDelete && !q.isAnswer).reverse()
+      props.setSelected([])
+      props.setRemain(0)
       props.setQuestions(questions)
     },
     onUpdateIsDelete: props => async (e) => {
@@ -191,6 +210,7 @@ const MonitorCompose = compose(
         preConfirm: () => {
           return new Promise((resolve, reject) => {
             instance.put(`/questions/${selectQ[0]._id}/ans`, {
+              roomId: props.match.params.id,
               questions: selectQ
             }).then(data => {
               resolve(data.data)

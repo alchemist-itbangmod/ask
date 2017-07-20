@@ -24,13 +24,13 @@ injectGlobal`
   body {
     background: url(${BG}) no-repeat center center fixed;
     background-size: cover;
-    height: 100%;
+    min-height: 100%;
   }
 
   #root {
-    background:rgba(81,99,149,0.9);
-    background: linear-gradient(to right, rgba(81,99,149,0.2), rgba(97,67,133,0.2));
-    height: 100%;
+    // background: rgba(81,99,149,0.9) no-repeat center center fixed;
+    // background: linear-gradient(to right, rgba(81,99,149,0.2), rgba(97,67,133,0.2))  no-repeat center center fixed;
+    min-height: 100%;
   }
 `
 
