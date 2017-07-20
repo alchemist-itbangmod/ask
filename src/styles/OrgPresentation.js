@@ -12,7 +12,7 @@ const StyledTag = styled.div`
   font-size: ${props => props.size || 38}px;
   padding: 15px;
   display: inline-block;
-  color: #000;
+  color: #fff;
 `
 
 export {

@@ -14,6 +14,7 @@ module.exports = {
       roomId: new mongoose.Types.ObjectId(req.params.id)
     })
       .then(data => data)
+
     if (allQuestion === null) {
       res.json({
         status: false,
@@ -57,7 +58,7 @@ module.exports = {
       roomId: req.body.roomId,
       question: req.body.question,
       name: req.body.name,
-      anonymous: req.body.anonymous
+      anonymous: false
     })
       .then(data => data)
       .catch(err => err)
@@ -67,6 +68,9 @@ module.exports = {
         error: 'Fail to created'
       })
     } else {
+      res.io.sockets
+        .in(req.body.roomId)
+        .emit('monitor', { status: 200, data: result })
       res.json({
         status: true,
         data: {
@@ -93,16 +97,23 @@ module.exports = {
     }
   },
   updateIsAns: async (req, res) => {
-    let result = await Question.update({
-      _id: req.body._id,
-      isAnswere: true
-    }).then(data => data)
-    if (result === null) {
+    let questions = req.body.questions
+    let result = []
+    questions.map(async (q, index) => {
+      result[index] = await Question.update({
+        _id: q._id,
+        isAnswer: true
+      }).then(data => data)
+    })
+    if (result.find(r => r === null) > 0) {
       res.json({
         status: false,
         error: 'Fail to update'
       })
     } else {
+      res.io.sockets
+        .in(req.body.roomId)
+        .emit('presentation', { status: 200, data: questions })
       res.json({
         status: true,
         message: 'Already answer'

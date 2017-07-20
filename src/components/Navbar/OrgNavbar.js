@@ -1,9 +1,30 @@
 import React from 'react'
+import { compose, withHandlers } from 'recompose'
+import localforage from '../../libs/localforage'
 
-const OrgNavbar = props => (
-  <nav className="navbar navbar-light bg-faded">
-    <h1 className="navbar-brand mb-0">#ASK</h1>
-  </nav>
+import {
+  OrgNavbar,
+  BrandName,
+  LogoutButton
+} from '../../styles/Navbar.js'
+
+const Navbar = props => (
+  <OrgNavbar className="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
+    <BrandName className="navbar-brand" href="#">#ASK ORGANIZER</BrandName>
+    <LogoutButton
+      className="btn btn-danger"
+      onClick={() => props.logout()}
+    >LOGOUT</LogoutButton>
+  </OrgNavbar>
 )
 
-export default OrgNavbar
+const NavbarCompose = compose(
+  withHandlers({
+    logout: props => () => {
+      localforage.clear()
+      props.history.push('/organizer')
+    }
+  })
+)(Navbar)
+
+export default NavbarCompose

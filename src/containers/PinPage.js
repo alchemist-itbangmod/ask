@@ -4,37 +4,52 @@ import instance from '../libs/axios'
 import localforage from '../libs/localforage'
 import requireAsker from '../libs/requireAsker'
 
+import { Container, Button } from '../styles/Global'
+
 const PinPage = props => (
-  <div>
-    <div className="container">
-      <h1 className="text-center">#ASK</h1>
-      <div className="row">
-        <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
-          <form onSubmit={e => props.submitPin(e)}>
-            <div className="form-group">
-              <input
-                type="text"
-                className="form-control text-center"
-                value={props.pin}
-                onChange={e => props.handlePin(e.target.value)}
-              />
-            </div>
-            {
-              props.error
-              ? (<p className="text-center">{props.error}</p>)
-              : ''
-            }
-            <button
-              type="submit"
-              className="btn btn-secondary btn-block"
-            >
-              ENTER ROOM
-            </button>
-          </form>
+  <Container className="container">
+    <div className="row">
+      <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+        <h1
+          className="text-center"
+        >
+          #ASK
+        </h1>
+        <div
+          className="card"
+          style={{
+            marginTop: 20,
+            backgroundColor: 'rgba(255,255,255,0.8)',
+          }}
+        >
+          <div className="card-block">
+            <h4 className="card-title">Enter room PIN</h4>
+            <form onSubmit={e => props.submitPin(e)}>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control text-center"
+                  value={props.pin}
+                  onChange={e => props.handlePin(e.target.value)}
+                />
+              </div>
+              {
+                props.error
+                ? (<p className="text-center">{props.error}</p>)
+                : ''
+              }
+              <Button
+                type="submit"
+                className="btn btn-secondary btn-block"
+              >
+                ENTER ROOM
+              </Button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </Container>
 )
 
 const PinPageCompose = compose(
@@ -52,7 +67,7 @@ const PinPageCompose = compose(
     },
     submitPin: props => async (e) => {
       e.preventDefault()
-      let data = await instance(`/rooms/code/${props.pin}`)
+      let data = await instance.get(`/rooms/code/${props.pin}`)
         .then(resp => resp.data)
       if (data.status) {
         localforage.setItem('roomId', data.data.roomId)

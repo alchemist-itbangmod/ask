@@ -35,15 +35,11 @@ class CreateRoomController extends React.Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <CreatedRoom />
-=======
       <CreatedRoom
         name={this.state.name}
         onChangeName={this.onChangeName}
-        onSubmit={this.state.onSubmit}
+        onSubmit={this.onSubmit}
       />
->>>>>>> 1c482cc0adae6d787fd22921f2891b0d32a21935
     )
   }
 }

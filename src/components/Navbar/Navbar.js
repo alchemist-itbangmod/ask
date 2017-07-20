@@ -9,7 +9,7 @@ import {
 } from '../../styles/Navbar.js'
 
 const Navbar = props => (
-  <UserNavbar className="navbar navbar-toggleable-md navbar-light bg-faded">
+  <UserNavbar className="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
     <BrandName className="navbar-brand" href="#">#ASK</BrandName>
     <LogoutButton
       className="btn btn-danger"
