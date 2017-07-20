@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { injectGlobal } from 'styled-components'
 
 import './static/bootstrap/bootstrap.min.css'
+import '../node_modules/sweetalert2/dist/sweetalert2.min.css'
 
 import BG from './static/images/bg.png'
 

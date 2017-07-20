@@ -1,13 +1,12 @@
 import React from 'react'
 import { compose, withState, withHandlers, lifecycle } from 'recompose'
-import OrgNavbar from '../components/Navbar/OrgNavbar'
 import { QuestionCard, Trash, Div } from '../styles/Global'
 import instance from '../libs/axios'
 import requireAuth from '../libs/requireAuth'
+import withNavbar from '../libs/withNavbar'
 
 const OrgMonitor = props => (
-  <Div>
-    <OrgNavbar {...props} />
+  <div>
     <div className="container">
       <div className="row">
         <div className="col-12 text-center h2 text-white">
@@ -68,11 +67,12 @@ const OrgMonitor = props => (
         </div>
       </div>
     </div>
-  </Div>
+  </div>
 )
 
 const MonitorCompose = compose(
   requireAuth(),
+  withNavbar(),
   withState('questions', 'setQuestions', []),
   withState('roomId', 'setRoomId', ''),
   withState('selectedQuestions', 'setSelected', []),
@@ -109,4 +109,5 @@ const MonitorCompose = compose(
     }
   })
 )(OrgMonitor)
+
 export default MonitorCompose

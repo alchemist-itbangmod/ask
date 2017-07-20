@@ -28,7 +28,7 @@ server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
 
 // INITIAL SOCKET.IO
-const io = require('socket.io').listen(3002)
+
 // require('./server/services')(io)
 
 // ----------------------

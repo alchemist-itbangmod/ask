@@ -58,7 +58,7 @@ module.exports = {
       roomId: req.body.roomId,
       question: req.body.question,
       name: req.body.name,
-      anonymous: req.body.anonymous
+      anonymous: false
     })
       .then(data => data)
       .catch(err => err)
