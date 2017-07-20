@@ -6,7 +6,7 @@ import './static/bootstrap/bootstrap.min.css'
 import '../node_modules/sweetalert2/dist/sweetalert2.min.css'
 import '../node_modules/font-awesome/css/font-awesome.min.css'
 
-import BG from './static/images/bg.png'
+import BG from './static/images/bg.jpg'
 
 import {
   PinPage,
