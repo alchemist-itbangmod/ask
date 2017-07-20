@@ -5,58 +5,65 @@ import instance from '../libs/axios'
 import OrgNavbar from '../components/Navbar/OrgNavbar'
 import BG from '../static/images/bg.png'
 
-
 const OrgCreate = props => (
   <div>
     <OrgNavbar />
     <div className="container">
-      <div className="container">
-        <div className="card">
-          <div className="card-block">
-            <form onSubmit={(e) => props.onSending(e)}>
-              <div className="row">
+      <div
+        className="card"
+        style={{
+          marginTop: 20,
+          backgroundColor: 'rgba(255,255,255,0.8)',
+        }}
+      >
+        <div className="card-block" >
+          <form onSubmit={(e) => props.onSending(e)}>
+            <div className="row">
+              <div className="col-12">
                 <h1>Create Room</h1>
-                <div className="col-10">
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                      placeholder="Enter room name"
-                      onChange={e => props.onChangeRoomName(e)}
-                    />
-                  </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-10">
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter room name"
+                    onChange={e => props.onChangeRoomName(e)}
+                  />
                 </div>
-                <div className="col-2">
-                  <div className="form group">
-                    <div className="btn-group" role="group" aria-label="Basic example">
-                      <button
-                        type="button"
-                        className={'btn btn-secondary ' + (props.isOpen ? 'active' : '')}
-                        onClick={() => props.setRoomOpen(true)}
-                      >
-                        {'Open'}
-                      </button>
-                      <button
-                        type="button"
-                        className={'btn btn-secondary ' + (!props.isOpen ? 'active' : '')}
-                        onClick={() => props.setRoomOpen(false)}
-                      >
-                        {'Close'}
-                      </button>
-                    </div>
+              </div>
+              <div className="col-2">
+                <div className="form group">
+                  <div className="btn-group" role="group" aria-label="Basic example">
+                    <button
+                      type="button"
+                      className={'btn btn-secondary ' + (props.isOpen ? 'active' : '')}
+                      onClick={() => props.setRoomOpen(true)}
+                    >
+                      {'Open'}
+                    </button>
+                    <button
+                      type="button"
+                      className={'btn btn-secondary ' + (!props.isOpen ? 'active' : '')}
+                      onClick={() => props.setRoomOpen(false)}
+                    >
+                      {'Close'}
+                    </button>
                   </div>
                 </div>
               </div>
-              <button
-                type="submit"
-                className="btn btn-success btn-block"
-                >
-                Sent
-              </button>
-            </form>
-          </div>
+            </div>
+            <button
+              type="submit"
+              className="btn btn-success btn-block"
+              >
+              Sent
+            </button>
+          </form>
         </div>
       </div>
     </div>
