@@ -7,7 +7,7 @@ import instance from '../libs/axios'
 import swal from 'sweetalert2'
 
 import withNavbar from '../libs/withNavbar'
-import { Container } from '../styles/Global'
+import { Container, Button } from '../styles/Global'
 
 const AskPage = props => (
   <Container className="container">
@@ -33,13 +33,13 @@ const AskPage = props => (
               </div>
             </div>
           </div>
-          <button
+          <Button
             type="submit"
             className="btn btn-secondary btn-block"
             style={{ marginTop: '15px' }}
           >
             JOIN ROOM
-          </button>
+          </Button>
         </form>
       </div>
     </div>
