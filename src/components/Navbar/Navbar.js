@@ -14,6 +14,9 @@ const Navbar = props => (
     <LogoutButton
       className="btn btn-danger"
       onClick={() => props.logout()}
+      style={{
+        borderRadius: 10
+      }}
     >LOGOUT</LogoutButton>
   </UserNavbar>
 )

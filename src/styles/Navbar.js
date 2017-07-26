@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const PrimaryColor = '#FF4312'
+const PrimaryColor = '#1C0F43'
 
 const UserNavbar = styled.nav`
   flex-direction: row;
@@ -21,6 +21,7 @@ const BrandName = styled.a`
 const LogoutButton = styled.button`
   flex: 1;
   color: white;
+  //boder-radius: 10px; Cannot write
   background-color: ${PrimaryColor};
   border-color: ${PrimaryColor};
 
