@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const PrimaryColor = '#FF4312'
 
 const Container = styled.div`
-  padding-top: 100px
+  padding-top: 150px
 `
 
 const AbsoluteCenterContainer = Component => styled(Component)`

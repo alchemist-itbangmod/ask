@@ -13,7 +13,7 @@ const PinPage = props => (
         <h1
           className="text-center"
         >
-          #ASK
+          #ask
         </h1>
         <div
           className="card"

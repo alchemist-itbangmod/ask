@@ -4,7 +4,7 @@ import instance from '../libs/axios'
 import requireAuth from '../libs/requireAuth'
 
 import OrgNavbar from '../components/Navbar/OrgNavbar'
-import BG from '../static/images/bg.jpg'
+import BG from '../static/images/bg.png'
 
 const OrgDashboard = props => (
   <div>
