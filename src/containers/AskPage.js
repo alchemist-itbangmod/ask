@@ -11,12 +11,20 @@ import { Container, Button } from '../styles/Global'
 
 const AskPage = props => (
   <Container className="container">
-    <h2 className="text-center">
+    {/* <h2 className="text-center">
       {'Welcome to'}
     </h2>
     <h4 className="text-center">
       {`" ${props.roomName} "`}
-    </h4>
+    </h4> */}
+    <h2
+      className='text-right'
+      style={{
+        color: 'white'
+      }}
+    >
+      Question
+    </h2>
     <div className="row">
       <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
         <form onSubmit={e => props.sendQuestion(e)}>
@@ -32,14 +40,17 @@ const AskPage = props => (
                 />
               </div>
             </div>
+            <Button
+              type="submit"
+              className="btn btn-secondary btn-block"
+              style={{
+                marginTop: '0px',
+                marginBottom: '20px'
+              }}
+            >
+              JOIN ROOM
+            </Button>
           </div>
-          <Button
-            type="submit"
-            className="btn btn-secondary btn-block"
-            style={{ marginTop: '15px' }}
-          >
-            JOIN ROOM
-          </Button>
         </form>
       </div>
     </div>
@@ -84,7 +95,7 @@ const AskPageCompose = compose(
         showCancelButton: true,
         reverseButtons: true,
         confirmButtonText: 'Confirm',
-        confirmButtonColor: '#FF4312',
+        confirmButtonColor: '#1BB7BF',
         customClass: 'Button',
         showLoaderOnConfirm: true,
         preConfirm: () => {
@@ -105,7 +116,7 @@ const AskPageCompose = compose(
             html: `Your question<b>" ${props.question} "</b> <br />has been sent!`,
             type: 'success',
             confirmButtonText: 'OK',
-            confirmButtonColor: '#FF4312'
+            confirmButtonColor: '#1BB7BF'
           })
         } else {
           swal({
