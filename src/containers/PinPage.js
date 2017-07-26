@@ -12,25 +12,33 @@ const PinPage = props => (
       <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
         <h1
           className="text-center"
+          style={{
+            color: 'white'
+          }}
         >
-          #ask
+          #ASK
         </h1>
         <div
           className="card"
           style={{
             marginTop: 20,
-            backgroundColor: 'rgba(255,255,255,0.8)',
+            backgroundColor: 'rgba(255,255,255)',
+            borderRadius: 10
           }}
         >
           <div className="card-block">
-            <h4 className="card-title">Enter room PIN</h4>
             <form onSubmit={e => props.submitPin(e)}>
               <div className="form-group">
                 <input
                   type="text"
                   className="form-control text-center"
                   value={props.pin}
+                  placeholder='Enter room PIN'
                   onChange={e => props.handlePin(e.target.value)}
+                  style={{
+                    backgroundColor: 'rgba(211,211,211,0.8)',
+                    borderRadius: 10
+                  }}
                 />
               </div>
               {

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const PrimaryColor = '#FF4312'
+const PrimaryColor = '#1BB7BF'
 
 const Container = styled.div`
   padding-top: 150px
@@ -59,6 +59,7 @@ const Button = styled.button`
   color: white;
   background-color: ${PrimaryColor};
   border-color: ${PrimaryColor};
+  border-radius: 10px;
 
   &:hover {
     color: white;
