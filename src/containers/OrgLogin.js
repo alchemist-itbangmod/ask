@@ -10,23 +10,19 @@ const OrgLogin = props => (
   <div>
     <Container className="container">
       <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
-        <h1
-          className="text-center"
-          style={{
-            color: 'white'
-          }}
-        >
+        <h1 className="text-center" style={{ color: 'white', marginBottom: '20px' }}>
           #ASK
         </h1>
-        <h4
+        <h5
           className="text-center"
           style={{
             color: 'white',
-            marginBottom: '20px'
+            marginBottom: '40px',
+            fontWeight: '300'
           }}
         >
           ORGANIZE LOGIN
-        </h4>
+        </h5>
         <form onSubmit={e => props.onLogin(e)}>
           <div className="form-group">
             <input
@@ -34,6 +30,7 @@ const OrgLogin = props => (
               className="form-control text-center"
               value={props.username}
               placeholder="Username"
+              style={{ borderRadius: 10 }}
               onChange={e => props.setUsername(e.target.value)}
             />
           </div>
@@ -43,6 +40,7 @@ const OrgLogin = props => (
               className="form-control text-center"
               value={props.password}
               placeholder="Password"
+              style={{ borderRadius: 10 }}
               onChange={e => props.setPassword(e.target.value)}
             />
           </div>
