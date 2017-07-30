@@ -22,7 +22,8 @@ const AllRoom = props => (
             >
               <h3 className="card-title">{ room.title }</h3>
               <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <button onClick={() => props.history.push(`/organizer/${room._id}/monitor`)} className="btn btn-secondary">Manage</button>
+              <button onClick={() => props.history.push(`/organizer/${room._id}/monitor`)} className="btn btn-outline-secondary" style={{margin: '5px'}}>Manage</button>
+              <button onClick={() => props.history.push(`/organizer/${room._id}/presentation`)} className="btn btn-outline-secondary">Presentation</button>
             </div>
           </div>
         </div>
