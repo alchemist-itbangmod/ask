@@ -19,18 +19,18 @@ const OrgMonitor = props => (
         <ul className="nav nav-tabs card-header-tabs justify-content-end">
           <li className="nav-item">
             <a
-              className={'nav-link ' + (props.tab === 'ALL' ? 'active' : '')}
-              onClick={() => props.setTab('ALL')}
+              className={'nav-link ' + (props.tab === 'IN_QUEUE' ? 'active' : '')}
+              onClick={() => props.setTab('IN_QUEUE')}
             >
-              {'ALL'}
+              {'IN_QUEUE'}
             </a>
           </li>
           <li className="nav-item">
             <a
-              className={'nav-link ' + (props.tab === 'CREATE_ROOM' ? 'active' : '')}
-              onClick={() => props.setTab('CREATE_ROOM')}
+              className={'nav-link ' + (props.tab === 'SETTING' ? 'active' : '')}
+              onClick={() => props.setTab('SETTING')}
             >
-              {'CREATE ROOM'}
+              {'SETTING'}
             </a>
           </li>
         </ul>
@@ -133,7 +133,7 @@ const OrgMonitor = props => (
 const MonitorCompose = compose(
   requireAuth(),
   withNavbar(),
-  withState('tab', 'setTab', 'ALL'),
+  withState('tab', 'setTab', 'IN_QUEUE'),
   withState('questions', 'setQuestions', []),
   withState('remain', 'setRemain', 0),
   withState('roomId', 'setRoomId', ''),
