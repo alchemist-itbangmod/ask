@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import OrgCreate from './OrgCreate'
 import OrgLogin from './OrgLogin'
 import OrgLogout from './OrgLogout'
 import OrgDashboard from './OrgDashboard'

@@ -2,7 +2,7 @@ import React from 'react'
 import { compose, withState, withHandlers, lifecycle } from 'recompose'
 import { QuestionCard, Div, Question } from '../styles/Global'
 import swal from 'sweetalert2'
-import OrgSetting from './OrgSetting'
+// import OrgSetting from './OrgSetting'
 import OrgNavbar from '../components/Navbar/OrgNavbar'
 
 import instance from '../libs/axios'
@@ -13,84 +13,115 @@ import socket from '../libs/socket'
 const OrgMonitor = props => (
   <Div>
     <OrgNavbar {...props} />
-    <OrgSetting {...props} />
-    <div className="container">
-      <div className="row">
-        <div className="col-12 text-center h2 text-white">
-          Room name
-        </div>
+    {/* <OrgSetting {...props} /> */}
+    <div className="card">
+      <div className="card-header">
+        <ul className="nav nav-tabs card-header-tabs justify-content-end">
+          <li className="nav-item">
+            <a
+              className={'nav-link ' + (props.tab === 'ALL' ? 'active' : '')}
+              onClick={() => props.setTab('ALL')}
+            >
+              {'ALL'}
+            </a>
+          </li>
+          <li className="nav-item">
+            <a
+              className={'nav-link ' + (props.tab === 'CREATE_ROOM' ? 'active' : '')}
+              onClick={() => props.setTab('CREATE_ROOM')}
+            >
+              {'CREATE ROOM'}
+            </a>
+          </li>
+        </ul>
       </div>
-      <div className="row">
-        <div className="col-8">
-          <div className="card">
-            <div className="card-block">
-              <button
-                className="btn btn-info pull-right"
-                onClick={props.fetchQuestions}
-              >
-                <i className="fa fa-refresh" />
-                {` Refresh (${props.remain})`}
-              </button>
-              <h2>Question</h2>
+      <div className="card-block">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center h2 ">
+              Room name
             </div>
-            <ul className="list-group list-group-flush">
-              {
-                props.questions.map((q, index) => (
-                  <QuestionCard
-                    key={q._id}
-                    onClick={() => props.onSelect(q._id)}
-                    active={props.selectedQuestions.find(sq => sq === q) !== undefined}
-                    className="list-group-item"
+          </div>
+          <div className="row">
+            <div className="col-8">
+              <div className="card">
+                <div className="card-block">
+                  <button
+                    className="btn btn-info pull-right"
+                    onClick={props.fetchQuestions}
                   >
-                    <Question className="lead">
-                      { q.question }
-                    </Question>
-                    <button
-                      className="btn btn-danger pull-right"
-                      onClick={props.onUpdateIsDelete}
-                      id={q._id}
-                    >
-                      <i className="fa fa-trash" />
-                    </button>
-                  </QuestionCard>
-                ))
-              }
-            </ul>
-          </div>
-        </div>
-        <div className="col-4">
-          <div className="row">
-            <div className="col-12">
-              <button
-                className="btn btn-success btn-lg btn-block mb-2"
-                onClick={props.onAnswerQuestion}
-              >
-                {'SEND QUESTION '}<span className="badge badge-default">{props.selectedQuestions.length}</span>
-              </button>
+                    <i className="fa fa-refresh" />
+                    {` Refresh (${props.remain})`}
+                  </button>
+                  <h2>Question</h2>
+                </div>
+                <ul className="list-group list-group-flush">
+                  {
+                    props.questions.map((q, index) => (
+                      <QuestionCard
+                        key={q._id}
+                        onClick={() => props.onSelect(q._id)}
+                        active={props.selectedQuestions.find(sq => sq === q) !== undefined}
+                        className="list-group-item"
+                      >
+                        <Question className="lead">
+                          { q.question }
+                        </Question>
+                        <button
+                          className="btn btn-danger pull-right"
+                          onClick={props.onUpdateIsDelete}
+                          id={q._id}
+                        >
+                          <i className="fa fa-trash" />
+                        </button>
+                      </QuestionCard>
+                    ))
+                  }
+                </ul>
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col-12">
-              {
-                props.selectedQuestions.length > 0 && (
-                  <div className="card">
-                    <ul className="list-group list-group-flush">
-                      {
-                        props.selectedQuestions.map(q => (
-                          <QuestionCard
-                            key={q._id}
-                            className="list-group-item"
-                          >
-                            <Question>
-                              { q.question }
-                            </Question>
-                          </QuestionCard>
-                        ))
-                      }
-                    </ul>
+            <div className="col-4">
+              <div className="card">
+                <div className="card-block">
+                  <div className="row">
+                    <div className="col-8">
+                      <h2>{'Selected'}</h2>
+                    </div>
+                    <div className="col-2">
+                      <button
+                        className="btn btn-success"
+                        onClick={props.onAnswerQuestion}
+                      >
+                        {'SEND'}<span className="badge badge-default">{props.selectedQuestions.length}</span>
+                      </button>
+                    </div>
                   </div>
-                )
-              }
+                  <div className="row">
+                    <div className="col-12">
+                      {
+                        props.selectedQuestions.length > 0 && (
+                          <div className="card">
+                            <ul className="list-group list-group-flush">
+                              {
+                                props.selectedQuestions.map(q => (
+                                  <QuestionCard
+                                    key={q._id}
+                                    className="list-group-item"
+                                  >
+                                    <Question>
+                                      { q.question }
+                                    </Question>
+                                  </QuestionCard>
+                                ))
+                              }
+                            </ul>
+                          </div>
+                        )
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -102,6 +133,7 @@ const OrgMonitor = props => (
 const MonitorCompose = compose(
   requireAuth(),
   withNavbar(),
+  withState('tab', 'setTab', 'ALL'),
   withState('questions', 'setQuestions', []),
   withState('remain', 'setRemain', 0),
   withState('roomId', 'setRoomId', ''),
