@@ -10,7 +10,7 @@
     "react-build": "react-scripts build",
     "eject": "react-scripts eject",
     "server-dev": "nodemon server.js",
-    "start": "NODE_ENV=production node server.js",
+    "start": "NODE_ENV=PRODUCTION node server.js",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
@@ -65,5 +65,8 @@
     "nodemon": "^1.11.0",
     "prettier": "^1.4.2",
     "react-test-renderer": "^15.6.1"
+  },
+  "quokka": {
+    "babel": true
   }
 }

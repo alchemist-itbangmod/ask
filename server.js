@@ -10,6 +10,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
+const path = require('path')
 
 // ----------------------
 //   MONGODB & MONGOOSE
@@ -59,6 +60,13 @@ server.use(passport.session())
 // API V.1
 const routes = require('./server/routes.js')
 server.use('/api/v1', routes)
+
+if (process.env.NODE_ENV === 'PRODUCTION') {
+  server.use(express.static(path.resolve(__dirname, '.', 'build')))
+  server.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
+  })
+}
 
 // LISTEN PORT 3001
 server.listen(3001, (err) => {

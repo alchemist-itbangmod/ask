@@ -47,7 +47,6 @@ const PinPage = props => (
                 : ''
               }
               <Button
-                type="submit"
                 className="btn btn-secondary btn-block"
               >
                 ENTER ROOM

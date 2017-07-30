@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 
 // IMPORT MODELS
 const Question = require('../models/Question.model')
-const Room = require('../models/Room.model')
 
 // Question model
 module.exports = {
