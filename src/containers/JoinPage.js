@@ -13,15 +13,27 @@ const JoinPage = props => (
       <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
         <h2
           className="text-center"
+          style={{
+            color: 'white'
+          }}
         >
           {`Welcome to`}
         </h2>
         <h4
           className="text-center"
+          style={{
+            color: 'white'
+          }}
         >
           {`" ${props.roomName} "`}
         </h4>
-        <div className="card">
+        <div
+          className="card"
+          style={{
+            marginTop: 20,
+            borderRadius: 10
+          }}
+        >
           <div className="card-block">
             <form onSubmit={e => props.joinRoom(e)}>
               <div className="form-group">
@@ -31,6 +43,10 @@ const JoinPage = props => (
                   placeholder="Enter asker name"
                   onChange={e => props.setName(e.target.value)}
                   value={props.name}
+                  style={{
+                    backgroundColor: 'rgba(211,211,211,0.8)',
+                    borderRadius: 10
+                  }}
                 />
               </div>
               <Button
