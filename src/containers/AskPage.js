@@ -17,16 +17,13 @@ const AskPage = props => (
     <h4 className="text-center">
       {`" ${props.roomName} "`}
     </h4> */}
-    <h2
-      className='text-right'
-      style={{
-        color: 'white'
-      }}
-    >
-      Question
-    </h2>
-    <div className="row">
-      <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+    <div className="row justify-content-center">
+      <div className="col-12 col-sm-8 col-md-6">
+        <h2
+          className='text-right text-white'
+        >
+          Question
+        </h2>
         <form onSubmit={e => props.sendQuestion(e)}>
           <div className="card">
             <div className="card-block">
@@ -39,23 +36,26 @@ const AskPage = props => (
                   value={props.question}
                 />
               </div>
+              <Button
+                type="submit"
+                className="btn btn-secondary btn-block"
+              >
+                SEND
+              </Button>
             </div>
-            <Button
-              type="submit"
-              className="btn btn-secondary btn-block"
-              style={{
-                marginTop: '0px',
-                marginBottom: '20px'
-              }}
-            >
-              JOIN ROOM
-            </Button>
           </div>
         </form>
       </div>
     </div>
+    <style>{`
+      b{
+        font-weight: bold;
+      }  
+    `}</style>
   </Container>
 )
+
+const PrimaryColor = '#1BB7BF'
 
 const AskPageCompose = compose(
   requireAsker(),
@@ -82,7 +82,7 @@ const AskPageCompose = compose(
           text: `Please enter question at lease 4 character.`,
           type: 'warning',
           confirmButtonText: 'OK',
-          confirmButtonColor: '#FF4312'
+          confirmButtonColor: PrimaryColor
         })
         return
       }
@@ -91,11 +91,11 @@ const AskPageCompose = compose(
 
       swal({
         title: 'Sending question!',
-        html: `Are you sure to sent this question:  <br /> <b> " ${props.question} "</b>`,
+        html: `Are you sure to sent this question:  <br /> <b> "${props.question}"</b>`,
         showCancelButton: true,
         reverseButtons: true,
         confirmButtonText: 'Confirm',
-        confirmButtonColor: '#1BB7BF',
+        confirmButtonColor: PrimaryColor,
         customClass: 'Button',
         showLoaderOnConfirm: true,
         preConfirm: () => {
@@ -113,10 +113,10 @@ const AskPageCompose = compose(
         if (data.status) {
           swal({
             title: 'Sucess',
-            html: `Your question<b>" ${props.question} "</b> <br />has been sent!`,
+            html: `Your question <b>"${props.question}"</b> <br />has been sent!`,
             type: 'success',
             confirmButtonText: 'OK',
-            confirmButtonColor: '#1BB7BF'
+            confirmButtonColor: PrimaryColor
           })
         } else {
           swal({
@@ -124,7 +124,7 @@ const AskPageCompose = compose(
             text: `Now. We can't to send the question.`,
             type: 'warning',
             confirmButtonText: 'OK',
-            confirmButtonColor: '#FF4312'
+            confirmButtonColor: PrimaryColor
           })
         }
       })
