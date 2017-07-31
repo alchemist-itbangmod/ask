@@ -24,7 +24,8 @@ const RoomMornitor = props => {
                 onClick={props.fetchQuestions}
               >
                 <i className="fa fa-refresh" />
-                {` Refresh (${props.remain})`}
+                {` Refresh `}
+                <span className="badge badge-default">{props.remain}</span>
               </button>
               <h2>Question</h2>
             </div>

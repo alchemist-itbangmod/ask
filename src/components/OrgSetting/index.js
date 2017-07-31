@@ -125,7 +125,10 @@ const RoomSettingCompose = compose(
             confirmButtonText: 'OK',
             confirmButtonColor: PrimaryColor
           })
-          window.location.reload()
+          let id = props.match.params.id
+          let room = await instance.get(`/rooms/${id}`)
+            .then(resp => resp.data.data.room)
+          props.setRoom(room)
         } else {
           swal({
             title: 'Failed',

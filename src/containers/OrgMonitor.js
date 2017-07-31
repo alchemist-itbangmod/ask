@@ -77,7 +77,7 @@ const OrgRoomSeeting = props => (
 )
 
 const OrgAnalyst = props => (
-  <div>
+  <div className="text-center text-muted">
     <h1>{'COMMING SOON !'}</h1>
   </div>
 )
