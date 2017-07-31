@@ -184,7 +184,7 @@ const RoomMornitorCompose = compose(
           if (data.status) {
             props.setSelected([])
             swal({
-              title: 'Sucess',
+              title: 'Success',
               text: `Your question has been delete!`,
               type: 'success',
               confirmButtonText: 'OK',
@@ -210,8 +210,8 @@ const RoomMornitorCompose = compose(
     onAnswerQuestion: props => (e) => {
       let selectQ = props.selectedQuestions
       swal({
-        title: `Are you sure to answer the question${selectQ.length > 1 ? 's' : ''}`,
-        text: `Are you sure to answer ${selectQ.length} question${selectQ.length > 1 ? 's' : ''}`,
+        title: `Are you sure to sending the question${selectQ.length > 1 ? 's' : ''}`,
+        text: `Are you sure to answer ${selectQ.length} question${selectQ.length > 1 ? 's' : ''} to presentation`,
         showCancelButton: true,
         reverseButtons: true,
         confirmButtonText: 'Confirm',

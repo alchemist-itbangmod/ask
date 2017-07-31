@@ -112,7 +112,7 @@ const AskPageCompose = compose(
       }).then((data) => {
         if (data.status) {
           swal({
-            title: 'Sucess',
+            title: 'Success',
             html: `Your question <b>"${props.question}"</b> <br />has been sent!`,
             type: 'success',
             confirmButtonText: 'OK',
