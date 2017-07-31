@@ -1,16 +1,16 @@
 import React from 'react'
 import { compose, withHandlers } from 'recompose'
 import localforage from '../../libs/localforage'
+import { NavLink as Link } from 'react-router-dom'
 
 import {
   UserNavbar,
-  BrandName,
   LogoutButton
 } from '../../styles/Navbar.js'
 
 const Navbar = props => (
   <UserNavbar className="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
-    <BrandName className="navbar-brand" href="#">#ASK</BrandName>
+    <Link style={{ flex: 3 }} className="navbar-brand" to="/">#ASK</Link>
     <LogoutButton
       className="btn btn-danger"
       onClick={() => props.logout()}

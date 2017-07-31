@@ -5,6 +5,8 @@ import { Div } from '../styles/Global'
 import OrgNavbar from '../components/Navbar/OrgNavbar'
 
 import OrgRoomMornitor from '../components/OrgMonitor'
+import OrgRoomSetting from '../components/OrgSetting'
+
 import instance from '../libs/axios'
 import requireAuth from '../libs/requireAuth'
 
@@ -70,7 +72,7 @@ const OrgMonitor = props => (
 
 const OrgRoomSeeting = props => (
   <div>
-    <h1>{'COMMING SOON'}</h1>
+    <OrgRoomSetting {...props} />
   </div>
 )
 
