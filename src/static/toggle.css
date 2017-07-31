@@ -1,6 +1,6 @@
 .react-toggle {
   touch-action: pan-x;
-  top: 10px;
+  top: 3px;
   display: inline-block;
   position: relative;
   cursor: pointer;
@@ -38,8 +38,8 @@
 }
 
 .react-toggle-track {
-  width: 90px;
-  height: 40px;
+  width: 70px;
+  height: 30px;
   padding: 0;
   border-radius: 30px;
   background-color: #4D4D4D;
@@ -62,6 +62,7 @@
 
 .react-toggle-track-check {
   position: absolute;
+  display: none;
   width: 14px;
   height: 10px;
   top: 0px;
@@ -97,6 +98,7 @@
   -webkit-transition: opacity 0.25s ease;
   -moz-transition: opacity 0.25s ease;
   transition: opacity 0.25s ease;
+  display: none;
 }
 
 .react-toggle--checked .react-toggle-track-x {
@@ -106,9 +108,9 @@
 .react-toggle-thumb {
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   position: absolute;
-  top: 0px;
-  width: 42px;
-  height: 42px;
+  top: -3px;
+  width: 35px;
+  height: 35px;
   border: 1px solid #4D4D4D;
   border-radius: 50%;
   background-color: #FAFAFA;
@@ -123,7 +125,7 @@
 }
 
 .react-toggle--checked .react-toggle-thumb {
-  left: 50px;
+  left: 40px;
   border-color: #19AB27;
 }
 

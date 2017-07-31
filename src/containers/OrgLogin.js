@@ -8,7 +8,7 @@ import { Container, Button } from '../styles/Global'
 
 const OrgLogin = props => (
   <div>
-    <Container className="container">
+    <div className="container">
       <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
         <h1 className="text-center" style={{ color: 'white', marginBottom: '20px' }}>
           #ASK
@@ -52,7 +52,7 @@ const OrgLogin = props => (
           </Button>
         </form>
       </div>
-    </Container>
+    </div>
   </div>
 )
 

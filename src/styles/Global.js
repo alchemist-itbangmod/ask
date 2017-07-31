@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const PrimaryColor = '#1BB7BF'
+const HoverColor = '#209aa0'
 
 const Container = styled.div`
   padding-top: 150px
@@ -63,8 +64,8 @@ const Button = styled.button`
 
   &:hover {
     color: white;
-    background-color: #ff5123;
-    border-color: #e84e26;
+    background-color: ${HoverColor};
+    border-color: ${HoverColor};
   }
 `
 export {
