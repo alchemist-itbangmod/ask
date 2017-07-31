@@ -10,11 +10,28 @@ import {
 
 const Navbar = props => (
   <OrgNavbar className="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
-    <Link to='/organizer' className="navbar-brand" style={{ flex: 3 }}>#ASK ORGANIZER</Link>
-    <LogoutButton
-      className="btn btn-danger"
-      onClick={() => props.logout()}
-    >LOGOUT</LogoutButton>
+    <div className="row col-12">
+      <div className="col-4">
+        <div
+          className="h5"
+          style={{ padding: '5px 0 0 30px' }}
+        >
+          <Link to='/organizer' className="navbar-brand" style={{ flex: 3 }}>HOME</Link>
+        </div>
+      </div>
+      <div
+        className="col-4 text-center"
+        style={{ paddingTop: '5px' }}
+      >
+        #ASK ORGANIZER
+      </div>
+      <div className="col-4 text-right">
+        <LogoutButton
+          className="btn btn-danger"
+          onClick={() => props.logout()}
+        >LOGOUT</LogoutButton>
+      </div>
+    </div>
   </OrgNavbar>
 )
 
