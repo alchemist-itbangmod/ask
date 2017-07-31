@@ -28,15 +28,6 @@ server.use(cookieParser())
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
 
-// INITIAL SOCKET.IO
-const io = require('socket.io').listen(3002)
-require('./server/services/socket')(io)
-
-server.use(function(req, res, next) {
-  res.io = io
-  next()
-})
-
 // ----------------------
 //     PASSPORT AUTH!
 // ----------------------
@@ -69,9 +60,18 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
 }
 
 // LISTEN PORT 3001
-server.listen(3001, (err) => {
+var app = server.listen(3001, (err) => {
   if (err) throw err
   console.log('> Ready on http://localhost:3001')
+})
+
+// INITIAL SOCKET.IO
+const io = require('socket.io').listen(app)
+require('./server/services/socket')(io)
+
+server.use(function(req, res, next) {
+  res.io = io
+  next()
 })
 
 module.exports = server
