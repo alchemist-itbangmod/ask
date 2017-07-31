@@ -9,7 +9,7 @@ const UserNavbar = styled.nav`
 `
 
 const OrgNavbar = styled.nav`
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(255, 255, 255, 0.6);
   margin-bottom: 15px;
   flex-direction: row;
   color: white;

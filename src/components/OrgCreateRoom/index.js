@@ -1,12 +1,9 @@
 import React from 'react'
-import { compose, withState, withHandlers, lifecycle } from 'recompose'
-import instance from '../libs/axios'
-
-import OrgNavbar from '../components/Navbar/OrgNavbar'
+import { compose, withHandlers, withState } from 'recompose'
+import instance from '../../libs/axios'
 
 const OrgCreate = props => (
   <div>
-    <OrgNavbar />
     <div className="container">
       <div
         className="card"
