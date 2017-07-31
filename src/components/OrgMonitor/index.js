@@ -14,11 +14,6 @@ const RoomMornitor = props => {
   return (
     <div>
       <div className="row">
-        <div className="col-12 text-center h2 ">
-          { props.room.title }
-        </div>
-      </div>
-      <div className="row">
         <div className="col-8">
           <div className="card">
             <div className="card-block">
@@ -60,15 +55,15 @@ const RoomMornitor = props => {
           <div className="card">
             <div className="card-block">
               <div className="row">
-                <div className="col-8">
+                <div className="col-7">
                   <h2>{'Selected'}</h2>
                 </div>
-                <div className="col-2">
+                <div className="col-3">
                   <button
                     className="btn btn-success"
                     onClick={props.onAnswerQuestion}
                   >
-                    {'SEND'}<span className="badge badge-default">{props.selectedQuestions.length}</span>
+                    {'SEND'} <span className="badge badge-default">{props.selectedQuestions.length}</span>
                   </button>
                 </div>
               </div>
@@ -194,7 +189,7 @@ const RoomMornitorCompose = compose(
           let id = props.match.params.id
           let questions = await instance.get(`/rooms/${id}/questions`)
             .then(resp => resp.data.data.allQuestion)
-          questions = questions.filter(q => !q.isDelete && !q.isAnswer)
+          questions = questions.filter(q => !q.isDelete && !q.isAnswer).reverse()
           props.setQuestions(questions)
         } else {
           swal({
@@ -240,7 +235,7 @@ const RoomMornitorCompose = compose(
           let id = props.match.params.id
           let questions = await instance.get(`/rooms/${id}/questions`)
             .then(resp => resp.data.data.allQuestion)
-          questions = questions.filter(q => !q.isDelete && !q.isAnswer)
+          questions = questions.filter(q => !q.isDelete && !q.isAnswer).reverse()
           props.setQuestions(questions)
           props.setSelected([])
         } else {
