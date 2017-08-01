@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 // IMPORT MODELS
 const Question = require('../models/Question.model')
+const Room = require('../models/Room.model')
 
 // Question model
 module.exports = {
@@ -53,6 +54,19 @@ module.exports = {
     }
   },
   createQuestion: async (req, res) => {
+    let openSending = await Room.getOne({
+      _id: new mongoose.Types.ObjectId(req.body.roomId)
+    }).then(data => data.openSending)
+
+    if (!openSending) {
+      res.json({
+        status: false,
+        info: 'closed to Sending.'
+      })
+      // break Command
+      return
+    }
+
     let result = await Question.create({
       roomId: req.body.roomId,
       question: req.body.question,
