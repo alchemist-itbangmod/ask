@@ -41,12 +41,12 @@ injectGlobal([`
 
   .fade-appear-active,
   .fade-enter-active {
-    transition: opacity .3s;
+    transition: all .4s;
     opacity: 1;
   }
 
   .fade-exit {
-    transition: opacity .2s;
+    transition: all .3s;
     opacity: 1;
   }
 
@@ -70,7 +70,7 @@ injectGlobal([`
 
 const App = props => {
   const currentKey = props.location.pathname.split('/')[1] || '/'
-  const timeout = { enter: 300, exit: 200 }
+  const timeout = { enter: 400, exit: 300 }
 
   return (
     <div>

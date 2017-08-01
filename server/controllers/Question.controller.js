@@ -67,7 +67,7 @@ module.exports = {
         error: 'Fail to created'
       })
     } else {
-      res.io.sockets
+      req.app.io.sockets
         .in(req.body.roomId)
         .emit('monitor', { status: 200, data: result })
       res.json({
@@ -110,7 +110,7 @@ module.exports = {
         error: 'Fail to update'
       })
     } else {
-      res.io.sockets
+      req.app.io.sockets
         .in(req.body.roomId)
         .emit('presentation', { status: 200, data: questions })
       res.json({
