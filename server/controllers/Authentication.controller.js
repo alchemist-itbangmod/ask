@@ -4,10 +4,10 @@ const Passport = require('../services/passport')
 // Question model
 module.exports = {
   signup: async (req, res) => {
-    if (req.user) {
-      res.send(new Error(`You're already Login.`))
-      return
-    }
+    // if (req.user) {
+    //   res.send(new Error(`You're already Login.`))
+    //   return
+    // }
     const args = {
       email: req.body.email,
       password: req.body.password,
@@ -26,12 +26,12 @@ module.exports = {
     res.json(data)
   },
   login: async (req, res) => {
-    if (req.user) {
-      let err = new Error(`You're already Login.`)
-      console.log('Hi')
-      res.send(err.message)
-      return
-    }
+    // if (req.user) {
+    //   let err = new Error(`You're already Login.`)
+    //   console.log('Hi')
+    //   res.send(err.message)
+    //   return
+    // }
 
     const { email, password } = req.body
     const args = { email, password, req }
