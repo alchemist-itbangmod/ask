@@ -122,7 +122,7 @@ const AskPageCompose = compose(
         } else {
           swal({
             title: 'Closed',
-            text: `Now. We can't to send the question.`,
+            text: `You are not allowed to submit the question now.`,
             type: 'warning',
             confirmButtonText: 'OK',
             confirmButtonColor: PrimaryColor

@@ -29,29 +29,31 @@ const RoomMornitor = props => {
               </button>
               <h2>Question</h2>
             </div>
-            <ul className="list-group list-group-flush">
-              {
-                props.questions.map((q, index) => (
-                  <QuestionCard
-                    key={q._id}
-                    onClick={() => props.onSelect(q._id)}
-                    active={props.selectedQuestions.find(sq => sq === q) !== undefined}
-                    className="list-group-item point"
-                  >
-                    <Question className="lead">
-                      { q.question }
-                    </Question>
-                    <button
-                      className="btn btn-danger pull-right point"
-                      onClick={props.onUpdateIsDelete}
-                      id={q._id}
+            <div style={{ height: '55vh', overflowY: 'scroll', borderTop: '1px solid #ccc' }}>
+              <ul className="list-group list-group-flush">
+                {
+                  props.questions.map((q, index) => (
+                    <QuestionCard
+                      key={q._id}
+                      onClick={() => props.onSelect(q._id)}
+                      active={props.selectedQuestions.find(sq => sq === q) !== undefined}
+                      className="list-group-item point"
                     >
-                      <i className="fa fa-trash" />
-                    </button>
-                  </QuestionCard>
-                ))
-              }
-            </ul>
+                      <Question className="lead">
+                        { q.question }
+                      </Question>
+                      <button
+                        className="btn btn-danger pull-right point"
+                        onClick={props.onUpdateIsDelete}
+                        id={q._id}
+                      >
+                        <i className="fa fa-trash" />
+                      </button>
+                    </QuestionCard>
+                  ))
+                }
+              </ul>
+            </div>
           </div>
         </div>
         <div className="col-4">
