@@ -23,7 +23,7 @@ const requireAuth = (status) => {
         async componentWillMount() {
           let token = await localforage.getItem('_token')
 
-          if (token === null || token === undefineds) {
+          if (token === null || token === undefined) {
             this.props.history.push('/organizer/login')
           }
         }
