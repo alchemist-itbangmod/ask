@@ -62,7 +62,7 @@ const OrgMonitor = props => (
             </div>
           </div>
         </div>
-        <div className="card-block">
+        <div className="card-block" style={{ minHeight: '400px' }}>
           { (props.tab === 'IN_QUEUE') && (<OrgRoomMornitor {...props} />) }
           { (props.tab === 'SETTING') && (<OrgRoomSeeting {...props} />) }
           { (props.tab === 'ANALYST') && (<OrgAnalyst {...props} />) }

@@ -67,11 +67,7 @@ var app = server.listen(3001, (err) => {
 
 // INITIAL SOCKET.IO
 const io = require('socket.io').listen(app)
+server.io = io
 require('./server/services/socket')(io)
-
-server.use(function(req, res, next) {
-  res.io = io
-  next()
-})
 
 module.exports = server
