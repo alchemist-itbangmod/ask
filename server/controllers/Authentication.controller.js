@@ -41,6 +41,7 @@ module.exports = {
     })
   },
   logout: (req, res) => {
+    req.logout()
     req.session.destroy()
     res.json({
       token: `${req.token} was deleted!`
