@@ -10,6 +10,8 @@ import OrgRoomSetting from '../components/OrgSetting'
 import instance from '../libs/axios'
 import requireAuth from '../libs/requireAuth'
 
+const title = `#ASK 2.0 | Org monitor`
+
 const OrgMonitor = props => (
   <Div>
     <OrgNavbar {...props} />
@@ -92,6 +94,7 @@ const MonitorCompose = compose(
       let room = await instance.get(`/rooms/${id}`)
         .then(resp => resp.data.data.room)
       this.props.setRoom(room)
+      document.title = `${title} - ${this.props.room.title}`
     }
   })
 )(OrgMonitor)

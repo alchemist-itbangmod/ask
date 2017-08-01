@@ -1,10 +1,12 @@
 import React from 'react'
-import { compose, withState, withHandlers } from 'recompose'
+import { compose, withState, withHandlers, lifecycle } from 'recompose'
 import localforage from '../libs/localforage'
 import instance from '../libs/axios'
 import requireAuth from '../libs/requireAuth'
 
 import { Container, Button } from '../styles/Global'
+
+const title = `#ASK 2.0 | Org login`
 
 const OrgLogin = props => (
   <div>
@@ -69,6 +71,11 @@ const OrgLoginCompose = compose(
       }).then(resp => resp.data.User.token)
       await localforage.setItem('_token', token)
       props.history.push('/organizer/')
+    }
+  }),
+  lifecycle({
+    componentWillMount() {
+      document.title = title
     }
   })
 )(OrgLogin)

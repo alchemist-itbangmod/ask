@@ -129,6 +129,7 @@ const RoomSettingCompose = compose(
           let room = await instance.get(`/rooms/${id}`)
             .then(resp => resp.data.data.room)
           props.setRoom(room)
+          document.title = `#ASK 2.0 | Org monitor - ${roomName}`
         } else {
           swal({
             title: 'Failed',
