@@ -15,10 +15,10 @@ const requireAsker = () => {
           document.title = `${title}`
         } else if (name === null) {
           this.props.history.push('/join')
-          document.title = `${title} | join`
+          document.title = `${title} | JOIN`
         } else {
           this.props.history.push('/ask')
-          document.title = `${title} | ask`
+          document.title = `${title} | ASK`
         }
       }
 
