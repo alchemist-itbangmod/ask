@@ -8,7 +8,7 @@ import OrgNavbar from '../components/Navbar/OrgNavbar'
 import OrgAllRoom from '../components/OrgAllRoom'
 import OrgCreateRoom from '../components/OrgCreateRoom'
 
-const title = `#ASK 2.0 | Org dashboard`
+const title = `#ASK 2.0 | Dashboard`
 
 const OrgDashboard = props => (
   <div>

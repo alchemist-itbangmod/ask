@@ -10,7 +10,7 @@ import OrgRoomSetting from '../components/OrgSetting'
 import instance from '../libs/axios'
 import requireAuth from '../libs/requireAuth'
 
-const title = `#ASK 2.0 | Org monitor`
+const title = `#ASK 2.0 | Monitor`
 
 const OrgMonitor = props => (
   <Div>

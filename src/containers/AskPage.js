@@ -27,7 +27,7 @@ const AskPage = props => (
         <form onSubmit={e => props.sendQuestion(e)}>
           <div className="card">
             <div className="card-block">
-              <p className="text-right">Hola!: {props.name}.</p>
+              <p className="text-right">Hi! {props.name}.</p>
               <div className="form-group">
                 <textarea
                   rows="5"
