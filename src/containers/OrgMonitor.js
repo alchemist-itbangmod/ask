@@ -10,7 +10,7 @@ import OrgRoomSetting from '../components/OrgSetting'
 import instance from '../libs/axios'
 import requireAuth from '../libs/requireAuth'
 
-const title = `#ASK 2.0 | Org monitor`
+const title = `#ASK 2.0 | Monitor`
 
 const OrgMonitor = props => (
   <Div>
@@ -36,7 +36,7 @@ const OrgMonitor = props => (
               <ul className="nav nav-tabs card-header-tabs justify-content-end">
                 <li className="nav-item">
                   <a
-                    className={'nav-link ' + (props.tab === 'IN_QUEUE' ? 'active' : '')}
+                    className={'nav-link ' + (props.tab === 'IN_QUEUE' ? 'active' : 'point')}
                     onClick={() => props.setTab('IN_QUEUE')}
                   >
                     {'IN-QUEUE'}
@@ -44,7 +44,7 @@ const OrgMonitor = props => (
                 </li>
                 <li className="nav-item">
                   <a
-                    className={'nav-link ' + (props.tab === 'SETTING' ? 'active' : '')}
+                    className={'nav-link ' + (props.tab === 'SETTING' ? 'active' : 'point')}
                     onClick={() => props.setTab('SETTING')}
                   >
                     {'SETTING'}
@@ -52,7 +52,7 @@ const OrgMonitor = props => (
                 </li>
                 <li className="nav-item">
                   <a
-                    className={'nav-link ' + (props.tab === 'ANALYST' ? 'active' : '')}
+                    className={'nav-link ' + (props.tab === 'ANALYST' ? 'active' : 'point')}
                     onClick={() => props.setTab('ANALYST')}
                   >
                     {'ANALYST'}

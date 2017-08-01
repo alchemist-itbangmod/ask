@@ -10,7 +10,7 @@ import {
   StyledTag
 } from '../styles/OrgPresentation.js'
 
-const title = `#ASK 2.0 | presentation - `
+const title = `#ASK 2.0 | Presentation - `
 
 const data = [{ _id: 7, value: '"WE ARE ASK"', count: 30 }]
 

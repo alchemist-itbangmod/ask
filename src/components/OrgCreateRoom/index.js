@@ -37,14 +37,14 @@ const OrgCreate = props => (
                   <div className="btn-group" role="group" aria-label="Basic example">
                     <button
                       type="button"
-                      className={'btn btn-secondary ' + (props.isOpen ? 'active' : '')}
+                      className={'btn btn-secondary ' + (props.isOpen ? 'active' : 'point')}
                       onClick={() => props.setRoomOpen(true)}
                     >
                       {'Open'}
                     </button>
                     <button
                       type="button"
-                      className={'btn btn-secondary ' + (!props.isOpen ? 'active' : '')}
+                      className={'btn btn-secondary ' + (!props.isOpen ? 'active' : 'point')}
                       onClick={() => props.setRoomOpen(false)}
                     >
                       {'Close'}
@@ -55,7 +55,7 @@ const OrgCreate = props => (
             </div>
             <button
               type="submit"
-              className="btn btn-success btn-block"
+              className="btn btn-success btn-block point"
               >
               Sent
             </button>

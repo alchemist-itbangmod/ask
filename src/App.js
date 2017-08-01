@@ -34,6 +34,10 @@ injectGlobal([`
     min-height: 100%;
   }
 
+  .point{
+    cursor: pointer
+  }
+  
   .fade-appear,
   .fade-enter {
     opacity: 0;

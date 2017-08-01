@@ -11,46 +11,67 @@ const PrimaryColor = '#1BB7BF'
 
 const RoomSetting = props => (
   <div>
-    <div className="card col-8 offset-2">
+    <div className="card col-6 offset-3">
       <div className="card-block">
         <form className="row">
-          <div className="col-3">
-            <b>Title :</b>
+          <div className="col-4">
+            <b>Title</b>
           </div>
-          <div className="col-9">
-            <input
-              type="text"
-              className="col-12"
-              value={props.title}
-              style={{
-                backgroundColor: 'rgba(211,211,211,0.8)',
-                borderRadius: 10,
-                border: 0,
-                padding: '5px 15px'
-              }}
-              onChange={e => props.onChangeTitle(e)}
-             />
-          </div>
-          <div className="col-3">
-            <b>Pin :</b>
+          <div className="col-8">
+            <div className="row">
+              <div className="col-1"> : </div>
+              <div className="col-10">
+                <input
+                  type="text"
+                  className="col-10"
+                  value={props.title}
+                  style={{
+                    backgroundColor: 'rgba(211,211,211,0.8)',
+                    borderRadius: 10,
+                    border: 0,
+                    padding: '5px 15px'
+                  }}
+                  onChange={e => props.onChangeTitle(e)}
+                />
+              </div>
+            </div>
           </div>
           <div
-            className="col-9"
+            className="col-4"
+            style={{ margin: '10px 0' }}
+          >
+            <b>Pin </b>
+          </div>
+          <div
+            className="col-8"
             style={{
-              letterSpacing: '5px',
-              textTransform: 'uppercase',
-              paddingLeft: '30px'
+              margin: '10px 0'
             }}>
-            { props.pin }
+            <div className="row">
+              <div className="col-1"> : </div>
+              <div className="col-10">
+                <span
+                  style={{
+                    letterSpacing: '5px',
+                    textTransform: 'uppercase'
+                  }}
+                >{ props.pin }</span>
+              </div>
+            </div>
           </div>
-          <div className="col-3">
-            <b>openSending :</b>
+          <div className="col-4">
+            <b>openSending</b>
           </div>
-          <div className="col-9">
-            <Toggle
-              checked={props.openSending}
-              onChange={props.toggleOpenSending}
-            />
+          <div className="col-8">
+            <div className="row">
+              <div className="col-1"> : </div>
+              <div className="col-10">
+                <Toggle
+                  checked={props.openSending}
+                  onChange={props.toggleOpenSending}
+                />
+              </div>
+            </div>
           </div>
           <div
             className="col-12 text-right"
@@ -58,7 +79,7 @@ const RoomSetting = props => (
           >
             <Button
               type="submit"
-              className="btn"
+              className="btn point"
               onClick={(e) => props.onSubmit(e)}
             >
               Update

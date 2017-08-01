@@ -20,7 +20,7 @@ const RoomMornitor = props => {
           <div className="card">
             <div className="card-block">
               <button
-                className="btn btn-info pull-right"
+                className="btn btn-info pull-right point"
                 onClick={props.fetchQuestions}
               >
                 <i className="fa fa-refresh" />
@@ -36,13 +36,13 @@ const RoomMornitor = props => {
                     key={q._id}
                     onClick={() => props.onSelect(q._id)}
                     active={props.selectedQuestions.find(sq => sq === q) !== undefined}
-                    className="list-group-item"
+                    className="list-group-item point"
                   >
                     <Question className="lead">
                       { q.question }
                     </Question>
                     <button
-                      className="btn btn-danger pull-right"
+                      className="btn btn-danger pull-right point"
                       onClick={props.onUpdateIsDelete}
                       id={q._id}
                     >
@@ -63,7 +63,7 @@ const RoomMornitor = props => {
                 </div>
                 <div className="col-3">
                   <button
-                    className="btn btn-success"
+                    className="btn btn-success point"
                     onClick={props.onAnswerQuestion}
                   >
                     {'SEND'} <span className="badge badge-default">{props.selectedQuestions.length}</span>

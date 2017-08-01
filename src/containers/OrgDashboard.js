@@ -8,7 +8,7 @@ import OrgNavbar from '../components/Navbar/OrgNavbar'
 import OrgAllRoom from '../components/OrgAllRoom'
 import OrgCreateRoom from '../components/OrgCreateRoom'
 
-const title = `#ASK 2.0 | Org dashboard`
+const title = `#ASK 2.0 | Dashboard`
 
 const OrgDashboard = props => (
   <div>
@@ -20,7 +20,7 @@ const OrgDashboard = props => (
           <ul className="nav nav-tabs card-header-tabs justify-content-end">
             <li className="nav-item">
               <a
-                className={'nav-link ' + (props.tab === 'ALL' ? 'active' : '')}
+                className={'nav-link ' + (props.tab === 'ALL' ? 'active' : 'point')}
                 onClick={() => props.setTab('ALL')}
               >
                 {'ALL'}
@@ -28,7 +28,7 @@ const OrgDashboard = props => (
             </li>
             <li className="nav-item">
               <a
-                className={'nav-link ' + (props.tab === 'CREATE_ROOM' ? 'active' : '')}
+                className={'nav-link ' + (props.tab === 'CREATE_ROOM' ? 'active' : 'point')}
                 onClick={() => props.setTab('CREATE_ROOM')}
               >
                 {'CREATE ROOM'}

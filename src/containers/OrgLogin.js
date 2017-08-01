@@ -6,7 +6,7 @@ import requireAuth from '../libs/requireAuth'
 
 import { Button } from '../styles/Global'
 
-const title = `#ASK 2.0 | Org login`
+const title = `#ASK 2.0 | Organize`
 
 const OrgLogin = props => (
   <div>
