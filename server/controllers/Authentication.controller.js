@@ -35,9 +35,9 @@ module.exports = {
 
     const { email, password } = req.body
     const args = { email, password, req }
-    let User = await Passport.login(args)
+    let user = await Passport.login(args)
     res.json({
-      User
+      user
     })
   },
   logout: (req, res) => {
