@@ -1,6 +1,7 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { withRouter, Route, Switch } from 'react-router-dom'
 import { injectGlobal } from 'styled-components'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import './static/bootstrap/bootstrap.min.css'
 import '../node_modules/sweetalert2/dist/sweetalert2.min.css'
@@ -36,18 +37,62 @@ injectGlobal([`
   .point{
     cursor: pointer
   }
+  
+  .fade-appear,
+  .fade-enter {
+    opacity: 0;
+  }
+
+  .fade-appear-active,
+  .fade-enter-active {
+    transition: all .4s;
+    opacity: 1;
+  }
+
+  .fade-exit {
+    transition: all .3s;
+    opacity: 1;
+  }
+
+  .fade-exit-active {
+    opacity: 0;
+  }
+
+  .page-main {
+    position: relative;
+    width: 100%;
+    margin: 0px auto;
+  }
+
+  .page-main-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
 `])
 
-const App = props => (
-  <Router>
-    <Switch>
-      <Route exact path="/" component={PinPage} />
-      <Route path="/join" component={JoinPage} />
-      <Route path="/ask" component={AskPage} />
-      <Route path="/organizer" component={OrgPage} />
-      <Route component={NotFoundPage} />
-    </Switch>
-  </Router>
-)
+const App = props => {
+  const currentKey = props.location.pathname.split('/')[1] || '/'
+  const timeout = { enter: 400, exit: 300 }
 
-export default App
+  return (
+    <div>
+      <TransitionGroup component="main" className="page-main">
+        <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear>
+          <section className="page-main-inner">
+            <Switch location={props.location}>
+              <Route exact path="/" component={PinPage} />
+              <Route path="/join" component={JoinPage} />
+              <Route path="/ask" component={AskPage} />
+              <Route path="/organizer" component={OrgPage} />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </section>
+        </CSSTransition>
+      </TransitionGroup>
+    </div>
+  )
+}
+
+export default withRouter(App)

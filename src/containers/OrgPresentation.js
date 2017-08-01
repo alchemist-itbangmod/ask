@@ -5,6 +5,7 @@ import instance from '../libs/axios'
 import socket from '../libs/socket'
 
 import {
+  Container,
   AbsoluteCenterContainer,
   StyledTag
 } from '../styles/OrgPresentation.js'
@@ -27,15 +28,15 @@ const Tag = (tag, size, color) => (
 const OrgPresentation = props => {
   return (
     <div>
-      <div className="container-fluid" style={{ height: '100vh' }}>
+      <Container className="container-fluid">
         <TagCloudAbsolute
           className="text-center"
-          minSize={28}
-          maxSize={48}
+          minSize={48}
+          maxSize={68}
           tags={props.question}
           renderer={Tag}
         />
-      </div>
+      </Container>
     </div>
   )
 }
