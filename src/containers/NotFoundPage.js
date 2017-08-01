@@ -1,4 +1,5 @@
 import React from 'react'
+import { compose, lifecycle } from 'recompose'
 
 const NotFoundPage = props => (
   <div>
@@ -11,4 +12,12 @@ const NotFoundPage = props => (
   </div>
 )
 
-export default NotFoundPage
+const NotFoundCompose = compose(
+  lifecycle({
+    componentWillMount() {
+      document.title = `Page not found`
+    }
+  })
+)(NotFoundPage)
+
+export default NotFoundCompose
