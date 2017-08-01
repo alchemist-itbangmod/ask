@@ -1,7 +1,7 @@
+build/
+node_modules/
+coverage/
 .idea
 .next
-coverage
-node_modules
 .DS_Store
 .env
-build

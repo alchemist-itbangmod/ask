@@ -65,11 +65,14 @@ const OrgLoginCompose = compose(
   withHandlers({
     onLogin: props => async (e) => {
       e.preventDefault()
-      let token = await instance.post(`/auth/login`, {
+      let user = await instance.post(`/auth/login`, {
         email: props.username,
         password: props.password
-      }).then(resp => resp.data.User.token)
-      await localforage.setItem('_token', token)
+      }).then(resp => {
+        console.log(resp)
+        return resp.data.user
+      })
+      await localforage.setItem('_token', user.token)
       props.history.push('/organizer/')
     }
   }),

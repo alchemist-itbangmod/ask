@@ -2,6 +2,7 @@ import React from 'react'
 import { compose, withHandlers } from 'recompose'
 import localforage from '../../libs/localforage'
 import { NavLink as Link } from 'react-router-dom'
+import instance from '../../libs/axios'
 
 import {
   OrgNavbar,
@@ -37,9 +38,11 @@ const Navbar = props => (
 
 const NavbarCompose = compose(
   withHandlers({
-    logout: props => () => {
+    logout: props => async () => {
       localforage.clear()
-      props.history.push('/organizer/login')
+      await instance.get(`/auth/logout`).then(resp => {
+        props.history.push('/organizer/login')
+      })
     }
   })
 )(Navbar)
