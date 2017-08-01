@@ -68,7 +68,7 @@ const OrgLoginCompose = compose(
       let user = await instance.post(`/auth/login`, {
         email: props.username,
         password: props.password
-      }).then(resp => resp.data.user.token)
+      }).then(resp => resp.data.user)
       await localforage.setItem('_token', user.token)
       props.history.push('/organizer/')
     }
