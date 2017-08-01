@@ -69,7 +69,7 @@ const OrgLoginCompose = compose(
         email: props.username,
         password: props.password
       }).then(resp => {
-        console.log(resp.data.user)
+        console.log(resp)
         return resp.data.user
       })
       await localforage.setItem('_token', user.token)
