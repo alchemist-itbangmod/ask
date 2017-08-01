@@ -4,7 +4,7 @@ import localforage from '../libs/localforage'
 import instance from '../libs/axios'
 import requireAuth from '../libs/requireAuth'
 
-import { Container, Button } from '../styles/Global'
+import { Button } from '../styles/Global'
 
 const title = `#ASK 2.0 | Org login`
 
