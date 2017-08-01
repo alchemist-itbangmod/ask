@@ -32,6 +32,10 @@ injectGlobal([`
     // background: linear-gradient(to right, rgba(81,99,149,0.2), rgba(97,67,133,0.2))  no-repeat center center fixed;
     min-height: 100%;
   }
+
+  .point{
+    cursor: pointer
+  }
 `])
 
 const App = props => (

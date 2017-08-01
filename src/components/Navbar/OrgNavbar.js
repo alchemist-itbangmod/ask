@@ -27,7 +27,7 @@ const Navbar = props => (
       </div>
       <div className="col-4 text-right">
         <LogoutButton
-          className="btn btn-danger"
+          className="btn point"
           onClick={() => props.logout()}
         >LOGOUT</LogoutButton>
       </div>
