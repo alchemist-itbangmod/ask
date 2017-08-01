@@ -1,12 +1,15 @@
 import React from 'react'
 import { TagCloud } from 'react-tagcloud'
 import { compose, withState, withHandlers, lifecycle } from 'recompose'
+import instance from '../libs/axios'
 import socket from '../libs/socket'
 
 import {
   AbsoluteCenterContainer,
   StyledTag
 } from '../styles/OrgPresentation.js'
+
+const title = `#ASK 2.0 | presentation - `
 
 const data = [{ _id: 7, value: '"WE ARE ASK"', count: 30 }]
 
@@ -38,6 +41,7 @@ const OrgPresentation = props => {
 }
 
 const OrgPresentationCompose = compose(
+  withState('title', 'setTitle', ''),
   withState('question', 'setQuestion', data),
   withState('active', 'setActive', false),
   withHandlers({
@@ -53,6 +57,13 @@ const OrgPresentationCompose = compose(
     }
   }),
   lifecycle({
+    async componentWillMount() {
+      let id = this.props.match.params.id
+      let room = await instance.get(`/rooms/${id}`)
+        .then(resp => resp.data.data.room)
+      this.props.setTitle(room.title)
+      document.title = `${title}${this.props.title}`
+    },
     async componentDidMount() {
       let roomId = this.props.match.params.id
       // Signup the `room`

@@ -1,14 +1,16 @@
 import React from 'react'
-import { compose, withState, withHandlers } from 'recompose'
+import { compose, withState, withHandlers, lifecycle } from 'recompose'
 import localforage from '../libs/localforage'
 import instance from '../libs/axios'
 import requireAuth from '../libs/requireAuth'
 
-import { Container, Button } from '../styles/Global'
+import { Button } from '../styles/Global'
+
+const title = `#ASK 2.0 | Org login`
 
 const OrgLogin = props => (
   <div>
-    <Container className="container">
+    <div className="container">
       <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
         <h1 className="text-center" style={{ color: 'white', marginBottom: '20px' }}>
           #ASK
@@ -52,7 +54,7 @@ const OrgLogin = props => (
           </Button>
         </form>
       </div>
-    </Container>
+    </div>
   </div>
 )
 
@@ -69,6 +71,11 @@ const OrgLoginCompose = compose(
       }).then(resp => resp.data.User.token)
       await localforage.setItem('_token', token)
       props.history.push('/organizer/')
+    }
+  }),
+  lifecycle({
+    componentWillMount() {
+      document.title = title
     }
   })
 )(OrgLogin)

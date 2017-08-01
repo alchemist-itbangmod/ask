@@ -20,12 +20,9 @@ const JoinPage = props => (
           {`Welcome to`}
         </h2>
         <h4
-          className="text-center"
-          style={{
-            color: 'white'
-          }}
+          className="text-center text-white"
         >
-          {`" ${props.roomName} "`}
+          {`"${props.roomName}"`}
         </h4>
         <div
           className="card"

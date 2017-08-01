@@ -1,5 +1,5 @@
 import React from 'react'
-import { compose, withState } from 'recompose'
+import { compose, withState, lifecycle } from 'recompose'
 
 import requireAuth from '../libs/requireAuth'
 
@@ -7,6 +7,8 @@ import OrgNavbar from '../components/Navbar/OrgNavbar'
 
 import OrgAllRoom from '../components/OrgAllRoom'
 import OrgCreateRoom from '../components/OrgCreateRoom'
+
+const title = `#ASK 2.0 | Org dashboard`
 
 const OrgDashboard = props => (
   <div>
@@ -48,7 +50,12 @@ const OrgDashboard = props => (
 
 const DashboardCompose = compose(
   requireAuth(),
-  withState('tab', 'setTab', 'ALL')
+  withState('tab', 'setTab', 'ALL'),
+  lifecycle({
+    componentWillMount() {
+      document.title = title
+    }
+  })
 )(OrgDashboard)
 
 export default DashboardCompose
