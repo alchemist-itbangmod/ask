@@ -76,7 +76,7 @@ const CreateConpose = compose(
   withHandlers({
     onSending: props => async (e) => {
       e.preventDefault()
-      console.log(props)
+      // console.log(props)
       await instance.post('/rooms/create', {
         title: props.roomName,
         openSending: props.openSending

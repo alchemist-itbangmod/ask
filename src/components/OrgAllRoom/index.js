@@ -43,7 +43,7 @@ const AllRoomCompose = compose(
   }),
   withHandlers({
     onSelect: props => (e) => {
-      console.log(e.target.childNodes)
+      // console.log(e.target.childNodes)
     }
   })
 )(AllRoom)
