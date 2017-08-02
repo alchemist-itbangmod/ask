@@ -12,7 +12,7 @@ const Navbar = props => (
   <UserNavbar className="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
     <Link style={{ flex: 3 }} className="navbar-brand" to="/">#ASK</Link>
     <LogoutButton
-      className="btn btn-danger"
+      className="btn btn-danger point"
       onClick={() => props.logout()}
       style={{
         borderRadius: 10
