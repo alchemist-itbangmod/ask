@@ -80,8 +80,8 @@ const CreateConpose = compose(
     onSending: props => async (e) => {
       e.preventDefault()
       swal({
-        title: 'Are you sure to delete',
-        text: `Are you sure to delete this question that '${q.question}'`,
+        title: 'Confirm',
+        text: `Are you sure to create room.`,
         showCancelButton: true,
         reverseButtons: true,
         confirmButtonText: 'Confirm',
