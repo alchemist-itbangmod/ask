@@ -80,7 +80,7 @@ const PinPageCompose = compose(
         localforage.setItem('roomId', data.data.roomId)
         props.history.push('/join')
       } else {
-        props.setError(`Code is incorrect.`)
+        props.setError(`Pin is incorrect.`)
       }
     }
   })
