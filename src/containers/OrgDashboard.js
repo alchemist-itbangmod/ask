@@ -12,7 +12,6 @@ const title = `#ASK 2.0 | Dashboard`
 
 const OrgDashboard = props => (
   <div>
-    { console.log(props.rooms) }
     <OrgNavbar {...props} />
     <div className="container">
       <div className="card">
