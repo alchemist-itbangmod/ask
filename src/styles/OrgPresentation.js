@@ -19,8 +19,8 @@ const AbsoluteCenterContainer = Component => styled(Component)`
 `
 
 const pop = keyframes`
-0% { transform: scale(0.4) }
-100% { transform: scale(1) }
+0% { transform: scale(0.4); opacity: 0; }
+100% { transform: scale(1); opacity: 1; }
 `
 
 const StyledTag = styled.div`
