@@ -61,6 +61,7 @@ const Button = styled.button`
   background-color: ${PrimaryColor};
   border-color: ${PrimaryColor};
   border-radius: 10px;
+  cursor: pointer;
 
   &:hover {
     color: white;

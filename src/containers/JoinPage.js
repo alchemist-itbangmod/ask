@@ -69,7 +69,6 @@ const JoinPageCompose = compose(
     async componentWillMount() {
       let roomId = await localforage.getItem('roomId')
       let roomName = await instance.get(`/rooms/${roomId}`).then(data => data.data.data.room.title)
-      console.log(roomName)
       this.props.setRoomName(roomName)
     }
   }),

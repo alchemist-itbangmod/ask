@@ -1,6 +1,9 @@
 import React from 'react'
 import { compose, withHandlers, withState } from 'recompose'
 import instance from '../../libs/axios'
+import swal from 'sweetalert2'
+
+const PrimaryColor = '#1BB7BF'
 
 const OrgCreate = props => (
   <div>
@@ -76,12 +79,45 @@ const CreateConpose = compose(
   withHandlers({
     onSending: props => async (e) => {
       e.preventDefault()
-      console.log(props)
-      await instance.post('/rooms/create', {
-        title: props.roomName,
-        openSending: props.openSending
+      swal({
+        title: 'Confirm',
+        text: `Are you sure to create room.`,
+        showCancelButton: true,
+        reverseButtons: true,
+        confirmButtonText: 'Confirm',
+        confirmButtonColor: PrimaryColor,
+        customClass: 'Button',
+        showLoaderOnConfirm: true,
+        preConfirm: () => {
+          return new Promise((resolve, reject) => {
+            instance.post('/rooms/create', {
+              title: props.roomName,
+              openSending: props.openSending
+            }).then(resp => {
+              resolve(resp.data)
+            })
+          })
+        }
+      }).then((data) => {
+        if (data.status) {
+          props.setSelected([])
+          swal({
+            title: 'Success',
+            text: `Room was created`,
+            type: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: PrimaryColor
+          })
+        } else {
+          swal({
+            title: 'Failed',
+            text: `Sorry, cannot create room now.`,
+            type: 'warning',
+            confirmButtonText: 'OK',
+            confirmButtonColor: PrimaryColor
+          })
+        }
       })
-        .then(resp => resp.data)
     },
     onChangeRoomName: props => (e) => {
       let title = e.target.value
