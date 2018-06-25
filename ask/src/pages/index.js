@@ -8,9 +8,6 @@ const IndexPage = () => (
     <p>Now go build something great.</p>
     <ul>
       <li>
-        <Link to="/page-2/">Go to page 2</Link>
-      </li>
-      <li>
         <Link to="/PinPage/">Go to PinPage</Link>
       </li>
       <li>
@@ -21,6 +18,9 @@ const IndexPage = () => (
       </li>
       <li>
         <Link to="/OrgHomePage/">Go to OrgHomePage</Link>
+      </li>
+      <li>
+        <Link to="/OrgMonitor/">Go to OrgMonitor</Link>
       </li>
     </ul>
   </div>
