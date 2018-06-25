@@ -16,6 +16,9 @@ const IndexPage = () => (
       <li>
         <Link to="/JoinPage/">Go to JoinPage</Link>
       </li>
+      <li>
+        <Link to="/OrgCreateRoom/">Go to OrgCreateRoom</Link>
+      </li>
     </ul>
   </div>
 )
