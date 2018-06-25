@@ -18,13 +18,13 @@ const Button = styled.button`
   font-size: 0.75em;
 `
 
-const Header = ({ siteTitle }) => (
+const Header = () => (
   <BGHead className="container-fluid">
     <Head className="row">
       <h2 className="col" style={{ margin: 4 }}>
-        <Title>{siteTitle}</Title>
+        <Title>ASK #3.0</Title>
       </h2>
-      <Button className="col-1 btn btn-warning">LOGOUT</Button>
+      <Button className="col-1-sm btn btn-warning">LOGOUT</Button>
     </Head>
   </BGHead>
 )
