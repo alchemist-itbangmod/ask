@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
 import Header from '../components/header'
+import HeaderMod from '../components/headerMod'
 import './index.css'
 
 const Layout = ({ children, data }) => (
@@ -14,7 +15,7 @@ const Layout = ({ children, data }) => (
         { name: 'keywords', content: 'sample, something' },
       ]}
     />
-    <Header siteTitle={data.site.siteMetadata.title} />
+    <HeaderMod siteTitle={data.site.siteMetadata.title} />
     <div
       style={{
         margin: '0 auto',
