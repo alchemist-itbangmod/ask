@@ -19,6 +19,9 @@ const IndexPage = () => (
       <li>
         <Link to="/OrgCreateRoom/">Go to OrgCreateRoom</Link>
       </li>
+      <li>
+        <Link to="/OrgHomePage/">Go to OrgHomePage</Link>
+      </li>
     </ul>
   </div>
 )
