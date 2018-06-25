@@ -35,9 +35,16 @@ const JoinPage = props => (
               </div>
               <button
                 type="submit"
-                className="btn btn-primary btn-block .btn-primary:hover"
+                className="btn btn-primary  .btn-primary:hover"
               >
                 JOIN ROOM
+              </button>
+
+              <button
+                type="submit"
+                className="btn btn-primary  .btn-primary:hover ml-5"
+              >
+                Facebook
               </button>
             </form>
           </div>
