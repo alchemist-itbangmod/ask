@@ -22,11 +22,13 @@ const index = () => (
     <div className="card">
       <Card className="card-header">
         <div className="row">
-          <div className="col text-left">
+          <div className="col-sm-6 text-left">
             <h3>Selected</h3>
           </div>
-          <div className="col-2 text-right">
-            <button className="btn btn-success point">SEND</button>
+          <div className="col-sm-6 text-right">
+            <button className="btn btn-success point">
+              {'SEND'} <span className="badge badge-default">10</span>
+            </button>
           </div>
         </div>
       </Card>
@@ -37,16 +39,20 @@ const index = () => (
     <div className="card">
       <Card className="card-header">
         <div className="row">
-          <div className="col text-left">
+          <div className="col-sm-6 text-left">
             <h3>Question</h3>
           </div>
-          <div className="col-2 text-right">
-            <button className="btn btn-primary point">Refresh</button>
+          <div className="col-sm-6 text-right">
+            <button className="btn btn-info pull-right point">
+              <i class="fa fa-refresh" />
+              {` Refresh `}
+              <span className="badge badge-default">10</span>
+            </button>
           </div>
         </div>
       </Card>
       <CardOnScroll className="card-block">
-        {[1, 2, 3, 4, 5].map((item, index) => <li key={index}>อิอิ</li>)}
+        {[1, 2, 3, 4, 5].map((item, index) => <li key={index}>อิอิ </li>)}
       </CardOnScroll>
     </div>
   </Box>
