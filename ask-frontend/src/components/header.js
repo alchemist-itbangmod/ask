@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'gatsby-link'
 import '../static/bootstrap/bootstrap.min.css'
 import styled from 'styled-components'
 
@@ -19,12 +18,12 @@ const Button = styled.button`
 `
 
 const Header = () => (
-  <BGHead className="container-fluid">
-    <Head className="row">
-      <h2 className="col" style={{ margin: 4 }}>
+  <BGHead className='container-fluid'>
+    <Head className='row'>
+      <h2 className='col' style={{ margin: 4, }}>
         <Title>ASK #3.0</Title>
       </h2>
-      <Button className="col-1-sm btn btn-warning">LOGOUT</Button>
+      <Button className='col-1-sm btn btn-warning'>LOGOUT</Button>
     </Head>
   </BGHead>
 )

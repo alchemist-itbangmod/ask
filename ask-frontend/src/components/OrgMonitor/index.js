@@ -17,20 +17,20 @@ const CardOnScroll = styled.div`
 `
 
 const index = () => (
-  <Box className="container">
+  <Box className='container'>
     <h2>ROOM NAME</h2>
-    <div className="card">
-      <Card className="card-header">
-        <div className="row">
-          <div className="col text-left">
+    <div className='card'>
+      <Card className='card-header'>
+        <div className='row'>
+          <div className='col text-left'>
             <h3>Selected</h3>
           </div>
-          <div className="col-2 text-right">
-            <button className="btn btn-success point">SEND</button>
+          <div className='col-2 text-right'>
+            <button className='btn btn-success point'>SEND</button>
           </div>
         </div>
       </Card>
-      <CardOnScroll className="card-block">
+      <CardOnScroll className='card-block'>
         <li>1</li>
         <li>1</li>
         <li>1</li>
@@ -42,18 +42,18 @@ const index = () => (
         <li>1</li>
       </CardOnScroll>
     </div>
-    <div className="card">
-      <Card className="card-header">
-        <div className="row">
-          <div className="col text-left">
+    <div className='card'>
+      <Card className='card-header'>
+        <div className='row'>
+          <div className='col text-left'>
             <h3>Question</h3>
           </div>
-          <div className="col-2 text-right">
-            <button className="btn btn-primary point">Refresh</button>
+          <div className='col-2 text-right'>
+            <button className='btn btn-primary point'>Refresh</button>
           </div>
         </div>
       </Card>
-      <CardOnScroll className="card-block">
+      <CardOnScroll className='card-block'>
         <li>1</li>
         <li>1</li>
         <li>1</li>
