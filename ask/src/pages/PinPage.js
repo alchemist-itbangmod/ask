@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'gatsby-link'
 
 const PinPage = props => (
   <div className="container" style={{ paddingTop: 150 }}>
@@ -40,6 +41,11 @@ const PinPage = props => (
             </form>
           </div>
         </div>
+        <Link to="/OrgHomePage/">
+          <p className="text-center text-info pt-4">
+            >>>if you want to create your room
+          </p>
+        </Link>
       </div>
     </div>
   </div>
