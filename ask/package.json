@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "ask-frontend",
   "description": "Gatsby default starter",
-  "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "version": "3.0.0",
+  "author": "bazsup <bas10600@gmail.com>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.5.1",
     "gatsby": "^1.9.247",
@@ -30,6 +30,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/alchemist-itbangmod/ask"
   }
 }
