@@ -11,7 +11,9 @@ const HeaderMod = () => (
   <BGHead className="container-fluid">
     <Head className="row">
       <h2 className="col" style={{ margin: 4 }}>
-        <Title>HOME</Title>
+        <a href="/">
+          <Title>HOME</Title>
+        </a>
       </h2>
       <h2 className="col text-center" style={{ margin: 4 }}>
         <Title>#ASK Organizer</Title>
