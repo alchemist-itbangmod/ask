@@ -25,6 +25,7 @@ const Layout = ({
       ]}
     >
       <link href='https://fonts.googleapis.com/css?family=Itim' rel='stylesheet' />
+      <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' rel='stylesheet' />
     </Helmet>
     <HeaderMod siteTitle={data.site.siteMetadata.title} />
     <div
