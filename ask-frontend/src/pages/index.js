@@ -22,6 +22,9 @@ const IndexPage = () => (
       <li>
         <Link to="/org-monitor">Go to OrgMonitor</Link>
       </li>
+      <li>
+        <Link to="/ask-page">Go to AskPage</Link>
+      </li>
     </ul>
   </div>
 )
