@@ -4,22 +4,22 @@ import {
   BGHead,
   Head,
   Title,
-  Button,
+  Button
 } from '../components/styled-components/global'
 
 const HeaderMod = () => (
-  <BGHead className="container-fluid">
-    <Head className="row">
-      <h2 className="col" style={{ margin: 4 }}>
-        <a href="/">
+  <BGHead className='container-fluid'>
+    <Head className='row'>
+      <h2 className='col' style={{ margin: 4, }}>
+        <a href='/'>
           <Title>HOME</Title>
         </a>
       </h2>
-      <h2 className="col text-center" style={{ margin: 4 }}>
+      <h2 className='col text-center' style={{ margin: 4, }}>
         <Title>#ASK Organizer</Title>
       </h2>
-      <div className="col text-right" style={{ margin: 4 }}>
-        <Button className="btn btn-warning">LOGOUT</Button>
+      <div className='col text-right' style={{ margin: 4, }}>
+        <Button className='btn btn-warning'>LOGOUT</Button>
       </div>
     </Head>
   </BGHead>

@@ -8,22 +8,22 @@ const IndexPage = () => (
     <p>Now go build something great.</p>
     <ul>
       <li>
-        <Link to="/pin-page">Go to PinPage</Link>
+        <Link to='/pin-page'>Go to PinPage</Link>
       </li>
       <li>
-        <Link to="/join-page">Go to JoinPage</Link>
+        <Link to='/join-page'>Go to JoinPage</Link>
       </li>
       <li>
-        <Link to="/org-create-room-page">Go to OrgCreateRoom</Link>
+        <Link to='/org-create-room-page'>Go to OrgCreateRoom</Link>
       </li>
       <li>
-        <Link to="/org-home-page">Go to OrgHomePage</Link>
+        <Link to='/org-home-page'>Go to OrgHomePage</Link>
       </li>
       <li>
-        <Link to="/org-monitor">Go to OrgMonitor</Link>
+        <Link to='/org-monitor'>Go to OrgMonitor</Link>
       </li>
       <li>
-        <Link to="/ask-page">Go to AskPage</Link>
+        <Link to='/ask-page'>Go to AskPage</Link>
       </li>
     </ul>
   </div>

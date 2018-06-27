@@ -1,20 +1,19 @@
 import React from 'react'
 import '../static/bootstrap/bootstrap.min.css'
-import styled from 'styled-components'
 import {
   BGHead,
   Head,
   Title,
-  Button,
+  Button
 } from '../components/styled-components/global'
 
 const Header = () => (
-  <BGHead className="container-fluid">
-    <Head className="row">
-      <h2 className="col" style={{ margin: 4 }}>
+  <BGHead className='container-fluid'>
+    <Head className='row'>
+      <h2 className='col' style={{ margin: 4, }}>
         <Title>ASK #3.0</Title>
       </h2>
-      <Button className="col-1-sm btn btn-warning">LOGOUT</Button>
+      <Button className='col-1-sm btn btn-warning'>LOGOUT</Button>
     </Head>
   </BGHead>
 )

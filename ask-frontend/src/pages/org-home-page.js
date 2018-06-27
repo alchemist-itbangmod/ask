@@ -1,11 +1,11 @@
 import React from 'react'
 
 const OrgHomePage = props => (
-  <div className="container" style={{ paddingTop: 50, paddingBottom: 50 }}>
-    <div className="row">
-      <div className="col-12 col-sm-3 col-md-12">
+  <div className='container' style={{ paddingTop: 50, paddingBottom: 50, }}>
+    <div className='row'>
+      <div className='col-12 col-sm-3 col-md-12'>
         <h1
-          className="text-center"
+          className='text-center'
           style={{
             color: 'black',
           }}
@@ -13,18 +13,18 @@ const OrgHomePage = props => (
           #ASK
         </h1>
         <div
-          className="card"
+          className='card'
           style={{
             marginTop: 20,
             backgroundColor: 'rgba(255,255,255)',
             borderRadius: 10,
           }}
         >
-          <div className="container pt-4">
+          <div className='container pt-4'>
             <form>
-              <div className="form-group">
+              <div className='form-group'>
                 <h1>Lorem Ipsum</h1>
-                <div id="lipsum">
+                <div id='lipsum'>
                   <p />
                   <ul>
                     <li>
@@ -93,8 +93,8 @@ const OrgHomePage = props => (
                   <p />
                 </div>
               </div>
-              <div className="mb-5">
-                <button className="btn btn-primary btn-block col-5  text-center d-block m-auto">
+              <div className='mb-5'>
+                <button className='btn btn-primary btn-block col-5  text-center d-block m-auto'>
                   Login Facebook
                 </button>
               </div>
