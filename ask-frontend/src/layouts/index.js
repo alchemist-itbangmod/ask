@@ -23,7 +23,9 @@ const Layout = ({
           content: 'sample, something',
         },
       ]}
-    />
+    >
+      <link href='https://fonts.googleapis.com/css?family=Itim' rel='stylesheet' />
+    </Helmet>
     <HeaderMod siteTitle={data.site.siteMetadata.title} />
     <div
       style={{
