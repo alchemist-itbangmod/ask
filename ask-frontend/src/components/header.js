@@ -1,21 +1,11 @@
 import React from 'react'
 import '../static/bootstrap/bootstrap.min.css'
-import styled from 'styled-components'
-
-const BGHead = styled.div`
-  background: rebeccapurple;
-`
-const Head = styled.div`
-  padding: 10px;
-`
-const Title = styled.div`
-  color: white;
-  textdecoration: none;
-`
-const Button = styled.button`
-  color: black;
-  font-size: 0.75em;
-`
+import {
+  BGHead,
+  Head,
+  Title,
+  Button
+} from '../components/styled-components/global'
 
 const Header = () => (
   <BGHead className='container-fluid'>
