@@ -17,52 +17,42 @@ const CardOnScroll = styled.div`
 `
 
 const index = () => (
-  <Box className='container'>
+  <Box className="container">
     <h2>ROOM NAME</h2>
-    <div className='card'>
-      <Card className='card-header'>
-        <div className='row'>
-          <div className='col text-left'>
+    <div className="card">
+      <Card className="card-header">
+        <div className="row">
+          <div className="col-sm-6 text-left">
             <h3>Selected</h3>
           </div>
-          <div className='col-2 text-right'>
-            <button className='btn btn-success point'>SEND</button>
+          <div className="col-sm-6 text-right">
+            <button className="btn btn-success point">
+              {'SEND'} <span className="badge badge-default">10</span>
+            </button>
           </div>
         </div>
       </Card>
-      <CardOnScroll className='card-block'>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
+      <CardOnScroll className="card-block">
+        {[1, 2, 3, 4, 5].map((item, index) => <li key={index}>อิอิ</li>)}
       </CardOnScroll>
     </div>
-    <div className='card'>
-      <Card className='card-header'>
-        <div className='row'>
-          <div className='col text-left'>
+    <div className="card">
+      <Card className="card-header">
+        <div className="row">
+          <div className="col-sm-6 text-left">
             <h3>Question</h3>
           </div>
-          <div className='col-2 text-right'>
-            <button className='btn btn-primary point'>Refresh</button>
+          <div className="col-sm-6 text-right">
+            <button className="btn btn-info pull-right point">
+              <i class="fa fa-refresh" />
+              {` Refresh `}
+              <span className="badge badge-default">10</span>
+            </button>
           </div>
         </div>
       </Card>
-      <CardOnScroll className='card-block'>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
+      <CardOnScroll className="card-block">
+        {[1, 2, 3, 4, 5].map((item, index) => <li key={index}>อิอิ </li>)}
       </CardOnScroll>
     </div>
   </Box>
