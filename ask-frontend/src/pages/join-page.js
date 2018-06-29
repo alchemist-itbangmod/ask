@@ -1,18 +1,13 @@
 import React from 'react'
-import { CardBox } from '../components/styled-components/global'
+import { Div, CardBox, H2, Input } from '../components/join-page/join'
 
 const JoinPage = props => (
-  <div className='container' style={{ paddingTop: 150, }}>
+  <Div className='container'>
     <div className='row'>
       <div className='col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3'>
-        <h2
-          className='text-center'
-          style={{
-            color: 'black',
-          }}
-        >
+        <H2 className='text-center' >
           {`Welcome to`}
-        </h2>
+        </H2>
         <h4 className='text-center text-black'>{`"ROOM NAME"`}</h4>
         <CardBox
           className='card'
@@ -20,14 +15,10 @@ const JoinPage = props => (
           <div className='container pt-4'>
             <form>
               <div className='form-group'>
-                <input
+                <Input
                   type='text'
                   className='form-control text-center'
                   placeholder='Enter asker name'
-                  style={{
-                    backgroundColor: 'rgba(211,211,211,0.8)',
-                    borderRadius: 10,
-                  }}
                 />
               </div>
               <div className='row'>
@@ -48,7 +39,7 @@ const JoinPage = props => (
         </CardBox>
       </div>
     </div>
-  </div>
+  </Div>
 )
 
 export default JoinPage
