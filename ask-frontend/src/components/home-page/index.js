@@ -8,4 +8,8 @@ const Card = styled.div`
 const H1 = styled.div`
   color: 'black';
 `
-export { Card, H1 }
+const Container = styled.div`
+  paddingTop: 50; 
+  paddingBottom: 50;
+`
+export { Card, H1, Container }
