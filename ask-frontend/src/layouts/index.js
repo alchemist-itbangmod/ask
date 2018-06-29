@@ -5,13 +5,8 @@ import Helmet from 'react-helmet'
 
 import HeaderMod from '../components/headerMod'
 import './index.css'
-import styled from 'styled-components'
 
-const Temp = styled.div`
-  font-family: 'Taviraj', serif;
-`
-
-const Layout = ({ children, data }) => (
+const Layout = ({ children, data, }) => (
   <div>
     <Helmet
       title={data.site.siteMetadata.title}
@@ -26,14 +21,9 @@ const Layout = ({ children, data }) => (
         },
       ]}
     >
-      <link
-        href="https://fonts.googleapis.com/css?family=Taviraj"
-        rel="stylesheet"
-      />
-      <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-        rel="stylesheet"
-      />
+      <link href='https://fonts.googleapis.com/css?family=Itim' rel='stylesheet' />
+
+      <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' rel='stylesheet' />
     </Helmet>
     <HeaderMod siteTitle={data.site.siteMetadata.title} />
     <div
