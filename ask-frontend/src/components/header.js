@@ -1,11 +1,6 @@
 import React from 'react'
 import '../static/bootstrap/bootstrap.min.css'
-import {
-  BGHead,
-  Head,
-  Title,
-  Button
-} from '../components/styled-components/global'
+import { BGHead, Head, Title, Button } from '../components/styled-components/global'
 
 const Header = () => (
   <BGHead className='container-fluid'>
