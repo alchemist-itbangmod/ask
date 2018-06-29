@@ -1,8 +1,8 @@
 import React from 'react'
-import { Card, H1 } from '../components/home-page/index'
+import { Card, H1, Container } from '../components/home-page/index'
 
 const OrgHomePage = props => (
-  <div className='container' style={{ paddingTop: 50, paddingBottom: 50, }}>
+  <Container className='container'>
     <div className='row'>
       <div className='col-12 col-sm-3 col-md-12'>
         <H1 className='text-center'>#ASK</H1>
@@ -90,7 +90,7 @@ const OrgHomePage = props => (
         </Card>
       </div>
     </div>
-  </div>
+  </Container>
 )
 
 export default OrgHomePage
