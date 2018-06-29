@@ -4,6 +4,7 @@
   "version": "3.0.0",
   "author": "bazsup <bas10600@gmail.com>",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-plugin-styled-components": "^1.5.1",
     "gatsby": "^1.9.247",
     "gatsby-link": "^1.6.40",
