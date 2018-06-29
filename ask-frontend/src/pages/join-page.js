@@ -1,4 +1,5 @@
 import React from 'react'
+import { CardBox } from '../components/styled-components/global'
 
 const JoinPage = props => (
   <div className='container' style={{ paddingTop: 150, }}>
@@ -13,12 +14,8 @@ const JoinPage = props => (
           {`Welcome to`}
         </h2>
         <h4 className='text-center text-black'>{`"ROOM NAME"`}</h4>
-        <div
+        <CardBox
           className='card'
-          style={{
-            marginTop: 20,
-            borderRadius: 10,
-          }}
         >
           <div className='container pt-4'>
             <form>
@@ -48,7 +45,7 @@ const JoinPage = props => (
               </div>
             </form>
           </div>
-        </div>
+        </CardBox>
       </div>
     </div>
   </div>

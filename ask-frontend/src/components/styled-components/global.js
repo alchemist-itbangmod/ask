@@ -18,4 +18,9 @@ const Button = styled.button`
   color: black;
   font-size: 0.75em;
 `
-export { BGHead, Head, Title, Button }
+const CardBox = styled.div`
+  margin-top:20;
+  border-radius:10;
+`
+
+export { BGHead, Head, Title, Button, CardBox }
