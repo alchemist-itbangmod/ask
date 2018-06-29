@@ -6,9 +6,13 @@ const BGHead = styled.div`
 const Head = styled.div`
   padding: 10px;
 `
-const Title = styled.div`
+const Title = styled.a`
   color: white;
-  textdecoration: none;
+  text-decoration: none;
+  &:hover{
+    color:white;
+    text-decoration:none;
+  }
 `
 const Button = styled.button`
   color: black;
