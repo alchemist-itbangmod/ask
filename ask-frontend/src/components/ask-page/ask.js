@@ -12,7 +12,7 @@ const TextArea = styled.textarea`
   border: 1px solid #000;
   border-radius: 5px;
 `
-const Name = styled.h4`
+const Name = styled.p`
   text-align: right;
   margin: 1em;
 `
