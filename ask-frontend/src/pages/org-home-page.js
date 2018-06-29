@@ -1,25 +1,12 @@
 import React from 'react'
+import { Card, H1 } from '../components/home-page/index'
 
 const OrgHomePage = props => (
   <div className='container' style={{ paddingTop: 50, paddingBottom: 50, }}>
     <div className='row'>
       <div className='col-12 col-sm-3 col-md-12'>
-        <h1
-          className='text-center'
-          style={{
-            color: 'black',
-          }}
-        >
-          #ASK
-        </h1>
-        <div
-          className='card'
-          style={{
-            marginTop: 20,
-            backgroundColor: 'rgba(255,255,255)',
-            borderRadius: 10,
-          }}
-        >
+        <H1 className='text-center'>#ASK</H1>
+        <Card className='card'>
           <div className='container pt-4'>
             <form>
               <div className='form-group'>
@@ -100,7 +87,7 @@ const OrgHomePage = props => (
               </div>
             </form>
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   </div>
