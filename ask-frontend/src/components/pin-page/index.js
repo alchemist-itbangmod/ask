@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'gatsby-link'
 import { Card, Container, Pin, H1 } from './pin'
 
 const PinPage = props => (
@@ -19,14 +18,10 @@ const PinPage = props => (
               </div>
 
               <button className='btn btn-primary btn-block'>ENTER ROOM</button>
+              <button className='btn btn-success btn-block'>CREATE ROOM</button>
             </form>
           </div>
         </Card>
-        <Link to='/org-home-page/'>
-          <p className='text-center text-info pt-4'>
-            {`>>> if you want to create your room`}
-          </p>
-        </Link>
       </div>
     </div>
   </Container>
