@@ -14,6 +14,7 @@ const CardOnScroll = styled.div`
   padding: 10px;
   overflow-y: scroll;
   height: 20vh;
+  overflow-x:hidden;
 `
 
 const index = () => (
@@ -33,7 +34,12 @@ const index = () => (
         </div>
       </Card>
       <CardOnScroll className='card-block'>
-        {[ 1, 2, 3, 4, 5, ].map((item, index) => <li key={index}>อิอิ</li>)}
+        {[ 1, 2, 3, 4, 5, ].map((item, index) =>
+          <li className='row' key={index}>
+            <p className='col-6'>อิอิ</p>
+            <i className='text-right col-6 fa fa-trash' />
+          </li>)
+        }
       </CardOnScroll>
     </div>
     <div className='card'>
@@ -52,7 +58,12 @@ const index = () => (
         </div>
       </Card>
       <CardOnScroll className='card-block'>
-        {[ 1, 2, 3, 4, 5, ].map((item, index) => <li key={index}>อิอิ </li>)}
+        {[ 1, 2, 3, 4, 5, ].map((item, index) =>
+          <li className='row' key={index}>
+            <p className='col-6'>อิอิ</p>
+            <i className='text-right col-6 fa fa-trash' />
+          </li>)
+        }
       </CardOnScroll>
     </div>
   </Box>
