@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CreateCard from '../components/OrgMonitor/createRoomCard'
+import CreateCard from '../components/org-monitor/createRoomCard'
 
 const OrgCreateRoom = props => (
   <div>
