@@ -26,7 +26,7 @@ const JoinPage = props => (
         <H2 className='text-center' >
           {`Welcome to`}
         </H2>
-        <h4 className='text-center text-black'>{`"ROOM NAME"`}</h4>
+        <h4 className='text-center text-black'>{`"Room Name"`}</h4>
         <CardBox
           className='card'
         >
