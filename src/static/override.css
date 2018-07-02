@@ -1,8 +1,0 @@
-/* Override SweetAlert */
-.swal2-modal .swal2-styled {
-  border-radius: 22px;
-}
-
-button:focus {
-  outline: none;
-}
