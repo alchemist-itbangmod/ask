@@ -23,46 +23,48 @@ const DivHead = styled.div`
 const I = styled.i`
 }
 `
-const OrgMonitor = () => (
-
-  <CardBox className='container-fluid'>
-    <h3>Event</h3>
-    <Row>
-      <Col sm='8'>
-        <DivHead>
-          <CardHeader className='row'>
-            <p className='col-sm-9'>Question</p>
-            <Button className='col-sm-3' color='info'>Refresh</Button>{' '}
-          </CardHeader>
-        </DivHead>
-        <Card><Scroll>
-          {[ 1, 2, 3, 4, 5, ].map((item, index) =>
-            <List className='row'>
-              <p className='col-sm-11'>คำถาม</p>
-              <I className='text-right col-sm-1 fa fa-trash' />
-            </List>
-          )}
-        </Scroll></Card>
-      </Col>
-      <Col sm='4'>
-        <DivHead>
-          <CardHeader className='row'>
-            <p className='col-sm-8'>Selected</p>
-            <Button className='col-sm-4' color='success'>Send</Button>{' '}
-          </CardHeader>
-        </DivHead>
-        <Card><Scroll>
-          {[ 1, 2, 3, 4, 5, ].map((item, index) =>
-            <List className='row'>
-              <p className='col-sm-10'>คำถาม</p>
-              <I className='text-right col-sm-2 fa fa-trash' />
-            </List>
-          )}
-        </Scroll></Card>
-      </Col>
-    </Row>
-  </CardBox>
-
-)
+class OrgMonitor extends React.Component {
+  render () {
+    return (
+      <CardBox className='container-fluid'>
+        <h3>Event</h3>
+        <Row>
+          <Col sm='8'>
+            <DivHead>
+              <CardHeader className='row'>
+                <p className='col-sm-9'>Question</p>
+                <Button className='col-sm-3' color='info'>Refresh</Button>{' '}
+              </CardHeader>
+            </DivHead>
+            <Card><Scroll>
+              {[ 1, 2, 3, 4, 5, ].map((item, index) =>
+                <List className='row'>
+                  <p className='col-sm-11'>คำถาม</p>
+                  <I className='text-right col-sm-1 fa fa-trash' />
+                </List>
+              )}
+            </Scroll></Card>
+          </Col>
+          <Col sm='4'>
+            <DivHead>
+              <CardHeader className='row'>
+                <p className='col-sm-8'>Selected</p>
+                <Button className='col-sm-4' color='success'>Send</Button>{' '}
+              </CardHeader>
+            </DivHead>
+            <Card><Scroll>
+              {[ 1, 2, 3, 4, 5, ].map((item, index) =>
+                <List className='row'>
+                  <p className='col-sm-10'>คำถาม</p>
+                  <I className='text-right col-sm-2 fa fa-trash' />
+                </List>
+              )}
+            </Scroll></Card>
+          </Col>
+        </Row>
+      </CardBox>
+    )
+  }
+}
 
 export default OrgMonitor
