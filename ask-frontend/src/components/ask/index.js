@@ -4,14 +4,14 @@ import { Card, Button, TextArea, Name } from './ask'
 class AskPage extends React.Component {
   state = {
     themeTemplates: '',
-    question: [],
+    question: '',
     anonymous: false,
     roomId: '',
     showNoti: false,
     status: '',
   }
   changeInputQuestion (data) {
-    this.question = data
+    this.state.question = data
   }
   render () {
     return (
