@@ -2,6 +2,15 @@ import React from 'react'
 import { Card, Button, TextArea, Name } from './ask'
 
 class AskPage extends React.Component {
+  state = {
+    themeTemplates: '',
+    question: [],
+    anonymous: false,
+    roomId: '',
+    showNoti: false,
+    status: '',
+  }
+
   render () {
     return (
       <div className='container'>
