@@ -10,7 +10,9 @@ class AskPage extends React.Component {
     showNoti: false,
     status: '',
   }
-
+  changeInputQuestion (data) {
+    this.question = data
+  }
   render () {
     return (
       <div className='container'>
@@ -28,6 +30,8 @@ class AskPage extends React.Component {
                   <TextArea
                     rows='5'
                     className='form-control'
+                    onChange={e => this.changeInputQuestion(e.target.value)}
+                    value={this.question}
                   />
                   <div className='row'>
                     <div className='col-7 col-sm-8 col-md-8 pl-5'>
