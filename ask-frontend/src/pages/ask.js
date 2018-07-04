@@ -1,8 +1,8 @@
 import React from 'react'
-import Index from '../components/ask-page'
+import EnterQuestion from '../components/ask'
 
 const AskPage = () => (
-  <Index />
+  <EnterQuestion />
 )
 
 export default AskPage
