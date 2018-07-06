@@ -1,5 +1,6 @@
 import React from 'react'
-import { Card, Button, TextArea, Name } from './ask'
+import { Card, Container, Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Name } from './ask'
 
 class AskPage extends React.Component {
   state = {
@@ -15,39 +16,42 @@ class AskPage extends React.Component {
   }
   render () {
     return (
-      <div className='container'>
-        <div className='row justify-content-center'>
-          <div className='col-12 col-sm-10 col-md-8'>
+      <Container>
+        <Row>
+          <Col sm='12' md='12'>
             <h2
               className='text-right mt-5'
             >
           Question
             </h2>
-            <form >
-              <Card className='card'>
-                <div className='form-group m-2'>
+            <Form >
+              <Card>
+                <FormGroup>
                   <Name className='text-right'>Hi, Alchemist</Name>
-                  <TextArea
+                  <Input
+                    type='textarea'
                     rows='5'
-                    className='form-control'
                     onChange={e => this.changeInputQuestion(e.target.value)}
                     value={this.question}
                   />
-                  <div className='row'>
-                    <div className='col-7 col-sm-8 col-md-8 pl-5'>
-                      <input type='checkbox' className='form-check-input' id='exampleCheck1' />
-                      <label className='form-check-label' htmlFor='exampleCheck1'>Send as anonymous</label>
-                    </div>
-                    <div className='col-5 col-sm-4 col-md-4'>
-                      <Button type='submit' className='btn btn-primary btn-block'>SEND</Button>
-                    </div>
-                  </div>
-                </div>
+                  <Row>
+                    <Col sm='8' md='8'>
+                      <FormGroup check>
+                        <Label check>
+                          <Input type='checkbox' id='exampleCheck1' />{' '}Send as anonymous
+                        </Label>
+                      </FormGroup>
+                    </Col>
+                    <Col sm='4' md='4'>
+                      <Button type='submit' color='primary'>SEND</Button>
+                    </Col>
+                  </Row>
+                </FormGroup>
               </Card>
-            </form>
-          </div>
-        </div>
-      </div>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
     )
   }
 }
