@@ -25,20 +25,28 @@ const I = styled.i`
 `
 class OrgMonitor extends React.Component {
   state={
-    question: [
+    allQuestion: [
       'content1',
       'content2',
       'content3',
       'content4',
+      {
+        question: '',
+        name: '',
+        anonymous: false,
+        questionId: 0,
+      },
     ],
     getQ: [],
+    selectedQuestion: [],
+    liveQuestion: [],
   }
   getQuestion () {
     console.log(this.state.getQ)
-    console.log(this.state.question)
+    console.log(this.state.allQuestion)
 
     const temp = this.state.getQ.slice(0)
-    temp.push(this.state.question.splice(0, 1).toString())
+    temp.push(this.state.allQuestion.splice(0, 1).toString())
     this.setState({
       getQ: temp,
     })
