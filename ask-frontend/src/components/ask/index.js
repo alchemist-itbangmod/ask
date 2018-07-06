@@ -12,16 +12,24 @@ class AskPage extends React.Component {
     status: '',
   }
   changeInputQuestion (data) {
-    this.state.question = data
+    this.setState({
+      question: data,
+    })
   }
+
   toggleAnonymous () {
     if (this.state.anonymous) {
-      this.state.anonymous = false
+      this.setState({
+        anonymous: false,
+      })
     } else {
-      this.state.anonymous = true
+      this.setState({
+        anonymous: true,
+      })
     }
     console.log(this.state.anonymous)
   }
+
   render () {
     return (
       <Container>
