@@ -14,11 +14,19 @@ class AskPage extends React.Component {
   changeInputQuestion (data) {
     this.state.question = data
   }
+  toggleAnonymous () {
+    if (this.state.anonymous) {
+      this.state.anonymous = false
+    } else {
+      this.state.anonymous = true
+    }
+    console.log(this.state.anonymous)
+  }
   render () {
     return (
       <Container>
-        <Row>
-          <Col sm='12' md='12'>
+        <Row className='justify-content-center'>
+          <Col sm='10' md='10' xs='10'>
             <h2
               className='text-right mt-5'
             >
@@ -35,15 +43,15 @@ class AskPage extends React.Component {
                     value={this.question}
                   />
                   <Row>
-                    <Col sm='8' md='8'>
+                    <Col sm='8' md='8' xs='6' className='pl-4 pt-3'>
                       <FormGroup check>
                         <Label check>
-                          <Input type='checkbox' id='exampleCheck1' />{' '}Send as anonymous
+                          <Input type='checkbox' id='checkAnonymous' onClick={() => this.toggleAnonymous()} />Send as anonymous
                         </Label>
                       </FormGroup>
                     </Col>
-                    <Col sm='4' md='4'>
-                      <Button type='submit' color='primary'>SEND</Button>
+                    <Col sm='4' md='4' xs='6' className='mt-3'>
+                      <Button type='submit' color='primary' className='btn btn-block'>SEND</Button>
                     </Col>
                   </Row>
                 </FormGroup>
