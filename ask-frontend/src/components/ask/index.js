@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Container, Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap'
-import { Name } from './ask'
+import { Name } from '../styled-components/enterQuestion/enterQuestion'
 
 class AskPage extends React.Component {
   state = {
