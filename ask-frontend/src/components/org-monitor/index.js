@@ -24,22 +24,44 @@ const I = styled.i`
 }
 `
 class OrgMonitor extends React.Component {
+  state={
+    question: [
+      'content1',
+      'content2',
+      'content3',
+      'content4',
+    ],
+    getQ: [],
+  }
+  getQuestion () {
+    console.log(this.state.getQ)
+    console.log(this.state.question)
+
+    const temp = this.state.getQ.slice(0)
+    temp.push(this.state.question.splice(0, 1).toString())
+    this.setState({
+      getQ: temp,
+    })
+  }
+
   render () {
     return (
-      <CardBox className='container-fluid'>
+
+      <CardBox className>
+
         <h3>Event</h3>
         <Row>
           <Col sm='8'>
             <DivHead>
               <CardHeader className='row'>
                 <p className='col-sm-9'>Question</p>
-                <Button className='col-sm-3' color='info'>Refresh</Button>{' '}
+                <Button className='col-sm-3' color='info' onClick={() => this.getQuestion()}>Refresh</Button>{' '}
               </CardHeader>
             </DivHead>
             <Card><Scroll>
-              {[ 1, 2, 3, 4, 5, ].map((item, index) =>
+              {this.state.getQ.map((item, index) =>
                 <List className='row'>
-                  <p className='col-sm-11'>คำถาม</p>
+                  <p className='col-sm-11'>{item}</p>
                   <I className='text-right col-sm-1 fa fa-trash' />
                 </List>
               )}
@@ -55,14 +77,16 @@ class OrgMonitor extends React.Component {
             <Card><Scroll>
               {[ 1, 2, 3, 4, 5, ].map((item, index) =>
                 <List className='row'>
-                  <p className='col-sm-10'>คำถาม</p>
-                  <I className='text-right col-sm-2 fa fa-trash' />
+                  <p className='col-sm-8'>คำถาม</p>
+                  <Button color='danger' className='col-sm-4'>Live</Button>
                 </List>
               )}
             </Scroll></Card>
           </Col>
         </Row>
+
       </CardBox>
+
     )
   }
 }
