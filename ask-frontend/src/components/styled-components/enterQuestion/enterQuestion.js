@@ -16,5 +16,9 @@ const Name = styled.p`
   text-align: right;
   margin: 1em;
 `
+const Send = styled.div`
+  text-align: right;
+  margin: 10px;
+`
 
-export { Card, Button, TextArea, Name }
+export { Card, Button, TextArea, Name, Send }
