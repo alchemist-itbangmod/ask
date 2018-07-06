@@ -27,7 +27,6 @@ class AskPage extends React.Component {
         anonymous: true,
       })
     }
-    console.log(this.state.anonymous)
   }
 
   render () {
