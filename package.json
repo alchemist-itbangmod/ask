@@ -29,6 +29,9 @@
     ]
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.1.0"
+    "@fortawesome/fontawesome-free": "^5.1.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "reactstrap": "^6.2.0"
   }
 }
