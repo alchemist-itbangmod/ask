@@ -1,6 +1,6 @@
 import React from 'react'
 import { observable, action } from 'mobx'
-import { Div, CardBox, H2, Input } from '../components/join-page/join'
+import { Button, Input, Container, Row, Col, Card, Badge } from 'reactstrap'
 
 class Name {
   @observable name = ''
@@ -20,41 +20,38 @@ class Name {
 const store = new Name()
 
 const JoinPage = props => (
-  <Div className='container'>
-    <div className='row'>
-      <div className='col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3'>
-        <H2 className='text-center' >
+  <Container>
+    <Row>
+      <Col sm="12" md={{ size: 10, offset: 1 }}>
+        <h2 className='text-center' >
           {`Welcome to`}
-        </H2>
-        <h4 className='text-center text-black'>{`"Room Name"`}</h4>
-        <CardBox
-          className='card'
-        >
-          <div className='container pt-4'>
+        </h2>
+        <h2 className='text-center font-weight-normal'>{`"Room Name"`}</h2>
+        <Card body className='text-center' outline color='secondary'>
+          <Container>
             <form onSubmit={store.handleSubmit}>
-              <div className='form-group'>
-                <Input
+                  <Input
                   type='text'
-                  className='form-control text-center'
-                  placeholder='Enter asker name'
+                  placeholder='Type your name'
                   name='name'
                   value={store.name}
                   onChange={store.changeInputName}
-                />
-              </div>
-              <div className='row'>
-                <div className='col-12'>
-                  <button type='submit' className='btn btn-primary btn-block'>
-                    JOIN ROOM
-                  </button>
-                </div>
-              </div>
+                  outline
+                  className='text-center'
+                  />
+                  <Row>
+                    <Col sm="11"></Col>
+                    <Col sm="1">
+                    <Badge pill color='link' classname='float-right'>50</Badge>
+                    </Col>
+                  </Row>
+                  <Button type='submit' color='primary' block>Let's ASK</Button>
             </form>
-          </div>
-        </CardBox>
-      </div>
-    </div>
-  </Div>
+           </Container>
+        </Card>
+      </Col>
+    </Row>
+  </Container>
 )
 
 export default JoinPage
