@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Container, Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap'
-import { Anonymous, Name } from '../styled-components/enterQuestion/enterQuestion'
+import { Anonymous } from '../styled-components/enterQuestion/enterQuestion'
 
 class AskPage extends React.Component {
   state = {
@@ -12,61 +12,58 @@ class AskPage extends React.Component {
     status: '',
   }
   changeInputQuestion (data) {
-    this.setState({
-      question: data,
-    })
+    this.setState({ question: data })
   }
 
   toggleAnonymous () {
-    if (this.state.anonymous) {
-      this.setState({
-        anonymous: false,
-      })
-    } else {
-      this.setState({
-        anonymous: true,
-      })
-    }
+    const { anonymous } = this.state
+    this.setState({ anonymous: !anonymous })
   }
 
   render () {
     return (
       <Container>
         <Row className='justify-content-center'>
-          <Col sm='12' md='10' xs='12'>
-            <h2
-              className='text-right mt-5'
-            >
-          Question
-            </h2>
-            <Form >
-              <Card>
-                <FormGroup>
-                  <Name className='text-right'>Hi, Alchemist</Name>
-                  <Input
-                    type='textarea'
-                    rows='5'
-                    onChange={e => this.changeInputQuestion(e.target.value)}
-                    value={this.question}
-                    placeholder='Type your question here at least 4 characters'
-                  />
-                  <Row>
-                    <Col sm='8' md='8' xs='6' className='pl-4 pt-3'>
-                      <FormGroup check>
-                        <Label check>
-                          <Input type='checkbox' id='checkAnonymous' onClick={() => this.toggleAnonymous()} />
-                          <Anonymous>
-                            Send as anonymous
-                          </Anonymous>
-                        </Label>
-                      </FormGroup>
-                    </Col>
-                    <Col sm='4' md='4' xs='6' className='mt-3'>
-                      <Button type='submit' color='primary' className='btn btn-block'>SEND</Button>
-                    </Col>
-                  </Row>
-                </FormGroup>
-              </Card>
+          <Col sm='10' xs='12'>
+            <h2 className='mt-2 mb-5'>Room title</h2>
+            <Form>
+              <Row>
+                <Col xs={12}>
+                  <Card>
+                    <FormGroup>
+                      <Col xs={12}>
+                        <p className='mt-3 text-right'>Hi, Alchemist</p>
+                      </Col>
+                      <Col xs={12}>
+                        <Input
+                          type='textarea'
+                          rows='6'
+                          onChange={e => this.changeInputQuestion(e.target.value)}
+                          value={this.state.question}
+                          placeholder='Type your question at least 4 characters'
+                        />
+                      </Col>
+                      <Col xs={12}>
+                        <Row className={`mt-3 align-items-center`}>
+                          <Col xs={7} className={`pr-0`}>
+                            <FormGroup check>
+                              <Label check>
+                                <Input type='checkbox' id='checkAnonymous' onClick={() => this.toggleAnonymous()} />
+                                <Anonymous>
+                                  Send as anonymous
+                                </Anonymous>
+                              </Label>
+                            </FormGroup>
+                          </Col>
+                          <Col xs={5}>
+                            <Button type='submit' color='primary' className='btn btn-block'>SEND</Button>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </FormGroup>
+                  </Card>
+                </Col>
+              </Row>
             </Form>
           </Col>
         </Row>
