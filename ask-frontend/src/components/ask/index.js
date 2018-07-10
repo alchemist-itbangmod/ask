@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Container, Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap'
-import { Name } from '../styled-components/enterQuestion/enterQuestion'
+import { Anonymous, Name } from '../styled-components/enterQuestion/enterQuestion'
 
 class AskPage extends React.Component {
   state = {
@@ -33,7 +33,7 @@ class AskPage extends React.Component {
     return (
       <Container>
         <Row className='justify-content-center'>
-          <Col sm='10' md='10' xs='10'>
+          <Col sm='12' md='10' xs='12'>
             <h2
               className='text-right mt-5'
             >
@@ -48,12 +48,16 @@ class AskPage extends React.Component {
                     rows='5'
                     onChange={e => this.changeInputQuestion(e.target.value)}
                     value={this.question}
+                    placeholder='Type your question here at least 4 characters'
                   />
                   <Row>
                     <Col sm='8' md='8' xs='6' className='pl-4 pt-3'>
                       <FormGroup check>
                         <Label check>
-                          <Input type='checkbox' id='checkAnonymous' onClick={() => this.toggleAnonymous()} />Send as anonymous
+                          <Input type='checkbox' id='checkAnonymous' onClick={() => this.toggleAnonymous()} />
+                          <Anonymous>
+                            Send as anonymous
+                          </Anonymous>
                         </Label>
                       </FormGroup>
                     </Col>
