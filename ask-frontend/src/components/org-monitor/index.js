@@ -21,13 +21,19 @@ class OrgMonitor extends React.Component {
     liveQuestion: [],
   }
   getQuestion () {
-    // console.log(this.state.getQ)
-    // console.log(this.state.allQuestion)
-
     const temp = this.state.getQ.slice(0)
     temp.push(this.state.allQuestion.splice(0, 1).toString())
     this.setState({
       getQ: temp,
+    })
+  }
+  handleSelectedQuestion (index) {
+    const temp = this.state.getQ.slice(index, index + 1)
+    const temp4selectQ = this.state.selectedQuestion.slice(0)
+    temp4selectQ.push(temp)
+    this.state.getQ.splice(index, 1)
+    this.setState({
+      selectedQuestion: temp4selectQ,
     })
   }
 
@@ -47,7 +53,7 @@ class OrgMonitor extends React.Component {
               </DivHead>
               <Card><Scroll>
                 {this.state.getQ.map((item, index) =>
-                  <List className='row'>
+                  <List className='row' onClick={() => this.handleSelectedQuestion(index)}>
                     <p className='col-sm-11'>{item}</p>
                     <i className='text-right col-sm-1 fa fa-trash' />
                   </List>
@@ -62,9 +68,9 @@ class OrgMonitor extends React.Component {
                 </CardHeader>
               </DivHead>
               <Card><Scroll>
-                {[ 1, 2, 3, 4, 5, ].map((item, index) =>
+                {this.state.selectedQuestion.map((item, index) =>
                   <List className='row'>
-                    <p className='col-sm-9'>คำถาม</p>
+                    <p className='col-sm-9'>{item}</p>
                     <Button color='danger' size='sm' className='col-sm-3'>Live</Button>
                   </List>
                 )}
