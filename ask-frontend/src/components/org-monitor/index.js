@@ -34,7 +34,7 @@ const index = () => (
         </div>
       </Card>
       <CardOnScroll className='card-block'>
-        {[ 1, 2, 3, 4, 5, ].map((item, index) =>
+        {[ 1, 2, 3, 4, 5 ].map((item, index) =>
           <li className='row' key={index}>
             <p className='col-6'>อิอิ</p>
             <i className='text-right col-6 fa fa-trash' />
@@ -58,7 +58,7 @@ const index = () => (
         </div>
       </Card>
       <CardOnScroll className='card-block'>
-        {[ 1, 2, 3, 4, 5, ].map((item, index) =>
+        {[ 1, 2, 3, 4, 5 ].map((item, index) =>
           <li className='row' key={index}>
             <p className='col-6'>อิอิ</p>
             <i className='text-right col-6 fa fa-trash' />
