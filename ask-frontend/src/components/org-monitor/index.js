@@ -36,6 +36,11 @@ class OrgMonitor extends React.Component {
       selectedQuestion: temp4selectQ,
     })
   }
+  sendQuestion () {
+    this.setState({
+      temp: this.state.selectedQuestion.splice(0),
+    })
+  }
 
   render () {
     return (
@@ -64,7 +69,7 @@ class OrgMonitor extends React.Component {
               <DivHead>
                 <CardHeader className='row'>
                   <p className='col-sm-9'>Selected</p>
-                  <Button className='col-sm-3' size='sm' color='success'>Send</Button>{' '}
+                  <Button className='col-sm-3' size='sm' color='success' onClick={() => this.sendQuestion()}>Send</Button>{' '}
                 </CardHeader>
               </DivHead>
               <Card><Scroll>
