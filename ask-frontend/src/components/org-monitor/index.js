@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Button, CardHeader, Row, Col, Container } from 'reactstrap'
+import { Card, Button, CardHeader, Row, Col, Container, Badge } from 'reactstrap'
 import { CardBox, Scroll, List, DivHead } from './styled'
 
 class OrgMonitor extends React.Component {
@@ -76,7 +76,7 @@ class OrgMonitor extends React.Component {
                 {this.state.selectedQuestion.map((item, index) =>
                   <List className='row'>
                     <p className='col-sm-9'>{item}</p>
-                    <Button color='danger' size='sm' className='col-sm-3'>Live</Button>
+                    <h5 className='co-sm-3'><Badge color='Light' pill><p style={{ color: 'red', }}>o</p> Live</Badge></h5>
                   </List>
                 )}
               </Scroll></Card>
