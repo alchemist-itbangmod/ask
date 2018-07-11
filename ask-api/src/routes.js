@@ -1,12 +1,15 @@
 const express = require('express')
 const router = express.Router()
 
-const helloRoutes = require('./modules/hello/routes')
+const roomsRoutes = require('./modules/rooms/routes')
+
+// const questionsRoutes = require('./modules/questions/routes')
 
 router.get('/', (req, res) => {
   res.send('api')
 })
-router.use('/rooms', helloRoutes)
-// router.use('/questions')
+
+router.use('/rooms', roomsRoutes)
+// router.use('/questions', questionsRoutes)
 
 module.exports = router

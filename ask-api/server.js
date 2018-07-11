@@ -15,7 +15,6 @@ app.get('/', (req, res) => {
 
 app.get('/rooms/:id', async (req, res) => {
   res.send(req.params.id)
-  // return app.render(req, res, '/org-monitor')
 })
 
 app.use('/api/v1', apiRoutes)
