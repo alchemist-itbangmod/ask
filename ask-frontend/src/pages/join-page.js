@@ -3,7 +3,6 @@ import { observable, action } from 'mobx'
 import { Button, Input, Container, Row, Col, Card, Badge } from 'reactstrap'
 import { navigateTo } from "gatsby-link"
 
-
 class Name {
   @observable name = ''
   @observable themeTemplates = ''
@@ -36,18 +35,17 @@ class JoinPage extends React.Component {
   componentWillMount() {
     store.initialJoin
   }
-  
   render () {
     return (
-      <Container>
+      <Container className='mt-5 pt-5'>
         <Row>
           <Col sm='12' md={{ size: 10, offset: 1 }}>
             <h2 className='text-center' >
               {`Welcome to`}
             </h2>
-            <h2 className='text-center font-weight-normal'>{'"'+store.roomName+'"'}</h2>
-            <Card body className='text-center' outline color='secondary'>
-              <Container>
+            <h2 className='text-center font-weight-normal'>{'"'+store.roomName+'"'}</h2>     
+            <Container>
+              <Card body className='text-center' outline color='secondary'>
                 <form onSubmit={(store.handleSubmit)}>
                   <Input
                     type='text'
@@ -56,18 +54,12 @@ class JoinPage extends React.Component {
                     value={store.name}
                     onChange={store.changeInputName}
                     outline
-                    className='text-center'
+                    className='text-center mb-3'
                   />
-                  <Row>
-                    <Col sm='11'></Col>
-                    <Col sm='1'>
-                      <Badge pill color='link' classname='float-right'>50</Badge>
-                    </Col>
-                  </Row>
                   <Button type='submit' color='primary' block>Let's ASK</Button>
                 </form>
-              </Container>
-            </Card>
+              </Card>
+            </Container>
           </Col>
         </Row>
       </Container>
