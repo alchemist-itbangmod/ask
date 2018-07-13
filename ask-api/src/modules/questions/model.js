@@ -6,6 +6,7 @@ let questions = [
   { id: 2, title: 'content3', },
   { id: 3, title: 'content4', },
 ]
+
 module.exports = {
   getAll: () => {
     return questions
@@ -18,12 +19,13 @@ module.exports = {
     title,
     id,
   }) => {
-    if (!_.isEmpty(title) && !_.isEmpty(id)) {
-      const index = _.findIndex(questions, { id, })
-
-      console.log('questions', questions[index])
-      // question.title = title
-      return index
+    if (!_.isEmpty(title)) {
+      questions.findIndex(ech => ech.id === id)
+      const question = _.find(questions, { id, })
+      if (!_.isEmpty(question)) {
+        question.title = title
+        return question
+      }
     }
     return null
   },

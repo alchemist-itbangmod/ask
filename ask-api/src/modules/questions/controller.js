@@ -10,8 +10,16 @@ module.exports = {
   },
   updateQuestion: (req, res) => {
     const name = req.body.name
-    const id = req.params.id
+    const id = +req.params.id
     const update = questionsModel.update({ id, title: name, })
-    res.send(update)
+    if (update) {
+      res.send({
+        status: 'success',
+        data: update,
+      })
+    }
+    res.send({
+      status: 'failed',
+    })
   },
 }
