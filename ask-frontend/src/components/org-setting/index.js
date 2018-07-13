@@ -1,7 +1,8 @@
 import React from 'react'
 import { observable, action } from 'mobx'
-import { Card, Container, Input, Row, Col, InputGroup, Button } from 'reactstrap'
+import { Card, Input, Row, Col, InputGroup, Button } from 'reactstrap'
 import Toggle from 'react-toggle'
+import { observer } from 'mobx-react'
 
 import '../../static/toggle.css'
 
@@ -14,7 +15,7 @@ class Setting {
   @observable canSend = false
 
   @action
-  getData = () => {
+  getRoomData = () => {
     localStorage.getItem('roomId')
     localStorage.getItem('themeTemplates')
     localStorage.getItem('roomName')
@@ -24,7 +25,7 @@ class Setting {
 
   @action
   changeInputName = e => {
-    this[e.target.roomName] = e.target.value
+    this[e.target.name] = e.target.value
   }
 
   @action
@@ -35,53 +36,60 @@ class Setting {
     localStorage.setItem('canSend', this.canSend)
     localStorage.setItem('roomId', this.roomId)
   }
+
+  @action
+  handleToggleOpenSending = e => {
+    this[e.target.name] = !this.canSend
+  }
 }
 
 const store = new Setting()
 
+@observer
 class OrgSetting extends React.Component {
   componentWillMount () {
-    store.getData()
+    store.getRoomData()
   }
 
   render () {
     return (
-      <Card>
-        <Container>
-          <Row>
-            <Col>
-              <form onSubmit={(store.updateRoomData)}>
-                <InputGroup>
-                  <p>Room Name :</p>
-                  <Input
-                    type='text'
-                    placeholder={store.roomName}
-                    name='roomName'
-                    value={store.roomName}
-                    onChange={store.changeInputName}
-                    outline
-                    className='text-center mb-3'
-                  />
-                </InputGroup>
-                <InputGroup>
-                  <p>Room PIN :</p>
-                  {store.roomPin}
-                </InputGroup>
-                <InputGroup>
-                  <p>Open Sending :</p>
-                  <Toggle />
-                </InputGroup>
-                <InputGroup>
-                  <p>Theme :</p>
-                  <p>themes</p>
-                </InputGroup>
+      <Card body>
+        <Row>
+          <form onSubmit={(store.updateRoomData)}>
+            <Col sm='10' xs='12'>
+              <InputGroup>
+                <p className='mr-2'>Room Name :</p>
+                <Input
+                  type='text'
+                  placeholder={store.roomName}
+                  name='roomName'
+                  value={store.roomName}
+                  onChange={store.changeInputName}
+                  outline
+                />
+              </InputGroup>
+              <InputGroup>
+                <p className='mr-2'>Room PIN :</p>
+                {store.roomPin}
+              </InputGroup>
+              <InputGroup>
+                <p className='mr-2'>Open Sending :</p>
+                <Toggle
+                  checked={store.canSend}
+                  onChange={store.handleToggleOpenSending}
+                  name='canSend'
+                />
+              </InputGroup>
+              <InputGroup>
+                <p className='mr-2'>Theme :</p>
+                <p>themes</p>
+              </InputGroup><Col sm={{ size: 6, order: 2, offset: 7, }}>
                 <Button type='submit' color='success'>Update</Button>
-              </form>
+              </Col>
             </Col>
 
-          </Row>
-
-        </Container>
+          </form>
+        </Row>
       </Card>
     )
   }
