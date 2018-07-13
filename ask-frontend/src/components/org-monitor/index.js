@@ -1,68 +1,90 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Card, Button, CardHeader, Row, Col } from 'reactstrap'
+import { Card, Button, CardHeader, Row, Col, Container, Badge } from 'reactstrap'
+import { CardBox, Scroll, List, DivHead } from './styled'
 
-const CardBox = styled.div`
-  margin-top:20px;
-  padding: 30px;
-  border:1px solid black;
-  hegiht:80vh;
-`
-const Scroll = styled.div`
-  overflow-y:scroll;
-  overflow-x:hidden;
-  height:50vh;
-`
-const List = styled.li`
-  margin:20px;
-`
-const DivHead = styled.div`
-  padding-left:15px;
-  padding-right:15px;
-`
-const I = styled.i`
-}
-`
 class OrgMonitor extends React.Component {
+  state={
+    allQuestion: [
+      'content1',
+      'content2',
+      'content3',
+      'content4',
+      {
+        question: '',
+        name: '',
+        anonymous: false,
+        questionId: 0,
+      },
+    ],
+    getQ: [],
+    selectedQuestion: [],
+    liveQuestion: [],
+  }
+  getQuestion () {
+    const temp = this.state.getQ.slice(0)
+    temp.push(this.state.allQuestion.splice(0, 1).toString())
+    this.setState({
+      getQ: temp,
+    })
+  }
+  handleSelectedQuestion (index) {
+    const temp = this.state.getQ.slice(index, index + 1)
+    const temp4selectQ = this.state.selectedQuestion.slice(0)
+    temp4selectQ.push(temp)
+    this.state.getQ.splice(index, 1)
+    this.setState({
+      selectedQuestion: temp4selectQ,
+    })
+  }
+  sendQuestion () {
+    this.setState({
+      temp: this.state.selectedQuestion.splice(0),
+    })
+  }
+
   render () {
     return (
-      <CardBox className='container-fluid'>
-        <h3>Event</h3>
-        <Row>
-          <Col sm='8'>
-            <DivHead>
-              <CardHeader className='row'>
-                <p className='col-sm-9'>Question</p>
-                <Button className='col-sm-3' color='info'>Refresh</Button>{' '}
-              </CardHeader>
-            </DivHead>
-            <Card><Scroll>
-              {[ 1, 2, 3, 4, 5, ].map((item, index) =>
-                <List className='row'>
-                  <p className='col-sm-11'>คำถาม</p>
-                  <I className='text-right col-sm-1 fa fa-trash' />
-                </List>
-              )}
-            </Scroll></Card>
-          </Col>
-          <Col sm='4'>
-            <DivHead>
-              <CardHeader className='row'>
-                <p className='col-sm-8'>Selected</p>
-                <Button className='col-sm-4' color='success'>Send</Button>{' '}
-              </CardHeader>
-            </DivHead>
-            <Card><Scroll>
-              {[ 1, 2, 3, 4, 5, ].map((item, index) =>
-                <List className='row'>
-                  <p className='col-sm-10'>คำถาม</p>
-                  <I className='text-right col-sm-2 fa fa-trash' />
-                </List>
-              )}
-            </Scroll></Card>
-          </Col>
-        </Row>
+
+      <CardBox>
+        <Container>
+          <h3>Event</h3>
+          <Row>
+            <Col sm='8'>
+              <DivHead>
+                <CardHeader className='row'>
+                  <p className='col-sm-10'>Question</p>
+                  <Button className='col-sm-2' size='sm' color='info' onClick={() => this.getQuestion()}>Refresh</Button>{' '}
+                </CardHeader>
+              </DivHead>
+              <Card><Scroll>
+                {this.state.getQ.map((item, index) =>
+                  <List className='row' onClick={() => this.handleSelectedQuestion(index)}>
+                    <p className='col-sm-11'>{item}</p>
+                    <i className='text-right col-sm-1 fa fa-trash' />
+                  </List>
+                )}
+              </Scroll></Card>
+            </Col>
+            <Col sm='4'>
+              <DivHead>
+                <CardHeader className='row'>
+                  <p className='col-sm-9'>Selected</p>
+                  <Button className='col-sm-3' size='sm' color='success' onClick={() => this.sendQuestion()}>Send</Button>{' '}
+                </CardHeader>
+              </DivHead>
+              <Card><Scroll>
+                {this.state.selectedQuestion.map((item, index) =>
+                  <List className='row'>
+                    <p className='col-sm-9'>{item}</p>
+                    <h5 className='co-sm-3'><Badge color='Light' pill><p style={{ color: 'red', }}>o</p> Live</Badge></h5>
+                  </List>
+                )}
+              </Scroll></Card>
+            </Col>
+          </Row>
+        </Container>
       </CardBox>
+
     )
   }
 }
