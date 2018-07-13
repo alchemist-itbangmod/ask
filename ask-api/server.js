@@ -13,8 +13,8 @@ app.get('/', (req, res) => {
   res.send('#ask api is running !')
 })
 
-app.get('/rooms/pin/:pin', async (req, res) => {
-  res.send(req.params.pin)
+app.get('/rooms/pin/:id', async (req, res) => {
+  res.send(req.params.id)
 })
 
 app.use('/api/v1', apiRoutes)
