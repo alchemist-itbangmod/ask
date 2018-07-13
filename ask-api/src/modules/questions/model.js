@@ -1,17 +1,26 @@
+const _ = require('lodash')
 
-const questions = [
-  {
-    question: 'พี่ชื่ออะไรค่ะ',
-  },
-  {
-    question: 'พี่อายุเท่าไหร่ครับ',
-  },
-  {
-    question: 'พี่เรียนที่ไหน',
-  },
+let questions = [
+  { id: 0, title: 'content1', },
+  { id: 1, title: 'content1', },
+  { id: 2, title: 'content1', },
+  { id: 3, title: 'content1', },
 ]
 module.exports = {
-  getQuestion: () => {
+  getAll: () => {
     return questions
+  },
+  getById: (id) => {
+    const question = _.find(questions, { id, })
+    return question
+  },
+  update: ({
+    title,
+    id,
+  }) => {
+    if (!_.isEmpty(title)) {
+      const question = _.find(questions, { id, })
+      question.title = title
+    }
   },
 }

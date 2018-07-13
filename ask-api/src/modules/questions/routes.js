@@ -3,4 +3,8 @@ const router = express.Router()
 
 const questionsController = require('./controller')
 
-router.get('/question', questionsController.getQuestion)
+router.get('/', questionsController.getAll)
+router.get('/:id', questionsController.getById)
+router.put('/questions/:id', questionsController.updateQuestion)
+
+module.exports = router

@@ -12,9 +12,13 @@ app.use(cor)
 app.get('/', (req, res) => {
   res.send('#ask api is running !')
 })
-
+// getRoomId
 app.get('/rooms/:id', async (req, res) => {
   res.send(req.params.id)
+})
+
+app.get('/questions/:id', async (req, res) => {
+  res.send(req.param)
 })
 
 app.use('/api/v1', apiRoutes)
