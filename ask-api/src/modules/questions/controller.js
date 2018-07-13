@@ -1,5 +1,5 @@
 const questionsModel = require('./model')
-const _ = require('lodash')
+// const _ = require('lodash')
 module.exports = {
   getAll: (req, res) => {
     res.send(questionsModel.getAll())
@@ -9,19 +9,9 @@ module.exports = {
     res.send(questionsModel.getById(id))
   },
   updateQuestion: (req, res) => {
-    const { name, } = req.body
-    const { id, } = req.params
-    if (!_.isEmpty(id) && !_.isEmpty()) {
-      const index = _.findIndex(questionsModel, { id, })
-      const newData = { id, name, }
-      questionsModel[index] = newData
-      return {
-        status: 'success somthing blah blah',
-        data: newData,
-      }
-    }
-    return {
-      status: 'error',
-    }
+    const name = req.body.name
+    const id = req.params.id
+    const update = questionsModel.update({ id, title: name, })
+    res.send(update)
   },
 }
