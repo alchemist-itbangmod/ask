@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 const CardBox = styled.div`
   margin-top:20px;
-  padding: 30px;
   border:1px solid black;
   hegiht:80vh;
-  box-shadow: 5px 10px #888888;
+  padding: 10px;
 `
 const Scroll = styled.div`
   overflow-y:scroll;
   overflow-x:hidden;
-  height:50vh;
+  height:100%;
+  min-height: 60vh;
 `
 const List = styled.li`
   padding:5px;
@@ -21,6 +21,7 @@ const List = styled.li`
       background-color:#99ccff;
       color:white;
   }
+  background: ${props => props.selected && `blue`};
 `
 const DivHead = styled.div`
   padding:0px 15px 0px 15px;
