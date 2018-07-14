@@ -1,39 +1,25 @@
 import React from 'react'
 import { Card, Button, CardHeader, Row, Col, Container, Badge } from 'reactstrap'
 import { CardBox, Scroll, List, DivHead } from './styled'
-
+import axios from 'axios'
 class OrgMonitor extends React.Component {
   state={
-    allQuestion: [
-      'content1',
-      'content2',
-      'content3',
-      'content4',
-      {
-        question: '',
-        name: '',
-        anonymous: false,
-        questionId: 0,
-      },
-    ],
-    getQ: [],
+    allQuestion: [ ],
     selectedQuestion: [],
     liveQuestion: [],
   }
-  getQuestion () {
-    const temp = this.state.getQ.slice(0)
-    temp.push(this.state.allQuestion.splice(0, 1).toString())
+  getQuestion = async () => {
+    const data = await axios.get('http://localhost:3000/api/v1/questions/')
     this.setState({
-      getQ: temp,
+      allQuestion: data.data,
     })
   }
-  handleSelectedQuestion (index) {
-    const temp = this.state.getQ.slice(index, index + 1)
-    const temp4selectQ = this.state.selectedQuestion.slice(0)
-    temp4selectQ.push(temp)
-    this.state.getQ.splice(index, 1)
+  handleSelectedQuestion = async (key) => {
+    const temp = this.state.allQuestion.slice(key, key + 1)
+    const temp4Selected = this.state.selectedQuestion.slice(0)
+    temp4Selected.push(temp)
     this.setState({
-      selectedQuestion: temp4selectQ,
+      selectedQuestion: temp4Selected,
     })
   }
   sendQuestion () {
@@ -57,9 +43,9 @@ class OrgMonitor extends React.Component {
                 </CardHeader>
               </DivHead>
               <Card><Scroll>
-                {this.state.getQ.map((item, index) =>
-                  <List className='row' onClick={() => this.handleSelectedQuestion(index)}>
-                    <p className='col-sm-11'>{item}</p>
+                {this.state.allQuestion.map((item) =>
+                  <List className='row' key={item.id} onClick={() => this.handleSelectedQuestion(item.id)}>
+                    <p className='col-sm-11'>{item.title}</p>
                     <i className='text-right col-sm-1 fa fa-trash' />
                   </List>
                 )}
@@ -73,9 +59,9 @@ class OrgMonitor extends React.Component {
                 </CardHeader>
               </DivHead>
               <Card><Scroll>
-                {this.state.selectedQuestion.map((item, index) =>
-                  <List className='row'>
-                    <p className='col-sm-9'>{item}</p>
+                {this.state.selectedQuestion.map((item) =>
+                  <List className='row' key={item.id}>
+                    <p className='col-sm-9'>{item.title}</p>
                     <h5 className='co-sm-3'><Badge color='Light' pill><p style={{ color: 'red', }}>o</p> Live</Badge></h5>
                   </List>
                 )}

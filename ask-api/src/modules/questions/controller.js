@@ -11,6 +11,7 @@ module.exports = {
   updateQuestion: (req, res) => {
     const name = req.body.name
     const id = +req.params.id
+    console.log(id)
     const update = questionsModel.update({ id, title: name, })
     if (update) {
       res.send({
