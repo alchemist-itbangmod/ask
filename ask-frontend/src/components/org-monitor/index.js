@@ -37,7 +37,7 @@ class OrgMonitor extends React.Component {
               </CardHeader>
             </DivHead>
             <Card><Scroll>
-              {[ 1, 2, 3, 4, 5, ].map((item, index) =>
+              {[ 1, 2, 3, 4, 5 ].map((item, index) =>
                 <List className='row'>
                   <p className='col-sm-11'>คำถาม</p>
                   <I className='text-right col-sm-1 fa fa-trash' />
@@ -53,7 +53,7 @@ class OrgMonitor extends React.Component {
               </CardHeader>
             </DivHead>
             <Card><Scroll>
-              {[ 1, 2, 3, 4, 5, ].map((item, index) =>
+              {[ 1, 2, 3, 4, 5 ].map((item, index) =>
                 <List className='row'>
                   <p className='col-sm-10'>คำถาม</p>
                   <I className='text-right col-sm-2 fa fa-trash' />
