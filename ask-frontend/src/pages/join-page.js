@@ -1,7 +1,7 @@
 import React from 'react'
 import { observable, action } from 'mobx'
-import { Button, Input, Container, Row, Col, Card, Badge } from 'reactstrap'
-import { navigateTo } from "gatsby-link"
+import { Button, Input, Container, Row, Col, Card } from 'reactstrap'
+import { navigateTo } from 'gatsby-link'
 
 class Name {
   @observable name = ''
@@ -10,8 +10,8 @@ class Name {
 
   @action
   initialJoin = () => {
-    localStorage.getItem('themeTemplates')
-    localStorage.getItem('roomName')
+    this.themeTemplates = localStorage.getItem('themeTemplates')
+    this.roomName = localStorage.getItem('roomName')
   }
 
   @action
@@ -31,19 +31,18 @@ class Name {
 const store = new Name()
 
 class JoinPage extends React.Component {
-  
-  componentWillMount() {
-    store.initialJoin
+  componentWillMount () {
+    store.initialJoin()
   }
   render () {
     return (
       <Container className='mt-5 pt-5'>
         <Row>
-          <Col sm='12' md={{ size: 10, offset: 1 }}>
+          <Col sm='12' md={{ size: 10, offset: 1, }}>
             <h2 className='text-center' >
               {`Welcome to`}
             </h2>
-            <h2 className='text-center font-weight-normal'>{'"'+store.roomName+'"'}</h2>     
+            <h2 className='text-center font-weight-normal'>{'"' + store.roomName + '"'}</h2>
             <Container>
               <Card body className='text-center' outline color='secondary'>
                 <form onSubmit={(store.handleSubmit)}>
@@ -56,7 +55,7 @@ class JoinPage extends React.Component {
                     outline
                     className='text-center mb-3'
                   />
-                  <Button type='submit' color='primary' block>Let's ASK</Button>
+                  <Button type='submit' color='primary' block>{'Let\'s ASK'}</Button>
                 </form>
               </Card>
             </Container>
