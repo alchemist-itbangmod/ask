@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col, Card, CardHeader, CardBody, CardTitle } from 'reactstrap'
+import { Container, Row, Col, Card, CardHeader, CardBody, CardTitle, Button } from 'reactstrap'
 
 export default class OrgAnalyst extends React.Component {
   state = {
@@ -26,6 +26,13 @@ export default class OrgAnalyst extends React.Component {
                   <Col>
                     12
                   </Col>
+                </Row>
+                <Row>
+                  <Col />
+                  <Col >
+                    <Button color='danger' block>Export to excel</Button>
+                  </Col>
+                  <Col />
                 </Row>
               </CardBody>
             </Card>
