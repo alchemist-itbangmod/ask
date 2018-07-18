@@ -1,38 +1,15 @@
 import React from 'react'
-import { observable, action } from 'mobx'
+import PropTypes from 'prop-types'
 import { Button, Input, Container, Row, Col, Card } from 'reactstrap'
-import { navigateTo } from 'gatsby-link'
+import { observer, inject } from 'mobx-react'
 
-class Name {
-  @observable name = ''
-  @observable themeTemplates = ''
-  @observable roomName = ''
-
-  @action
-  initialJoin = () => {
-    this.themeTemplates = localStorage.getItem('themeTemplates')
-    this.roomName = localStorage.getItem('roomName')
-  }
-
-  @action
-  changeInputName = e => {
-    this[e.target.name] = e.target.value
-  }
-
-  @action
-  handleSubmit = e => {
-    e.preventDefault()
-    console.log('name : ', this.name)
-    localStorage.setItem('name', this.name)
-    navigateTo('/ask-page')
-  }
-}
-
-const store = new Name()
-
+@inject(store => {
+  console.log(store)
+})
+@observer
 class JoinPage extends React.Component {
   componentWillMount () {
-    store.initialJoin()
+    this.props.name.initialJoin()
   }
   render () {
     return (
@@ -41,18 +18,17 @@ class JoinPage extends React.Component {
           <Col sm='12' md={{ size: 10, offset: 1, }}>
             <h2 className='text-center' >
               {`Welcome to`}
+              <h2 className='text-center font-weight-normal'>{'"' + this.props.name.roomName + '"'}</h2>
             </h2>
-            <h2 className='text-center font-weight-normal'>{'"' + store.roomName + '"'}</h2>
             <Container>
               <Card body className='text-center' outline color='secondary'>
-                <form onSubmit={(store.handleSubmit)}>
+                <form>
                   <Input
                     type='text'
+                    value={this.props.name.name}
+                    onChange={this.props.name.changeInputName}
                     placeholder='Type your name'
                     name='name'
-                    value={store.name}
-                    onChange={store.changeInputName}
-                    outline
                     className='text-center mb-3'
                   />
                   <Button type='submit' color='primary' block>{'Let\'s ASK'}</Button>
@@ -64,6 +40,17 @@ class JoinPage extends React.Component {
       </Container>
     )
   }
+}
+
+JoinPage.propTypes = {
+  name: PropTypes.shape({
+    handleSubmit: PropTypes.func.isRequired,
+    initialJoin: PropTypes.func.isRequired,
+    changeInputName: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
+    themeTemplates: PropTypes.string.isRequired,
+    roomName: PropTypes.string.isRequired,
+  }),
 }
 
 export default JoinPage
