@@ -2,7 +2,11 @@ const knex = require('../../utils/knex')
 
 module.exports = {
   getAll: () => {
-    return knex('questions').select()
+    return knex('questions')
+      .select()
+      .where({
+        isAnswer: false,
+      })
   },
   getById: (id) => {
     return knex('questions')

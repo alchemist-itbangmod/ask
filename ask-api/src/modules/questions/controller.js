@@ -16,7 +16,6 @@ module.exports = {
     if (_.isArray(questionIds) && questionIds.length > 0) {
       const data = await questionModel.update(questionIds)
 
-      console.log('data', data)
       if (data) {
         res.send({
           status: 'success',

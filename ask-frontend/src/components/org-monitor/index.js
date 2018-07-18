@@ -42,7 +42,8 @@ class OrgMonitor extends React.Component {
   }
   sendQuestion = async (item) => {
     // method put
-
+    const questionIds = this.state.selectedQuestion.map(question => question.questionId)
+    await axios.put('http://localhost:3000/api/v1/questions/', { questionIds, })
     this.setState({
       selectedQuestion: [],
       allQuestion: [],
@@ -66,7 +67,7 @@ class OrgMonitor extends React.Component {
           <Card>
             <Scroll>
               {this.state.allQuestion.map((item) =>
-                <List className='row' selected={_.find(this.state.selectedQuestion, { questionId: item.questionId, })} key={item.questionId} onClick={() => this.handleSelectedQuestion(item)}>
+                <List className='row' selected={_.find(this.state.selectedQuestion, { questionId: item.questionId, })} onClick={() => this.handleSelectedQuestion(item)}>
                   <p className='col-sm-11'>{item.question}</p>
                   <i className='text-right col-sm-1 fa fa-trash' />
                 </List>
@@ -81,13 +82,13 @@ class OrgMonitor extends React.Component {
                 <span >Selected</span>
               </Col>
               <Col sm='4'>
-                <Button block size='sm' color='success' onClick={this.sendQuestion}>Send</Button>{' '}
+                <Button block size='sm' color='success'onClick={this.sendQuestion}>Send</Button>{' '}
               </Col>
             </StyledCardHeader>
           </DivHead>
           <Card><Scroll>
             {this.state.selectedQuestion.map((item) =>
-              <List className='row' key={item.questionId}>
+              <List className='row' data-id={item.questionId}>
                 <p className='col-sm-9'>{item.question}</p>
                 <h5 className='co-sm-3'><Badge color='Light' pill><p style={{ color: 'red', }}>o</p> Live</Badge></h5>
               </List>
