@@ -1,7 +1,8 @@
 const questionModel = require('./model')
 
 module.exports = {
-  getQuestion: (req, res) => {
-    res.send(questionModel.getQuestion())
+  getQuestion: async (req, res) => {
+    const questions = await questionModel.getQuestion()
+    res.send(questions)
   },
 }
