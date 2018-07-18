@@ -12,13 +12,10 @@ module.exports = {
     res.send(questions)
   },
   update: async (req, res) => {
-    const id = req.params.id
-    const name = req.body
-    if (_.isString(name)) {
-      const data = await questionModel.update({
-        questionId: id,
-        name,
-      })
+    const { questionIds, } = req.body
+    if (_.isArray(questionIds) && questionIds.length > 0) {
+      const data = await questionModel.update(questionIds)
+
       console.log('data', data)
       if (data) {
         res.send({

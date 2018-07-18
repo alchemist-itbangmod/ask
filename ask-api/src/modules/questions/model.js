@@ -10,17 +10,11 @@ module.exports = {
       .where({ questionId: id, })
       .first()
   },
-  update: ({
-    questionId,
-    name,
-  }) => {
-    return knex('question')
+  update: (questionIds) => {
+    return knex('questions')
+      .whereIn('questionId', questionIds)
       .update({
-        name,
+        isAnswer: true,
       })
-      .where({
-        questionId,
-      })
-      .returning()
   },
 }
