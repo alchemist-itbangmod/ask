@@ -1,32 +1,26 @@
-const _ = require('lodash')
-
-let questions = [
-  { id: 0, title: 'content1', },
-  { id: 1, title: 'content2', },
-  { id: 2, title: 'content3', },
-  { id: 3, title: 'content4', },
-]
+const knex = require('../../utils/knex')
 
 module.exports = {
   getAll: () => {
-    return questions
+    return knex('questions').select()
   },
   getById: (id) => {
-    const question = _.find(questions, { id, })
-    return question
+    return knex('questions')
+      .select()
+      .where({ questionId: id, })
+      .first()
   },
   update: ({
-    title,
-    id,
+    questionId,
+    name,
   }) => {
-    if (!_.isEmpty(title)) {
-      questions.findIndex(ech => ech.id === id)
-      const question = _.find(questions, { id, })
-      if (!_.isEmpty(question)) {
-        question.title = title
-        return question
-      }
-    }
-    return null
+    return knex('question')
+      .update({
+        name,
+      })
+      .where({
+        questionId,
+      })
+      .returning()
   },
 }

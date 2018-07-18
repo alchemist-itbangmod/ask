@@ -1,31 +1,78 @@
+const knex = require('../../utils/knex')
 const _ = require('lodash')
 
-const rooms = [
-  {
-    id: 1,
-    title: 'test',
-  },
-  {
-    id: 2,
-    title: 'temp',
-  },
-]
+const findByPin = (pin) => {
+  return knex('rooms')
+    .select()
+    .where({
+      roomPin: pin,
+    })
+    .first()
+}
+
+const genPin = () => {
+  const max = 9
+  const min = 0
+  const rand = []
+
+  for (let i = 0; i < 4; i++) {
+    rand[i] = Math.floor(Math.random() * (max - min + 1) + min)
+  }
+  return rand.join('')
+}
 
 module.exports = {
   getAll: () => {
-    return rooms
+    return knex('rooms').select()
+      .select()
+      .where({
+        isDelete: false,
+      })
   },
   getById: (id) => {
-    const room = _.find(rooms, { id, })
-    return room
+    return knex('rooms')
+      .select()
+      .where({ roomId: id, })
+      .first()
   },
   update: ({
-    title,
-    id,
+    roomId,
+    roomName,
+    canSend,
   }) => {
-    if (!_.isEmpty(title)) {
-      const room = _.find(rooms, { id, })
-      room.title = title
-    }
+    return knex('rooms')
+      .update({
+        roomName,
+        canSend,
+      })
+      .where({
+        roomId,
+      })
+      .returning()
+  },
+  updateDelete: (roomId) => {
+    return knex('rooms')
+      .update({
+        isDelete: true,
+      })
+      .where({
+        roomId,
+      })
+      .returning()
+  },
+  create: async roomName => {
+    let pin
+    let data
+    do {
+      pin = genPin()
+      console.log(pin)
+      data = await findByPin(pin)
+    } while (!_.isEmpty(data))
+    return knex('rooms')
+      .insert({
+        roomName,
+        roomPin: pin,
+      })
+      .returning()
   },
 }

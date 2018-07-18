@@ -1,26 +1,38 @@
-const questionsModel = require('./model')
-// const _ = require('lodash')
+const questionModel = require('./model')
+const _ = require('lodash')
+
 module.exports = {
-  getAll: (req, res) => {
-    res.send(questionsModel.getAll())
+  getAll: async (req, res) => {
+    const questions = await questionModel.getAll()
+    res.send(questions)
   },
-  getById: (req, res) => {
-    const id = parseInt(req.params.id)
-    res.send(questionsModel.getById(id))
+  getById: async (req, res) => {
+    const id = req.params.id
+    const questions = await questionModel.getById(id) || {}
+    res.send(questions)
   },
-  updateQuestion: (req, res) => {
-    const name = req.body.name
-    const id = +req.params.id
-    console.log(id)
-    const update = questionsModel.update({ id, title: name, })
-    if (update) {
+  update: async (req, res) => {
+    const id = req.params.id
+    const name = req.body
+    if (_.isString(name)) {
+      const data = await questionModel.update({
+        questionId: id,
+        name,
+      })
+      console.log('data', data)
+      if (data) {
+        res.send({
+          status: 'success',
+        })
+      } else {
+        res.send({
+          status: 'fail',
+        })
+      }
+    } else {
       res.send({
-        status: 'success',
-        data: update,
+        status: 'fail',
       })
     }
-    res.send({
-      status: 'failed',
-    })
   },
 }
