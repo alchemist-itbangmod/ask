@@ -1,17 +1,7 @@
+const knex = require('../../../utils/knex')
 
-const allQuestions = [
-  {
-    question: 'พี่ชื่ออะไรค่ะ',
-  },
-  {
-    question: 'พี่อายุเท่าไหร่ครับ',
-  },
-  {
-    question: 'พี่เรียนที่ไหน',
-  },
-]
 module.exports = {
   getQuestion: () => {
-    return allQuestions
+    return knex('questions').select()
   },
 }
