@@ -52,9 +52,8 @@ class OrgSetting extends React.Component {
 
   render () {
     return (
-      <Row>
+      <Row className='mt-2'>
         <Col>
-          <h3>Setting</h3>
           <form onSubmit={(store.updateRoomData)}>
             <InputGroup>
               <p className='mr-2'>Room Name :</p>
@@ -81,8 +80,9 @@ class OrgSetting extends React.Component {
             <InputGroup>
               <p className='mr-2'>Theme :</p>
               <p>themes</p>
-            </InputGroup><Col sm={{ size: 6, order: 2, offset: 7, }}>
-              <Button type='submit' color='success'>Update</Button>
+            </InputGroup>
+            <Col sm={{ size: 6, order: 2, offset: 7, }}>
+              <Button className='' type='submit' color='success'>Update</Button>
             </Col>
           </form>
         </Col>
