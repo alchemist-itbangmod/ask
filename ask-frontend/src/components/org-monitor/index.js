@@ -27,25 +27,26 @@ class OrgMonitor extends React.Component {
       allQuestion: data.data,
     })
   }
-  handleSelectedQuestion = async (id) => {
-    const question = _.find(this.state.allQuestion, { id, })
+  handleSelectedQuestion = async (item) => {
     const { selectedQuestion, } = this.state
-    const index = _.findIndex(selectedQuestion, { id, })
+    const index = _.findIndex(this.state.selectedQuestion, item)
+
     if (index > -1) {
       selectedQuestion.splice(index, 1)
     } else {
-      selectedQuestion.push(question)
+      selectedQuestion.push(item)
     }
     this.setState({
       selectedQuestion,
     })
   }
-  sendQuestion (id) {
+  sendQuestion = async (item) => {
     // method put
+
     this.setState({
       selectedQuestion: [],
+      allQuestion: [],
     })
-    this.getQuestion()
   }
 
   render () {
@@ -65,7 +66,7 @@ class OrgMonitor extends React.Component {
           <Card>
             <Scroll>
               {this.state.allQuestion.map((item) =>
-                <List className='row' selected={_.find(this.state.selectedQuestion, { id: item.id, })} key={item.id} onClick={() => this.handleSelectedQuestion(item.id)}>
+                <List className='row' selected={_.find(this.state.selectedQuestion, { questionId: item.questionId, })} key={item.questionId} onClick={() => this.handleSelectedQuestion(item)}>
                   <p className='col-sm-11'>{item.question}</p>
                   <i className='text-right col-sm-1 fa fa-trash' />
                 </List>
@@ -86,7 +87,7 @@ class OrgMonitor extends React.Component {
           </DivHead>
           <Card><Scroll>
             {this.state.selectedQuestion.map((item) =>
-              <List className='row' key={item.id}>
+              <List className='row' key={item.questionId}>
                 <p className='col-sm-9'>{item.question}</p>
                 <h5 className='co-sm-3'><Badge color='Light' pill><p style={{ color: 'red', }}>o</p> Live</Badge></h5>
               </List>
