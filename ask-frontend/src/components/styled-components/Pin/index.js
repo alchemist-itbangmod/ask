@@ -6,7 +6,7 @@ import { Input as StrapInput } from 'reactstrap'
 const inputSize = 70
 
 const WrapInput = ({ _ref, ...props }) => <StrapInput innerRef={_ref} {...props} />
-WrapInput.propTypes = { _ref: PropTypes.func, }
+WrapInput.propTypes = { _ref: PropTypes.func }
 
 export const Input = styled(WrapInput)`
   width: ${inputSize}px;

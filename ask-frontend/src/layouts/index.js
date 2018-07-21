@@ -8,7 +8,7 @@ import store from '../store/combineStore'
 import HeaderMod from '../components/headerMod'
 import './index.css'
 
-const Layout = ({ children, data, }) => (
+const Layout = ({ children, data }) => (
   <Provider {...store}>
     <React.Fragment>
       <Helmet

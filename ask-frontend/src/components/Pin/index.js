@@ -25,7 +25,7 @@ class PinComponent extends React.Component {
             <Form
               innerRef={node => this.props.pin.setFormRef(node)}
             >
-              {[ 1, 2, 3, 4, ].map(ech => (
+              {[ 1, 2, 3, 4 ].map(ech => (
                 <Input
                   key={ech}
                   _ref={node => ech === 1 && this.props.pin.setFirstInput(node)}
