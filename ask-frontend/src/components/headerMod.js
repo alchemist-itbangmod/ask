@@ -5,15 +5,15 @@ import { BGHead, Head, Title, Button } from '../components/styled-components/glo
 const HeaderMod = () => (
   <BGHead className='container-fluid'>
     <Head className='row'>
-      <h2 className='col' style={{ margin: 4, }}>
+      <h2 className='col m-4'>
         <Title href='/'>
           HOME
         </Title>
       </h2>
-      <h2 className='col text-center' style={{ margin: 4, }}>
+      <h2 className='col text-center m-4'>
         <Title>#ASK Organizer</Title>
       </h2>
-      <div className='col text-right' style={{ margin: 4, }}>
+      <div className='col text-right m-4'>
         <Button className='btn btn-warning'>LOGOUT</Button>
       </div>
     </Head>
