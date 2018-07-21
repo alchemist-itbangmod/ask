@@ -14,7 +14,7 @@ class PinComponent extends React.Component {
             <h1>Type room's code</h1>
           </Col>
           <Col xs={12}>
-            {[ 1, 2, 3, 4, ].map(ech => (
+            {[ 1, 2, 3, 4 ].map(ech => (
               <Input key={ech} />
             ))}
           </Col>
