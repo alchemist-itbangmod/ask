@@ -11,7 +11,7 @@ module.exports = {
   getById: (id) => {
     return knex('questions')
       .select()
-      .where({ questionId: id, })
+      .where({ questionId: id })
       .first()
   },
   update: (questionIds) => {

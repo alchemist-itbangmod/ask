@@ -43,13 +43,13 @@ class OrgMonitorShow extends React.Component {
         <Row>
           <Col xs={12}>
             <Card className='mt-2 rounded p-2'>
-              <Nav tabs style={{ flexDirection: 'row-reverse', position: 'relative', marginLeft: 0, }}>
+              <Nav tabs style={{ flexDirection: 'row-reverse', position: 'relative', marginLeft: 0 }}>
                 <Title>
                   test
                 </Title>
                 <NavItem>
                   <NavLink
-                    className={classnames({ active: this.state.activeTab === '3', })}
+                    className={classnames({ active: this.state.activeTab === '3' })}
                     onClick={() => { this.toggle('3') }}
                   >
                   Analyst
@@ -57,7 +57,7 @@ class OrgMonitorShow extends React.Component {
                 </NavItem>
                 <NavItem>
                   <NavLink
-                    className={classnames({ active: this.state.activeTab === '2', })}
+                    className={classnames({ active: this.state.activeTab === '2' })}
                     onClick={() => { this.toggle('2') }}
                   >
                   Setting
@@ -65,7 +65,7 @@ class OrgMonitorShow extends React.Component {
                 </NavItem>
                 <NavItem>
                   <NavLink
-                    className={classnames({ active: this.state.activeTab === '1', })}
+                    className={classnames({ active: this.state.activeTab === '1' })}
                     onClick={() => { this.toggle('1') }}
                   >
                   Question
