@@ -5,7 +5,7 @@ import { BGHead, Head, Title, Button } from '../components/styled-components/glo
 const Header = () => (
   <BGHead className='container-fluid'>
     <Head className='row'>
-      <h2 className='col' style={{ margin: 4, }}>
+      <h2 className='col' style={{ margin: 4 }}>
         <Title>ASK #3.0</Title>
       </h2>
       <Button className='col-1-sm btn btn-warning'>LOGOUT</Button>

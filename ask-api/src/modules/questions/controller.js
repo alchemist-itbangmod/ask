@@ -12,7 +12,7 @@ module.exports = {
     res.send(questions)
   },
   update: async (req, res) => {
-    const { questionIds, } = req.body
+    const { questionIds } = req.body
     if (_.isArray(questionIds) && questionIds.length > 0) {
       const data = await questionModel.update(questionIds)
 

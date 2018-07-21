@@ -81,7 +81,7 @@ class OrgSetting extends React.Component {
               <p className='mr-2'>Theme :</p>
               <p>themes</p>
             </InputGroup>
-            <Col sm={{ size: 6, order: 2, offset: 7, }}>
+            <Col sm={{ size: 6, order: 2, offset: 7 }}>
               <Button className='' type='submit' color='success'>Update</Button>
             </Col>
           </form>

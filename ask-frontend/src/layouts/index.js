@@ -6,7 +6,7 @@ import Helmet from 'react-helmet'
 import HeaderMod from '../components/headerMod'
 import './index.css'
 
-const Layout = ({ children, data, }) => (
+const Layout = ({ children, data }) => (
   <div>
     <Helmet
       title={data.site.siteMetadata.title}
@@ -33,6 +33,7 @@ const Layout = ({ children, data, }) => (
 
 Layout.propTypes = {
   children: PropTypes.func,
+  data: PropTypes.object,
 }
 
 export default Layout
