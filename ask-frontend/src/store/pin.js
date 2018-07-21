@@ -1,5 +1,8 @@
 import { observable, action } from 'mobx'
 import { validChar } from '../utils/validate'
+import api from '../utils/api'
+import _ from 'lodash'
+import { navigateTo } from 'gatsby-link'
 
 let pin
 const getPin = (node) => {
@@ -38,6 +41,17 @@ class Pin {
     this.pin = ''
   }
 
+  submitForm = async () => {
+    const { data } = await api.get(`/rooms/pin/${this.pin}`)
+    if (_.isEmpty(data)) {
+      this.error = true
+      this.clearPin(this.formRef)
+      this.firstInputElement.focus()
+    } else {
+      navigateTo('/join')
+    }
+  }
+
   @action
   handleKeyup = (event) => {
     event.preventDefault()
@@ -45,11 +59,12 @@ class Pin {
 
     const isValidChar = validChar(keyValue)
     const isBackspace = event.which === 8
+    const currentEl = event.target
     if (!isBackspace && !isValidChar) {
+      currentEl.value = ''
       return
     }
 
-    const currentEl = event.target
     if (isValidChar) {
       const nextEl = event.target.nextElementSibling
       currentEl.value = keyValue.toUpperCase()
@@ -59,7 +74,7 @@ class Pin {
         // completed last digit
         currentEl.blur()
         this.pin = getPin(this.formRef)
-        this.error = true
+        this.submitForm()
       }
     }
 
