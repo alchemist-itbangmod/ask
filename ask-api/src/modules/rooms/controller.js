@@ -54,6 +54,11 @@ export default {
       })
     }
   },
+  getRoomByPin: async (req, res) => {
+    const pin = req.params.pin
+    const room = await roomModel.getRoomByPin(pin) || {}
+    res.send(room)
+  },
   delete: async (req, res) => {
     const id = req.params.id
     const data = await roomModel.updateDelete(id)
