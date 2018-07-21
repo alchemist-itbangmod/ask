@@ -1,6 +1,6 @@
-const express = require('express')
+import roomsController from 'api/modules/rooms/controller'
+import express from 'express'
 const router = express.Router()
-const roomsController = require('./controller')
 
 router.get('/', roomsController.getAll)
 router.post('/', roomsController.createRoom)
@@ -8,4 +8,4 @@ router.get('/:id', roomsController.getById)
 router.put('/:id', roomsController.update)
 router.delete('/:id', roomsController.delete)
 
-module.exports = router
+export default router

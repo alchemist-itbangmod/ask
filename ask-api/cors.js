@@ -8,4 +8,4 @@ const cors = (_, res, next) => {
   next()
 }
 
-module.exports = cors
+export default cors

@@ -1,5 +1,5 @@
-const knex = require('../../utils/knex')
-const _ = require('lodash')
+import knex from 'api/utils/knex'
+import _ from 'lodash'
 
 const findByPin = (pin) => {
   return knex('rooms')
@@ -21,7 +21,7 @@ const genPin = () => {
   return rand.join('')
 }
 
-module.exports = {
+export default {
   getAll: () => {
     return knex('rooms').select()
       .select()
@@ -32,7 +32,7 @@ module.exports = {
   getById: (id) => {
     return knex('rooms')
       .select()
-      .where({ roomId: id, })
+      .where({ roomId: id })
       .first()
   },
   update: ({
