@@ -60,6 +60,9 @@ export default {
       })
       .returning()
   },
+  getRoomByPin: (pin) => {
+    return findByPin(pin)
+  },
   create: async roomName => {
     let pin
     let data
