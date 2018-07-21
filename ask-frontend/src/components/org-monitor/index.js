@@ -22,7 +22,7 @@ class OrgMonitor extends React.Component {
     })
   }
   handleSelectedQuestion = async (item) => {
-    const { selectedQuestion, } = this.state
+    const { selectedQuestion } = this.state
     const index = _.findIndex(this.state.selectedQuestion, item)
 
     if (index > -1) {
@@ -37,7 +37,7 @@ class OrgMonitor extends React.Component {
   sendQuestion = async (item) => {
     // method put
     const questionIds = this.state.selectedQuestion.map(question => question.questionId)
-    await axios.put('http://localhost:3000/api/v1/questions/', { questionIds, })
+    await axios.put('http://localhost:3000/api/v1/questions/', { questionIds })
     this.setState({
       selectedQuestion: [],
       allQuestion: [],
@@ -65,7 +65,12 @@ class OrgMonitor extends React.Component {
           <StyledCard>
             <Scroll>
               {this.state.allQuestion.map((item) =>
-                <List className='row' selected={_.find(this.state.selectedQuestion, { questionId: item.questionId, })} onClick={() => this.handleSelectedQuestion(item)}>
+                <List
+                  key={item.questionId}
+                  className='row'
+                  selected={_.find(this.state.selectedQuestion, { questionId: item.questionId })}
+                  onClick={() => this.handleSelectedQuestion(item)}
+                >
                   <span className='col-sm-11'>{item.question}</span>
                   <i className='text-right col-sm-1 fa fa-trash' />
                 </List>
@@ -91,7 +96,10 @@ class OrgMonitor extends React.Component {
           <StyledCard>
             <Scroll>
               {this.state.selectedQuestion.map((item) =>
-                <List className='row' data-id={item.questionId}>
+                <List
+                  className='row'
+                  key={item.questionId}
+                >
                   <Col sm='10'><span>{item.question}</span></Col>
                   <Col sm='2'><span><Badge color='danger' pill> Live</Badge></span></Col>
                 </List>
