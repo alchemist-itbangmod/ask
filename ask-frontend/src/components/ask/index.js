@@ -3,7 +3,7 @@ import { Card, Container, Row, Col, Button, Form, FormGroup, Label, Input } from
 import { Anonymous } from '../styled-components/enterQuestion/enterQuestion'
 import { observer, inject } from 'mobx-react'
 import PropTypes from 'prop-types'
-
+import Dialog from './Dialog'
 @inject('ask')
 @observer
 class AskPage extends React.Component {
@@ -14,6 +14,7 @@ class AskPage extends React.Component {
   render () {
     return (
       <Container>
+        <Dialog show={this.props.ask.showNoti} status={this.props.ask.status} message={this.props.ask.message} />
         <Row className='justify-content-center'>
           <Col sm='10' xs='12'>
             <h2 className='mt-2 mb-5'>{this.props.ask.roomName}</h2>
@@ -32,6 +33,7 @@ class AskPage extends React.Component {
                           onChange={this.props.ask.changeInputQuestion}
                           value={this.props.ask.question}
                           placeholder='Type your question at least 4 characters'
+                          minLength='4'
                         />
                       </Col>
                       <Col xs={12}>
@@ -71,6 +73,9 @@ AskPage.propTypes = {
     roomName: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     getRoomData: PropTypes.func.isRequired,
+    showNoti: PropTypes.bool.isRequired,
+    status: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
   }),
 }
 
