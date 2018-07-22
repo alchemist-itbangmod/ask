@@ -1,7 +1,14 @@
-const questionModel = require('./model')
-const _ = require('lodash')
+import questionModel from 'api/modules/questions/model'
+import roomnModel from 'api/modules/rooms/model'
+import _ from 'lodash'
 
-module.exports = {
+const statusCallback = {
+  SUCCESS: 'SUCCESS',
+  CLOSED: 'CLOSED',
+  ERROR: 'ERROR',
+}
+
+export default {
   getAll: async (req, res) => {
     const questions = await questionModel.getAll()
     res.send(questions)
@@ -29,6 +36,28 @@ module.exports = {
       res.send({
         status: 'fail',
       })
+    }
+  },
+  create: async (req, res) => {
+    const { roomId, name, anonymous, question } = req.body
+    if (_.isNumber(roomId) &&
+    _.isString(name) &&
+    _.isBoolean(anonymous) &&
+    _.isString(question)) {
+      const room = await roomnModel.getById(roomId)
+      console.log(room)
+      if (room) {
+        if (room.canSend) {
+          const data = await questionModel.create({ roomId, name, anonymous, question })
+          res.send({ status: data ? statusCallback.SUCCESS : statusCallback.ERROR })
+        } else {
+          res.send({ status: statusCallback.CLOSED })
+        }
+      } else {
+        res.send({ status: statusCallback.ERROR })
+      }
+    } else {
+      res.send({ status: statusCallback.ERROR })
     }
   },
 }
