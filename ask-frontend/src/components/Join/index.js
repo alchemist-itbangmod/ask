@@ -1,21 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Input, Container, Row, Col, Card } from 'reactstrap'
-import { observer, inject } from 'mobx-react'
 
-@inject(store => ({
-  roomName: store.ask.roomName,
-  handleSubmit: store.ask.handleSubmit,
-  changeInputName: store.ask.changeInputName,
-  name: store.ask.name,
-}))
-@observer
 class JoinPage extends React.Component {
   render () {
     return (
       <Container className='mt-5 pt-5'>
-        <Row>
-          <Col sm='12' md={{ size: 10, offset: 1 }}>
+        <Row className='justify-content-center'>
+          <Col xs='12' md='8'>
             <h2 className='text-center' >
               {`Welcome to`}
               <p className='text-center font-weight-normal'>{`"${this.props.roomName}"`}</p>
@@ -28,9 +20,13 @@ class JoinPage extends React.Component {
                   onChange={this.props.changeInputName}
                   placeholder='Type your name'
                   name='name'
-                  className='text-center mb-3'
+                  className='text-center mb-1'
                   required
+                  maxLength='50'
                 />
+                <div className='text-right'>
+                  {50 - this.props.name.length}
+                </div>
                 <Button type='submit' color='primary' block>{`Let's ASK`}</Button>
               </form>
             </Card>
