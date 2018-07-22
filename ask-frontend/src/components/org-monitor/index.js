@@ -1,72 +1,113 @@
 import React from 'react'
-import styled from 'styled-components'
+import { Button, Row, Col, Badge } from 'reactstrap'
+import { Scroll, List, StyledCard, StyledCardHeader } from './styled'
+import axios from 'axios'
+import _ from 'lodash'
 
-const Box = styled.div`
-  margin-top: 25px;
-  padding: 10px;
-  border: 1px solid grey;
-  height: 80vh;
-`
-const Card = styled.div`
-  padding: 10px;
-`
-const CardOnScroll = styled.div`
-  padding: 10px;
-  overflow-y: scroll;
-  height: 20vh;
-  overflow-x:hidden;
-`
+class OrgMonitor extends React.Component {
+  state={
+    allQuestion: [],
+    selectedQuestion: [],
+    liveQuestion: [],
+  }
 
-const index = () => (
-  <Box className='container'>
-    <h2>ROOM NAME</h2>
-    <div className='card'>
-      <Card className='card-header'>
-        <div className='row'>
-          <div className='col-sm-6 text-left'>
-            <h3>Selected</h3>
-          </div>
-          <div className='col-sm-6 text-right'>
-            <button className='btn btn-success point'>
-              {'SEND'} <span className='badge badge-default'>10</span>
-            </button>
-          </div>
-        </div>
-      </Card>
-      <CardOnScroll className='card-block'>
-        {[ 1, 2, 3, 4, 5 ].map((item, index) =>
-          <li className='row' key={index}>
-            <p className='col-6'>อิอิ</p>
-            <i className='text-right col-6 fa fa-trash' />
-          </li>)
-        }
-      </CardOnScroll>
-    </div>
-    <div className='card'>
-      <Card className='card-header'>
-        <div className='row'>
-          <div className='col-sm-6 text-left'>
-            <h3>Question</h3>
-          </div>
-          <div className='col-sm-6 text-right'>
-            <button className='btn btn-info pull-right point'>
-              <i className='fa fa-refresh' />
-              {` Refresh `}
-              <span className='badge badge-default'>10</span>
-            </button>
-          </div>
-        </div>
-      </Card>
-      <CardOnScroll className='card-block'>
-        {[ 1, 2, 3, 4, 5 ].map((item, index) =>
-          <li className='row' key={index}>
-            <p className='col-6'>อิอิ</p>
-            <i className='text-right col-6 fa fa-trash' />
-          </li>)
-        }
-      </CardOnScroll>
-    </div>
-  </Box>
-)
+  componentWillMount () {
+    this.getQuestion()
+  }
 
-export default index
+  getQuestion = async () => {
+    const data = await axios.get('http://localhost:3000/api/v1/questions/')
+    this.setState({
+      allQuestion: data.data,
+    })
+  }
+  handleSelectedQuestion = async (item) => {
+    const { selectedQuestion } = this.state
+    const index = _.findIndex(this.state.selectedQuestion, item)
+
+    if (index > -1) {
+      selectedQuestion.splice(index, 1)
+    } else {
+      selectedQuestion.push(item)
+    }
+    this.setState({
+      selectedQuestion,
+    })
+  }
+  sendQuestion = async (item) => {
+    // method put
+    const questionIds = this.state.selectedQuestion.map(question => question.questionId)
+    await axios.put('http://localhost:3000/api/v1/questions/', { questionIds })
+    this.setState({
+      selectedQuestion: [],
+      allQuestion: [],
+    })
+  }
+
+  render () {
+    return (
+      <Row>
+        <Col sm='6'>
+          <Row>
+            <Col xs='12'>
+              <StyledCardHeader>
+                <Row className='px-2'>
+                  <Col sm='8'>
+                    <span >Question</span>
+                  </Col>
+                  <Col sm='4'>
+                    <Button block size='sm' color='info' onClick={() => this.getQuestion()}>Refresh</Button>{' '}
+                  </Col>
+                </Row>
+              </StyledCardHeader>
+            </Col>
+          </Row>
+          <StyledCard>
+            <Scroll>
+              {this.state.allQuestion.map((item) =>
+                <List
+                  className='row'
+                  key={item.questionId}
+                  selected={_.find(this.state.selectedQuestion, { questionId: item.questionId })}
+                  onClick={() => this.handleSelectedQuestion(item)}
+                >
+                  <span className='col-sm-11'>{item.question}</span>
+                  <i className='text-right col-sm-1 fa fa-trash' />
+                </List>
+              )}
+            </Scroll>
+          </StyledCard>
+        </Col>
+        <Col sm='6'>
+          <Row>
+            <Col xs='12'>
+              <StyledCardHeader>
+                <Row className='px-2'>
+                  <Col sm='8'>
+                    <span >Selected</span>
+                  </Col>
+                  <Col sm='4'>
+                    <Button block size='sm' color='success' onClick={() => this.sendQuestion()}>Sefresh</Button>{' '}
+                  </Col>
+                </Row>
+              </StyledCardHeader>
+            </Col>
+          </Row>
+          <StyledCard>
+            <Scroll>
+              {this.state.selectedQuestion.map((item) =>
+                <List
+                  className='row' key={item.questionId}>
+                  <Col sm='10'><span>{item.question}</span></Col>
+                  <Col sm='2'><span><Badge color='danger' pill> Live</Badge></span></Col>
+                </List>
+              )}
+            </Scroll>
+          </StyledCard>
+        </Col>
+      </Row>
+    )
+  }
+}
+
+export default OrgMonitor

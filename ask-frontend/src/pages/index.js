@@ -1,11 +1,3 @@
-import React from 'react'
+import PinComponent from '../components/Pin'
 
-import PinPage from '../components/pin-page'
-
-const IndexPage = () => (
-  <div>
-    <PinPage />
-  </div>
-)
-
-export default IndexPage
+export default PinComponent

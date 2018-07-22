@@ -1,8 +1,10 @@
-const express = require('express')
+import roomsRoutes from 'api/modules/rooms/routes'
+import express from 'express'
+import questionsRoutes from 'api/modules/questions/routes'
+
 const router = express.Router()
 
-const enterQuestionRoutes = require('./module/enterQuestion/routes')
+router.use('/rooms', roomsRoutes)
+router.use('/questions', questionsRoutes)
 
-router.use('/question', enterQuestionRoutes)
-
-module.exports = router
+export default router
