@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Container, Row, Col, Form } from 'reactstrap'
-import { Input, BottomContent, Logo, ErrorMessage } from '../styled-components/Pin'
+import { Input, BottomContent, Logo, ErrorMessage } from './styled'
 import { observer, inject } from 'mobx-react'
+import Link from 'gatsby-link'
 
 @inject('pin')
 @observer
@@ -38,7 +39,7 @@ class PinComponent extends React.Component {
             </Form>
           </Col>
           <BottomContent>
-            create your own ASK for free via ask.kmutt.ac.th/organizer
+            create your own ASK for free via <Link to='/org'>ask.kmutt.ac.th/organizer</Link>
           </BottomContent>
         </Row>
       </Container>

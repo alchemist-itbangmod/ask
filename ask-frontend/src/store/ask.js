@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx'
 import api from '../utils/api'
 import statusCallback from '../config/statusCallback'
+import { navigateTo } from 'gatsby-link'
 
 let ask
 let timeout
@@ -14,10 +15,45 @@ class Ask {
     @observable status=''
     @observable roomName=''
     @observable name=''
+    @observable message=''
+
+    @action
+    setRoom = ({ roomId, roomName, themeTemplate }) => {
+      this.roomId = parseInt(roomId)
+      this.roomName = roomName
+      this.themeTemplate = themeTemplate
+    }
+
+    @action
+    resetAsk = () => {
+      localStorage.removeItem('themeTemplate')
+      localStorage.removeItem('roomName')
+      localStorage.removeItem('roomId')
+      localStorage.removeItem('name')
+      this.name = ''
+      navigateTo('/')
+    }
+
+    @action
+    setName = (name) => {
+      this.name = name
+    }
 
     @action
     changeInputQuestion = e => {
       this.question = e.target.value
+    }
+
+    @action
+    changeInputName = e => {
+      this.name = e.target.value
+    }
+
+    @action
+    handleSubmit = e => {
+      e.preventDefault()
+      localStorage.setItem('name', this.name)
+      navigateTo('/ask')
     }
 
     @action

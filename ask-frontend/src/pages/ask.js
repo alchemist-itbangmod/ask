@@ -1,8 +1,5 @@
 import React from 'react'
-import EnterQuestion from '../components/ask'
+import AskPage from '../components/ask'
+import withAsker from '../hocs/withAsker'
 
-const AskPage = () => (
-  <EnterQuestion />
-)
-
-export default AskPage
+export default withAsker(AskPage)
