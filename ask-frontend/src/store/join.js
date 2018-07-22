@@ -1,9 +1,9 @@
 import { observable, action } from 'mobx'
 import { navigateTo } from 'gatsby-link'
 
-let name
+let join
 
-class Name {
+class Join {
   @observable name = ''
   @observable themeTemplates = ''
   @observable roomName = ''
@@ -22,18 +22,17 @@ class Name {
   @action
   handleSubmit = e => {
     e.preventDefault()
-    console.log('name : ', this.name)
     localStorage.setItem('name', this.name)
-    navigateTo('/ask-page')
+    navigateTo('/ask')
   }
 }
 
 function createStore () {
-  if (name) {
-    return name
+  if (join) {
+    return join
   }
-  name = new Name()
-  return name
+  join = new Join()
+  return join
 }
 
 export default createStore()

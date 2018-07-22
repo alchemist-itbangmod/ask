@@ -1,7 +1,7 @@
 import pin from './pin'
-import name from './join'
+import join from './join'
 
 export default {
   pin,
-  name,
+  join,
 }
