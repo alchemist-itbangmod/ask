@@ -3,11 +3,18 @@ import PropTypes from 'prop-types'
 import { Button, Input, Container, Row, Col, Card } from 'reactstrap'
 import { observer, inject } from 'mobx-react'
 
-@inject('join')
+@inject(store => ({
+  roomName: store.ask.roomName,
+  handleSubmit: store.ask.handleSubmit,
+  changeInputName: store.ask.changeInputName,
+  initialJoin: store.ask.initialJoin,
+  name: store.ask.name,
+}))
 @observer
 class JoinPage extends React.Component {
   componentWillMount () {
-    this.props.join.initialJoin()
+    console.log(this.props)
+    // this.props.initialJoin()
     // console.log('props', this.props)
   }
   render () {
@@ -17,14 +24,14 @@ class JoinPage extends React.Component {
           <Col sm='12' md={{ size: 10, offset: 1 }}>
             <h2 className='text-center' >
               {`Welcome to`}
-              <p className='text-center font-weight-normal'>{`"${this.props.join.roomName}"`}</p>
+              <p className='text-center font-weight-normal'>{`"${this.props.roomName}"`}</p>
             </h2>
             <Card body className='text-center' outline>
-              <form onSubmit={this.props.join.handleSubmit}>
+              <form onSubmit={this.props.handleSubmit}>
                 <Input
                   type='text'
-                  value={this.props.join.name}
-                  onChange={this.props.join.changeInputName}
+                  value={this.props.name}
+                  onChange={this.props.changeInputName}
                   placeholder='Type your name'
                   name='name'
                   className='text-center mb-3'

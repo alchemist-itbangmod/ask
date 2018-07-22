@@ -1,2 +1,4 @@
 import JoinComponent from '../components/Join/index'
-export default JoinComponent
+import withAsker from '../hocs/withAsker'
+
+export default withAsker(JoinComponent)
