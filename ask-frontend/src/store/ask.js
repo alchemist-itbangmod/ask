@@ -25,6 +25,16 @@ class Ask {
     }
 
     @action
+    resetAsk = () => {
+      localStorage.removeItem('themeTemplate')
+      localStorage.removeItem('roomName')
+      localStorage.removeItem('roomId')
+      localStorage.removeItem('name')
+      this.name = ''
+      navigateTo('/')
+    }
+
+    @action
     setName = (name) => {
       this.name = name
     }
