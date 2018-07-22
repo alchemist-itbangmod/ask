@@ -15,6 +15,7 @@ class PinComponent extends React.Component {
             <Logo />
           </Col>
           <Col xs={12}>
+            {this.props.pin.loading && 'loading...'}
             {!this.props.pin.error ? (
               <h1>{`Type room's code`}</h1>
             ) : (

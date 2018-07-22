@@ -1,13 +1,9 @@
-const tableName = 'rooms'
+const tableName = 'users'
 
 exports.up = function (knex, Promise) {
   return knex.schema.createTable(tableName, function (table) {
-    table.increments('roomId')
-    table.string('roomName', 250)
-    table.string('roomPin', 6)
-    table.boolean('canSend').notNullable().defaultTo(true)
-    table.string('themeTemplate', 50).notNullable().defaultTo('default')
-    table.boolean('isDelete').notNullable().defaultTo(false)
+    table.increments('userId')
+    table.string('userName', 250)
     table.dateTime('created_at').notNullable().defaultTo(knex.raw('CURRENT_TIMESTAMP'))
     table.dateTime('updated_at').notNullable().defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
   })
