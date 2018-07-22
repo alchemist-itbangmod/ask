@@ -15,7 +15,7 @@ class JoinPage extends React.Component {
     return (
       <Container className='mt-5 pt-5'>
         <Row>
-          <Col sm='12' md={{ size: 10, offset: 1, }}>
+          <Col sm='12' md={{ size: 10, offset: 1 }}>
             <h2 className='text-center' >
               {`Welcome to`}
               <h2 className='text-center font-weight-normal'>{'"' + this.props.name.roomName + '"'}</h2>

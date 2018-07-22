@@ -5,10 +5,10 @@ module.exports = {
   development: {
     client: 'mysql2',
     connection: {
-      host: 'localhost',
-      user: 'root',
-      password: 'askme',
-      database: 'ask_db',
+      host: process.env.HOST_DEV_DB,
+      user: process.env.USER_DEV_DB,
+      password: process.env.PASSWORD_DEV,
+      database: process.env.DATABASE_DEV_DB,
       typeCast: function (field, next) {
         if (field.type === 'TINY' && field.length === 1) {
           return (field.string() === '1')
@@ -24,6 +24,7 @@ module.exports = {
       directory: './src/db/seeds',
     },
   },
+
   staging: {
     client: 'postgresql',
     connection: {

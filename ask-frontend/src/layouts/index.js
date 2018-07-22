@@ -1,15 +1,16 @@
 /* global graphql */
+import { Provider } from 'mobx-react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { Provider } from 'mobx-react'
 import store from '../store/combineStore'
+
 import HeaderMod from '../components/headerMod'
 import './index.css'
 
-const Layout = ({ children, data, }) => (
+const Layout = ({ children, data }) => (
   <Provider {...store}>
-    <div>
+    <React.Fragment>
       <Helmet
         title={data.site.siteMetadata.title}
         meta={[
@@ -24,9 +25,7 @@ const Layout = ({ children, data, }) => (
         ]}
       >
         <link href='https://fonts.googleapis.com/css?family=Taviraj' rel='stylesheet' />
-
         <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' rel='stylesheet' />
-
       </Helmet>
       <HeaderMod siteTitle={data.site.siteMetadata.title} />
       <div
@@ -39,12 +38,13 @@ const Layout = ({ children, data, }) => (
       >
         {children()}
       </div>
-    </div>
+    </React.Fragment>
   </Provider>
 )
 
 Layout.propTypes = {
   children: PropTypes.func,
+  data: PropTypes.object,
 }
 
 export default Layout
