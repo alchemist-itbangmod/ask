@@ -1,24 +1,33 @@
-const knex = require('../../utils/knex')
+import knex from 'api/utils/knex'
 
-module.exports = {
+const tableName = 'questions'
+
+export default {
   getAll: () => {
-    return knex('questions')
+    return knex(tableName)
       .select()
       .where({
         isAnswer: false,
       })
   },
   getById: (id) => {
-    return knex('questions')
+    return knex(tableName)
       .select()
       .where({ questionId: id })
       .first()
   },
   update: (questionIds) => {
-    return knex('questions')
+    return knex(tableName)
       .whereIn('questionId', questionIds)
       .update({
         isAnswer: true,
       })
+  },
+  create: ({ roomId, question, name, anonymous }) => {
+    return knex(tableName)
+      .insert({
+        roomId, question, name, anonymous,
+      })
+      .returning()
   },
 }

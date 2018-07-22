@@ -7,6 +7,8 @@ exports.up = function (knex, Promise) {
     table.string('question', 250)
     table.boolean('anonymous').notNullable().defaultTo(false)
     table.boolean('isAnswer').notNullable().defaultTo(false)
+    table.integer('roomId').unsigned().notNullable()
+    table.foreign('roomId').references('roomId').inTable('rooms')
     table.dateTime('created_at').notNullable().defaultTo(knex.raw('CURRENT_TIMESTAMP'))
     table.dateTime('updated_at').notNullable().defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
   })

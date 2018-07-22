@@ -16,6 +16,6 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1', apiRoutes)
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log('> Ready on http://localhost:', port) // eslint-disable-line
 })
