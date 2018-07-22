@@ -68,7 +68,6 @@ export default {
     let data
     do {
       pin = genPin()
-      console.log(pin)
       data = await findByPin(pin)
     } while (!_.isEmpty(data))
     return knex('rooms')
