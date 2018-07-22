@@ -53,7 +53,7 @@ class Pin {
     } else {
       localStorage.setItem('roomId', data.roomId)
       localStorage.setItem('roomName', data.roomName)
-      localStorage.setItem('themeTemplate', data.themeTemplate || '')
+      localStorage.setItem('themeTemplate', data.themeTemplate)
       navigateTo('/join')
     }
   }
