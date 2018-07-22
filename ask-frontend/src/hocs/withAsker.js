@@ -58,7 +58,7 @@ const withAsker = Component => {
           navigateTo('/join')
         } else {
           this.props.setRoom(roomData)
-          this.props.setName(roomData)
+          this.props.setName(name)
         }
       }
     }

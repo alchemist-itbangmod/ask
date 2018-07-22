@@ -7,10 +7,6 @@ import Dialog from './Dialog'
 @inject('ask')
 @observer
 class AskPage extends React.Component {
-  componentWillMount () {
-    this.props.ask.getRoomData()
-  }
-
   render () {
     return (
       <Container>

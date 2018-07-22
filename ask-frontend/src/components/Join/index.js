@@ -7,16 +7,10 @@ import { observer, inject } from 'mobx-react'
   roomName: store.ask.roomName,
   handleSubmit: store.ask.handleSubmit,
   changeInputName: store.ask.changeInputName,
-  initialJoin: store.ask.initialJoin,
   name: store.ask.name,
 }))
 @observer
 class JoinPage extends React.Component {
-  componentWillMount () {
-    console.log(this.props)
-    // this.props.initialJoin()
-    // console.log('props', this.props)
-  }
   render () {
     return (
       <Container className='mt-5 pt-5'>
@@ -48,14 +42,10 @@ class JoinPage extends React.Component {
 }
 
 JoinPage.propTypes = {
-  join: PropTypes.shape({
-    handleSubmit: PropTypes.func.isRequired,
-    initialJoin: PropTypes.func.isRequired,
-    changeInputName: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
-    themeTemplates: PropTypes.string.isRequired,
-    roomName: PropTypes.string.isRequired,
-  }),
+  roomName: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  changeInputName: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
 }
 
 export default JoinPage
