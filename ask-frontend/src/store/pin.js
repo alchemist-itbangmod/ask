@@ -20,6 +20,7 @@ class Pin {
   @observable formRef = null
   @observable firstInputElement = null
   @observable error = false
+  @observable loading = false
 
   @action
   setFormRef = (element) => {
@@ -42,12 +43,17 @@ class Pin {
   }
 
   submitForm = async () => {
+    this.loading = true
     const { data } = await api.get(`/rooms/pin/${this.pin}`)
+    this.loading = false
     if (_.isEmpty(data)) {
       this.error = true
       this.clearPin(this.formRef)
       this.firstInputElement.focus()
     } else {
+      localStorage.setItem('roomId', data.roomId)
+      localStorage.setItem('roomName', data.roomName)
+      localStorage.setItem('themeTemplate', data.themeTemplate || '')
       navigateTo('/join')
     }
   }
