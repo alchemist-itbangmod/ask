@@ -1,15 +1,12 @@
 import React from 'react'
 import { observable, action } from 'mobx'
-import { Card, Input, Row, Col, InputGroup, Button } from 'reactstrap'
+import { Input, Row, Col, InputGroup, Button, Card } from 'reactstrap'
 import Toggle from 'react-toggle'
 import { observer } from 'mobx-react'
 import styled from 'styled-components'
 
 import '../../static/toggle.css'
 
-// const TestBackground = styled.div`
-//   color: ${props => props.color || ''};
-// `
 const StyledCard = styled(Card)`
   padding:20px;
 `

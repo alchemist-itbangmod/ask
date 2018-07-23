@@ -1,17 +1,33 @@
+import knex from 'api/utils/knex'
 
-const questions = [
-  {
-    question: 'พี่ชื่ออะไรค่ะ',
+const tableName = 'questions'
+
+export default {
+  getAll: () => {
+    return knex(tableName)
+      .select()
+      .where({
+        isAnswer: false,
+      })
   },
-  {
-    question: 'พี่อายุเท่าไหร่ครับ',
+  getById: (id) => {
+    return knex(tableName)
+      .select()
+      .where({ questionId: id })
+      .first()
   },
-  {
-    question: 'พี่เรียนที่ไหน',
+  update: (questionIds) => {
+    return knex(tableName)
+      .whereIn('questionId', questionIds)
+      .update({
+        isAnswer: true,
+      })
   },
-]
-module.exports = {
-  getQuestion: () => {
-    return questions
+  create: ({ roomId, question, name, anonymous }) => {
+    return knex(tableName)
+      .insert({
+        roomId, question, name, anonymous,
+      })
+      .returning()
   },
 }

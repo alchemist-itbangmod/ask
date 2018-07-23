@@ -1,9 +1,14 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Input as StrapInput } from 'reactstrap'
 
 const inputSize = 70
 
-export const Input = styled(StrapInput)`
+const WrapInput = ({ _ref, ...props }) => <StrapInput innerRef={_ref} {...props} />
+WrapInput.propTypes = { _ref: PropTypes.func }
+
+export const Input = styled(WrapInput)`
   width: ${inputSize}px;
   height: ${inputSize}px;
   display: inline-block;
@@ -25,4 +30,8 @@ export const Logo = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50%;
+`
+
+export const ErrorMessage = styled.p`
+  color: red;
 `
