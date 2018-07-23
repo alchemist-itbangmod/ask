@@ -1,6 +1,7 @@
 import React from 'react'
 import OrgMonitor from '../components/org-monitor'
 import OrgSetting from '../components/org-setting'
+import OrgAnaly from '../components/org-analyst'
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, Container } from 'reactstrap'
 import classnames from 'classnames'
 import styled from 'styled-components'
@@ -86,7 +87,7 @@ class OrgMonitorShow extends React.Component {
                 <TabPane tabId='3'>
                   <Row>
                     <Col sm='12'>
-                      <h4>Analyst component</h4>
+                      <OrgAnaly />
                     </Col>
                   </Row>
                 </TabPane>
