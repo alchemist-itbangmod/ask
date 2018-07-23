@@ -1,14 +1,10 @@
-const express = require('express')
+import roomsRoutes from 'api/modules/rooms/routes'
+import express from 'express'
+import questionsRoutes from 'api/modules/questions/routes'
+
 const router = express.Router()
 
-const roomsRoutes = require('./modules/rooms/analy/controller')
-const userRoutes = require('./modules/rooms/users/controller')
+router.use('/rooms', roomsRoutes)
+router.use('/questions', questionsRoutes)
 
-router.get('/', (req, res) => {
-  res.send('api')
-})
-
-router.use('/rooms/:id/analy', roomsRoutes.getQuestion)
-router.use('/rooms/:id/users', userRoutes.getAllUsers)
-
-module.exports = router
+export default router

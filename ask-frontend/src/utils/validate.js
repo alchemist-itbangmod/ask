@@ -1,0 +1,1 @@
+export const validChar = (input) => /[0-9]{1}/i.test(input)

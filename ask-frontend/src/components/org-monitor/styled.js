@@ -1,29 +1,31 @@
 import styled from 'styled-components'
-const CardBox = styled.div`
-  margin-top:20px;
-  padding: 30px;
-  border:1px solid black;
-  hegiht:80vh;
-  box-shadow: 5px 10px #888888;
+import { Card, CardHeader } from 'reactstrap'
+
+const StyledCardHeader = styled(CardHeader)`
+  padding: 0.75rem 0;
+  padding-left:0px;
+  padding-right:0px;
 `
+const StyledCard = styled(Card)`
+  min-height: 60vh;
+`
+
 const Scroll = styled.div`
   overflow-y:scroll;
   overflow-x:hidden;
-  height:50vh;
+  height:50%;
 `
-const List = styled.li`
-  padding:5px;
-  margin:20px;
+const List = styled.div`
+  padding:15px 20px;
   cursor:pointer;
   transition: .5s;
+  border-bottom:1px solid grey;
   border-radius:10px;
   &:hover{
       background-color:#99ccff;
       color:white;
   }
-`
-const DivHead = styled.div`
-  padding:0px 15px 0px 15px;
+  background: ${props => props.selected && `blue`};
 `
 
-export { CardBox, Scroll, List, DivHead }
+export { Scroll, List, StyledCard, StyledCardHeader }
