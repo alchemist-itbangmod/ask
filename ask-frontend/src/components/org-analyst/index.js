@@ -1,6 +1,5 @@
 import React from 'react'
 import { Container, Row, Col, Card, CardHeader, CardBody, CardTitle, Button } from 'reactstrap'
-import XLSX from 'xlsx'
 
 export default class OrgAnalyst extends React.Component {
   state = {
@@ -12,19 +11,7 @@ export default class OrgAnalyst extends React.Component {
       { id: 5, question: 'Hi5' },
     ],
     selectQuestion: [],
-    allUser: 0,
-    cols: [{ name: 'A', key: 0 }, { name: 'B', key: 1 }, { name: 'C', key: 2 }],
-    data: [
-      [ 'id', 'name', 'value' ],
-      [ 1, 'fame', 7262 ],
-      [ 2, 'papop', 6969 ],
-      [ 3, 'tiny', 9999 ],
-    ],
-  }
-  testExport = () => {
-    let worksheet = XLSX.utils.aoa_to_sheet(this.data)
-    let newWorkbook = XLSX.utils.book_new()
-    XLSX.utils.book_append_sheet(newWorkbook, worksheet, 'SheetJS')
+    allUser: 1000,
   }
   render () {
     return (
@@ -57,14 +44,14 @@ export default class OrgAnalyst extends React.Component {
                       {this.state.allUser}
                     </h2>
                     <p>
-                      AllUsers
+                      AllUser
                     </p>
                   </Col>
                 </Row>
                 <Row>
                   <Col />
                   <Col >
-                    <Button color='danger' block onClick={() => this.testExport}>Export to excel</Button>
+                    <Button color='danger' block >Export to excel</Button>
                   </Col>
                   <Col />
                 </Row>
