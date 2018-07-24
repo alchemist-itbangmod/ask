@@ -55,22 +55,17 @@ class OrgSetting extends React.Component {
 
               <FormGroup>
                 <Label >Theme</Label>
-                <div>
+                {['red', 'blue', 'green'].map(theme => (
                   <CustomInput
+                    id={theme}
+                    label={theme}
                     type='radio'
-                    value='red'
-                    id='red'
-                    name='themeTemplate'
+                    name='theme'
+                    value={theme}
                     onChange={this.props.setting.handleThemeTemplate}
-                    label='Red' />
-                  <CustomInput
-                    type='radio'
-                    value='blue'
-                    id='blue'
-                    name='themeTemplate'
-                    onChange={this.props.setting.handleThemeTemplate}
-                    label='Blue' />
-                </div>
+                    checked={theme === this.props.setting.themeTemplate}
+                  />
+                ))}
 
               </FormGroup>
               <Button type='submit' color='success' className='float-right'>Update</Button>
@@ -92,6 +87,7 @@ OrgSetting.propTypes = {
     changeInputName: PropTypes.func.isRequired,
     roomPin: PropTypes.string.isRequired,
     canSend: PropTypes.bool.isRequired,
+    themeTemplate: PropTypes.string.isRequired,
     handleToggleOpenSending: PropTypes.func.isRequired,
     handleThemeTemplate: PropTypes.string.isRequired,
     handleUpdateRoom: PropTypes.func.isRequired,
