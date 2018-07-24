@@ -4,6 +4,20 @@ import { Container, Row, Col, Form } from 'reactstrap'
 import { Input, BottomContent, Logo, ErrorMessage } from './styled'
 import { observer, inject } from 'mobx-react'
 import Link from 'gatsby-link'
+import styled from 'styled-components'
+
+const PinInput = styled(Input)`
+  width: 70px;
+  height: 70px;
+  @media (max-width: 320px){
+    width: 50px;
+    height: 50px;
+  }
+  @media (max-width: 360px){
+    width: 55px;
+    height: 55px;
+  }
+`
 
 @inject('pin')
 @observer
@@ -28,7 +42,7 @@ class PinComponent extends React.Component {
               innerRef={node => this.props.pin.setFormRef(node)}
             >
               {[ 1, 2, 3, 4 ].map(ech => (
-                <Input
+                <PinInput
                   key={ech}
                   _ref={node => ech === 1 && this.props.pin.setFirstInput(node)}
                   onKeyUp={this.props.pin.handleKeyup}
