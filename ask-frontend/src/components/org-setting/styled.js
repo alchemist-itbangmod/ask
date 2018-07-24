@@ -1,9 +1,11 @@
 import styled from 'styled-components'
-const CardBox = styled.div`
-  margin-top:20px;
-  padding: 30px;
-  border:1px solid black;
-  hegiht:80vh;
-  box-shadow: 5px 10px #888888;
+import { Card, CardHeader } from 'reactstrap'
+const StyledCard = styled(Card)`
+  padding:20px;
 `
-export { CardBox }
+const StyledCardHeader = styled(CardHeader)`
+  padding: 0.75rem 0;
+  padding-left:0px;
+  padding-right:0px;
+`
+export { StyledCard, StyledCardHeader }
