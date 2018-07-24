@@ -56,8 +56,20 @@ class OrgSetting extends React.Component {
               <FormGroup>
                 <Label >Theme</Label>
                 <div>
-                  <CustomInput type='radio' id='red' name='red' label='Red' />
-                  <CustomInput type='radio' id='blue' name='blue' label='Blue' />
+                  <CustomInput
+                    type='radio'
+                    value='red'
+                    id='red'
+                    name='themeTemplate'
+                    onChange={this.props.setting.handleThemeTemplate}
+                    label='Red' />
+                  <CustomInput
+                    type='radio'
+                    value='blue'
+                    id='blue'
+                    name='themeTemplate'
+                    onChange={this.props.setting.handleThemeTemplate}
+                    label='Blue' />
                 </div>
 
               </FormGroup>

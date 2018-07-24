@@ -17,8 +17,9 @@ class Setting {
       this.roomPin = data.roomPin
       this.roomName = data.roomName
       this.canSend = data.canSend
+      this.themeTemplate = data.themeTemplate
     }
-    // submit button
+
     @action
     handleUpdateRoom = async (e) => {
       e.preventDefault()
@@ -26,14 +27,13 @@ class Setting {
       await api.put('/rooms/5', {
         roomName: this.roomName,
         canSend: this.canSend,
+        themeTemplate: this.themeTemplate,
       })
-      // console.log(this.canSend)
     }
 
     @action
     changeInputName = async (e) => {
       this.roomName = e.target.value
-      // await api.put()
     }
 
     @action
@@ -42,12 +42,8 @@ class Setting {
     }
 
     @action
-    handleThemeTemplate = param => {
-      if (param === '0') {
-        this.themeTemplate = 'blue'
-      } else {
-        this.themeTemplate = 'red'
-      }
+    handleThemeTemplate = e => {
+      this.themeTemplate = e.target.value
     }
 }
 function createStore () {
