@@ -39,11 +39,13 @@ export default {
     roomId,
     roomName,
     canSend,
+    themeTemplate,
   }) => {
     return knex('rooms')
       .update({
         roomName,
         canSend,
+        themeTemplate,
       })
       .where({
         roomId,
