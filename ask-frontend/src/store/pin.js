@@ -42,6 +42,7 @@ class Pin {
     this.pin = ''
   }
 
+  @action
   submitForm = async () => {
     this.loading = true
     const { data } = await api.get(`/rooms/pin/${this.pin}`)
