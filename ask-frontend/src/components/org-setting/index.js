@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { observer, inject } from 'mobx-react'
-import { Input, Row, Col, InputGroup, Button } from 'reactstrap'
+import { Input, Row, Col, FormGroup, Button, Label, Form, CustomInput } from 'reactstrap'
 import Toggle from 'react-toggle'
 import '../../static/toggle.css'
 import PropTypes from 'prop-types'
@@ -18,47 +18,55 @@ class OrgSetting extends React.Component {
   render () {
     return (
       <Row>
-        <Col sm='3' />
-        <Col sm='6'>
+        <Col sm='2' />
+        <Col sm='8'>
           <StyledCardHeader>Setting</StyledCardHeader>
           <StyledCard>
-            <form onSubmit={this.props.setting.handleUpdateRoom}>
-              <Row>
-                <Col>
-                  <InputGroup>
-                    <p className='mr-2'>Room Name :</p>
-                    <Input
-                      type='text'
-                      placeholder={this.props.setting.roomName}
-                      name='roomName'
-                      value={this.props.setting.roomName}
-                      onChange={this.props.setting.changeInputName}
-                    />
-                  </InputGroup>
-                  <InputGroup>
-                    <p className='mr-2'>Room PIN :</p>
-                    {this.props.setting.roomPin}
-                  </InputGroup>
-                  <InputGroup>
-                    <p className='mr-2'>Open Sending :</p>
-                    <Toggle
-                      checked={this.props.setting.canSend}
-                      onChange={this.props.setting.handleToggleOpenSending}
-                      name='canSend'
-                    />
-                  </InputGroup>
-                  <InputGroup>
-                    <p className='mr-2'>Theme :</p>
-                    <Button color='primary' onClick={() => this.props.setting.handleThemeTemplate('0')}>Blue</Button>
-                    <Button color='danger' onClick={() => this.props.setting.handleThemeTemplate('1')}>Red</Button>
-                  </InputGroup>
-                  <Button type='submit' color='success' className='float-right'>Update</Button>
+            <Form onSubmit={this.props.setting.handleUpdateRoom}>
+
+              <FormGroup row>
+                <Label sm={3}>Room Name</Label>
+                <Col sm={6}>
+                  <Input
+                    type='text'
+                    placeholder={this.props.setting.roomName}
+                    name='roomName'
+                    value={this.props.setting.roomName}
+                    onChange={this.props.setting.changeInputName}
+                  />
                 </Col>
-              </Row>
-            </form>
+              </FormGroup>
+
+              <FormGroup row>
+                <Label sm={3}>Room Pin</Label>
+                <Label sm={6}>{this.props.setting.roomPin}</Label>
+              </FormGroup>
+
+              <FormGroup row>
+                <Label sm={3}>Open Sending</Label>
+                <Col sm={6}>
+                  <Toggle
+                    checked={this.props.setting.canSend}
+                    onChange={this.props.setting.handleToggleOpenSending}
+                    name='canSend'
+                  />
+                </Col>
+              </FormGroup>
+
+              <FormGroup>
+                <Label >Theme</Label>
+                <div>
+                  <CustomInput type='radio' id='red' name='red' label='Red' />
+                  <CustomInput type='radio' id='blue' name='blue' label='Blue' />
+                </div>
+
+              </FormGroup>
+              <Button type='submit' color='success' className='float-right'>Update</Button>
+
+            </Form>
           </StyledCard>
         </Col>
-        <Col sm='3' />
+        <Col sm='2' />
       </Row>
     )
   }
