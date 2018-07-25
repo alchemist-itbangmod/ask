@@ -6,6 +6,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel-plugin-styled-components": "^1.5.1",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "gatsby": "^1.9.273",
     "gatsby-link": "^1.6.40",
     "gatsby-plugin-react-helmet": "^2.0.10",

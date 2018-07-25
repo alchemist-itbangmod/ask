@@ -11,7 +11,7 @@ class OrgMonitor extends React.Component {
     liveQuestion: [],
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.getQuestion()
   }
 

@@ -11,7 +11,7 @@ import { StyledCard, StyledCardHeader } from './styled'
 
 @observer
 class OrgSetting extends React.Component {
-  componentWillMount () {
+  componentDidMount () {
     this.props.setting.getRoomData()
   }
 

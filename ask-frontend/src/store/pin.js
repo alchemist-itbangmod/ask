@@ -3,6 +3,7 @@ import { validChar } from '../utils/validate'
 import api from '../utils/api'
 import _ from 'lodash'
 import { navigateTo } from 'gatsby-link'
+import 'babel-polyfill'
 
 let pin
 const getPin = (node) => {

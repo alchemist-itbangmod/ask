@@ -1,5 +1,6 @@
 import { observable, action } from 'mobx'
 import api from '../utils/api'
+import 'babel-polyfill'
 
 let setting
 

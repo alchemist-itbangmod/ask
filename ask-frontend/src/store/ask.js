@@ -2,6 +2,7 @@ import { observable, action } from 'mobx'
 import api from '../utils/api'
 import statusCallback from '../config/statusCallback'
 import { navigateTo } from 'gatsby-link'
+import 'babel-polyfill'
 
 let ask
 let timeout
