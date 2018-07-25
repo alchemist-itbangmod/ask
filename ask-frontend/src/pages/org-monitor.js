@@ -78,7 +78,7 @@ class OrgMonitorShow extends React.Component {
                 </TabPane>
                 <TabPane tabId='2'>
                   <Row>
-                    <Col sm='6'>
+                    <Col>
                       <OrgSetting />
                     </Col>
                   </Row>

@@ -32,12 +32,13 @@ export default {
   },
   update: async (req, res) => {
     const id = req.params.id
-    const { roomName, canSend } = req.body
-    if (_.isString(roomName) && _.isBoolean(canSend)) {
+    const { roomName, canSend, themeTemplate } = req.body
+    if (_.isString(roomName) && _.isBoolean(canSend) && _.isString(themeTemplate)) {
       const data = await roomModel.update({
         roomId: id,
         roomName,
         canSend,
+        themeTemplate,
       })
       if (data) {
         res.send({

@@ -34,7 +34,6 @@ class AskPage extends React.Component {
                         />
                         <div className='text-right'>
                           {250 - this.props.ask.question.length}
-
                         </div>
                       </Col>
                       <Col xs={12}>
