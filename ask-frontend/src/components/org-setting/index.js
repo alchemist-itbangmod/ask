@@ -20,7 +20,7 @@ class OrgSetting extends React.Component {
       <Row>
         <Col sm='2' />
         <Col sm='8'>
-          <StyledCardHeader>Setting</StyledCardHeader>
+          <StyledCardHeader ><label className='ml-4'>Setting</label></StyledCardHeader>
           <StyledCard>
             <Form onSubmit={this.props.setting.handleUpdateRoom}>
 
