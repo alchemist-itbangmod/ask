@@ -1,25 +1,12 @@
 import React from 'react'
 import { Container, Row, Col, Card, CardHeader, CardBody, CardTitle, Button } from 'reactstrap'
-import XLSX from 'xlsx'
+import { observer, inject } from 'mobx-react'
+import PropTypes from 'prop-types'
 
-export default class OrgAnalyst extends React.Component {
-  state = {
-    allQuestion: [
-      { id: 1, question: 'Hi1' },
-      { id: 2, question: 'Hi2' },
-      { id: 3, question: 'Hi3' },
-      { id: 4, question: 'Hi4' },
-      { id: 5, question: 'Hi5' },
-    ],
-    selectQuestion: [],
-    allUser: 1000,
-  }
-  testExport = () => {
-    let ws = XLSX.utils.json_to_sheet(this.state.allQuestion)
-    let wb = XLSX.utils.book_new()
-    XLSX.utils.book_append_sheet(wb, ws, 'Question')
-    XLSX.writeFile(wb, 'test-export-excel.xlsx')
-  }
+@inject('analy')
+
+@observer
+class OrgAnalyst extends React.Component {
   render () {
     return (
       <Container>
@@ -32,7 +19,7 @@ export default class OrgAnalyst extends React.Component {
                 <Row className='text-center mb-5'>
                   <Col>
                     <h2>
-                      {this.state.allQuestion.length}
+                      {this.props.analy.allQuestion.length}
                     </h2>
                     <p>
                       AllQuestion
@@ -40,7 +27,7 @@ export default class OrgAnalyst extends React.Component {
                   </Col>
                   <Col>
                     <h2>
-                      {this.state.selectQuestion.length}
+                      {this.props.analy.selectionQuestion.length}
                     </h2>
                     <p>
                       SelectQuestion
@@ -48,7 +35,7 @@ export default class OrgAnalyst extends React.Component {
                   </Col>
                   <Col>
                     <h2>
-                      {this.state.allUser}
+                      {this.props.analy.allUser}
                     </h2>
                     <p>
                       AllUser
@@ -58,7 +45,7 @@ export default class OrgAnalyst extends React.Component {
                 <Row>
                   <Col />
                   <Col >
-                    <Button color='danger' block onClick={() => this.testExport()}>Export to excel</Button>
+                    <Button color='danger' block onClick={() => this.props.analy.exportExcel()}>Export to excel</Button>
                   </Col>
                   <Col />
                 </Row>
@@ -70,3 +57,14 @@ export default class OrgAnalyst extends React.Component {
     )
   }
 }
+
+OrgAnalyst.propTypes = {
+  analy: PropTypes.shape({
+    exportExcel: PropTypes.func.isRequired,
+    allQuestion: PropTypes.array.isRequired,
+    selectionQuestion: PropTypes.array.isRequired,
+    allUser: PropTypes.number.isRequired,
+  }),
+}
+
+export default OrgAnalyst
