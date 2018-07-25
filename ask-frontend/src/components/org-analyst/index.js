@@ -45,7 +45,7 @@ class OrgAnalyst extends React.Component {
                 <Row>
                   <Col />
                   <Col >
-                    <Button color='danger' block onClick={() => this.props.analy.exportExcel()}>Export to excel</Button>
+                    <Button color='danger' block onClick={() => this.props.analy.exportToExcel()}>Export to excel</Button>
                   </Col>
                   <Col />
                 </Row>
@@ -60,7 +60,7 @@ class OrgAnalyst extends React.Component {
 
 OrgAnalyst.propTypes = {
   analy: PropTypes.shape({
-    exportExcel: PropTypes.func.isRequired,
+    exportToExcel: PropTypes.func.isRequired,
     allQuestion: PropTypes.array.isRequired,
     selectionQuestion: PropTypes.array.isRequired,
     allUser: PropTypes.number.isRequired,
