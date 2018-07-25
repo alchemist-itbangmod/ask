@@ -18,18 +18,13 @@ class CreateRoomCard extends React.Component {
                   </Col>
                 </Row>
                 <Row>
-                  <Col sm='10'>
+                  <Col sm='9'>
                     <Input
                       type='text'
                       className='form-control'
                       placeholder='Enter room name'
                     />
                   </Col>
-                  <Col className='text-right'>
-                    <Toggle />
-                  </Col>
-                </Row>
-                <Row className='pt-3'>
                   <Col>
                     <Button type='submit' color='success' className='btn-block point'>Create</Button>
                   </Col>
