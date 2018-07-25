@@ -20,7 +20,7 @@ class Analy {
 
   @action
   exportToExcel = () => {
-    let ws = XLSX.utils.json_to_sheet(this.state.allQuestion)
+    let ws = XLSX.utils.json_to_sheet(this.allQuestion)
     let wb = XLSX.utils.book_new()
     XLSX.utils.book_append_sheet(wb, ws, 'Question')
     XLSX.writeFile(wb, 'test-export-excel.xlsx')
