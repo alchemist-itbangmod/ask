@@ -1,17 +1,33 @@
 import React from 'react'
 import { Card, Container, Row, Col, Button, Input } from 'reactstrap'
-import Toggle from 'react-toggle'
+import { observable, action } from 'mobx'
+import { observer } from 'mobx-react'
 
-import '../../static/toggle.css'
+class Create {
+  @observable roomName = ''
 
+  @action
+  changeInputRoomName = async (e) => {
+    this.roomName = e.target.value
+  }
+
+  @action
+  handleCreateRoom = async (e) => {
+    e.preventDefault()
+    localStorage.setItem('roomName', this.roomName)
+  }
+}
+const store = new Create()
+
+@observer
 class CreateRoomCard extends React.Component {
   render(){
     return(
       <Container>
-        <Row className='m-2'>
-          <Col sm='12' md={{ size: 10, offset: 1 }}>
+        <Row className='mt-4'>
+          <Col sm='12'>
             <Card className='p-4'>
-              <form>
+              <form onSubmit={store.handleCreateRoom}>
                 <Row>
                   <Col>
                     <h2>Create Room</h2>
@@ -22,6 +38,9 @@ class CreateRoomCard extends React.Component {
                     <Input
                       type='text'
                       className='form-control'
+                      name='roomName'
+                      value={store.roomName}
+                      onChange={store.changeInputRoomName}
                       placeholder='Enter room name'
                     />
                   </Col>
