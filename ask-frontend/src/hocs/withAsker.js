@@ -71,8 +71,8 @@ const withAsker = Component => {
       }
       return (
         <React.Fragment>
-          <Navbar {...this.props.ask} />
-          <Component {...this.props.ask} />
+          <Navbar />
+          <Component />
         </React.Fragment>
       )
     }
