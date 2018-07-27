@@ -18,6 +18,11 @@ export default {
     const questions = await questionModel.getById(id) || {}
     res.send(questions)
   },
+  getByRoomId: async (req, res) => {
+    const roomId = req.params.id
+    const questions = await questionModel.getByRoomId(roomId)
+    res.send(questions)
+  },
   update: async (req, res) => {
     const { questionIds } = req.body
     if (_.isArray(questionIds) && questionIds.length > 0) {

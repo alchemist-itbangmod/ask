@@ -16,7 +16,7 @@ class OrgMonitor extends React.Component {
   }
 
   getQuestion = async () => {
-    const data = await axios.get('http://localhost:3000/api/v1/questions/')
+    const data = await axios.get('http://localhost:3000/api/v1/rooms/5/questions')
     this.setState({
       allQuestion: data.data,
     })
