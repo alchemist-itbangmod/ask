@@ -1,24 +1,47 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Button, Row, Col, Badge } from 'reactstrap'
 import { Scroll, List, StyledCard, StyledCardHeader } from './styled'
-import axios from 'axios'
+import api from '../../utils/api'
 import _ from 'lodash'
+import socket from '../../utils/socket'
 
 class OrgMonitor extends React.Component {
   state={
     allQuestion: [],
     selectedQuestion: [],
     liveQuestion: [],
+    remain: 0,
+  }
+
+  static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.string,
+      }),
+    }),
   }
 
   componentDidMount () {
+    const roomId = this.props.match.params.id
+    socket.on('connect', () => {
+      socket.emit('room', roomId)
+    })
+
+    socket.on('monitor', (data) => {
+      if (data.status === 200) {
+        this.setState({ remain: this.state.remain + 1 })
+      }
+    })
     this.getQuestion()
   }
 
   getQuestion = async () => {
-    const data = await axios.get('http://localhost:3000/api/v1/rooms/5/questions')
+    const roomId = this.props.match.params.id
+    const data = await api.get(`/rooms/${roomId}/questions`)
     this.setState({
       allQuestion: data.data,
+      remain: 0,
     })
   }
   handleSelectedQuestion = async (item) => {
@@ -37,7 +60,7 @@ class OrgMonitor extends React.Component {
   sendQuestion = async (item) => {
     // method put
     const questionIds = this.state.selectedQuestion.map(question => question.questionId)
-    await axios.put('http://localhost:3000/api/v1/questions/', { questionIds })
+    await api.put('/questions', { questionIds })
     this.setState({
       selectedQuestion: [],
       allQuestion: [],
@@ -56,7 +79,7 @@ class OrgMonitor extends React.Component {
                     <span >Question</span>
                   </Col>
                   <Col sm='4'>
-                    <Button block size='sm' color='info' onClick={() => this.getQuestion()}>Refresh</Button>{' '}
+                    <Button block size='sm' color='info' onClick={() => this.getQuestion()}>Refresh {this.state.remain}</Button>{' '}
                   </Col>
                 </Row>
               </StyledCardHeader>
@@ -71,8 +94,12 @@ class OrgMonitor extends React.Component {
                   selected={_.find(this.state.selectedQuestion, { questionId: item.questionId })}
                   onClick={() => this.handleSelectedQuestion(item)}
                 >
-                  <span className='col-sm-11'>{item.question}</span>
-                  <i className='text-right col-sm-1 fa fa-trash' />
+                  <Col xs='11'>
+                    <span>{item.question}</span>
+                  </Col>
+                  <Col xs='1' className='pl-0'>
+                    <i className='pull-right fa fa-trash' />
+                  </Col>
                 </List>
               )}
             </Scroll>
