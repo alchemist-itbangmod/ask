@@ -1,6 +1,6 @@
 import React from 'react'
-import OrgMonitor from '../components/org-monitor'
-import OrgSetting from '../components/org-setting'
+import OrgMonitor from '../org-monitor'
+import OrgSetting from '../org-setting'
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, Container } from 'reactstrap'
 import classnames from 'classnames'
 import styled from 'styled-components'
@@ -9,6 +9,10 @@ const Card = styled.div`
   border-radius: 0.75rem !important;
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .4);
   min-height:80vh;
+`
+
+const CustomeNav = styled(NavLink)`
+  cursor: pointer;
 `
 
 const Title = styled.h3`
@@ -29,12 +33,8 @@ class OrgMonitorShow extends React.Component {
     }
   }
 
-  toggle (tab) {
-    if (this.state.activeTab !== tab) {
-      this.setState({
-        activeTab: tab,
-      })
-    }
+  toggle (evt) {
+    this.setState({ activeTab: evt.target.id })
   }
 
   render () {
@@ -48,38 +48,41 @@ class OrgMonitorShow extends React.Component {
                   test
                 </Title>
                 <NavItem>
-                  <NavLink
+                  <CustomeNav
                     className={classnames({ active: this.state.activeTab === '3' })}
-                    onClick={() => { this.toggle('3') }}
+                    id='3'
+                    onClick={this.toggle}
                   >
                   Analyst
-                  </NavLink>
+                  </CustomeNav>
                 </NavItem>
                 <NavItem>
-                  <NavLink
+                  <CustomeNav
                     className={classnames({ active: this.state.activeTab === '2' })}
-                    onClick={() => { this.toggle('2') }}
+                    id='2'
+                    onClick={this.toggle}
                   >
                   Setting
-                  </NavLink>
+                  </CustomeNav>
                 </NavItem>
                 <NavItem>
-                  <NavLink
+                  <CustomeNav
                     className={classnames({ active: this.state.activeTab === '1' })}
-                    onClick={() => { this.toggle('1') }}
+                    id='1'
+                    onClick={this.toggle}
                   >
                   Question
-                  </NavLink>
+                  </CustomeNav>
                 </NavItem>
               </Nav>
               <TabContent activeTab={this.state.activeTab}>
                 <TabPane tabId='1'>
-                  <OrgMonitor />
+                  <OrgMonitor {...this.props} />
                 </TabPane>
                 <TabPane tabId='2'>
                   <Row>
                     <Col>
-                      <OrgSetting />
+                      <OrgSetting {...this.props} />
                     </Col>
                   </Row>
                 </TabPane>
