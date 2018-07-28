@@ -11,8 +11,16 @@ import { StyledCard, StyledCardHeader } from './styled'
 
 @observer
 class OrgSetting extends React.Component {
+  static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.string,
+      }),
+    }),
+  }
   componentDidMount () {
-    this.props.setting.getRoomData()
+    const roomId = this.props.match.params.id
+    this.props.setting.getRoomData({ roomId })
   }
 
   render () {
@@ -57,6 +65,7 @@ class OrgSetting extends React.Component {
                 <Label >Theme</Label>
                 {['red', 'blue', 'green'].map(theme => (
                   <CustomInput
+                    key={theme}
                     id={theme}
                     label={theme}
                     type='radio'

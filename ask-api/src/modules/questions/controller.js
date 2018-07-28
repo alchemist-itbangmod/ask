@@ -50,19 +50,22 @@ export default {
     _.isBoolean(anonymous) &&
     _.isString(question)) {
       const room = await roomnModel.getById(roomId)
-      console.log(room)
-      if (room) {
-        if (room.canSend) {
-          const data = await questionModel.create({ roomId, name, anonymous, question })
-          res.send({ status: data ? statusCallback.SUCCESS : statusCallback.ERROR })
-        } else {
-          res.send({ status: statusCallback.CLOSED })
-        }
+      if (!room) {
+        res.status(500).send({ status: statusCallback.ERROR })
+        return
+      }
+
+      if (room.canSend) {
+        const data = await questionModel.create({ roomId, name, anonymous, question })
+        req.app.io.sockets
+          .in(roomId)
+          .emit('monitor', { status: 200 })
+        res.send({ status: data ? statusCallback.SUCCESS : statusCallback.ERROR })
       } else {
-        res.send({ status: statusCallback.ERROR })
+        res.status(400).send({ status: statusCallback.CLOSED })
       }
     } else {
-      res.send({ status: statusCallback.ERROR })
+      res.status(500).send({ status: statusCallback.ERROR })
     }
   },
 }
