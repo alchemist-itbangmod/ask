@@ -5,6 +5,7 @@ import apiRoutes from 'api/routes'
 import bodyParser from 'body-parser'
 import { listen } from 'socket.io'
 import handleSocket from 'api/socket'
+import addUser from 'api/middlewares/addUser'
 
 const port = parseInt(process.env.PORT, 10) || 3000
 
@@ -12,6 +13,7 @@ const app = express()
 app.use(helmet())
 app.use(cors)
 app.use(bodyParser.json())
+app.use(addUser)
 
 app.get('/', (req, res) => {
   res.send('#ask api is running !')
