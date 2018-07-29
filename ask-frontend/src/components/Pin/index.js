@@ -39,7 +39,7 @@ class PinComponent extends React.Component {
             </Form>
           </Col>
           <BottomContent>
-            create your own ASK for free via <Link to='/org'>ask.kmutt.ac.th/organizer</Link>
+            create your own ASK for free via <Link to='/organizer'>ask.kmutt.ac.th/organizer</Link>
           </BottomContent>
         </Row>
       </Container>
