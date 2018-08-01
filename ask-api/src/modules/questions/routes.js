@@ -7,5 +7,6 @@ router.get('/', requireAuth, questionController.getAll)
 router.get('/:id', requireAuth, questionController.getById)
 router.post('/', questionController.create)
 router.put('/', requireAuth, questionController.update)
+router.get('/:id/rooms', requireAuth, questionController.getByRoomId)
 
 export default router
