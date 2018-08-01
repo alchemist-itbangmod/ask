@@ -1,8 +1,14 @@
 import React from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import { Logo, AskName } from './styled'
-
+import { observer, inject } from 'mobx-react'
+import PropTypes from 'prop-types'
+@inject('present')
+@observer
 class Present extends React.Component {
+  componentWillMount () {
+    this.props.present.getData()
+  }
   render () {
     return (
       <Container fluid>
@@ -19,7 +25,7 @@ class Present extends React.Component {
               </div>
               <div className='text-center mt-5'>
                 <h1>
-                Room Name
+                  {this.props.present.roomName}
                 </h1>
               </div>
             </div>
@@ -34,6 +40,12 @@ class Present extends React.Component {
       </Container>
     )
   }
+}
+Present.PropTypes = {
+  present: PropTypes.shape({
+    getData: PropTypes.func.isRequired,
+    roomName: PropTypes.string.isRequired,
+  }),
 }
 
 export default Present
