@@ -1,24 +1,9 @@
 import React from 'react'
 import { Card, Container, Row, Col, Button, Input } from 'reactstrap'
-import { observable, action } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
+import PropTypes from 'prop-types'
 
-class Create {
-  @observable roomName = ''
-
-  @action
-  changeInputRoomName = async (e) => {
-    this.roomName = e.target.value
-  }
-
-  @action
-  handleCreateRoom = async (e) => {
-    e.preventDefault()
-    localStorage.setItem('roomName', this.roomName)
-  }
-}
-const store = new Create()
-
+@inject('allRoom')
 @observer
 class CreateRoomCard extends React.Component {
   render () {
@@ -27,7 +12,7 @@ class CreateRoomCard extends React.Component {
         <Row className='mt-4'>
           <Col sm='12'>
             <Card className='p-4'>
-              <form onSubmit={store.handleCreateRoom}>
+              <form onSubmit={this.props.allRoom.handleCreateRoom}>
                 <Row>
                   <Col>
                     <h2>Create Room</h2>
@@ -39,8 +24,8 @@ class CreateRoomCard extends React.Component {
                       type='text'
                       className='form-control'
                       name='roomName'
-                      value={store.roomName}
-                      onChange={store.changeInputRoomName}
+                      value={this.props.allRoom.roomName}
+                      onChange={this.props.allRoom.changeInputRoomName}
                       placeholder='Enter room name'
                     />
                   </Col>
@@ -56,5 +41,11 @@ class CreateRoomCard extends React.Component {
     )
   }
 }
-
+CreateRoomCard.propTypes = {
+  allRoom: PropTypes.shape({
+    handleCreateRoom: PropTypes.func.isRequired,
+    changeInputRoomName: PropTypes.func.isRequired,
+    roomName: PropTypes.string.isRequired,
+  }),
+}
 export default CreateRoomCard

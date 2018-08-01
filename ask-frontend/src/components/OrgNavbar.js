@@ -99,7 +99,7 @@ class Login extends React.PureComponent {
         <CustomNavbar expand='md'>
           <Link className='text-white navbar-brand' to='/organizer'>ASK</Link>
           <Nav className='ml-auto'>
-            {this.state.authStatus === 'unknown' && (
+            {/(not_authorized)|(unknown)/.test(this.state.authStatus) && (
               <FacebookButton
                 disabled={this.state.loginLoad}
                 onClick={this.login}
