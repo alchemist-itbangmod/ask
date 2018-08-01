@@ -1,23 +1,13 @@
 import React from 'react'
 import { StyledButton } from './styled'
 import { Collapse, Card, Container, Row, Col, CardHeader } from 'reactstrap'
-import { observable, action } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
+import PropTypes from 'prop-types'
 
 import CreateCard from './createRoomCard'
 import RoomCard from './roomCard'
 
-class AllRoom {
-  @observable collapse = false
-
-  @action
-  toggle = () => {
-    this.collapse = !this.collapse
-  }
-}
-
-const store = new AllRoom()
-
+@inject('allRoom')
 @observer
 class OrgCreateRoom extends React.Component {
   render () {
@@ -32,13 +22,13 @@ class OrgCreateRoom extends React.Component {
               <Container>
                 <Row className='mt-4'>
                   <Col sm='12'>
-                    <StyledButton color='primary' className='p-2' body outline block onClick={store.toggle}>
+                    <StyledButton color='primary' className='p-2' body outline block onClick={this.props.allRoom.toggle}>
                       <h4>+ Create Room</h4>
                     </StyledButton>
                   </Col>
                 </Row>
               </Container>
-              <Collapse isOpen={store.collapse}>
+              <Collapse isOpen={this.props.allRoom.collapse}>
                 <CreateCard />
               </Collapse>
               <RoomCard />
@@ -48,6 +38,12 @@ class OrgCreateRoom extends React.Component {
       </Container>
     )
   }
+}
+OrgCreateRoom.propTypes = {
+  allRoom: PropTypes.shape({
+    toggle: PropTypes.func.isRequired,
+    collapse: PropTypes.bool.isRequired,
+  }),
 }
 
 export default OrgCreateRoom
