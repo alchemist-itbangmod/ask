@@ -114,7 +114,7 @@ class OrgMonitor extends React.Component {
                     <span >Selected</span>
                   </Col>
                   <Col sm='4'>
-                    <Button block size='sm' color='success' onClick={() => this.sendQuestion()}>Sefresh</Button>{' '}
+                    <Button block size='sm' color='success' onClick={() => this.sendQuestion()}>Refresh</Button>{' '}
                   </Col>
                 </Row>
               </StyledCardHeader>
