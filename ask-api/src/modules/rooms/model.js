@@ -68,9 +68,13 @@ export default {
   getRoomByPin: (pin) => {
     return findByPin(pin)
   },
-  create: async roomName => {
+  create: async ({
+    roomName,
+    userId,
+  }) => {
     let pin
     let data
+    console.log()
     do {
       pin = genPin()
       data = await findByPin(pin)
@@ -79,6 +83,7 @@ export default {
       .insert({
         roomName,
         roomPin: pin,
+        userId,
       })
       .returning()
   },
