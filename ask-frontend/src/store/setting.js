@@ -1,5 +1,8 @@
 import { observable, action } from 'mobx'
 import api from '../utils/api'
+import 'babel-polyfill'
+import _ from 'lodash'
+import { navigateTo } from 'gatsby-link'
 
 let setting
 
@@ -12,12 +15,16 @@ class Setting {
     @observable canSend = false
 
     @action
-    getRoomData = async () => {
-      const { data } = await api.get(`/rooms/5`)
-      this.roomPin = data.roomPin
-      this.roomName = data.roomName
-      this.canSend = data.canSend
-      this.themeTemplate = data.themeTemplate
+    getRoomData = async ({ roomId }) => {
+      const { data } = await api.get(`/rooms/${roomId}`)
+      if (!_.isEmpty(data)) {
+        this.roomPin = data.roomPin
+        this.roomName = data.roomName
+        this.canSend = data.canSend
+        this.themeTemplate = data.themeTemplate
+      } else {
+        navigateTo('/org')
+      }
     }
 
     @action
@@ -34,6 +41,7 @@ class Setting {
     @action
     changeInputName = async (e) => {
       this.roomName = e.target.value
+      console.log(e.target.value)
     }
 
     @action

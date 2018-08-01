@@ -11,8 +11,16 @@ import { StyledCard, StyledCardHeader } from './styled'
 
 @observer
 class OrgSetting extends React.Component {
-  componentWillMount () {
-    this.props.setting.getRoomData()
+  static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.string,
+      }),
+    }),
+  }
+  componentDidMount () {
+    const roomId = this.props.match.params.id
+    this.props.setting.getRoomData({ roomId })
   }
 
   render () {
@@ -20,7 +28,7 @@ class OrgSetting extends React.Component {
       <Row>
         <Col sm='2' />
         <Col sm='8'>
-          <StyledCardHeader>Setting</StyledCardHeader>
+          <StyledCardHeader ><label className='ml-4'>Setting</label></StyledCardHeader>
           <StyledCard>
             <Form onSubmit={this.props.setting.handleUpdateRoom}>
 
@@ -57,6 +65,7 @@ class OrgSetting extends React.Component {
                 <Label >Theme</Label>
                 {['red', 'blue', 'green'].map(theme => (
                   <CustomInput
+                    key={theme}
                     id={theme}
                     label={theme}
                     type='radio'

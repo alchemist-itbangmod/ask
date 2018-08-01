@@ -23,7 +23,7 @@ class AskPage extends React.Component {
                       </Col>
                       <Col xs={12}>
                         <Input
-                          invalid={this.props.ask.message && this.props.ask.question.length < 4}
+                          invalid={!!this.props.ask.message && this.props.ask.question.length < 4}
                           type='textarea'
                           rows='6'
                           onChange={this.props.ask.changeInputQuestion}
