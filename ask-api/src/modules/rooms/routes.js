@@ -12,6 +12,6 @@ router.get('/:id', roomsController.getById)
 router.get('/:id/questions', requireAuth, questionsController.getByRoomId)
 router.put('/:id', roomsController.update)
 router.delete('/:id', roomsController.delete)
-// router.get('/:id/analyst', analystController.getQuestion)
+router.get('/:id/analyst', analystController.getQuestion)
 router.get('/:id/analyst', analystController.getAsker)
 export default router
