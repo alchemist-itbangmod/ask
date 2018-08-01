@@ -1,16 +1,24 @@
 import React from 'react'
 import { Container, Row, Col, Button } from 'reactstrap'
 import styled from 'styled-components'
+import { inject } from 'mobx-react'
+import PropTypes from 'prop-types'
+import color from '../components/Core/color'
 
 const StyledContainer = styled(Container)`
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  background: #663399;
-
+  background: ${color.PURPLE};
 `
-
+@inject(store => ({
+  resetAsk: store.ask.resetAsk,
+}))
 class Navbar extends React.Component {
   state = {
     isOpen: false,
+  }
+
+  static propTypes = {
+    resetAsk: PropTypes.func,
   }
 
   toggle = () => {

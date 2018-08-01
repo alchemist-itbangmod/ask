@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, CardHeader, CardBody, CardTitle, Button } fr
 import { observer, inject } from 'mobx-react'
 import PropTypes from 'prop-types'
 
-@inject('analy')
+@inject('analyst')
 
 @observer
 class OrgAnalyst extends React.Component {

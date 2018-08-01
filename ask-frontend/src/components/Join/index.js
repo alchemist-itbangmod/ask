@@ -1,7 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Input, Container, Row, Col, Card } from 'reactstrap'
+import { observer, inject } from 'mobx-react'
 
+@inject(store => ({
+  handleSubmit: store.ask.handleSubmit,
+  name: store.ask.name,
+  changeInputName: store.ask.changeInputName,
+  roomName: store.ask.roomName,
+}))
+@observer
 class JoinPage extends React.Component {
   render () {
     return (
@@ -42,6 +50,12 @@ JoinPage.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   changeInputName: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
+}
+JoinPage.defaultProps = {
+  roomName: '',
+  handleSubmit: () => null,
+  changeInputName: () => null,
+  name: '',
 }
 
 export default JoinPage

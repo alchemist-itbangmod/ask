@@ -12,9 +12,16 @@ export default {
   },
   getById: (id) => {
     return knex(tableName)
-      .select()
       .where({ questionId: id })
       .first()
+  },
+  getByRoomId: (roomId) => {
+    return knex(tableName)
+      .where({
+        roomId,
+        isAnswer: false,
+      })
+      .select()
   },
   update: (questionIds) => {
     return knex(tableName)

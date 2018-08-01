@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Container, Row, Col, Form } from 'reactstrap'
-import { Input, BottomContent, Logo, ErrorMessage } from './styled'
+import { Input, BottomContent, Logo, ErrorMessage, H1 } from './styled'
 import { observer, inject } from 'mobx-react'
 import Link from 'gatsby-link'
 
@@ -18,7 +18,7 @@ class PinComponent extends React.Component {
           <Col xs={12}>
             {this.props.pin.loading && 'loading...'}
             {!this.props.pin.error ? (
-              <h1>{`Type room's code`}</h1>
+              <H1>{`Type room's code`}</H1>
             ) : (
               <ErrorMessage>{`Invalid code, please try again`}</ErrorMessage>
             )}
@@ -39,7 +39,7 @@ class PinComponent extends React.Component {
             </Form>
           </Col>
           <BottomContent>
-            create your own ASK for free via <Link to='/org'>ask.kmutt.ac.th/organizer</Link>
+            create your own ASK for free via <Link to='/organizer'>ask.kmutt.ac.th/organizer</Link>
           </BottomContent>
         </Row>
       </Container>
