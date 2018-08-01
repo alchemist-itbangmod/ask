@@ -10,7 +10,7 @@ export const createToken = (user, secret) => {
     { user },
     secret,
     {
-      expiresIn: 60, // 30 seconds
+      expiresIn: 15 * 60, // 15 minutes
     },
   )
   return token

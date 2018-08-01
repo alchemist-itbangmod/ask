@@ -24,7 +24,7 @@ api.interceptors.response.use(config => {
     if (token === 'null') {
       Cookies.remove(key)
     } else {
-      const inOne = new Date(new Date().getTime() + 10 * 1000)
+      const inOne = new Date(new Date().getTime() + 10 * 60 * 1000) // 10 minutes
       Cookies.set(key, token, { expires: inOne })
     }
   }
