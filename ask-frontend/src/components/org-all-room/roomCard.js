@@ -11,15 +11,15 @@ class RoomCard extends React.Component {
     return (
       <Container>
         {this.props.allRoom.allRooms.map((item) =>
-          <Row className='mt-4'>
+          <Row className='mt-4' key={item.roomId}>
             <Col sm='12'>
               <Card>
                 <Row>
                   <Col>
-                    <h3 className='p-3'>{this.props.allRoom.roomName}</h3>
+                    <h3 className='p-3'>{item.roomName}</h3>
                   </Col>
-                  <Col className='text-right p-3 mr-3' >
-                    <Link to='/org-monitor/'>
+                  <Col className='text-right d-flex align-items-center justify-content-end mr-3' >
+                    <Link to={`/organizer/${item.roomId}/monitor/`}>
                       <Button outline color='secondary'>
                                         Manage
                       </Button>
