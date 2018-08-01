@@ -7,6 +7,10 @@ import PropTypes from 'prop-types'
 
 @observer
 class OrgAnalyst extends React.Component {
+  componentDidMount () {
+    this.props.analyst.getAnalystData(this.props.match.params.id)
+  }
+
   render () {
     return (
       <Container>
@@ -19,7 +23,7 @@ class OrgAnalyst extends React.Component {
                 <Row className='text-center mb-5'>
                   <Col>
                     <h2>
-                      {this.props.analy.allQuestion.length}
+                      {this.props.analyst.allQuestion}
                     </h2>
                     <p>
                       AllQuestions
@@ -27,7 +31,7 @@ class OrgAnalyst extends React.Component {
                   </Col>
                   <Col>
                     <h2>
-                      {this.props.analy.selectionQuestion.length}
+                      {this.props.analyst.selectionQuestion}
                     </h2>
                     <p>
                       SelectedQuestions
@@ -35,7 +39,7 @@ class OrgAnalyst extends React.Component {
                   </Col>
                   <Col>
                     <h2>
-                      {this.props.analy.allUser}
+                      {this.props.analyst.allUser}
                     </h2>
                     <p>
                       Asker
@@ -45,7 +49,7 @@ class OrgAnalyst extends React.Component {
                 <Row>
                   <Col />
                   <Col >
-                    <Button color='danger' block onClick={() => this.props.analy.exportToExcel()}>Export to excel</Button>
+                    <Button color='danger' block onClick={() => this.props.analyst.exportToExcel(this.props.match.params.id)}>Export to excel</Button>
                   </Col>
                   <Col />
                 </Row>
@@ -59,7 +63,7 @@ class OrgAnalyst extends React.Component {
 }
 
 OrgAnalyst.propTypes = {
-  analy: PropTypes.shape({
+  analyst: PropTypes.shape({
     exportToExcel: PropTypes.func.isRequired,
     allQuestion: PropTypes.array.isRequired,
     selectionQuestion: PropTypes.array.isRequired,
