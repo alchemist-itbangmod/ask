@@ -22,7 +22,7 @@ class OrgAnalyst extends React.Component {
                       {this.props.analy.allQuestion.length}
                     </h2>
                     <p>
-                      AllQuestion
+                      AllQuestions
                     </p>
                   </Col>
                   <Col>
@@ -30,7 +30,7 @@ class OrgAnalyst extends React.Component {
                       {this.props.analy.selectionQuestion.length}
                     </h2>
                     <p>
-                      SelectQuestion
+                      SelectedQuestions
                     </p>
                   </Col>
                   <Col>
@@ -38,7 +38,7 @@ class OrgAnalyst extends React.Component {
                       {this.props.analy.allUser}
                     </h2>
                     <p>
-                      AllUser
+                      Asker
                     </p>
                   </Col>
                 </Row>
