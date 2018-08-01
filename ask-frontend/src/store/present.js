@@ -5,11 +5,17 @@ let present
 
 class Present {
 @observable roomName = ''
-
+@observable roomPin = ''
+@observable questionshow = []
 @action
-getData = async () => {
+getRoomData = async () => {
   const { data } = await api.get('/rooms/5')
   this.roomName = data.roomName
+  this.roomPin = data.roomPin
+}
+getQuestion = async () => {
+  const { data } = await api.get('/rooms/6/questions')
+  console.log(data)
 }
 }
 
