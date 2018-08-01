@@ -1,39 +1,37 @@
 import React from 'react'
 import { Container, Row, Col } from 'reactstrap'
-import { Logo, AskName } from './styled'
+import { Logo, AskName, Card } from './styled'
 import { observer, inject } from 'mobx-react'
 import PropTypes from 'prop-types'
+import Link from 'gatsby-link'
 @inject('present')
 @observer
 class Present extends React.Component {
   componentWillMount () {
-    this.props.present.getData()
+    this.props.present.getRoomData()
+    this.props.present.getQuestion()
   }
   render () {
     return (
       <Container fluid>
         <Row>
-          <Col sm='3' >
-            <div className='justify-content-center'>
-              <AskName className='m-5 text-center'>
-                <h1>ASK #3.0</h1>
-              </AskName>
-              <div className='m-5'>
-                <div className='d-flex justify-content-center'>
-                  <Logo />
-                </div>
-              </div>
-              <div className='text-center mt-5'>
-                <h1>
-                  {this.props.present.roomName}
-                </h1>
-              </div>
+          <Card className='justify-content-center'>
+            <AskName className='m-5 text-center'>
+              <h1>ASK #3.0</h1>
+            </AskName>
+            <div className='d-flex justify-content-center'>
+              <Logo />
             </div>
-          </Col>
-          <Col sm='9' className='text-center'>
             <div className='m-5'>
-              <h2>PIN</h2>
-              <h1>{'1234'}</h1>
+              <Link to='/'>
+                <h1>ask.kmutt.ac.th</h1>
+              </Link>
+            </div>
+          </Card>
+          <Col sm='12' className='d-flex justify-content-center align-items-center' style={{ height: '100vh' }}>
+            <div className='text-center'>
+              <h1>{this.props.present.roomName}</h1>
+              <h1>PIN : {this.props.present.roomPin}</h1>
             </div>
           </Col>
         </Row>
@@ -43,8 +41,10 @@ class Present extends React.Component {
 }
 Present.PropTypes = {
   present: PropTypes.shape({
-    getData: PropTypes.func.isRequired,
+    getRoomData: PropTypes.func.isRequired,
     roomName: PropTypes.string.isRequired,
+    roomPin: PropTypes.string.isRequired,
+    getQuestion: PropTypes.func.isRequired,
   }),
 }
 
