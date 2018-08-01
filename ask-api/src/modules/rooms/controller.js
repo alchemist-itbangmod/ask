@@ -3,7 +3,10 @@ import _ from 'lodash'
 
 export default {
   getAll: async (req, res) => {
-    const rooms = await roomModel.getAll()
+    const rooms = await roomModel
+      .getAll({
+        userId: req.user.userId,
+      })
     res.send(rooms)
   },
   getById: async (req, res) => {

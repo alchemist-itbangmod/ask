@@ -10,7 +10,10 @@ const statusCallback = {
 
 export default {
   getAll: async (req, res) => {
-    const questions = await questionModel.getAll()
+    const questions = await questionModel
+      .getAll({
+        userId: req.user.userId,
+      })
     res.send(questions)
   },
   getById: async (req, res) => {

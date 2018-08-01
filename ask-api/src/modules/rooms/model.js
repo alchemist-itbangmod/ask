@@ -22,11 +22,14 @@ const genPin = () => {
 }
 
 export default {
-  getAll: () => {
+  getAll: ({
+    userId,
+  }) => {
     return knex('rooms').select()
       .select()
       .where({
         isDelete: false,
+        userId,
       })
   },
   getById: (id) => {
