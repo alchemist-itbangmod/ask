@@ -18,6 +18,11 @@ export default {
     const questions = await questionModel.getById(id) || {}
     res.send(questions)
   },
+  getByRoomId: async (req, res) => {
+    const roomId = req.params.id
+    const questions = await questionModel.getByRoomId(roomId)
+    res.send(questions)
+  },
   update: async (req, res) => {
     const { questionIds } = req.body
     if (_.isArray(questionIds) && questionIds.length > 0) {
@@ -45,19 +50,22 @@ export default {
     _.isBoolean(anonymous) &&
     _.isString(question)) {
       const room = await roomnModel.getById(roomId)
-      console.log(room)
-      if (room) {
-        if (room.canSend) {
-          const data = await questionModel.create({ roomId, name, anonymous, question })
-          res.send({ status: data ? statusCallback.SUCCESS : statusCallback.ERROR })
-        } else {
-          res.send({ status: statusCallback.CLOSED })
-        }
+      if (!room) {
+        res.status(500).send({ status: statusCallback.ERROR })
+        return
+      }
+
+      if (room.canSend) {
+        const data = await questionModel.create({ roomId, name, anonymous, question })
+        req.app.io.sockets
+          .in(roomId)
+          .emit('monitor', { status: 200 })
+        res.send({ status: data ? statusCallback.SUCCESS : statusCallback.ERROR })
       } else {
-        res.send({ status: statusCallback.ERROR })
+        res.status(400).send({ status: statusCallback.CLOSED })
       }
     } else {
-      res.send({ status: statusCallback.ERROR })
+      res.status(500).send({ status: statusCallback.ERROR })
     }
   },
 }

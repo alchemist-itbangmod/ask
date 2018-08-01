@@ -20,7 +20,7 @@ const withAsker = Component => {
   }))
   @observer
   class WithAskerComponent extends React.Component {
-    componentWillMount () {
+    componentDidMount () {
       const name = localStorage.getItem('name')
       const roomId = localStorage.getItem('roomId')
       const roomName = localStorage.getItem('roomName')
@@ -71,8 +71,8 @@ const withAsker = Component => {
       }
       return (
         <React.Fragment>
-          <Navbar {...this.props.ask} />
-          <Component {...this.props.ask} />
+          <Navbar />
+          <Component />
         </React.Fragment>
       )
     }

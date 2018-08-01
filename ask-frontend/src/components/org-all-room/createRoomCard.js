@@ -21,8 +21,8 @@ const store = new Create()
 
 @observer
 class CreateRoomCard extends React.Component {
-  render(){
-    return(
+  render () {
+    return (
       <Container>
         <Row className='mt-4'>
           <Col sm='12'>
@@ -53,7 +53,8 @@ class CreateRoomCard extends React.Component {
           </Col>
         </Row>
       </Container>
-  )
-}}
+    )
+  }
+}
 
 export default CreateRoomCard
