@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Container, Row, Col, CardBody, CardHeader, CardTitle } from 'reactstrap'
-import { CustomCardBody } from './styled'
+import { Content } from './styled'
 
 class OrgHomePage extends React.Component {
   render () {
@@ -12,7 +12,7 @@ class OrgHomePage extends React.Component {
               <CardHeader tag='h4'className='p-3 pl-4'>{`ASK #3.0 Organizer`}</CardHeader>
               <CardBody>
                 <CardTitle tag='h2' className='text-center'>How to use ASK #3.0 Organizer</CardTitle>
-                <CustomCardBody>
+                <Content>
                   <h5>1. Go to Website ASK #3.0 Organizer</h5><br />
                   <h5>2. Log in Facebook</h5>
                   <p>ล็อกอิน ASK #3.0 Organizer ด้วยเฟสบุ้คจากปุ่มล็อกอินด้านบนขวา</p><br />
@@ -38,7 +38,7 @@ class OrgHomePage extends React.Component {
                   <p>Tab ที่สาม Analyst จะแสดงข้อมูลจำนวนผู้ที่เข้าห้องมาทั้งหมด คำถามทั้งหมด และคำถามที่ขึ้นแสดงบนจอ โดยข้อมูลพวกนี้สามารถกด  Export ออกมาเป็นเอกสาร Excel ได้</p><br />
                   <h5>9. Presentation windows</h5>
                   <p>ที่หน้า Home page ในการ์ดห้อง ปุ่ม Present คือห้องที่มีไว้สำหรับเปิดโชว์บนจอแสดงผล โดยเข้ามาครั้งแรกจะแสดง PIN ของห้องนั้นให้ผู้ใช้งานเข้าห้องนั้นๆ มาเพื่อใส่ชื่อและส่งคำถาม แต่เมื่อแสดงคำถามบนหน้าจอ จะเห็นเพียงคำถามขึ้นที่แสดงเต็มหน้าจอเท่านั้น</p>
-                </CustomCardBody>
+                </Content>
               </CardBody>
             </Card>
           </Col>
