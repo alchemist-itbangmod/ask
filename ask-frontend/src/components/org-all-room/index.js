@@ -10,6 +10,9 @@ import RoomCard from './roomCard'
 @inject('allRoom')
 @observer
 class OrgCreateRoom extends React.Component {
+  componentDidMount () {
+    this.props.allRoom.getRooms()
+  }
   render () {
     return (
       <Container fluid>
@@ -22,7 +25,7 @@ class OrgCreateRoom extends React.Component {
               <Container>
                 <Row className='mt-4'>
                   <Col sm='12'>
-                    <StyledButton color='primary' className='p-2' body outline block onClick={this.props.allRoom.toggle}>
+                    <StyledButton color='primary' className='p-2' outline block onClick={this.props.allRoom.toggle}>
                       <h4>+ Create Room</h4>
                     </StyledButton>
                   </Col>

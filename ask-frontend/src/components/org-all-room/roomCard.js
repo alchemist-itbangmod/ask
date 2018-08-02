@@ -10,29 +10,31 @@ class RoomCard extends React.Component {
   render () {
     return (
       <Container>
-        <Row className='mt-4'>
-          <Col sm='12'>
-            <Card>
-              <Row>
-                <Col>
-                  <h3 className='p-3'>{this.props.allRoom.roomName}</h3>
-                </Col>
-                <Col className='text-right p-3 mr-3' >
-                  <Link to='/org-monitor/'>
-                    <Button outline color='secondary'>
+        {this.props.allRoom.allRooms.map((item) =>
+          <Row className='mt-4' key={item.roomId}>
+            <Col sm='12'>
+              <Card>
+                <Row>
+                  <Col>
+                    <h3 className='p-3'>{item.roomName}</h3>
+                  </Col>
+                  <Col className='text-right d-flex align-items-center justify-content-end mr-3' >
+                    <Link to={`/organizer/${item.roomId}/monitor/`}>
+                      <Button outline color='secondary'>
                                         Manage
-                    </Button>
-                  </Link>
-                  <Link className='pl-3' to='/org-present-page/'>
-                    <Button outline color='secondary'>
+                      </Button>
+                    </Link>
+                    <Link className='pl-3' to='/org-present-page/'>
+                      <Button outline color='secondary'>
                                         Presentation
-                    </Button>
-                  </Link>
-                </Col>
-              </Row>
-            </Card>
-          </Col>
-        </Row>
+                      </Button>
+                    </Link>
+                  </Col>
+                </Row>
+              </Card>
+            </Col>
+          </Row>
+        )}
       </Container>
     )
   }
@@ -40,6 +42,7 @@ class RoomCard extends React.Component {
 RoomCard.propTypes = {
   allRoom: PropTypes.shape({
     roomName: PropTypes.string.isRequired,
+    allRooms: PropTypes.array.isRequired,
   }),
 }
 

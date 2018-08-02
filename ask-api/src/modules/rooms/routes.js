@@ -5,8 +5,8 @@ import analystController from './analy/controller'
 import express from 'express'
 const router = express.Router()
 
-router.get('/', roomsController.getAll)
-router.post('/', roomsController.createRoom)
+router.get('/', requireAuth, roomsController.getAll)
+router.post('/', requireAuth, roomsController.createRoom)
 router.get('/pin/:pin', roomsController.getRoomByPin)
 router.get('/:id', roomsController.getById)
 router.get('/:id/questions', requireAuth, questionsController.getByRoomId)

@@ -1,10 +1,14 @@
 import { observable, action } from 'mobx'
+import api from '../utils/api'
+import 'babel-polyfill'
+import _ from 'lodash'
 
 let allRoom
 
 class AllRoom {
     @observable collapse = false
     @observable roomName = ''
+    @observable allRooms = []
 
     @action
     changeInputRoomName = async (e) => {
@@ -14,7 +18,23 @@ class AllRoom {
     @action
     handleCreateRoom = async (e) => {
       e.preventDefault()
-      localStorage.setItem('roomName', this.roomName)
+      const { data } = await api.post(`/rooms`, {
+        roomName: this.roomName,
+      })
+      if (data && data.status === 'success') {
+        this.getRooms()
+        this.roomName = ''
+        this.collapse = !this.collapse
+      }
+    }
+
+    @action
+    getRooms = async () => {
+      const { data } = await api.get(`/rooms`)
+      console.log(data)
+      if (_.isArray(data)) {
+        this.allRooms = data.reverse()
+      }
     }
 
     @action

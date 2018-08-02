@@ -22,11 +22,14 @@ const genPin = () => {
 }
 
 export default {
-  getAll: () => {
+  getAll: ({
+    userId,
+  }) => {
     return knex('rooms').select()
       .select()
       .where({
         isDelete: false,
+        userId,
       })
   },
   getById: (id) => {
@@ -65,9 +68,13 @@ export default {
   getRoomByPin: (pin) => {
     return findByPin(pin)
   },
-  create: async roomName => {
+  create: async ({
+    roomName,
+    userId,
+  }) => {
     let pin
     let data
+    console.log()
     do {
       pin = genPin()
       data = await findByPin(pin)
@@ -76,6 +83,7 @@ export default {
       .insert({
         roomName,
         roomPin: pin,
+        userId,
       })
       .returning()
   },

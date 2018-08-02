@@ -3,11 +3,14 @@ import knex from 'api/utils/knex'
 const tableName = 'questions'
 
 export default {
-  getAll: () => {
+  getAll: ({
+    userId,
+  }) => {
     return knex(tableName)
       .select()
       .where({
         isAnswer: false,
+        userId,
       })
   },
   getById: (id) => {
