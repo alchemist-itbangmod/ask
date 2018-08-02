@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Input as StrapInput } from 'reactstrap'
 
-
 const WrapInput = ({ _ref, ...props }) => <StrapInput innerRef={_ref} {...props} />
 WrapInput.propTypes = { _ref: PropTypes.func }
 

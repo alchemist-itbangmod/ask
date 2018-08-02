@@ -27,7 +27,8 @@ export default {
     const { questionIds } = req.body
     if (_.isArray(questionIds) && questionIds.length > 0) {
       const data = await questionModel.update(questionIds)
-
+      const questions = await questionModel.findByQuestionIds(questionIds)
+      req.app.io.emit('showQuestions', questions.map(question => question.question))
       if (data) {
         res.send({
           status: 'success',

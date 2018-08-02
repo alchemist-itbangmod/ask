@@ -59,11 +59,17 @@ class OrgMonitor extends React.Component {
   }
   sendQuestion = async (item) => {
     // method put
-    const questionIds = this.state.selectedQuestion.map(question => question.questionId)
+    const allQuestion = this.state.allQuestion
+    console.log(allQuestion)
+    const questionIds = this.state.selectedQuestion.map(question => {
+      const removeIndex = allQuestion.findIndex(selectedQuestion => selectedQuestion.questionId === question.questionId)
+      allQuestion.splice(removeIndex, 1)
+      return question.questionId
+    })
     await api.put('/questions', { questionIds })
     this.setState({
       selectedQuestion: [],
-      allQuestion: [],
+      allQuestion,
     })
   }
 
@@ -114,7 +120,7 @@ class OrgMonitor extends React.Component {
                     <span >Selected</span>
                   </Col>
                   <Col sm='4'>
-                    <Button block size='sm' color='success' onClick={() => this.sendQuestion()}>Sefresh</Button>{' '}
+                    <Button block size='sm' color='success' onClick={() => this.sendQuestion()}>Send</Button>{' '}
                   </Col>
                 </Row>
               </StyledCardHeader>
