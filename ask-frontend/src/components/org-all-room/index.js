@@ -20,7 +20,7 @@ class OrgCreateRoom extends React.Component {
           <Col xs={12}>
             <Card className='m-5 mt-2 rounded pb-4'>
               <CardHeader>
-                <h3>ALL</h3>
+                <h3>ALL Rooms</h3>
               </CardHeader>
               <Container>
                 <Row className='mt-4'>
