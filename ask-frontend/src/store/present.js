@@ -6,16 +6,19 @@ let present
 class Present {
 @observable roomName = ''
 @observable roomPin = ''
-@observable questionshow = []
+@observable questions = []
+@observable roomId = ''
 @action
 getRoomData = async () => {
-  const { data } = await api.get('/rooms/5')
+  const { data } = await api.get('/rooms/1')
   this.roomName = data.roomName
   this.roomPin = data.roomPin
+  this.roomId = data.roomId
 }
+@action
 getQuestion = async () => {
-  const { data } = await api.get('/rooms/6/questions')
-  console.log(data)
+  const { data } = await api.get('/rooms/1/questions')
+  this.questions = data
 }
 }
 

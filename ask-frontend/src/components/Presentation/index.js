@@ -4,12 +4,18 @@ import { Logo, AskName, Card } from './styled'
 import { observer, inject } from 'mobx-react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
+import socket from '../../utils/socket'
 @inject('present')
+
 @observer
 class Present extends React.Component {
-  componentWillMount () {
+  componentDidMount () {
     this.props.present.getRoomData()
     this.props.present.getQuestion()
+    socket.on('showQuestions', (questions) => {
+      this.props.present.questions = questions
+      console.log(this.props.present.question)
+    })
   }
   render () {
     return (
@@ -32,6 +38,11 @@ class Present extends React.Component {
             <div className='text-center'>
               <h1>{this.props.present.roomName}</h1>
               <h1>PIN : {this.props.present.roomPin}</h1>
+              <h1>{this.props.present.questions.map(question => (
+                <div key={question.questionId}>
+                  {question.question}
+                </div>
+              ))}</h1>
             </div>
           </Col>
         </Row>
@@ -39,12 +50,14 @@ class Present extends React.Component {
     )
   }
 }
-Present.PropTypes = {
+Present.propTypes = {
   present: PropTypes.shape({
     getRoomData: PropTypes.func.isRequired,
     roomName: PropTypes.string.isRequired,
     roomPin: PropTypes.string.isRequired,
     getQuestion: PropTypes.func.isRequired,
+    questions: PropTypes.array.isRequired,
+    roomId: PropTypes.string.isRequired,
   }),
 }
 

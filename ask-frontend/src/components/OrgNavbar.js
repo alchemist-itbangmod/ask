@@ -63,8 +63,10 @@ class Login extends React.PureComponent {
 
   onAuthResponseChange = async ({ authResponse }) => {
     if (authResponse) {
+      console.log(authResponse)
       const data = await api.post('/auth/facebook', { accessToken: authResponse.accessToken })
       this.props.org.setAuth(true)
+      console.log('[69]', data)
       localStorage.setItem('user', data.data.first_name)
       this.setState({
         name: data.data.first_name,
