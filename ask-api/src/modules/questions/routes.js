@@ -6,6 +6,6 @@ const router = express.Router()
 router.get('/', requireAuth, questionController.getAll)
 router.get('/:id', requireAuth, questionController.getById)
 router.post('/', questionController.create)
-router.put('/', requireAuth, questionController.update)
+router.patch('/answer', requireAuth, questionController.updateIsAnswered)
 
 export default router

@@ -44,6 +44,29 @@ export default {
       })
     }
   },
+  updateIsAnswered: async (req, res) => {
+    const { questions, roomId } = req.body
+    if (_.isArray(questions) && _.isInteger(roomId) && questions.length > 0) {
+      const questionIds = questions.map(ech => ech.questionId)
+      const data = await questionModel.updateIsAnswered(questionIds)
+      req.app.io.sockets
+        .in(roomId)
+        .emit('presentation', { questions })
+      if (data) {
+        res.send({
+          status: 'success',
+        })
+      } else {
+        res.send({
+          status: 'fail',
+        })
+      }
+    } else {
+      res.send({
+        status: 'fail',
+      })
+    }
+  },
   create: async (req, res) => {
     const { roomId, name, anonymous, question } = req.body
     if (_.isNumber(roomId) &&

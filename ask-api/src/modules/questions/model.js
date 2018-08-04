@@ -35,6 +35,13 @@ export default {
         isAnswer: true,
       })
   },
+  updateIsAnswered: (questionIds) => {
+    return knex(tableName)
+      .whereIn('questionId', questionIds)
+      .update({
+        isAnswer: true,
+      })
+  },
   create: ({ roomId, question, name, anonymous }) => {
     return knex(tableName)
       .insert({
