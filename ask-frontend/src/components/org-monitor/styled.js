@@ -7,16 +7,16 @@ const StyledCardHeader = styled(CardHeader)`
   padding-right:0px;
 `
 const ScrollCard = styled(Card)`
-  min-height: 60vh;
-  max-height: 60vh;
+  min-height: 68vh;
+  max-height: 68vh;
   overflow-y: scroll;
   overflow-x: hidden;
 `
 
 const List = styled.div`
-  padding:15px 20px;
-  transition: .2s;
-  border-bottom:1px solid grey;
+  padding:15px 20px 0;
+  transition: all 0.2s;
+  border-bottom:1px solid #000;
   border-radius:10px;
 
   ${props =>
@@ -34,8 +34,29 @@ const List = styled.div`
   `};
 `
 
+const DisplayName = styled.div`
+  margin: 0 -20px;
+  padding: 0 10px;
+  border-top: 0.75px solid #fff;
+  border-bottom: 1px solid #000;
+  transition: all 0.2s;
+
+  ${props =>
+    props.anonymous ? `
+    background: lightgrey;
+  ` : `
+    background: antiquewhite;
+  `}
+  ${props =>
+    props.selected && `
+    background-color: #663399 !important;
+    color: #fff;
+  `}
+`
+
 export {
   ScrollCard,
   List,
-  StyledCardHeader
+  StyledCardHeader,
+  DisplayName
 }

@@ -9,7 +9,7 @@ import styled from 'styled-components'
 const Card = styled.div`
   border-radius: 0.75rem !important;
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .4);
-  min-height:80vh;
+  height: 85vh;
 `
 
 const CustomeNav = styled(NavLink)`
@@ -20,8 +20,6 @@ const Title = styled.h3`
   position: absolute;
   left: 15px;
   top: 7px;
-  // font-size: 24px;
-  // font-weight: bold;
 `
 
 class OrgMonitorShow extends React.Component {

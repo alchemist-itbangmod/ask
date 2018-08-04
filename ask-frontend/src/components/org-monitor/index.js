@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Row, Col, Badge } from 'reactstrap'
-import { List, ScrollCard, StyledCardHeader } from './styled'
+import { List, ScrollCard, StyledCardHeader, DisplayName } from './styled'
 import api from '../../utils/api'
 import _ from 'lodash'
 import socket from '../../utils/socket'
@@ -22,9 +22,12 @@ class OrgMonitor extends React.Component {
     }),
   }
 
+  get roomId () {
+    return this.props.match.params.id
+  }
+
   componentDidMount () {
-    const roomId = this.props.match.params.id
-    socket.emit('room', roomId)
+    socket.emit('room', this.roomId)
 
     socket.on('monitor', (data) => {
       if (data.status === 200) {
@@ -35,8 +38,7 @@ class OrgMonitor extends React.Component {
   }
 
   getQuestion = async () => {
-    const roomId = this.props.match.params.id
-    const data = await api.get(`/rooms/${roomId}/questions`)
+    const data = await api.get(`/rooms/${this.roomId}/questions`)
     this.setState({
       allQuestion: data.data,
       remain: 0,
@@ -76,31 +78,49 @@ class OrgMonitor extends React.Component {
               <StyledCardHeader>
                 <Row className='px-2'>
                   <Col sm='8'>
-                    <span >Question</span>
+                    <span>Questions ({this.state.allQuestion.length})</span>
                   </Col>
                   <Col sm='4'>
-                    <Button block size='sm' color='info' onClick={() => this.getQuestion()}>Refresh {this.state.remain}</Button>{' '}
+                    <Button
+                      block
+                      size='sm'
+                      color='info'
+                      onClick={this.getQuestion}
+                    >Refresh {this.state.remain}</Button>{' '}
                   </Col>
                 </Row>
               </StyledCardHeader>
             </Col>
           </Row>
           <ScrollCard>
-            {this.state.allQuestion.map((item) =>
-              <List
-                className='row'
-                key={item.questionId}
-                selected={_.find(this.state.selectedQuestions, { questionId: item.questionId })}
-                onClick={() => this.handleSelectedQuestion(item)}
-              >
-                <Col xs='11'>
-                  <span>{item.question}</span>
-                </Col>
-                <Col xs='1' className='pl-0'>
-                  <i className='pull-right fa fa-trash' />
-                </Col>
-              </List>
-            )}
+            {this.state.allQuestion.map((item) => {
+              const isSelected = _.findIndex(this.state.selectedQuestions, { questionId: item.questionId }) > -1
+              return (
+                <List
+                  className='row'
+                  key={item.questionId}
+                  selected={isSelected}
+                  onClick={() => this.handleSelectedQuestion(item)}
+                >
+                  <Col xs='12'>
+                    <span>{item.question}</span>
+                  </Col>
+                  <Col xs='12' className='text-right'>
+                    <DisplayName
+                      anonymous={item.anonymous}
+                      selected={isSelected}
+                    >
+                      <i className='fa fa-arrow-up fa-sm' />
+                      {item.anonymous ? `
+                      ไม่เปิดเผยตัวตน
+                      ` : `
+                      คำถามจาก: ${item.name}
+                      `}
+                    </DisplayName>
+                  </Col>
+                </List>
+              )
+            })}
           </ScrollCard>
         </Col>
         <Col sm='6'>
@@ -109,10 +129,16 @@ class OrgMonitor extends React.Component {
               <StyledCardHeader>
                 <Row className='px-2'>
                   <Col sm='6'>
-                    <span >Selected</span>
+                    <span>Selected ({this.state.selectedQuestions.length})
+                    / Live ({this.state.liveQuestions.length})</span>
                   </Col>
                   <Col sm='6'>
-                    <Button block size='sm' color='success' onClick={() => this.sendQuestion()}>Send to presentation</Button>{' '}
+                    <Button
+                      block
+                      size='sm'
+                      color='success'
+                      onClick={this.sendQuestion}
+                    >Send to presentation</Button>{' '}
                   </Col>
                 </Row>
               </StyledCardHeader>
@@ -130,6 +156,15 @@ class OrgMonitor extends React.Component {
                 <Col sm='2'>
                   <Badge color='danger' pill> Live</Badge>
                 </Col>
+                <Col xs='12' className='text-right'>
+                  <DisplayName anonymous={item.anonymous}>
+                    {item.anonymous ? `
+                    ไม่เปิดเผยตัวตน
+                    ` : `
+                    คำถามจาก: test
+                    `}
+                  </DisplayName>
+                </Col>
               </List>
             )}
             {this.state.selectedQuestions.map((item) =>
@@ -139,6 +174,15 @@ class OrgMonitor extends React.Component {
               >
                 <Col sm='12'>
                   <span>{item.question}</span>
+                </Col>
+                <Col xs='12' className='text-right'>
+                  <DisplayName anonymous={item.anonymous}>
+                    {item.anonymous ? `
+                    ไม่เปิดเผยตัวตน
+                    ` : `
+                    คำถามจาก: test
+                    `}
+                  </DisplayName>
                 </Col>
               </List>
             )}
