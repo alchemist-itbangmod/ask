@@ -22,10 +22,16 @@ const List = styled.div`
   border-bottom:1px solid grey;
   border-radius:10px;
   &:hover{
-      background-color:#99ccff;
+      background-color:#2458ad;
       color:white;
   }
-  background: ${props => props.selected && `blue`};
+  background: ${props => props.selected && `#3f87ff`};
 `
 
-export { Scroll, List, StyledCard, StyledCardHeader }
+const Select = styled.div`
+  padding:15px 20px;
+  transition: .5s;
+  border-bottom:1px solid grey;
+`
+
+export { Scroll, List, StyledCard, StyledCardHeader, Select }
