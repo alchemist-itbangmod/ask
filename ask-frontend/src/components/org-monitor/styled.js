@@ -6,26 +6,32 @@ const StyledCardHeader = styled(CardHeader)`
   padding-left:0px;
   padding-right:0px;
 `
-const StyledCard = styled(Card)`
+const ScrollCard = styled(Card)`
   min-height: 60vh;
+  max-height: 60vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `
 
-const Scroll = styled.div`
-  overflow-y:scroll;
-  overflow-x:hidden;
-  height:50%;
-`
 const List = styled.div`
   padding:15px 20px;
   cursor:pointer;
-  transition: .5s;
+  transition: .2s;
   border-bottom:1px solid grey;
   border-radius:10px;
-  &:hover{
-      background-color:#99ccff;
-      color:white;
+  :hover {
+    background-color: rgba(0,0,0,0.1);
   }
-  background: ${props => props.selected && `blue`};
+  ${props =>
+    props.selected && `
+      background-color: #663399b5 !important;
+      color: white;
+  `};
+  
 `
 
-export { Scroll, List, StyledCard, StyledCardHeader }
+export {
+  ScrollCard,
+  List,
+  StyledCardHeader
+}

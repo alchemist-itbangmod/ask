@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Row, Col, Badge } from 'reactstrap'
-import { Scroll, List, StyledCard, StyledCardHeader } from './styled'
+import { List, ScrollCard, StyledCardHeader } from './styled'
 import api from '../../utils/api'
 import _ from 'lodash'
 import socket from '../../utils/socket'
@@ -83,25 +83,23 @@ class OrgMonitor extends React.Component {
               </StyledCardHeader>
             </Col>
           </Row>
-          <StyledCard>
-            <Scroll>
-              {this.state.allQuestion.map((item) =>
-                <List
-                  className='row'
-                  key={item.questionId}
-                  selected={_.find(this.state.selectedQuestion, { questionId: item.questionId })}
-                  onClick={() => this.handleSelectedQuestion(item)}
-                >
-                  <Col xs='11'>
-                    <span>{item.question}</span>
-                  </Col>
-                  <Col xs='1' className='pl-0'>
-                    <i className='pull-right fa fa-trash' />
-                  </Col>
-                </List>
-              )}
-            </Scroll>
-          </StyledCard>
+          <ScrollCard>
+            {this.state.allQuestion.map((item) =>
+              <List
+                className='row'
+                key={item.questionId}
+                selected={_.find(this.state.selectedQuestion, { questionId: item.questionId })}
+                onClick={() => this.handleSelectedQuestion(item)}
+              >
+                <Col xs='11'>
+                  <span>{item.question}</span>
+                </Col>
+                <Col xs='1' className='pl-0'>
+                  <i className='pull-right fa fa-trash' />
+                </Col>
+              </List>
+            )}
+          </ScrollCard>
         </Col>
         <Col sm='6'>
           <Row>
@@ -118,17 +116,15 @@ class OrgMonitor extends React.Component {
               </StyledCardHeader>
             </Col>
           </Row>
-          <StyledCard>
-            <Scroll>
-              {this.state.selectedQuestion.map((item) =>
-                <List
-                  className='row' key={item.questionId}>
-                  <Col sm='10'><span>{item.question}</span></Col>
-                  <Col sm='2'><span><Badge color='danger' pill> Live</Badge></span></Col>
-                </List>
-              )}
-            </Scroll>
-          </StyledCard>
+          <ScrollCard>
+            {this.state.selectedQuestion.map((item) =>
+              <List
+                className='row' key={item.questionId}>
+                <Col sm='10'><span>{item.question}</span></Col>
+                <Col sm='2'><span><Badge color='danger' pill> Live</Badge></span></Col>
+              </List>
+            )}
+          </ScrollCard>
         </Col>
       </Row>
     )
