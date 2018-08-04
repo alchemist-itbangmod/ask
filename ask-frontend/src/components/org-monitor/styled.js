@@ -15,19 +15,23 @@ const ScrollCard = styled(Card)`
 
 const List = styled.div`
   padding:15px 20px;
-  cursor:pointer;
   transition: .2s;
   border-bottom:1px solid grey;
   border-radius:10px;
-  :hover {
-    background-color: rgba(0,0,0,0.1);
-  }
+
+  ${props =>
+    !props.noHover && `
+    cursor:pointer;
+    :hover {
+      background-color: rgba(0,0,0,0.1);
+    }
+  `}
   ${props =>
     props.selected && `
       background-color: #663399b5 !important;
-      color: white;
+      color: #fff;
+      border-color: #fff;
   `};
-  
 `
 
 export {
