@@ -9,8 +9,8 @@ import socket from '../../utils/socket'
 class OrgMonitor extends React.Component {
   state={
     allQuestion: [],
-    selectedQuestion: [],
-    liveQuestion: [],
+    selectedQuestions: [],
+    liveQuestions: [],
     remain: 0,
   }
 
@@ -43,26 +43,28 @@ class OrgMonitor extends React.Component {
     })
   }
   handleSelectedQuestion = async (item) => {
-    const { selectedQuestion } = this.state
-    const index = _.findIndex(this.state.selectedQuestion, item)
+    const { selectedQuestions } = this.state
+    const index = _.findIndex(this.state.selectedQuestions, item)
 
     if (index > -1) {
-      selectedQuestion.splice(index, 1)
+      selectedQuestions.splice(index, 1)
     } else {
-      selectedQuestion.push(item)
+      selectedQuestions.push(item)
     }
     this.setState({
-      selectedQuestion,
+      selectedQuestions,
     })
   }
   sendQuestion = async (item) => {
     // method put
-    const questionIds = this.state.selectedQuestion.map(question => question.questionId)
+    const { selectedQuestions } = this.state
+    const questionIds = this.state.selectedQuestions.map(question => question.questionId)
     await api.put('/questions', { questionIds })
     this.setState({
-      selectedQuestion: [],
-      allQuestion: [],
+      liveQuestions: selectedQuestions,
+      selectedQuestions: [],
     })
+    this.getQuestion()
   }
 
   render () {
@@ -88,7 +90,7 @@ class OrgMonitor extends React.Component {
               <List
                 className='row'
                 key={item.questionId}
-                selected={_.find(this.state.selectedQuestion, { questionId: item.questionId })}
+                selected={_.find(this.state.selectedQuestions, { questionId: item.questionId })}
                 onClick={() => this.handleSelectedQuestion(item)}
               >
                 <Col xs='11'>
@@ -106,22 +108,38 @@ class OrgMonitor extends React.Component {
             <Col xs='12'>
               <StyledCardHeader>
                 <Row className='px-2'>
-                  <Col sm='8'>
+                  <Col sm='6'>
                     <span >Selected</span>
                   </Col>
-                  <Col sm='4'>
-                    <Button block size='sm' color='success' onClick={() => this.sendQuestion()}>Refresh</Button>{' '}
+                  <Col sm='6'>
+                    <Button block size='sm' color='success' onClick={() => this.sendQuestion()}>Send to presentation</Button>{' '}
                   </Col>
                 </Row>
               </StyledCardHeader>
             </Col>
           </Row>
           <ScrollCard>
-            {this.state.selectedQuestion.map((item) =>
+            {this.state.liveQuestions.map((item) =>
               <List
-                className='row' key={item.questionId}>
-                <Col sm='10'><span>{item.question}</span></Col>
-                <Col sm='2'><span><Badge color='danger' pill> Live</Badge></span></Col>
+                className='row' key={item.questionId}
+                noHover
+              >
+                <Col sm='10'>
+                  <span>{item.question}</span>
+                </Col>
+                <Col sm='2'>
+                  <Badge color='danger' pill> Live</Badge>
+                </Col>
+              </List>
+            )}
+            {this.state.selectedQuestions.map((item) =>
+              <List
+                className='row' key={item.questionId}
+                noHover
+              >
+                <Col sm='12'>
+                  <span>{item.question}</span>
+                </Col>
               </List>
             )}
           </ScrollCard>
