@@ -23,7 +23,7 @@ class Setting {
         this.canSend = data.canSend
         this.themeTemplate = data.themeTemplate
       } else {
-        navigateTo('/org')
+        navigateTo('/organizer')
       }
     }
 

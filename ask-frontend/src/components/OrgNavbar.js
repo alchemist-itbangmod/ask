@@ -58,6 +58,10 @@ class Login extends React.PureComponent {
     this.setState({ loginLoad: true })
     await new Promise(resolve => {
       window.FB.login(resolve, { scope: 'public_profile,email' })
+    }).then(({ status }) => {
+      if (/(not_authorized)|(unknown)/.test(status)) {
+        this.setState({ loginLoad: false })
+      }
     })
   }
 

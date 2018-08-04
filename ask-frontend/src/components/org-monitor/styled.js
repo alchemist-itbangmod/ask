@@ -6,32 +6,57 @@ const StyledCardHeader = styled(CardHeader)`
   padding-left:0px;
   padding-right:0px;
 `
-const StyledCard = styled(Card)`
-  min-height: 60vh;
+const ScrollCard = styled(Card)`
+  min-height: 68vh;
+  max-height: 68vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `
 
-const Scroll = styled.div`
-  overflow-y:scroll;
-  overflow-x:hidden;
-  height:50%;
-`
 const List = styled.div`
-  padding:15px 20px;
-  cursor:pointer;
-  transition: .5s;
-  border-bottom:1px solid grey;
+  padding:15px 20px 0;
+  transition: all 0.2s;
+  border-bottom:1px solid #000;
   border-radius:10px;
-  &:hover{
-      background-color:#2458ad;
-      color:white;
-  }
-  background: ${props => props.selected && `#3f87ff`};
+
+  ${props =>
+    !props.noHover && `
+    cursor:pointer;
+    :hover {
+      background-color: rgba(0,0,0,0.1);
+    }
+  `}
+  ${props =>
+    props.selected && `
+      background-color: #663399b5 !important;
+      color: #fff;
+      border-color: #fff;
+  `};
 `
 
-const Select = styled.div`
-  padding:15px 20px;
-  transition: .5s;
-  border-bottom:1px solid grey;
+const DisplayName = styled.div`
+  margin: 0 -20px;
+  padding: 0 10px;
+  border-top: 0.75px solid #fff;
+  border-bottom: 1px solid #000;
+  transition: all 0.2s;
+
+  ${props =>
+    props.anonymous ? `
+    background: lightgrey;
+  ` : `
+    background: antiquewhite;
+  `}
+  ${props =>
+    props.selected && `
+    background-color: #663399 !important;
+    color: #fff;
+  `}
 `
 
-export { Scroll, List, StyledCard, StyledCardHeader, Select }
+export {
+  ScrollCard,
+  List,
+  StyledCardHeader,
+  DisplayName
+}

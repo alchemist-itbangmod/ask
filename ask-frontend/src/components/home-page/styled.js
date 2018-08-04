@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
-const H5 = styled.h5`
-letter-space : 0.13579 em;
+const Content = styled.div`
+  letter-spacing: 0.13579 em;
+  padding: 15px;
 `
-const P = styled.p`
-letter-space : 0.13579 em;
-`
-export { H5, P }
+
+export {
+  Content
+}
