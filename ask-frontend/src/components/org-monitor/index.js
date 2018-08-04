@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Row, Col, Badge } from 'reactstrap'
-import { Scroll, List, StyledCard, StyledCardHeader } from './styled'
+import { Scroll, List, StyledCard, StyledCardHeader, Select } from './styled'
 import api from '../../utils/api'
 import _ from 'lodash'
 import socket from '../../utils/socket'
@@ -69,17 +69,19 @@ class OrgMonitor extends React.Component {
 
   render () {
     return (
-      <Row>
+      <Row className='pt-4'>
         <Col sm='6'>
           <Row>
             <Col xs='12'>
               <StyledCardHeader>
-                <Row className='px-2'>
+                <Row className='px-3'>
                   <Col sm='8'>
-                    <span >Question</span>
+                    <h4>Question</h4>
                   </Col>
-                  <Col sm='4'>
-                    <Button block size='sm' color='info' onClick={() => this.getQuestion()}>Refresh {this.state.remain}</Button>{' '}
+
+                  <Col sm='1' />
+                  <Col sm='3'>
+                    <Button block size='sm' color='info' onClick={() => this.getQuestion()}>Refresh <Badge color='secondary'>{this.state.remain}</Badge></Button>{' '}
                   </Col>
                 </Row>
               </StyledCardHeader>
@@ -94,11 +96,13 @@ class OrgMonitor extends React.Component {
                   selected={_.find(this.state.selectedQuestion, { questionId: item.questionId })}
                   onClick={() => this.handleSelectedQuestion(item)}
                 >
-                  <Col xs='11'>
+                  <Col xs='10'>
                     <span>{item.question}</span>
                   </Col>
-                  <Col xs='1' className='pl-0'>
-                    <i className='pull-right fa fa-trash' />
+                  <Col xs='2'>
+                    <Button color='danger'>
+                      <i className='pull-right fa fa-trash' />
+                    </Button>
                   </Col>
                 </List>
               )}
@@ -109,12 +113,13 @@ class OrgMonitor extends React.Component {
           <Row>
             <Col xs='12'>
               <StyledCardHeader>
-                <Row className='px-2'>
+                <Row className='px-3'>
                   <Col sm='8'>
-                    <span >Selected</span>
+                    <h4 >Selected</h4>
                   </Col>
-                  <Col sm='4'>
-                    <Button block size='sm' color='success' onClick={() => this.sendQuestion()}>Refresh</Button>{' '}
+                  <Col sm='1' />
+                  <Col sm='3'>
+                    <Button block size='sm' color='success' onClick={() => this.sendQuestion()}>Send <Badge color='secondary'>{this.state.selectedQuestion.length}</Badge></Button>{' '}
                   </Col>
                 </Row>
               </StyledCardHeader>
@@ -123,11 +128,10 @@ class OrgMonitor extends React.Component {
           <StyledCard>
             <Scroll>
               {this.state.selectedQuestion.map((item) =>
-                <List
-                  className='row' key={item.questionId}>
+                <Select className='row' key={item.questionId}>
                   <Col sm='10'><span>{item.question}</span></Col>
                   <Col sm='2'><span><Badge color='danger' pill> Live</Badge></span></Col>
-                </List>
+                </Select>
               )}
             </Scroll>
           </StyledCard>
