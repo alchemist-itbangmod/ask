@@ -24,9 +24,7 @@ class OrgMonitor extends React.Component {
 
   componentDidMount () {
     const roomId = this.props.match.params.id
-    socket.on('connect', () => {
-      socket.emit('room', roomId)
-    })
+    socket.emit('room', roomId)
 
     socket.on('monitor', (data) => {
       if (data.status === 200) {
