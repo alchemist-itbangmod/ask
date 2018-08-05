@@ -5,6 +5,7 @@ import OrgAnalyst from '../org-analyst'
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, Container } from 'reactstrap'
 import classnames from 'classnames'
 import styled from 'styled-components'
+import Modal from '../Core/Modal'
 
 const Card = styled.div`
   border-radius: 0.75rem !important;
@@ -39,6 +40,7 @@ class OrgMonitorShow extends React.Component {
   render () {
     return (
       <Container fluid>
+        <Modal />
         <Row>
           <Col xs={12}>
             <Card className='mt-2 rounded p-2'>
