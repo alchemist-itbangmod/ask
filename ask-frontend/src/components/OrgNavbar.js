@@ -12,6 +12,7 @@ import { FacebookButton, Button } from './Core/global'
 import Loader from './Core/Loader'
 import { inject } from 'mobx-react'
 import PropTypes from 'prop-types'
+import 'babel-polyfill'
 
 const CustomNavbar = styled(Navbar)`
   padding: 15px 20px;
