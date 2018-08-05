@@ -18,6 +18,7 @@ class Setting {
     getRoomData = async ({ roomId }) => {
       const { data } = await api.get(`/rooms/${roomId}`)
       if (!_.isEmpty(data)) {
+        this.roomId = roomId
         this.roomPin = data.roomPin
         this.roomName = data.roomName
         this.canSend = data.canSend
@@ -30,18 +31,17 @@ class Setting {
     @action
     handleUpdateRoom = async (e) => {
       e.preventDefault()
-      localStorage.setItem('roomName', this.roomName)
-      await api.put('/rooms/5', {
+      await api.put(`/rooms/${this.roomId}`, {
         roomName: this.roomName,
         canSend: this.canSend,
         themeTemplate: this.themeTemplate,
       })
+      localStorage.setItem('roomName', this.roomName)
     }
 
     @action
     changeInputName = async (e) => {
       this.roomName = e.target.value
-      console.log(e.target.value)
     }
 
     @action

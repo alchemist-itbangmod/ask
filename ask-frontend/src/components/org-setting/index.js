@@ -18,9 +18,13 @@ class OrgSetting extends React.Component {
       }),
     }),
   }
+
+  get roomId () {
+    return this.props.match.params.id
+  }
+
   componentDidMount () {
-    const roomId = this.props.match.params.id
-    this.props.setting.getRoomData({ roomId })
+    this.props.setting.getRoomData({ roomId: this.roomId })
   }
 
   render () {
