@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import OrgAllRoom from '../org-all-room'
 import OrgHomePage from '../home-page'
+import Helmet from '../Core/Helmet'
 
 @inject('org')
 @observer
@@ -15,11 +16,10 @@ class OrgIndex extends React.Component {
   }
   render () {
     return (
-      <div>
-        <div>
-          {this.props.org.isLogin ? <OrgAllRoom /> : <OrgHomePage />}
-        </div>
-      </div>
+      <React.Fragment>
+        <Helmet title='Organizer' />
+        {this.props.org.isLogin ? <OrgAllRoom /> : <OrgHomePage />}
+      </React.Fragment>
     )
   }
 }

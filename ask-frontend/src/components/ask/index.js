@@ -3,12 +3,14 @@ import { Card, Container, Row, Col, Button, Form, FormGroup, Label, Input } from
 import { observer, inject } from 'mobx-react'
 import PropTypes from 'prop-types'
 import Dialog from './Dialog'
+import Helmet from '../Core/Helmet'
 @inject('ask')
 @observer
 class AskPage extends React.Component {
   render () {
     return (
       <Container>
+        <Helmet title='ASK' />
         <Dialog show={this.props.ask.showNoti} status={this.props.ask.status} message={this.props.ask.message} />
         <Row className='justify-content-center'>
           <Col sm='8' xs='12'>

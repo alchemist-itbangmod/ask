@@ -8,6 +8,7 @@ import classnames from 'classnames'
 import styled from 'styled-components'
 import { observer, inject } from 'mobx-react'
 import Modal from '../Core/Modal'
+import Helmet from '../Core/Helmet'
 
 const Card = styled.div`
   border-radius: 0.75rem !important;
@@ -45,6 +46,7 @@ class OrgMonitorShow extends React.Component {
   render () {
     return (
       <Container fluid>
+        <Helmet title='Monitor' />
         <Modal />
         <Row className='justify-content-center'>
           <Col xs={11}>

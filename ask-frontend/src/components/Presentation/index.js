@@ -3,8 +3,8 @@ import { Container, Row, Col } from 'reactstrap'
 import { Logo, AskName, Card } from './styled'
 import { observer, inject } from 'mobx-react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
 import socket from '../../utils/socket'
+import Helmet from '../Core/Helmet'
 @inject('present')
 
 @observer
@@ -22,6 +22,7 @@ class Present extends React.Component {
   render () {
     return (
       <Container fluid>
+        <Helmet title='Presentation' />
         <Row>
           <Card className='justify-content-center' show={!this.props.present.questions.length}>
             <AskName className='m-5 text-center'>
@@ -31,9 +32,7 @@ class Present extends React.Component {
               <Logo />
             </div>
             <div className='m-5'>
-              <Link to='/'>
-                <h1>ask.kmutt.ac.th</h1>
-              </Link>
+              <h1>ask.kmutt.ac.th</h1>
             </div>
           </Card>
           <Col sm='12' className='d-flex justify-content-center align-items-center' style={{ height: '100vh' }}>
@@ -67,6 +66,12 @@ Present.propTypes = {
     getQuestion: PropTypes.func.isRequired,
     questions: PropTypes.array.isRequired,
     roomId: PropTypes.string.isRequired,
+    setQuestions: PropTypes.func.isRequired,
+  }),
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
   }),
 }
 
