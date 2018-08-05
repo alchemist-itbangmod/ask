@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 import { navigateTo } from 'gatsby-link'
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api/v1',
+  baseURL: `${process.env.API_URL}/api/v1`,
 })
 
 const UnAuthMessage = 'Request failed with status code 401'
