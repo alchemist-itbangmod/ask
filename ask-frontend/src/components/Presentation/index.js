@@ -6,6 +6,34 @@ import PropTypes from 'prop-types'
 import socket from '../../utils/socket'
 import Helmet from '../Core/Helmet'
 import logo from '../../static/img/ask-logo.png'
+import { TagCloud } from 'react-tagcloud'
+import styled, { keyframes } from 'styled-components'
+
+const pop = keyframes`
+  0% { transform: scale(0.4); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+`
+
+const StyledTag = styled.div`
+  font-size: ${props => props.size || '55'}px;
+  margin: 0.7em 0;
+  animation: ${pop} 0.3s;
+`
+
+const BackgroundContainer = styled.div`
+  background: radial-gradient(#0E0721DD, #0E0721, #0E0721, #0E0721, #0c0323);
+  color: white;
+`
+
+const Tag = (tag, size) => (
+  <StyledTag
+    key={tag.questionId}
+    size={size}
+  >
+    {tag.question}
+  </StyledTag>
+)
+
 @inject('present')
 
 @observer
@@ -22,40 +50,44 @@ class Present extends React.Component {
   }
   render () {
     return (
-      <Container fluid>
-        <Helmet title='Presentation' />
-        <Row>
-          <Card className='justify-content-center' show={!this.props.present.questions.length}>
-            <AskName className='m-5 text-center'>
-              <h1>ASK #3.0</h1>
-            </AskName>
-            <div className='d-flex justify-content-center'>
-              <Logo bg={logo} />
-            </div>
-            <div className='m-5'>
-              <h1>ask.kmutt.ac.th</h1>
-            </div>
-          </Card>
-          <Col sm='12' className='d-flex justify-content-center align-items-center' style={{ height: '100vh' }}>
-            <div className='text-center'>
-              {!this.props.present.questions.length ? (
-                <React.Fragment>
-                  <h1>{this.props.present.roomName}</h1>
-                  <h1>PIN : {this.props.present.roomPin}</h1>
-                </React.Fragment>
-              ) : (
-                <div>
-                  {this.props.present.questions.map(question => (
-                    <h1 key={question.questionId}>
-                      {`"${question.question}"`}
-                    </h1>
-                  ))}
-                </div>
-              )}
-            </div>
-          </Col>
-        </Row>
-      </Container>
+      <BackgroundContainer>
+        <Container fluid>
+          <Helmet title='Presentation' />
+          <Row>
+            <Card className='text-dark bg-light justify-content-center' show={!this.props.present.questions.length}>
+              <AskName className='m-5 text-center'>
+                <h1>ASK #3.0</h1>
+              </AskName>
+              <div className='d-flex justify-content-center'>
+                <Logo bg={logo} />
+              </div>
+              <div className='m-5'>
+                <h1>ask.kmutt.ac.th</h1>
+              </div>
+            </Card>
+            <Col sm='12' className='d-flex justify-content-center align-items-center' style={{ height: '100vh' }}>
+              <div className='text-center'>
+                {!this.props.present.questions.length ? (
+                  <React.Fragment>
+                    <h1>{this.props.present.roomName}</h1>
+                    <h1>PIN : {this.props.present.roomPin}</h1>
+                  </React.Fragment>
+                ) : (
+                  <div>
+                    <TagCloud
+                      className='text-center'
+                      minSize={40}
+                      maxSize={58}
+                      tags={this.props.present.questions}
+                      renderer={Tag}
+                    />
+                  </div>
+                )}
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </BackgroundContainer>
     )
   }
 }
