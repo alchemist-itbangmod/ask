@@ -5,6 +5,8 @@ export const Logo = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50%;
+  background-image: url(${props => props.bg});
+  background-size: cover;
 `
 
 export const AskName = styled.div`

@@ -5,6 +5,7 @@ import { observer, inject } from 'mobx-react'
 import PropTypes from 'prop-types'
 import socket from '../../utils/socket'
 import Helmet from '../Core/Helmet'
+import logo from '../../static/img/ask-logo.png'
 @inject('present')
 
 @observer
@@ -29,7 +30,7 @@ class Present extends React.Component {
               <h1>ASK #3.0</h1>
             </AskName>
             <div className='d-flex justify-content-center'>
-              <Logo />
+              <Logo bg={logo} />
             </div>
             <div className='m-5'>
               <h1>ask.kmutt.ac.th</h1>
