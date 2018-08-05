@@ -4,6 +4,7 @@ import { Container, Row, Col, Form } from 'reactstrap'
 import { Input, BottomContent, Logo, ErrorMessage, H1 } from './styled'
 import { observer, inject } from 'mobx-react'
 import Link from 'gatsby-link'
+import logo from '../../static/img/ask-logo.png'
 
 @inject('pin')
 @observer
@@ -13,9 +14,9 @@ class PinComponent extends React.Component {
       <Container>
         <Row className={`mt-5 text-center`}>
           <Col xs={12}>
-            <Logo />
+            <Logo bg={logo} />
           </Col>
-          <Col xs={12}>
+          <Col xs={12} className='mt-3'>
             {this.props.pin.loading && 'loading...'}
             {!this.props.pin.error ? (
               <H1>{`Type room's code`}</H1>
