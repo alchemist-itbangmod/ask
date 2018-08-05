@@ -1,10 +1,21 @@
 import React from 'react'
+import { Button, Container, Row, Col } from 'reactstrap'
+import Link from 'gatsby-link'
 
 const NotFoundPage = () => (
-  <div>
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </div>
+  <Container>
+    <Row>
+      <Col>
+        <div className='text-center'>
+          <h1 className='mt-5'>Page not found</h1>
+          <p>ไม่พบหน้านี้ในระบบ :(</p>
+          <Link to='/'>
+            <Button outline color='info'>กลับสู่หน้าแรก</Button>
+          </Link>
+        </div>
+      </Col>
+    </Row>
+  </Container>
 )
 
 export default NotFoundPage
