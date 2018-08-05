@@ -3,6 +3,7 @@ import api from '../utils/api'
 import 'babel-polyfill'
 import _ from 'lodash'
 import { navigateTo } from 'gatsby-link'
+import Alert from 'react-s-alert'
 
 let setting
 
@@ -29,14 +30,19 @@ class Setting {
     }
 
     @action
-    handleUpdateRoom = async (e) => {
-      e.preventDefault()
+    handleUpdateRoom = async () => {
       await api.put(`/rooms/${this.roomId}`, {
         roomName: this.roomName,
         canSend: this.canSend,
         themeTemplate: this.themeTemplate,
+      }).then(() => {
+        Alert.success('Success !', {
+          position: 'top',
+          effect: 'slide',
+          timeout: 2000,
+        })
+        localStorage.setItem('roomName', this.roomName)
       })
-      localStorage.setItem('roomName', this.roomName)
     }
 
     @action

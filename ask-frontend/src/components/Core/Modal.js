@@ -1,27 +1,26 @@
 import React from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Button, Modal, ModalHeader, ModalFooter, Col } from 'reactstrap'
+import PropTypes from 'prop-types'
 
 class ModalComponent extends React.Component {
-  state = {
-    modal: false,
+  static propTypes = {
+    confirm: PropTypes.func.isRequired,
+    modal: PropTypes.bool.isRequired,
+    toggle: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    className: PropTypes.string,
   }
-
-  toggle = () => {
-    this.setState({
-      modal: !this.state.modal,
-    })
-  }
-
   render () {
     return (
-      <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-        <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
-        <ModalBody>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </ModalBody>
+      <Modal isOpen={this.props.modal} toggle={this.props.toggle} className={this.props.className}>
+        <ModalHeader className='justify-content-center' toggle={this.toggle}>{this.props.title}</ModalHeader>
         <ModalFooter>
-          <Button color='primary' onClick={this.toggle}>Do Something</Button>{' '}
-          <Button color='secondary' onClick={this.toggle}>Cancel</Button>
+          <Col xs='4' className='pr-0'>
+            <Button block color='primary' onClick={this.props.confirm}>ยืนยัน</Button>{' '}
+          </Col>
+          <Col xs='4'>
+            <Button block color='secondary' onClick={this.props.toggle}>ยกเลิก</Button>
+          </Col>
         </ModalFooter>
       </Modal>
     )

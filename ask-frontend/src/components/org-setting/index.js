@@ -1,11 +1,12 @@
 import React from 'react'
 
 import { observer, inject } from 'mobx-react'
-import { Input, Row, Col, FormGroup, Button, Label, Form, CustomInput } from 'reactstrap'
+import { Input, Row, Col, FormGroup, Button, Label, Form } from 'reactstrap'
 import Toggle from 'react-toggle'
 import '../../static/toggle.css'
 import PropTypes from 'prop-types'
 import { StyledCard } from './styled'
+import Modal from '../Core/Modal'
 
 @inject('setting')
 
@@ -19,6 +20,10 @@ class OrgSetting extends React.Component {
     }),
   }
 
+  state = {
+    modal: false,
+  }
+
   get roomId () {
     return this.props.match.params.id
   }
@@ -27,14 +32,33 @@ class OrgSetting extends React.Component {
     this.props.setting.getRoomData({ roomId: this.roomId })
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.toggle()
+  }
+
+  updateRoom = () => {
+    this.props.setting.handleUpdateRoom()
+    this.setState({ modal: false })
+  }
+
+  toggle = () => {
+    this.setState({ modal: !this.state.modal })
+  }
+
   render () {
     return (
       <Row className='pt-4'>
+        <Modal
+          modal={this.state.modal}
+          toggle={this.toggle}
+          title='คุณแน่ใจที่จะอัพเดทข้อมูล ?'
+          confirm={this.updateRoom}
+        />
         <Col sm='3' />
         <Col sm='6'>
           <StyledCard>
-            <Form onSubmit={this.props.setting.handleUpdateRoom}>
-
+            <Form onSubmit={this.handleSubmit}>
               <FormGroup row>
                 <Label sm={3}>Room Name</Label>
                 <Col sm={6}>
@@ -64,7 +88,7 @@ class OrgSetting extends React.Component {
                 </Col>
               </FormGroup>
 
-              <FormGroup>
+              {/* <FormGroup>
                 <Label >Theme</Label>
                 {['red', 'blue', 'green'].map(theme => (
                   <CustomInput
@@ -79,7 +103,7 @@ class OrgSetting extends React.Component {
                   />
                 ))}
 
-              </FormGroup>
+              </FormGroup> */}
               <Button type='submit' color='success' className='float-right'>Update</Button>
 
             </Form>

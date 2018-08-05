@@ -5,13 +5,15 @@ import { List, ScrollCard, StyledCardHeader, DisplayName } from './styled'
 import api from '../../utils/api'
 import _ from 'lodash'
 import socket from '../../utils/socket'
-
+import Modal from '../Core/Modal'
+import Alert from 'react-s-alert'
 class OrgMonitor extends React.Component {
   state={
     allQuestion: [],
     selectedQuestions: [],
     liveQuestions: [],
     remain: 0,
+    modal: false,
   }
 
   static propTypes = {
@@ -40,7 +42,7 @@ class OrgMonitor extends React.Component {
   getQuestion = async () => {
     const data = await api.get(`/rooms/${this.roomId}/questions`)
     this.setState({
-      allQuestion: data.data,
+      allQuestion: data.data.reverse(),
       remain: 0,
     })
   }
@@ -68,13 +70,29 @@ class OrgMonitor extends React.Component {
         liveQuestions: selectedQuestions,
         selectedQuestions: [],
       })
+      Alert.success('Success !', {
+        position: 'top',
+        effect: 'slide',
+        timeout: 2000,
+      })
       this.getQuestion()
     })
+    this.setState({ modal: false })
+  }
+
+  toggle = () => {
+    this.setState({ modal: !this.state.modal })
   }
 
   render () {
     return (
       <Row className='pt-4'>
+        <Modal
+          modal={this.state.modal}
+          toggle={this.toggle}
+          title='คุณแน่ใจที่จะส่งคำถาม ?'
+          confirm={this.sendQuestion}
+        />
         <Col sm='6'>
           <Row>
             <Col xs='12'>
@@ -140,7 +158,7 @@ class OrgMonitor extends React.Component {
                       block
                       size='sm'
                       color='success'
-                      onClick={this.sendQuestion}
+                      onClick={this.toggle}
                     >Send to presentation</Button>{' '}
                   </Col>
                 </Row>
