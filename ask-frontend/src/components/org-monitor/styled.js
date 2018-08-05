@@ -7,8 +7,8 @@ const StyledCardHeader = styled(CardHeader)`
   padding-right:0px;
 `
 const ScrollCard = styled(Card)`
-  min-height: 68vh;
-  max-height: 68vh;
+  min-height: 65vh;
+  max-height: 65vh;
   overflow-y: scroll;
   overflow-x: hidden;
 `
