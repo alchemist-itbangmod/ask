@@ -24,7 +24,7 @@ class RoomCard extends React.Component {
                                         Manage
                       </Button>
                     </Link>
-                    <Link className='pl-3' to='/org-present-page/'>
+                    <Link className='pl-3' to={`/organizer/${item.roomId}/presentation/`}>
                       <Button outline color='secondary'>
                                         Presentation
                       </Button>
