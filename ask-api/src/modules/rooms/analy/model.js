@@ -1,13 +1,24 @@
 import knex from 'utils/knex'
 
 export default {
-  getQuestion: (roomId) => {
+  getCountQuestion: (roomId) => {
     return knex('questions')
       .count({
         countQuestion: ['questionId'],
       })
       .where({
         roomId: roomId,
+      })
+      .first()
+  },
+  getCountAnswered: (roomId) => {
+    return knex('questions')
+      .count({
+        countAnswered: ['questionId'],
+      })
+      .where({
+        roomId: roomId,
+        isAnswer: true,
       })
       .first()
   },

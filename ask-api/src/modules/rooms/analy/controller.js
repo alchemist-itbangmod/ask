@@ -1,16 +1,13 @@
-import questionModel from './model'
+import analystModel from './model'
 
 export default {
-  getQuestion: async (req, res) => {
-    const questions = await questionModel
-      .getQuestion(req.params.id)
-    const asker = await questionModel
+  analyst: async (req, res) => {
+    const questions = await analystModel
+      .getCountQuestion(req.params.id)
+    const answered = await analystModel
+      .getCountAnswered(req.params.id)
+    const asker = await analystModel
       .getAsker(req.params.id)
-    res.send(Object.assign({}, questions, asker))
-  },
-  getAsker: async (req, res) => {
-    const asker = await questionModel
-      .getAsker(req.params.id)
-    res.send(asker)
+    res.send(Object.assign({}, questions, asker, answered))
   },
 }
