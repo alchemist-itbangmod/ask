@@ -9,6 +9,7 @@
     "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "common-tags": "^1.8.0",
+    "dotenv": "^6.0.0",
     "gatsby": "^1.9.273",
     "gatsby-link": "^1.6.40",
     "gatsby-plugin-create-client-paths": "^1.0.8",
