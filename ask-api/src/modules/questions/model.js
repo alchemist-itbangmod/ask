@@ -26,7 +26,19 @@ export default {
       })
       .select()
   },
+  findByQuestionIds: (questionIds) => {
+    return knex(tableName)
+      .whereIn('questionId', questionIds)
+      .select()
+  },
   update: (questionIds) => {
+    return knex(tableName)
+      .whereIn('questionId', questionIds)
+      .update({
+        isAnswer: true,
+      })
+  },
+  updateIsAnswered: (questionIds) => {
     return knex(tableName)
       .whereIn('questionId', questionIds)
       .update({

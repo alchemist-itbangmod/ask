@@ -30,7 +30,31 @@ export default {
     const { questionIds } = req.body
     if (_.isArray(questionIds) && questionIds.length > 0) {
       const data = await questionModel.update(questionIds)
-
+      const questions = await questionModel.findByQuestionIds(questionIds)
+      req.app.io.emit('showQuestions', questions.map(question => question.question))
+      if (data) {
+        res.send({
+          status: 'success',
+        })
+      } else {
+        res.send({
+          status: 'fail',
+        })
+      }
+    } else {
+      res.send({
+        status: 'fail',
+      })
+    }
+  },
+  updateIsAnswered: async (req, res) => {
+    const { questions, roomId } = req.body
+    if (_.isArray(questions) && _.isInteger(roomId) && questions.length > 0) {
+      const questionIds = questions.map(ech => ech.questionId)
+      const data = await questionModel.updateIsAnswered(questionIds)
+      req.app.io.sockets
+        .in(roomId)
+        .emit('presentation', { questions })
       if (data) {
         res.send({
           status: 'success',
