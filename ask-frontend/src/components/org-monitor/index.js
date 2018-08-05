@@ -60,15 +60,16 @@ class OrgMonitor extends React.Component {
   sendQuestion = () => {
     // method put
     const { selectedQuestions } = this.state
-    const questionIds = this.state.selectedQuestions.map(question => question.questionId)
-    api.put('/questions', { questionIds })
-      .then(() => {
-        this.setState({
-          liveQuestions: selectedQuestions,
-          selectedQuestions: [],
-        })
-        this.getQuestion()
+    api.patch('/questions/answer', {
+      questions: selectedQuestions,
+      roomId: this.roomId,
+    }).then(() => {
+      this.setState({
+        liveQuestions: selectedQuestions,
+        selectedQuestions: [],
       })
+      this.getQuestion()
+    })
   }
 
   render () {
