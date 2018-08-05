@@ -87,12 +87,12 @@ export default {
         req.app.io.sockets
           .in(roomId)
           .emit('monitor', { status: 200 })
-        res.send({ status: data ? statusCallback.SUCCESS : statusCallback.ERROR })
+        res.status(201).send({ status: data ? statusCallback.SUCCESS : statusCallback.ERROR })
       } else {
-        res.status(400).send({ status: statusCallback.CLOSED })
+        res.send({ status: statusCallback.CLOSED })
       }
     } else {
-      res.status(500).send({ status: statusCallback.ERROR })
+      res.send({ status: statusCallback.ERROR })
     }
   },
 }
