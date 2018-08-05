@@ -31,7 +31,6 @@ class AllRoom {
     @action
     getRooms = async () => {
       const { data } = await api.get(`/rooms`)
-      console.log(data)
       if (_.isArray(data)) {
         this.allRooms = data.reverse()
       }

@@ -74,7 +74,6 @@ export default {
   }) => {
     let pin
     let data
-    console.log()
     do {
       pin = genPin()
       data = await findByPin(pin)
