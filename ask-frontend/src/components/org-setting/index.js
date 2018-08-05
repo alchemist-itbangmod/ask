@@ -93,14 +93,13 @@ class OrgSetting extends React.Component {
 OrgSetting.propTypes = {
   setting: PropTypes.shape({
     getRoomData: PropTypes.func.isRequired,
-    updateRoomData: PropTypes.func.isRequired,
     roomName: PropTypes.string.isRequired,
     changeInputName: PropTypes.func.isRequired,
     roomPin: PropTypes.string.isRequired,
     canSend: PropTypes.bool.isRequired,
     themeTemplate: PropTypes.string.isRequired,
     handleToggleOpenSending: PropTypes.func.isRequired,
-    handleThemeTemplate: PropTypes.string.isRequired,
+    handleThemeTemplate: PropTypes.func.isRequired,
     handleUpdateRoom: PropTypes.func.isRequired,
   }),
 }
