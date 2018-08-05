@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col, Card, CardHeader, CardBody, CardTitle, Button } from 'reactstrap'
+import { Container, Row, Col, Card, CardBody, CardTitle, Button } from 'reactstrap'
 import { observer, inject } from 'mobx-react'
 import PropTypes from 'prop-types'
 
@@ -16,8 +16,7 @@ class OrgAnalyst extends React.Component {
       <Container>
         <Row className='justify-content-center'>
           <Col sm='10' xs='12'>
-            <Card className='mt-3'>
-              <CardHeader>Room Name</CardHeader>
+            <Card className='mt-4'>
               <CardBody>
                 <CardTitle tag='h4' className='text-center mb-5'>Analyst</CardTitle>
                 <Row className='text-center mb-5'>

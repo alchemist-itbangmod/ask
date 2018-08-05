@@ -71,16 +71,17 @@ class OrgMonitor extends React.Component {
 
   render () {
     return (
-      <Row>
+      <Row className='pt-4'>
         <Col sm='6'>
           <Row>
             <Col xs='12'>
               <StyledCardHeader>
-                <Row className='px-2'>
+                <Row className='px-3'>
                   <Col sm='8'>
-                    <span>Questions ({this.state.allQuestion.length})</span>
+                    <h4>Questions ({this.state.allQuestion.length})</h4>
                   </Col>
-                  <Col sm='4'>
+                  <Col sm='1' />
+                  <Col sm='3'>
                     <Button
                       block
                       size='sm'
@@ -102,7 +103,7 @@ class OrgMonitor extends React.Component {
                   selected={isSelected}
                   onClick={() => this.handleSelectedQuestion(item)}
                 >
-                  <Col xs='12'>
+                  <Col xs='10'>
                     <span>{item.question}</span>
                   </Col>
                   <Col xs='12' className='text-right'>
@@ -127,12 +128,12 @@ class OrgMonitor extends React.Component {
           <Row>
             <Col xs='12'>
               <StyledCardHeader>
-                <Row className='px-2'>
-                  <Col sm='6'>
-                    <span>Selected ({this.state.selectedQuestions.length})
-                    / Live ({this.state.liveQuestions.length})</span>
+                <Row className='px-3'>
+                  <Col sm='8'>
+                    <h4>Selected ({this.state.selectedQuestions.length})
+                    / Live ({this.state.liveQuestions.length})</h4>
                   </Col>
-                  <Col sm='6'>
+                  <Col sm='4'>
                     <Button
                       block
                       size='sm'

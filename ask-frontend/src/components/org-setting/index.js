@@ -5,7 +5,7 @@ import { Input, Row, Col, FormGroup, Button, Label, Form, CustomInput } from 're
 import Toggle from 'react-toggle'
 import '../../static/toggle.css'
 import PropTypes from 'prop-types'
-import { StyledCard, StyledCardHeader } from './styled'
+import { StyledCard } from './styled'
 
 @inject('setting')
 
@@ -29,10 +29,9 @@ class OrgSetting extends React.Component {
 
   render () {
     return (
-      <Row>
-        <Col sm='2' />
-        <Col sm='8'>
-          <StyledCardHeader ><label className='ml-4'>Setting</label></StyledCardHeader>
+      <Row className='pt-4'>
+        <Col sm='3' />
+        <Col sm='6'>
           <StyledCard>
             <Form onSubmit={this.props.setting.handleUpdateRoom}>
 
@@ -86,7 +85,6 @@ class OrgSetting extends React.Component {
             </Form>
           </StyledCard>
         </Col>
-        <Col sm='2' />
       </Row>
     )
   }

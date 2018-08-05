@@ -2,9 +2,11 @@ import React from 'react'
 import OrgMonitor from '../org-monitor'
 import OrgSetting from '../org-setting'
 import OrgAnalyst from '../org-analyst'
+import PropTypes from 'prop-types'
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, Container } from 'reactstrap'
 import classnames from 'classnames'
 import styled from 'styled-components'
+import { observer, inject } from 'mobx-react'
 import Modal from '../Core/Modal'
 
 const Card = styled.div`
@@ -22,7 +24,9 @@ const Title = styled.h3`
   left: 15px;
   top: 7px;
 `
+@inject('setting')
 
+@observer
 class OrgMonitorShow extends React.Component {
   constructor (props) {
     super(props)
@@ -42,11 +46,14 @@ class OrgMonitorShow extends React.Component {
       <Container fluid>
         <Modal />
         <Row>
-          <Col xs={12}>
+          <Col xs={1} />
+          <Col xs={10}>
             <Card className='mt-2 rounded p-2'>
               <Nav tabs style={{ flexDirection: 'row-reverse', position: 'relative', marginLeft: 0 }}>
-                <Title>
-                  test
+                <Title className={'nav-item'}>
+                  <h5 className='nav-link active' style={{ color: 'purple' }}>
+                    {this.props.setting.roomName}
+                  </h5>
                 </Title>
                 <NavItem>
                   <CustomeNav
@@ -101,6 +108,11 @@ class OrgMonitorShow extends React.Component {
       </Container>
     )
   }
+}
+OrgMonitorShow.propTypes = {
+  setting: PropTypes.shape({
+    roomName: PropTypes.string.isRequired,
+  }),
 }
 
 export default OrgMonitorShow
