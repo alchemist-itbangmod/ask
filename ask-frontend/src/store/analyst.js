@@ -24,7 +24,6 @@ class Analy {
       const isAnswer = item.isAnswer ? 'ตอบแล้ว' : 'ยังไม่ได้ตอบ'
       return {
         roomId: item.roomId,
-        questionId: item.questionId,
         question: item.question,
         name: name,
         isAnswer: isAnswer,
