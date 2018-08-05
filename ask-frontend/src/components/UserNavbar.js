@@ -29,8 +29,8 @@ class Navbar extends React.Component {
     return (
       <StyledContainer fluid>
         <Row className='justify-content-between align-items-center py-2'>
-          <Col xs='4'>
-          ASK
+          <Col xs='4' className='text-white'>
+            <div className='navbar-brand text-white'>ASK</div>
           </Col>
           <Col xs='4 text-right'>
             <Button color='danger' onClick={this.props.resetAsk}>
