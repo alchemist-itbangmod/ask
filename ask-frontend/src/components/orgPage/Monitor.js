@@ -20,6 +20,7 @@ const CustomeNav = styled(NavLink)`
 `
 
 const Title = styled.h3`
+  color: purple;
   position: absolute;
   left: 15px;
   top: 7px;
@@ -45,15 +46,12 @@ class OrgMonitorShow extends React.Component {
     return (
       <Container fluid>
         <Modal />
-        <Row>
-          <Col xs={1} />
-          <Col xs={10}>
+        <Row className='justify-content-center'>
+          <Col xs={11}>
             <Card className='mt-2 rounded p-2'>
               <Nav tabs style={{ flexDirection: 'row-reverse', position: 'relative', marginLeft: 0 }}>
-                <Title className={'nav-item'}>
-                  <h5 className='nav-link active' style={{ color: 'purple' }}>
-                    {this.props.setting.roomName}
-                  </h5>
+                <Title className={'nav-item active'} >
+                  {this.props.setting.roomName}
                 </Title>
                 <NavItem>
                   <CustomeNav

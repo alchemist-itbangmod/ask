@@ -115,11 +115,10 @@ class OrgMonitor extends React.Component {
                       selected={isSelected}
                     >
                       <i className='fa fa-arrow-up fa-sm' />
-                      {item.anonymous ? `
-                      ไม่เปิดเผยตัวตน
-                      ` : `
-                      คำถามจาก: ${item.name}
-                      `}
+                      {item.anonymous
+                        ? `ไม่เปิดเผยตัวตน`
+                        : `คำถามจาก: ${item.name}`
+                      }
                     </DisplayName>
                   </Col>
                 </List>
@@ -162,11 +161,10 @@ class OrgMonitor extends React.Component {
                 </Col>
                 <Col xs='12' className='text-right'>
                   <DisplayName anonymous={item.anonymous}>
-                    {item.anonymous ? `
-                    ไม่เปิดเผยตัวตน
-                    ` : `
-                    คำถามจาก: test
-                    `}
+                    {item.anonymous
+                      ? `ไม่เปิดเผยตัวตน`
+                      : `คำถามจาก: ${item.name}`
+                    }
                   </DisplayName>
                 </Col>
               </List>
@@ -181,11 +179,10 @@ class OrgMonitor extends React.Component {
                 </Col>
                 <Col xs='12' className='text-right'>
                   <DisplayName anonymous={item.anonymous}>
-                    {item.anonymous ? `
-                    ไม่เปิดเผยตัวตน
-                    ` : `
-                    คำถามจาก: test
-                    `}
+                    {item.anonymous
+                      ? `ไม่เปิดเผยตัวตน`
+                      : `คำถามจาก: ${item.name}`
+                    }
                   </DisplayName>
                 </Col>
               </List>

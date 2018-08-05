@@ -7,8 +7,12 @@ import PropTypes from 'prop-types'
 
 @observer
 class OrgAnalyst extends React.Component {
+  get roomId () {
+    return this.props.match.params.id
+  }
+
   componentDidMount () {
-    this.props.analyst.getAnalystData(this.props.match.params.id)
+    this.props.analyst.getAnalystData(this.roomId)
   }
 
   render () {
@@ -30,7 +34,7 @@ class OrgAnalyst extends React.Component {
                   </Col>
                   <Col>
                     <h2>
-                      {this.props.analyst.selectionQuestion}
+                      {this.props.analyst.answeredQuestions}
                     </h2>
                     <p>
                       SelectedQuestions
@@ -65,7 +69,7 @@ OrgAnalyst.propTypes = {
   analyst: PropTypes.shape({
     exportToExcel: PropTypes.func.isRequired,
     allQuestion: PropTypes.array.isRequired,
-    selectionQuestion: PropTypes.array.isRequired,
+    answeredQuestions: PropTypes.array.isRequired,
     allUser: PropTypes.number.isRequired,
   }),
 }
