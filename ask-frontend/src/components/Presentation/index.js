@@ -9,19 +9,21 @@ import socket from '../../utils/socket'
 
 @observer
 class Present extends React.Component {
+  get roomId () {
+    return this.props.match.params.id
+  }
   componentDidMount () {
-    this.props.present.getRoomData()
-    this.props.present.getQuestion()
-    socket.on('showQuestions', (questions) => {
-      this.props.present.questions = questions
-      console.log(this.props.present.question)
+    this.props.present.getRoomData(this.roomId)
+    socket.emit('room', this.roomId)
+    socket.on('presentation', ({ questions }) => {
+      this.props.present.setQuestions(questions)
     })
   }
   render () {
     return (
       <Container fluid>
         <Row>
-          <Card className='justify-content-center'>
+          <Card className='justify-content-center' show={!this.props.present.questions.length}>
             <AskName className='m-5 text-center'>
               <h1>ASK #3.0</h1>
             </AskName>
@@ -36,13 +38,20 @@ class Present extends React.Component {
           </Card>
           <Col sm='12' className='d-flex justify-content-center align-items-center' style={{ height: '100vh' }}>
             <div className='text-center'>
-              <h1>{this.props.present.roomName}</h1>
-              <h1>PIN : {this.props.present.roomPin}</h1>
-              <h1>{this.props.present.questions.map(question => (
-                <div key={question.questionId}>
-                  {question.question}
+              {!this.props.present.questions.length ? (
+                <React.Fragment>
+                  <h1>{this.props.present.roomName}</h1>
+                  <h1>PIN : {this.props.present.roomPin}</h1>
+                </React.Fragment>
+              ) : (
+                <div>
+                  {this.props.present.questions.map(question => (
+                    <h1 key={question.questionId}>
+                      {`"${question.question}"`}
+                    </h1>
+                  ))}
                 </div>
-              ))}</h1>
+              )}
             </div>
           </Col>
         </Row>

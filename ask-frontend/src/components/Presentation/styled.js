@@ -12,12 +12,20 @@ export const AskName = styled.div`
 `
 
 export const Card = styled.div`
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .4);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.4);
   padding: 10px;
   background-color: #fff;
   min-height:100vh;
   position:fixed;
   z-index:1;
+  transition: all 0.3s ease-in-out;
+
+  ${props =>
+    props.show ? `
+    left: 0;
+    ` : `
+    left: -100%;
+  `}
 `
 
 const Container = styled.div`
