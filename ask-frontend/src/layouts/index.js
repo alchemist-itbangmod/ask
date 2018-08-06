@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import store from '../store/combineStore'
 import '../static/bootstrap/bootstrap.min.css'
-import color from '../components/Core/color'
 import Alert from 'react-s-alert'
 
 import 'react-s-alert/dist/s-alert-default.css'
@@ -35,8 +34,7 @@ const Layout = ({ children, data }) => (
       >
         <style>{`
           body {
-            background: ${color.GRAY};
-            
+            background-color: #F5F3F7;            
           }
         `}</style>
 
