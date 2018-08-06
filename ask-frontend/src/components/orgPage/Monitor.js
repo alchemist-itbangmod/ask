@@ -7,7 +7,6 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, Container } from 
 import classnames from 'classnames'
 import styled from 'styled-components'
 import { observer, inject } from 'mobx-react'
-import Modal from '../Core/Modal'
 import Helmet from '../Core/Helmet'
 
 const Card = styled.div`
@@ -47,7 +46,6 @@ class OrgMonitorShow extends React.Component {
     return (
       <Container fluid>
         <Helmet title='Monitor' />
-        <Modal />
         <Row className='justify-content-center'>
           <Col xs={11}>
             <Card className='mt-2 rounded p-2'>
