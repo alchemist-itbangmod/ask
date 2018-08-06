@@ -24,7 +24,10 @@ getQuestion = async () => {
 
   @action
   setQuestions = (questions) => {
-    this.questions = questions
+    this.questions = questions.map(ech => ({
+      ...ech,
+      count: Math.random() * 8 + 25,
+    }))
   }
 }
 
