@@ -7,26 +7,23 @@ const WrapInput = ({ _ref, ...props }) => <StrapInput innerRef={_ref} {...props}
 WrapInput.propTypes = { _ref: PropTypes.func }
 
 export const Input = styled(WrapInput)`
-  width: 70px;
-  height: 70px;
-  display: inline-block;
-  margin: 0 8px;
+  min-height: 80px !important;
+  display: block;
+  margin: 0 1%;
+  flex: 0 0 23%;
+  max-width: 23%;
   text-align: center;
   font-size: 50px;
-  @media (max-width: 400px){
-    width:60px;
-    height:60px;
-  }
-  @media (max-width: 320px){
-    width:55px;
-    height:55px;
+  padding: 0;
+  @media(min-width: 1000px) {
+    flex: 0 0 23%;
+    max-width: 23%;
+    min-height: 100px !important;
   }
 `
 
 export const BottomContent = styled.div`
-  position: absolute;
-  bottom: 20px;
-  left: 0;
+  position: relative;
   text-align: center;
   width: 100%;
 `
