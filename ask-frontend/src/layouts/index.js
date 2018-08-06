@@ -6,6 +6,7 @@ import Helmet from 'react-helmet'
 import store from '../store/combineStore'
 import '../static/bootstrap/bootstrap.min.css'
 import Alert from 'react-s-alert'
+import favicon from '../static/img/favicon.png'
 
 import 'react-s-alert/dist/s-alert-default.css'
 import 'react-s-alert/dist/s-alert-css-effects/slide.css'
@@ -24,22 +25,38 @@ const Layout = ({ children, data }) => (
         meta={[
           {
             name: 'description',
-            content: 'Sample',
+            content: data.site.siteMetadata.description,
           },
           {
             name: 'keywords',
-            content: 'sample, something',
+            content: data.site.siteMetadata.keywords,
+          },
+          {
+            name: 'og:title',
+            content: data.site.siteMetadata.ogTitle,
+          },
+          {
+            name: 'og:type',
+            content: data.site.siteMetadata.ogType,
+          },
+          {
+            name: 'og:url',
+            content: data.site.siteMetadata.url,
+          },
+          {
+            name: 'og:site_name',
+            content: data.site.siteMetadata.siteName,
           },
         ]}
       >
-        <style>{`
-          body {
-            background-color: #F5F3F7;            
-          }
-        `}</style>
-
+        <link rel='icon' href={favicon} />
         <link href='https://fonts.googleapis.com/css?family=Taviraj' rel='stylesheet' />
         <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' rel='stylesheet' />
+        <style>{`
+          body {
+            background-color: #F5F3F7 !important;            
+          }
+        `}</style>
       </Helmet>
       <Alert stack={{ limit: 3 }} />
       {children()}
@@ -59,6 +76,12 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+        description
+        keywords
+        ogTitle
+        ogType
+        url
+        siteName
       }
     }
   }
