@@ -127,14 +127,13 @@ class OrgMonitor extends React.Component {
                   <Col xs='10'>
                     <span>{item.question}</span>
                   </Col>
-                  <Col xs='12' className='text-right'>
+                  <Col xs='12'>
                     <DisplayName
                       anonymous={item.anonymous}
                       selected={isSelected}
                     >
-                      <i className='fa fa-arrow-up fa-sm' />
                       {item.anonymous
-                        ? `ไม่เปิดเผยตัวตน`
+                        ? `- ไม่เปิดเผยตัวตน`
                         : `คำถามจาก: ${item.name}`
                       }
                     </DisplayName>
@@ -177,10 +176,10 @@ class OrgMonitor extends React.Component {
                 <Col sm='2'>
                   <Badge color='danger' pill> Live</Badge>
                 </Col>
-                <Col xs='12' className='text-right'>
+                <Col xs='12' >
                   <DisplayName anonymous={item.anonymous}>
                     {item.anonymous
-                      ? `ไม่เปิดเผยตัวตน`
+                      ? `- ไม่เปิดเผยตัวตน`
                       : `คำถามจาก: ${item.name}`
                     }
                   </DisplayName>
@@ -195,10 +194,10 @@ class OrgMonitor extends React.Component {
                 <Col sm='12'>
                   <span>{item.question}</span>
                 </Col>
-                <Col xs='12' className='text-right'>
+                <Col xs='12' >
                   <DisplayName anonymous={item.anonymous}>
                     {item.anonymous
-                      ? `ไม่เปิดเผยตัวตน`
+                      ? `- ไม่เปิดเผยตัวตน`
                       : `คำถามจาก: ${item.name}`
                     }
                   </DisplayName>

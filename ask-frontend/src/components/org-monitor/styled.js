@@ -14,10 +14,11 @@ const ScrollCard = styled(Card)`
 `
 
 const List = styled.div`
-  padding:15px 20px 0;
+  padding:15px 0 0;
   transition: all 0.2s;
-  border-bottom:1px solid #000;
-  border-radius:10px;
+  border-radius: 4px;
+  margin: 5px 0;
+  box-shadow: 0 0 0.5rem;
 
   ${props =>
     !props.noHover && `
@@ -35,21 +36,17 @@ const List = styled.div`
 `
 
 const DisplayName = styled.div`
-  margin: 0 -20px;
-  padding: 0 10px;
-  border-top: 0.75px solid #fff;
-  border-bottom: 1px solid #000;
+  padding-bottom: 5px;
   transition: all 0.2s;
 
   ${props =>
     props.anonymous ? `
-    background: lightgrey;
+    color: gray;
   ` : `
-    background: antiquewhite;
+    color: orange;
   `}
   ${props =>
     props.selected && `
-    background-color: #663399 !important;
     color: #fff;
   `}
 `
