@@ -8,6 +8,7 @@ import Helmet from '../Core/Helmet'
 import logo from '../../static/img/ask-logo.png'
 import { TagCloud } from 'react-tagcloud'
 import styled, { keyframes } from 'styled-components'
+import popSound from '../../static/audio/pop.mp3'
 
 const pop = keyframes`
   0% { transform: scale(0.4); opacity: 0; }
@@ -43,9 +44,11 @@ class Present extends React.Component {
   }
   componentDidMount () {
     this.props.present.getRoomData(this.roomId)
+    const audio = new Audio(popSound)
     socket.emit('room', this.roomId)
     socket.on('presentation', ({ questions }) => {
       this.props.present.setQuestions(questions)
+      audio.play()
     })
   }
   render () {
@@ -76,7 +79,7 @@ class Present extends React.Component {
                   <div>
                     <TagCloud
                       className='text-center'
-                      minSize={40}
+                      minSize={44}
                       maxSize={58}
                       tags={this.props.present.questions}
                       renderer={Tag}
