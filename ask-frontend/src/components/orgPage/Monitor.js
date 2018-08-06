@@ -12,7 +12,7 @@ import Helmet from '../Core/Helmet'
 const Card = styled.div`
   border-radius: 0.75rem !important;
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .4);
-  height: 85vh;
+  min-height: 85vh;
 `
 
 const CustomeNav = styled(NavLink)`
@@ -48,9 +48,9 @@ class OrgMonitorShow extends React.Component {
         <Helmet title='Monitor' />
         <Row className='justify-content-center'>
           <Col xs={11}>
-            <Card className='mt-2 rounded p-2'>
+            <Card className='my-2 rounded p-2 bg-white'>
               <Nav tabs style={{ flexDirection: 'row-reverse', position: 'relative', marginLeft: 0 }}>
-                <Title className={'nav-item active'} >
+                <Title className={'nav-item active d-none d-sm-block'} >
                   {this.props.setting.roomName}
                 </Title>
                 <NavItem>

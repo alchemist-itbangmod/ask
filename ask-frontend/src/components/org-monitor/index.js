@@ -52,7 +52,7 @@ class OrgMonitor extends React.Component {
 
     if (index > -1) {
       selectedQuestions.splice(index, 1)
-    } else {
+    } else if (selectedQuestions.length < 5) {
       selectedQuestions.push(item)
     }
     this.setState({
@@ -97,12 +97,11 @@ class OrgMonitor extends React.Component {
           <Row>
             <Col xs='12'>
               <StyledCardHeader>
-                <Row className='px-3'>
+                <Row className='px-3 justify-content-between align-items-center'>
                   <Col sm='8'>
-                    <h4>Questions ({this.state.allQuestion.length})</h4>
+                    <h6 className='m-0'>Questions ({this.state.allQuestion.length})</h6>
                   </Col>
-                  <Col sm='1' />
-                  <Col sm='3'>
+                  <Col sm='4'>
                     <Button
                       block
                       size='sm'
@@ -125,7 +124,7 @@ class OrgMonitor extends React.Component {
                   onClick={() => this.handleSelectedQuestion(item)}
                 >
                   <Col xs='10'>
-                    <span>{item.question}</span>
+                    {item.question}
                   </Col>
                   <Col xs='12'>
                     <DisplayName
@@ -147,12 +146,12 @@ class OrgMonitor extends React.Component {
           <Row>
             <Col xs='12'>
               <StyledCardHeader>
-                <Row className='px-3'>
-                  <Col sm='8'>
-                    <h4>Selected ({this.state.selectedQuestions.length})
-                    / Live ({this.state.liveQuestions.length})</h4>
+                <Row className='px-3 align-items-center'>
+                  <Col sm='7'>
+                    <h6 className='m-0'>Selected ({this.state.selectedQuestions.length})
+                    / Live ({this.state.liveQuestions.length})</h6>
                   </Col>
-                  <Col sm='4'>
+                  <Col sm='5'>
                     <Button
                       block
                       size='sm'

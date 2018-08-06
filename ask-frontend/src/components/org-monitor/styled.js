@@ -1,30 +1,34 @@
 import styled from 'styled-components'
-import { Card, CardHeader } from 'reactstrap'
+import { CardHeader } from 'reactstrap'
 
 const StyledCardHeader = styled(CardHeader)`
   padding: 0.75rem 0;
   padding-left:0px;
   padding-right:0px;
 `
-const ScrollCard = styled(Card)`
+const ScrollCard = styled.div`
   min-height: 65vh;
-  max-height: 65vh;
+  height: 65vh;
   overflow-y: scroll;
   overflow-x: hidden;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
 `
 
 const List = styled.div`
-  padding:15px 0 0;
+  padding: 5px 0;
   transition: all 0.2s;
   border-radius: 4px;
-  margin: 5px 0;
-  box-shadow: 0 0 0.5rem;
+  display: flex;
+  margin: 5px 2px;
+  box-shadow: 0 1px 0.4rem rgba(0,0,0,0.5);
+  
 
   ${props =>
     !props.noHover && `
     cursor:pointer;
     :hover {
-      background-color: rgba(0,0,0,0.1);
+      background-color: rgba(0, 0, 0, 0.1);
     }
   `}
   ${props =>

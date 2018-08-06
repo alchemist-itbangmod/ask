@@ -24,7 +24,7 @@ class OrgAnalyst extends React.Component {
               <CardBody>
                 <CardTitle tag='h4' className='text-center mb-5'>Analyst</CardTitle>
                 <Row className='text-center mb-5'>
-                  <Col>
+                  <Col xs='12' sm='4'>
                     <h2>
                       {this.props.analyst.allQuestion}
                     </h2>
@@ -32,7 +32,7 @@ class OrgAnalyst extends React.Component {
                       AllQuestions
                     </p>
                   </Col>
-                  <Col>
+                  <Col xs='12' sm='4'>
                     <h2>
                       {this.props.analyst.answeredQuestions}
                     </h2>
@@ -40,7 +40,7 @@ class OrgAnalyst extends React.Component {
                       SelectedQuestions
                     </p>
                   </Col>
-                  <Col>
+                  <Col xs='12' sm='4'>
                     <h2>
                       {this.props.analyst.allUser}
                     </h2>
