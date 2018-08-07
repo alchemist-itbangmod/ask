@@ -10,7 +10,7 @@ export const Logo = styled.img`
 `
 
 export const AskName = styled.div`
-  margin: 200px;
+  // margin: 200px;
 `
 
 export const Card = styled.div`

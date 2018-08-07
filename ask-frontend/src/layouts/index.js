@@ -50,7 +50,7 @@ const Layout = ({ children, data }) => (
         ]}
       >
         <link rel='icon' href={favicon} />
-        <link href='https://fonts.googleapis.com/css?family=Taviraj' rel='stylesheet' />
+        <link href='https://fonts.googleapis.com/css?family=Prompt|Taviraj' rel='stylesheet' />
         <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' rel='stylesheet' />
         <style>{`
           body {

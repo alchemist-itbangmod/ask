@@ -22,6 +22,7 @@ const StyledTag = styled.div`
 `
 
 const BackgroundContainer = styled.div`
+  font-family: 'Prompt', sans-serif;
   background: radial-gradient(#0E0721DD, #0E0721, #0E0721, #0E0721, #0c0323);
   color: white;
 `
@@ -58,14 +59,14 @@ class Present extends React.Component {
           <Helmet title='Presentation' />
           <Row>
             <Card className='text-dark bg-light justify-content-center' show={!this.props.present.questions.length}>
-              <AskName className='m-5 text-center'>
-                <h1>ASK #3.0</h1>
+              <AskName className='my-5 text-center'>
+                <h2>ASK #3.0</h2>
               </AskName>
               <div className='d-flex justify-content-center'>
                 <Logo bg={logo} />
               </div>
-              <div className='m-5'>
-                <h1>ask.kmutt.ac.th</h1>
+              <div className='m-2 mt-5'>
+                <h4>ask.kmutt.ac.th</h4>
               </div>
             </Card>
             <Col sm='12' className='d-flex justify-content-center align-items-center' style={{ height: '100vh' }}>
