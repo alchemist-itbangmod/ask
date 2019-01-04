@@ -7,7 +7,7 @@ router.get('/', requireAuth, questionController.getAll)
 router.get('/:id', requireAuth, questionController.getById)
 router.post('/', questionController.create)
 router.put('/', requireAuth, questionController.update)
-router.get('/:id/rooms', requireAuth, questionController.getByRoomId)
+router.get('/:id/rooms', requireAuth, questionController.getAllQuestionByRoomId)
 router.patch('/answer', requireAuth, questionController.updateIsAnswered)
 
 export default router
