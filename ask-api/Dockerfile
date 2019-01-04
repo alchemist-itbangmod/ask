@@ -1,12 +1,14 @@
-FROM node:10.7.0-alpine
+FROM node:8-alpine
 
 WORKDIR /app
 
-COPY package.json ./
+COPY package.json .
+COPY yarn.lock .
 
-RUN yarn
+RUN yarn install
 
-COPY . .
+COPY ./*.js ./
+COPY ./src ./src
 
 EXPOSE 3000
 
