@@ -23,7 +23,7 @@ export default {
   },
   getByRoomId: async (req, res) => {
     const roomId = req.params.id
-    const questions = await questionModel.getAnsweredQuestionByRoomId(roomId)
+    const questions = await questionModel.getUnanswerQuestionByRoomId(roomId)
     res.send(questions)
   },
   getAllQuestionByRoomId: async (req, res) => {
