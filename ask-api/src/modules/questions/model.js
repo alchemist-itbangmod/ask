@@ -18,7 +18,12 @@ export default {
       .where({ questionId: id })
       .first()
   },
-  getByRoomId: (roomId) => {
+  getAllByRoomId: (roomId) => {
+    return knex(tableName)
+      .where({ roomId })
+      .select()
+  },
+  getUnanswerQuestionByRoomId: (roomId) => {
     return knex(tableName)
       .where({
         roomId,
